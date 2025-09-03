@@ -1,6 +1,10 @@
 ---
 title: "ECON4538 - Syllabus"
 bibliography: reading_list.bib
+author: Prof. Joseph Mullins
+format:
+    pdf:
+        colorlinks: true
 ---
 
 This is an advanced undergraduate course in Labor Economics. Please read below for the course outline and syllabus.
@@ -25,6 +29,7 @@ You will find details on how to contact me and sign up for office hours on the [
 In this class we will address questions at the forefront of modern economic policy. What factors drive economic inequality over the life-cycle? How are these evolving over time? What are the potential costs and benefits to collective provision of insurance and redistribution? What policies are effective in creating equal opportunity? 
 
 To answer these questions you will learn the basic tools of modern quantitative economics. We will be interested in understanding the models and tools that economists have developed to understand labor market inequality, as well as in using these models to analyze the welfare implications of various government interventions. Topics to be covered include: dynamic programming, solution methods of general equilibrium models, heterogeneous-agent macroeconomic models, models of human capital formation, and modern empirical evidence on the nature human capital.
+
 
 ## Student Learning Outcomes
 

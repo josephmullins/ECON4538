@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "ECON4538",
+    "title": "ECON4538 - Syllabus",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "This is an advanced undergraduate course in Labor Economics. Please read below for the course outline and syllabus."
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,75 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "index.html#class-times",
+    "href": "index.html#class-times",
+    "title": "ECON4538 - Syllabus",
+    "section": "Class Times",
+    "text": "Class Times\n\nLectures\nMondays and Wednesdays, 9:45am - 11am, Blegen Hall 240\n\n\nRecitations\nFridays, 10:10am - 11am, Blegen Hall 215"
+  },
+  {
+    "objectID": "index.html#email-and-office-hours",
+    "href": "index.html#email-and-office-hours",
+    "title": "ECON4538 - Syllabus",
+    "section": "Email and Office Hours",
+    "text": "Email and Office Hours\nYou will find details on how to contact me and sign up for office hours on the course Canvas page."
+  },
+  {
+    "objectID": "index.html#course-overview-and-objectives",
+    "href": "index.html#course-overview-and-objectives",
+    "title": "ECON4538 - Syllabus",
+    "section": "Course Overview and Objectives",
+    "text": "Course Overview and Objectives\nIn this class we will address questions at the forefront of modern economic policy. What factors drive economic inequality over the life-cycle? How are these evolving over time? What are the potential costs and benefits to collective provision of insurance and redistribution? What policies are effective in creating equal opportunity?\nTo answer these questions you will learn the basic tools of modern quantitative economics. We will be interested in understanding the models and tools that economists have developed to understand labor market inequality, as well as in using these models to analyze the welfare implications of various government interventions. Topics to be covered include: dynamic programming, solution methods of general equilibrium models, heterogeneous-agent macroeconomic models, models of human capital formation, and modern empirical evidence on the nature human capital."
+  },
+  {
+    "objectID": "index.html#student-learning-outcomes",
+    "href": "index.html#student-learning-outcomes",
+    "title": "ECON4538 - Syllabus",
+    "section": "Student Learning Outcomes",
+    "text": "Student Learning Outcomes\nOn successfully completing this course, students should be familiar with some of the core concepts in modern quantitative economics. Students should be able to formalize an appropriate dynamic, stochastic, general equilibrium model to analyze a question of interest. Students should be able to solve and simulate such a model on a computer, for the purpose of interpreting data and conducting policy experiments."
+  },
+  {
+    "objectID": "index.html#course-prerequisites",
+    "href": "index.html#course-prerequisites",
+    "title": "ECON4538 - Syllabus",
+    "section": "Course Prerequisites",
+    "text": "Course Prerequisites\nI will assume that you are comfortable with micro concepts at the level of Econ 3101, 3102, such as the utility maximization problem and its related topics. I will also assume that you are comfortable with basic econometrics such as multivariate regression techniques as well as statistics at the level of Stat 3011. With regards to your math background, I will take as granted that you know how to work with calculus (derivatives). Students should be willing to invest time in learning a computer programming language such as julia."
+  },
+  {
+    "objectID": "index.html#textbook",
+    "href": "index.html#textbook",
+    "title": "ECON4538 - Syllabus",
+    "section": "Textbook",
+    "text": "Textbook\nWe will use some chapters and problem sets from Recursive Macroeconomic Theory (Ljungqvist and Sargent 2012, 3rd edition) available online via the University Library. We will also make use of Journal Articles. I have provided links to electronic versions of the textbook and journal articles are available on the “Library Course Page”.\n\nAdditional Readings\nYou may also find some of the following books useful.\n\nJohn Stachurski, Economic Dynamics: Theory and Computation, 2nd edition, (2022).\nChristopher Pissarides, Equilibrium Unemployment Theory, 2nd edition, (2000).\nJérôme Adda and Russell Cooper, Dynamic Economics: Quantitative Methods and Applications, (2003).\nMario Miranda and Paul Fackler, Applied Computational Economics and Finance, (2002).\nKenneth Judd, Numerical Methods in Economics, (1998)."
+  },
+  {
+    "objectID": "index.html#course-software-and-resources",
+    "href": "index.html#course-software-and-resources",
+    "title": "ECON4538 - Syllabus",
+    "section": "Course Software and Resources",
+    "text": "Course Software and Resources\nWe will demonstrate and develop the computational tools you are learning using the julia programming language, which is well-suited for scientific computation and data analysis. LATIS provides a copy of julia on AppstoGo, but we recommend installing your own version, since it is completely free and open source. See the website for more details on the language and installation instructions.\nThroughout the course, you may find the QuantEcon julia course (by Tom Sargent, John Stachurski, and Jesse Perla) a useful additional resource."
+  },
+  {
+    "objectID": "index.html#assessment",
+    "href": "index.html#assessment",
+    "title": "ECON4538 - Syllabus",
+    "section": "Assessment",
+    "text": "Assessment\nThe course will be graded based on 6 problem sets (each worth 7%, 42% total), a midterm exam (20%), and a final exam (38%).\n\nSubmission Guidelines\nIt is your responsibility to submit neat and legible solutions to the problem sets. Your TA may deduct marks for illegible submissions. Please follow these guidelines:\n\nAll homework assignments must be submitted as a Quarto or jupyter notebook rendered as an html or pdf, with code and output showing all required results. You will be introduced to these notebooks through recitation materials.\nFor questions requiring mathematical solutions, you may submit handwritten solutions if you prefer, but they must be submitted as a pdf using a scanner or scanning app on your phone."
+  },
+  {
+    "objectID": "index.html#course-outline",
+    "href": "index.html#course-outline",
+    "title": "ECON4538 - Syllabus",
+    "section": "Course Outline",
+    "text": "Course Outline\n\nDynamic Programming and Applications\nAn important set of mathematical tools for solving dynamic models. Topics include:\n\nBellman’s principal of optimality and contraction mappings\nMathematical and computational exposition (using julia) of dynamic programming tools, applied to:\n\nModels of job search\nInfinite horizon and life-cycle models of savings\n\n\nReading: Ljungqvist and Sargent (2012) Chapters 3-6.\n\n\nSavings and incomplete markets\nReview of the main theoretical models describing savings and self-insurance of agents under uncertainity and incomplete markets.\n\nMain savings problems\nIncomplete markets models as Huggett (1993), Aiyagari (1994), Krusell and Smith (1998)\nConsumption inequality and income uncertainity.\n\nReading: Ljungqvist and Sargent (2012) Chapters 17-18. Deaton (1991), Blundell and Preston (1998), Huggett (1993), Aiyagari (1994), Krusell and Smith (1998)\n\n\nFacts about Inequality\nWe review and replicate facts about labor market inequality in the United States. Topics include:\n\nDocumenting income inequality (Moffitt and Gottschalk 2011; Heathcote, Perri, and Violante 2010; Heathcote et al. 2023; Guvenen et al. 2021)\nEstimation of income risk (Moffitt and Gottschalk 2011; Meghir and Pistaferri 2004; Low, Meghir, and Pistaferri 2010; Guvenen 2009)\nWelfare implications of income inequality (Storesletten, Telmer, and Yaron 2004)\n\nRedistribution vs Insurance\n\nThe Intergenerational Elasticity of Earnings (Corak 2013; Mazumder 2018)\nSkills and Inequality (James J. Heckman, Stixrud, and Urzua 2006; F. Cunha and Heckman 2008a; F. Cunha and Heckman 2009)\n\n\n\nTheories of Human Capital and Inequality\nWe introduce textbook theories of human capital formation and examine their empirical content. We develop computational tools to bring these theories to data. Topics include:\n\nThe Becker-Tomes model of intergenerational inequality via human capital investment (Becker and Tomes 1979, 1986)\n\nPolicy implications of the model (efficiency and redistribution)\n\nDebates on the empirical and conceptual merits of the Becker-Tomes model (Goldberger and Becker 1989; Mulligan 1999; J. J. ;. L. Cunha Flavio ;. Heckman 2006; F. Cunha and Heckman 2007)\nQuantitative and theoretical extensions of the baseline model (Lee and Seshadri 2019; Caucutt and Lochner 2020)\n\n\n\nConnecting Human Capital Theory with Evidence\nWe survey some empirical work that connects the theory with data. Topics include:\n\nA review of econometric methods for causal inference\nEvidence of the effect of social programs on child skill formation and long-run outcomes [Dahl and Lochner (2012); Barr, Eggleston, and Smith (2022); Bastian and Michelmore (2018); Carneiro et al. (2021); Bailey et al. (2024); ]\nEvidence of the effect of early childhood education on skill formation and long-run outcomes (James J. Heckman et al. 2010; García et al. 2020; Kline and Walters 2016)\nEvidence of the effect of parenting and home interventions on skill formation and long-run outcomes (Attanasio, Meghir, and Nix 2020; Walker et al. 2022; Carneiro et al. 2024)\nEstimating the technology of skill formation. (F. Cunha and Heckman 2008b; Attanasio, Meghir, and Nix 2020)"
+  },
+  {
+    "objectID": "index.html#grading-policies-and-procedures",
+    "href": "index.html#grading-policies-and-procedures",
+    "title": "ECON4538 - Syllabus",
+    "section": "Grading, Policies, and Procedures",
+    "text": "Grading, Policies, and Procedures\nPlease see the course Canvas page for the department grading scale and a statement of University policies and procedures."
   }
 ]
