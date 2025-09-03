@@ -113,7 +113,7 @@ We introduce textbook theories of human capital formation and examine their empi
 We survey some empirical work that connects the theory with data. Topics include:
 
 - A review of econometric methods for causal inference
-- Evidence of the effect of social programs on child skill formation and long-run outcomes [@Dahl2012; @Barr2022; @Bastian2018; @Carneiro2021; @bailey2024; ]
+- Evidence of the effect of social programs on child skill formation and long-run outcomes [@Dahl2012; @Barr2022; @Bastian2018; @Carneiro2021; @bailey2024]
 - Evidence of the effect of early childhood education on skill formation and long-run outcomes [@heckman2010; @Garcia2020; @Kline2016]
 - Evidence of the effect of parenting and home interventions on skill formation and long-run outcomes [@ATTANASIO2020; @Walker2022; @Carneiro2024]
 - Estimating the technology of skill formation. [@Cunha2008b; @ATTANASIO2020]
