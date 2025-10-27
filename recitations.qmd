@@ -1,0 +1,12 @@
+---
+title: "Recitation Materials"
+---
+
+Materials will be updated here as we continue through the course.
+
+These recitations have been rendered using [Quarto](https://quarto.org) notebooks. The original source files for the notebooks can be downloaded from this site's [Github repo](https://github.com/josephmullins/ECON4538). You may want to study the source files to learn how to format your own notebooks for the homework assignments.
+
+| Topic | Notebook | Data |
+| ----- | -------- | ---- |
+| Documenting Inequality |  | |
+

@@ -1,0 +1,14 @@
+---
+title: "Lecture Slides"
+---
+
+Materials here will be uploaded as we continue through the course.
+
+| Topic | Slides | 
+| ----- | ------ |
+| Documenting Facts about Inequality | [Slides](lectures/1-DocumentingInequality.qmd) |
+| Policy Implications: Redistribution vs Insurance |  |
+| Estimating Income Processes | |
+| Intergenerational Mobility | |
+| Theories of Human Capital | |
+| Evidence | |
