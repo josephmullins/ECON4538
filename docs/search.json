@@ -284,6 +284,76 @@
     "href": "lectures.html",
     "title": "Lecture Slides",
     "section": "",
-    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\n\n\n\nEstimating Income Processes\n\n\n\nIntergenerational Mobility\n\n\n\nTheories of Human Capital\n\n\n\nEvidence"
+    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nSyllabus\nSlides\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\n\n\n\nEstimating Income Processes\n\n\n\nIntergenerational Mobility\n\n\n\nTheories of Human Capital\n\n\n\nEvidence"
+  },
+  {
+    "objectID": "lectures/Syllabus.html#facts-about-inequality",
+    "href": "lectures/Syllabus.html#facts-about-inequality",
+    "title": "Syllabus",
+    "section": "Facts About Inequality",
+    "text": "Facts About Inequality\n\n\nSome basic facts about labor market inequality Heathcote et al. (2023)\nThinking through policy implications (redistribution vs insurance)\nEstimating income processes\n\nHow much income risk do workers face? How much is realized before labor market entry?\n\nIntergenerational income inequality\n\nHow much inequality is inherited from birth?\n\nSkills and inequality\n\nHow much inequality can be explained by measured skills and traits?\nLatent factor models"
+  },
+  {
+    "objectID": "lectures/Syllabus.html#facts-about-inequality-2-3-weeks",
+    "href": "lectures/Syllabus.html#facts-about-inequality-2-3-weeks",
+    "title": "Syllabus",
+    "section": "Facts About Inequality (2-3 weeks)",
+    "text": "Facts About Inequality (2-3 weeks)\n\n\nSome basic facts about labor market inequality Heathcote et al. (2023)\nThinking through policy implications (redistribution vs insurance)\nEstimating income processes\n\nHow much income risk to workers face? How much is realized before labor market entry?\n\nIntergenerational income inequality\n\nHow much inequality is inherited from birth?\n\nSkills and inequality\n\nHow can much inequality can be explained by measured skills and traits?\nLatent factor models"
+  },
+  {
+    "objectID": "lectures/Syllabus.html#the-human-capital-framework-2-weeks",
+    "href": "lectures/Syllabus.html#the-human-capital-framework-2-weeks",
+    "title": "Syllabus",
+    "section": "The Human Capital Framework (2 weeks)",
+    "text": "The Human Capital Framework (2 weeks)\n\n\nIntergenerational dynamics and efficiency (Becker and Tomes 1979, 1986)\n\nEmpirical content of model. Does it fit the data?\n\nQuantitative modeling exercises"
+  },
+  {
+    "objectID": "lectures/Syllabus.html#connecting-the-framework-with-data-time-remaining",
+    "href": "lectures/Syllabus.html#connecting-the-framework-with-data-time-remaining",
+    "title": "Syllabus",
+    "section": "Connecting the Framework with Data (time remaining)",
+    "text": "Connecting the Framework with Data (time remaining)\n\n\nA review of econometric methods for causal inference\nEffect of social programs (Medicaid, Food Stamps, EITC)\nEarly childhood education\nParenting and home interventions\nEstimating the technology of skill formation"
+  },
+  {
+    "objectID": "lectures/Syllabus.html#assessment",
+    "href": "lectures/Syllabus.html#assessment",
+    "title": "Syllabus",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n3 problem sets (due dates on Canvas)\n\ntheory + coding\nwill provide examples in recitation to scaffold\nuse genAI as much as you want, but…\n\nFinal\n\nDecember 15, Blegen 240, 10:30am - 12:30pm\ntheory and coding questions (will provide examples)\nso make sure you use the problem sets to learn"
+  },
+  {
+    "objectID": "lectures/Syllabus.html#the-human-capital-framework",
+    "href": "lectures/Syllabus.html#the-human-capital-framework",
+    "title": "Syllabus",
+    "section": "The Human Capital Framework",
+    "text": "The Human Capital Framework\n\n\nIntergenerational dynamics and efficiency (Becker and Tomes 1979, 1986)\n\nEmpirical content of model. Does it fit the data?\n\nQuantitative modeling exercises\n\nUse our dynamic programming tools"
+  },
+  {
+    "objectID": "lectures/Syllabus.html#connecting-the-framework-with-data",
+    "href": "lectures/Syllabus.html#connecting-the-framework-with-data",
+    "title": "Syllabus",
+    "section": "Connecting the Framework with Data",
+    "text": "Connecting the Framework with Data\n\n\nA review of econometric methods for causal inference\nEffect of social programs (Medicaid, Food Stamps, EITC)\nEarly childhood education\nParenting and home interventions\nEstimating the technology of skill formation"
+  },
+  {
+    "objectID": "lectures/Syllabus.html#lectures-and-learning",
+    "href": "lectures/Syllabus.html#lectures-and-learning",
+    "title": "Syllabus",
+    "section": "Lectures and Learning",
+    "text": "Lectures and Learning\n\n\nI will make slides available as soon as I have them\nThey are not a substitute for attendance\nWe will do theory and exercises “on the board”\nThe reading list is intended to supplement for those interested in going deeper\n\nUnless stated otherwise, you only need what we cover in class"
+  },
+  {
+    "objectID": "lectures/Syllabus.html#online-class-dates",
+    "href": "lectures/Syllabus.html#online-class-dates",
+    "title": "Syllabus",
+    "section": "Online Class Dates",
+    "text": "Online Class Dates"
+  },
+  {
+    "objectID": "lectures/Syllabus.html#citations",
+    "href": "lectures/Syllabus.html#citations",
+    "title": "Syllabus",
+    "section": "Citations",
+    "text": "Citations\n\n\n\n\nBecker, Gary S., and Nigel Tomes. 1979. “An Equilibrium Theory of the Distribution of Income and Intergenerational Mobility.” The Journal of Political Economy, no. 6: 1153–89. https://doi.org/10.1086/260831.\n\n\n———. 1986. “Human Capital and the Rise and Fall of Families.” Journal of Labor Economics, no. 3: S1–39. https://doi.org/10.1086/298118.\n\n\nHeathcote, Jonathan, Fabrizio Perri, Giovanni L. Violante, and Lichen Zhang. 2023. “More Unequal We Stand? Inequality Dynamics in the United States, 1967–2021.” Review of Economic Dynamics, 235–66. https://doi.org/10.1016/j.red.2023.07.014."
   }
 ]

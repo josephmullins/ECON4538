@@ -1,5 +1,6 @@
 ---
 title: "Documenting Inequality"
+bibliography: reading_list.bib
 format:
   revealjs:
     theme: solarized

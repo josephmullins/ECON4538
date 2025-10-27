@@ -1,0 +1,612 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Documenting Inequality\"\n",
+        "bibliography: reading_list.bib\n",
+        "format:\n",
+        "  revealjs:\n",
+        "    theme: solarized\n",
+        "    transition: slide\n",
+        "    chalkboard:\n",
+        "        theme: whiteboard\n",
+        "        chalk-effect: 0.0\n",
+        "        chalk-width: 6\n",
+        "jupyter: julia-1.11\n",
+        "---\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "## Overview\n",
+        "\n",
+        ":::{.incremental}\n",
+        "- In this section of the class we'll look at what the data tells us about labor market inequality in the United States\n",
+        "- Will look at trends in inequality *over time* and *over the life-cycle*\n",
+        "- Will focus on **labor market inequality**\n",
+        "- Some review of basic statistics along the way\n",
+        "- Later in the section will dig deeper into *policy implications*\n",
+        ":::\n",
+        "\n",
+        "## Let's start with some data\n",
+        "\n",
+        ":::{.incremental}\n",
+        "- Data: the *Current Population Survey* (CPS) \n",
+        "- Will use the Annual Social and Economic Supplement (ASEC)\n",
+        "- Years: 1990 - 2024, Ages: 25-64\n",
+        "- Cleaned and harmonized by [IPUMS](https://cps.ipums.org/cps/index.shtml)\n",
+        "- Using annual wage income, hours, demographics\n",
+        "- Deflate using the Personal Consumption Expenditure Price Index\n",
+        "- Consult the [data dictionary](../data/cps_00049.cbk)\n",
+        ":::\n",
+        "\n",
+        "\n",
+        "## Some Cleaning Steps\n"
+      ],
+      "id": "4755352f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: \"4|5|6|7|8-9|10\"\n",
+        "#| echo: true\n",
+        "#| output: false\n",
+        "using DataFrames, CSV, StatsPlots, DataFramesMeta, StatsBase\n",
+        "pce = CSV.read(\"../data/PCE_index.csv\",DataFrame)\n",
+        "\n",
+        "data = @chain CSV.read(\"../data/cps_00049.csv\",DataFrame) begin\n",
+        "  @subset :INCWAGE .>0 #<- keep only if positive earnings\n",
+        "  @subset :WKSWORK1 .>10 #<- keep only if worked more than 10 weeks\n",
+        "  @transform :HOURS = :UHRSWORKLY .* :WKSWORK1 #<- calculate annual hours\n",
+        "  innerjoin(pce,on=:YEAR)\n",
+        "  @transform :INCWAGE = 100 * :INCWAGE ./ :PCE #<- deflate earnings (2017 base)\n",
+        "  @transform :WAGE = :INCWAGE ./ :HOURS #<- annual earnings / annual hours\n",
+        "end"
+      ],
+      "id": "0ae97c43",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## A Quick Look at Sample Sizes\n"
+      ],
+      "id": "6247bb92"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "\n",
+        "@chain data begin\n",
+        "  groupby(:YEAR)\n",
+        "  @combine :N = length(:INCWAGE)\n",
+        "end"
+      ],
+      "id": "7cd0a08f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Most things we will get very precisely\n",
+        "e.g. gender wage gaps:\n"
+      ],
+      "id": "23b4ff88"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| echo: true\n",
+        "@chain data begin\n",
+        "  groupby([:YEAR,:SEX])\n",
+        "  @combine begin \n",
+        "    :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n",
+        "    :v_est = var(log.(:WAGE),weights(:ASECWT)) / length(:WAGE)\n",
+        "    end\n",
+        "  @transform :ci_width = 1.96 * sqrt.(:v_est)\n",
+        "  @df _ scatter(:YEAR,:m_wage,yerror=:ci_width,group=:SEX)\n",
+        "end"
+      ],
+      "id": "0d57a597",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Reviewing Population Weights (Exercise)\n",
+        "\n",
+        "::: {.panel-tabset}\n",
+        "\n",
+        "### Unweighted\n"
+      ],
+      "id": "520638f9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "@chain data begin\n",
+        "    groupby(:YEAR)\n",
+        "    @combine :wage = mean(:WAGE)\n",
+        "    @df _ plot(:YEAR,:wage)\n",
+        "end"
+      ],
+      "id": "60a38a83",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Weighted\n"
+      ],
+      "id": "491270ac"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "\n",
+        "@chain data begin\n",
+        "    groupby(:YEAR)\n",
+        "    @combine :wage = mean(:WAGE,weights(:ASECWT))\n",
+        "    @df _ plot(:YEAR,:wage)\n",
+        "end"
+      ],
+      "id": "f8c21d72",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Earnings\n"
+      ],
+      "id": "d416d5f7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "\n",
+        "@chain data begin\n",
+        "    groupby(:YEAR)\n",
+        "    @combine :earn = mean(:INCWAGE,weights(:ASECWT))\n",
+        "    @df _ plot(:YEAR,:earn)\n",
+        "end"
+      ],
+      "id": "d4edfd66",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Hours\n"
+      ],
+      "id": "88b979e3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "\n",
+        "@chain data begin\n",
+        "    groupby(:YEAR)\n",
+        "    @combine :hours = mean(:HOURS,weights(:ASECWT))\n",
+        "    @df _ plot(:YEAR,:hours)\n",
+        "end"
+      ],
+      "id": "60326f92",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "# Some Basic Facts About\n",
+        "\n",
+        "## Trends in Inequality\n",
+        "\n",
+        ":::{.incremental}\n",
+        "\n",
+        "- How should we document inequality?\n",
+        "- Some natural statistics to analyze the distribution of earnings and wages\n",
+        "  - Variance (definition)\n",
+        "  - Percentiles (definition)\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "## Variance in log wages\n"
+      ],
+      "id": "fe2a0679"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "\n",
+        "@chain data begin\n",
+        "    groupby(:YEAR)\n",
+        "    @combine :var_lw = var(log.(:WAGE),weights(:ASECWT))\n",
+        "    @df _ plot(:YEAR,:var_lw)\n",
+        "end\n"
+      ],
+      "id": "581f0b71",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Percentiles of log wages\n"
+      ],
+      "id": "c3002a72"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| echo: true\n",
+        "pctiles = @chain data begin\n",
+        "    groupby(:YEAR)\n",
+        "    @combine begin \n",
+        "    :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)\n",
+        "    :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)\n",
+        "    end\n",
+        "    stack(Not(:YEAR))\n",
+        "    @df _ plot(:YEAR,:value,group=:variable)\n",
+        "end"
+      ],
+      "id": "5d43e3fe",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Percentiles of log wages (normalized)\n"
+      ],
+      "id": "2e07c9f5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| echo: true\n",
+        "pctiles = @chain data begin\n",
+        "    groupby(:YEAR)\n",
+        "    @combine begin \n",
+        "    :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)\n",
+        "    :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)\n",
+        "    end\n",
+        "    stack(Not(:YEAR))\n",
+        "    groupby(:variable)\n",
+        "    @transform :value = :value .- :value[1]\n",
+        "    @df _ plot(:YEAR,:value,group=:variable)\n",
+        "end\n",
+        "plot!([1990,2024],[0.,0.],linestyle=:dash,color=\"grey\",label=false)"
+      ],
+      "id": "71cb752e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Percentiles of log wages (normalized)\n"
+      ],
+      "id": "d5263c07"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| echo: true\n",
+        "pctiles = @chain data begin\n",
+        "    groupby(:YEAR)\n",
+        "    @combine begin \n",
+        "    :p_90 = quantile(log.(:WAGE),weights(:ASECWT),0.9)\n",
+        "    :p_10 = quantile(log.(:WAGE),weights(:ASECWT),0.1)\n",
+        "    :p_75 = quantile(log.(:WAGE),weights(:ASECWT),0.75)\n",
+        "    :p_25 = quantile(log.(:WAGE),weights(:ASECWT),0.25)\n",
+        "    end\n",
+        "    stack(Not(:YEAR))\n",
+        "    groupby(:variable)\n",
+        "    @transform :value = :value .- :value[1]\n",
+        "    @df _ plot(:YEAR,:value,group=:variable)\n",
+        "end\n",
+        "plot!([1990,2024],[0.,0.],linestyle=:dash,color=\"grey\",label=false)"
+      ],
+      "id": "3b16953e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Trends in Other Metrics\n",
+        "\n",
+        "## Wage Gaps\n",
+        "\n",
+        ":::.{incremental}\n",
+        "\n",
+        "- While overall wage inequality is a main topic of interest, other metrics may matter for policy questions\n",
+        "- E.g. gaps by education, gender/sex, race\n",
+        "- Will look at these using the same data\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "## Gender Wage Gaps\n"
+      ],
+      "id": "2486229e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| echo: true\n",
+        "#| code-line-numbers: 2-3|4|5|6\n",
+        "\n",
+        "@chain data begin\n",
+        "  groupby([:YEAR,:SEX])\n",
+        "  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n",
+        "  unstack(:YEAR,:SEX,:m_wage,renamecols=x->Symbol(:wage_, x))\n",
+        "  @transform :gender_gap = :wage_1 .- :wage_2\n",
+        "  @df _ plot(:YEAR,:gender_gap,label = \"gender wage gap\")\n",
+        "end"
+      ],
+      "id": "5a7e0c12",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Race Wage Gaps\n"
+      ],
+      "id": "502dc983"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| echo: true\n",
+        "\n",
+        "@chain data begin\n",
+        "  groupby([:YEAR,:RACE])\n",
+        "  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n",
+        "  unstack(:YEAR,:RACE,:m_wage,renamecols=x->Symbol(:wage_, x))\n",
+        "  @transform :black_white_gap = :wage_100 .- :wage_200\n",
+        "  @df _ plot(:YEAR,:black_white_gap,label = \"race gap: black-white\")\n",
+        "end"
+      ],
+      "id": "467b83dc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "How much of this is sampling error?...\n",
+        "\n",
+        "## Race Wage Gaps\n"
+      ],
+      "id": "2b5bbbce"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| echo: true\n",
+        "#| code-line-numbers:  5-6|8|9-10|12-13\n",
+        "\n",
+        "@chain data begin\n",
+        "  @subset :RACE .<= 200\n",
+        "  groupby([:YEAR,:RACE])\n",
+        "  @combine begin \n",
+        "    :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n",
+        "    :v_est = var(log.(:WAGE),weights(:ASECWT)) / length(:WAGE)\n",
+        "  end\n",
+        "  stack()\n",
+        "  @transform :variable = string.(:variable,\"_\",:RACE)\n",
+        "  unstack(:YEAR,:variable,:value)\n",
+        "  @transform begin\n",
+        "    :black_white_gap = :m_wage_100 .- :m_wage_200\n",
+        "    :std_err = 1.96*sqrt.(:v_est_100 .+ :v_est_200)\n",
+        "  end\n",
+        "  @df _ scatter(:YEAR,:black_white_gap,yerror = :std_err,label = \"race gap: black-white\")\n",
+        "end"
+      ],
+      "id": "affa54de",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Education Premia\n",
+        "\n",
+        "Define the \"college premium\" or \"returns to college\" as:\n",
+        "\n",
+        "$$ \\mathbb{E}[\\log(\\text{wage})\\ |\\ \\geq \\text{Bachelor's}] - \\mathbb{E}[\\log(\\text{wage})\\ |\\ \\geq \\text{High School or Equiv}] $$\n",
+        "\n",
+        "## 4-Yr and 2-Yr College Premium\n"
+      ],
+      "id": "528e0e63"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| echo: true\n",
+        "#| code-line-numbers:  2|8\n",
+        "\n",
+        "@chain data begin\n",
+        "  @transform :educ = (:EDUC.>=70) .+ (:EDUC.>=90) .+ (:EDUC.>=110)\n",
+        "  groupby([:YEAR,:educ])\n",
+        "  @combine begin \n",
+        "    :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n",
+        "  end\n",
+        "  unstack(:YEAR,:educ,:m_wage,renamecols=x->Symbol(:wage_, x))\n",
+        "  @transform :two_yr = :wage_2 .- :wage_1 :four_yr = :wage_3 .- :wage_1\n",
+        "  @df _ begin\n",
+        "    plot(:YEAR,:two_yr,label=\"two-year prem\")\n",
+        "    plot!(:YEAR,:four_yr,label=\"four-year prem\")\n",
+        "  end\n",
+        "end"
+      ],
+      "id": "8b9dc3e2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Trends in Household Structure\n"
+      ],
+      "id": "a203b633"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| echo: true\n",
+        "#| code-line-numbers:  2|4-6\n",
+        "\n",
+        "test = @chain data begin\n",
+        "  @subset :NCHILD.>0\n",
+        "  groupby(:YEAR)\n",
+        "  @combine begin\n",
+        "    :divorce = mean(:MARST.==4)\n",
+        "    :never_married = mean(:MARST.==6)\n",
+        "    :single = mean(:MARST.>2)\n",
+        "  end\n",
+        "  stack(Not(:YEAR))\n",
+        "  @df _ plot(:YEAR,:value,group=:variable)\n",
+        "end"
+      ],
+      "id": "38372976",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Trends over the life-cycle\n",
+        "\n",
+        "## Life-cycle wage dynamics\n",
+        "\n",
+        ":::{.incremental}\n",
+        "- So far we have seen changes in wage distributions and wage gaps over time\n",
+        "- But perhaps these statistics vary with age, too.\n",
+        "- We have 34 years of data to study cohorts over time\n",
+        "- Beware the rank condition!\n",
+        ":::\n",
+        "\n",
+        "## Calculating life-cycle profiles\n"
+      ],
+      "id": "10e3b81c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "#| code-line-numbers:  2|3-4\n",
+        "\n",
+        "v_w = @chain data begin\n",
+        "  @transform :cohort = Int.(round.((:YEAR .- :AGE) ./ 10) .* 10)\n",
+        "  groupby([:cohort,:AGE])\n",
+        "  @combine :var_logw = var(log.(:WAGE),weights(:ASECWT))\n",
+        "end"
+      ],
+      "id": "38beaabd",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Variance in log-wages increases with age\n"
+      ],
+      "id": "82ea9585"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "@df v_w plot(:AGE,:var_logw,group=:cohort,linewidth=1.5)"
+      ],
+      "id": "87805ed5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ". . .\n",
+        "\n",
+        "What do you think could be driving this pattern? Why does it matter?"
+      ],
+      "id": "016c4348"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "julia-1.11",
+      "language": "julia",
+      "display_name": "Julia 1.11.3",
+      "path": "/Users/mullinsj/Library/Jupyter/kernels/julia-1.11"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

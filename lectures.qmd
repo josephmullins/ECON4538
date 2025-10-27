@@ -6,6 +6,7 @@ Materials here will be uploaded as we continue through the course.
 
 | Topic | Slides | 
 | ----- | ------ |
+| Syllabus | [Slides](lectures/Syllabus.qmd) |
 | Documenting Facts about Inequality | [Slides](lectures/1-DocumentingInequality.qmd) |
 | Policy Implications: Redistribution vs Insurance |  |
 | Estimating Income Processes | |
