@@ -74,7 +74,7 @@
     "href": "index.html#course-outline",
     "title": "ECON4538 - Syllabus",
     "section": "Course Outline",
-    "text": "Course Outline\n\nDynamic Programming and Applications\nAn important set of mathematical tools for solving dynamic models. Topics include:\n\nBellman’s principal of optimality and contraction mappings\nMathematical and computational exposition (using julia) of dynamic programming tools, applied to:\n\nModels of job search\nInfinite horizon and life-cycle models of savings\n\n\nReading: Ljungqvist and Sargent (2012) Chapters 3-6.\n\n\nSavings and incomplete markets\nReview of the main theoretical models describing savings and self-insurance of agents under uncertainity and incomplete markets.\n\nMain savings problems\nIncomplete markets models as Huggett (1993), Aiyagari (1994), Krusell and Smith (1998)\nConsumption inequality and income uncertainity.\n\nReading: Ljungqvist and Sargent (2012) Chapters 17-18. Deaton (1991), Blundell and Preston (1998), Huggett (1993), Aiyagari (1994), Krusell and Smith (1998)\n\n\nFacts about Inequality\nWe review and replicate facts about labor market inequality in the United States. Topics include:\n\nDocumenting income inequality (Moffitt and Gottschalk 2011; Heathcote, Perri, and Violante 2010; Heathcote et al. 2023; Guvenen et al. 2021)\nEstimation of income risk (Moffitt and Gottschalk 2011; Meghir and Pistaferri 2004; Low, Meghir, and Pistaferri 2010; Guvenen 2009)\nWelfare implications of income inequality (Storesletten, Telmer, and Yaron 2004)\n\nRedistribution vs Insurance\n\nThe Intergenerational Elasticity of Earnings (Corak 2013; Mazumder 2018)\nSkills and Inequality (James J. Heckman, Stixrud, and Urzua 2006; Cunha and Heckman 2008a; Cunha and Heckman 2009)\n\n\n\nTheories of Human Capital and Inequality\nWe introduce textbook theories of human capital formation and examine their empirical content. We develop computational tools to bring these theories to data. Topics include:\n\nThe Becker-Tomes model of intergenerational inequality via human capital investment (Becker and Tomes 1979, 1986)\n\nPolicy implications of the model (efficiency and redistribution)\n\nDebates on the empirical and conceptual merits of the Becker-Tomes model (Goldberger 1989; Mulligan 1999; Cunha et al. 2006; Cunha and Heckman 2007)\nQuantitative and theoretical extensions of the baseline model (Lee and Seshadri 2019; Caucutt and Lochner 2020)\n\n\n\nConnecting Human Capital Theory with Evidence\nWe survey some empirical work that connects the theory with data. Topics include:\n\nA review of econometric methods for causal inference\nEvidence of the effect of social programs on child skill formation and long-run outcomes (Dahl and Lochner 2012; Barr, Eggleston, and Smith 2022; Bastian and Michelmore 2018; Carneiro et al. 2021; Bailey et al. 2024)\nEvidence of the effect of early childhood education on skill formation and long-run outcomes (James J. Heckman et al. 2010; García et al. 2020; Kline and Walters 2016)\nEvidence of the effect of parenting and home interventions on skill formation and long-run outcomes (Attanasio, Meghir, and Nix 2020; Walker et al. 2022; Carneiro et al. 2024)\nEstimating the technology of skill formation. (Cunha and Heckman 2008b; Attanasio, Meghir, and Nix 2020)"
+    "text": "Course Outline\n\nDynamic Programming and Applications\nAn important set of mathematical tools for solving dynamic models. Topics include:\n\nBellman’s principal of optimality and contraction mappings\nMathematical and computational exposition (using julia) of dynamic programming tools, applied to:\n\nModels of job search\nInfinite horizon and life-cycle models of savings\n\n\nReading: Ljungqvist and Sargent (2012) Chapters 3-6.\n\n\nSavings and incomplete markets\nReview of the main theoretical models describing savings and self-insurance of agents under uncertainity and incomplete markets.\n\nMain savings problems\nIncomplete markets models as Huggett (1993), Aiyagari (1994), Krusell and Smith (1998)\nConsumption inequality and income uncertainity.\n\nReading: Ljungqvist and Sargent (2012) Chapters 17-18. Deaton (1991), Blundell and Preston (1998), Huggett (1993), Aiyagari (1994), Krusell and Smith (1998)\n\n\nFacts about Inequality\nWe review and replicate facts about labor market inequality in the United States. Topics include:\n\nDocumenting income inequality (Moffitt and Gottschalk 2011; Heathcote, Perri, and Violante 2010; Heathcote et al. 2023; Guvenen et al. 2021)\nEstimation of income risk (Moffitt and Gottschalk 2011; Meghir and Pistaferri 2004; Low, Meghir, and Pistaferri 2010; Guvenen 2009)\nWelfare implications of income inequality (Storesletten, Telmer, and Yaron 2004)\n\nRedistribution vs Insurance\n\nThe Intergenerational Elasticity of Earnings (Corak 2013; Mazumder 2005, 2018)\nSkills and Inequality (James J. Heckman, Stixrud, and Urzua 2006; Cunha and Heckman 2008a; Cunha and Heckman 2009)\n\n\n\nTheories of Human Capital and Inequality\nWe introduce textbook theories of human capital formation and examine their empirical content. We develop computational tools to bring these theories to data. Topics include:\n\nThe Becker-Tomes model of intergenerational inequality via human capital investment (Becker and Tomes 1979, 1986)\n\nPolicy implications of the model (efficiency and redistribution)\n\nDebates on the empirical and conceptual merits of the Becker-Tomes model (Goldberger 1989; Mulligan 1999; Cunha et al. 2006; Cunha and Heckman 2007)\nQuantitative and theoretical extensions of the baseline model (Lee and Seshadri 2019; Caucutt and Lochner 2020)\n\n\n\nConnecting Human Capital Theory with Evidence\nWe survey some empirical work that connects the theory with data. Topics include:\n\nA review of econometric methods for causal inference\nEvidence of the effect of social programs on child skill formation and long-run outcomes (Dahl and Lochner 2012; Barr, Eggleston, and Smith 2022; Bastian and Michelmore 2018; Carneiro et al. 2021; Bailey et al. 2024)\nEvidence of the effect of early childhood education on skill formation and long-run outcomes (James J. Heckman et al. 2010; García et al. 2020; Kline and Walters 2016)\nEvidence of the effect of parenting and home interventions on skill formation and long-run outcomes (Attanasio, Meghir, and Nix 2020; Walker et al. 2022; Carneiro et al. 2024)\nEstimating the technology of skill formation. (Cunha and Heckman 2008b; Attanasio, Meghir, and Nix 2020)"
   },
   {
     "objectID": "index.html#grading-policies-and-procedures",
@@ -87,8 +87,8 @@
     "objectID": "lectures/1-DocumentingInequality.html#overview",
     "href": "lectures/1-DocumentingInequality.html#overview",
     "title": "Documenting Inequality",
-    "section": "Overview",
-    "text": "Overview\n\n\nIn this section of the class we’ll look at what the data tells us about labor market inequality in the United States\nWill look at trends in inequality over time and over the life-cycle\nWill focus on labor market inequality\nSome review of basic statistics along the way\nLater in the section will dig deeper into policy implications"
+    "section": "",
+    "text": "In this section of the class we’ll look at what the data tells us about labor market inequality in the United States\nWill look at trends in inequality over time and over the life-cycle\nWill focus on labor market inequality\nSome review of basic statistics along the way\nLater in the section will dig deeper into policy implications"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#lets-start-with-some-data",
@@ -214,7 +214,7 @@
     "href": "lectures/1-DocumentingInequality.html#race-wage-gaps",
     "title": "Documenting Inequality",
     "section": "Race Wage Gaps",
-    "text": "Race Wage Gaps\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:RACE])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:RACE,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :black_white_gap = :wage_100 .- :wage_200\n  @df _ plot(:YEAR,:black_white_gap,label = \"race gap: black-white\")\nend\n\n\n\nHow much of this is sampling error?…"
+    "text": "Race Wage Gaps\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:RACE])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:RACE,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :black_white_gap = :wage_100 .- :wage_200\n  @df _ plot(:YEAR,:black_white_gap,label = \"race gap: black-white\")\nend\n\n\n\n\n\nHow much of this is sampling error?…"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#education-premia",
@@ -249,20 +249,41 @@
     "href": "lectures/1-DocumentingInequality.html#life-cycle-wage-dynamics",
     "title": "Documenting Inequality",
     "section": "Life-cycle wage dynamics",
-    "text": "Life-cycle wage dynamics\n\n\nSo far we have seen changes in wage distributions and wage gaps over time\nBut perhaps these statistics vary with age, too.\nWe have 34 years of data to study cohorts over time"
+    "text": "Life-cycle wage dynamics\n\n\nSo far we have seen changes in wage distributions and wage gaps over time\nBut perhaps these statistics vary with age, too.\nWe have 34 years of data to study cohorts over time\nBeware the rank condition!"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#calculating-life-cycle-profiles",
     "href": "lectures/1-DocumentingInequality.html#calculating-life-cycle-profiles",
     "title": "Documenting Inequality",
     "section": "Calculating life-cycle profiles",
-    "text": "Calculating life-cycle profiles\n\n\nCode\nv_w = @chain data begin\n  @transform :cohort = Int.(round.((:YEAR .- :AGE) ./ 10) .* 10)\n  groupby([:cohort,:AGE])\n  @combine :var_logw = var(log.(:WAGE),weights(:ASECWT))\nend\n\n\n176×3 DataFrame151 rows omitted\n\n\n\nRow\ncohort\nAGE\nvar_logw\n\n\n\nInt64\nInt64\nFloat64\n\n\n\n\n1\n1930\n56\n0.617128\n\n\n2\n1930\n57\n0.555906\n\n\n3\n1930\n58\n0.526267\n\n\n4\n1930\n59\n0.595774\n\n\n5\n1930\n60\n0.602591\n\n\n6\n1930\n61\n0.635663\n\n\n7\n1930\n62\n0.626394\n\n\n8\n1930\n63\n0.715607\n\n\n9\n1930\n64\n0.710725\n\n\n10\n1940\n45\n0.553349\n\n\n11\n1940\n46\n0.51878\n\n\n12\n1940\n47\n0.554579\n\n\n13\n1940\n48\n0.498058\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n165\n1990\n32\n0.495593\n\n\n166\n1990\n33\n0.483012\n\n\n167\n1990\n34\n0.527871\n\n\n168\n1990\n35\n0.539062\n\n\n169\n1990\n36\n0.549061\n\n\n170\n1990\n37\n0.590262\n\n\n171\n1990\n38\n0.553557\n\n\n172\n2000\n25\n0.443045\n\n\n173\n2000\n26\n0.387629\n\n\n174\n2000\n27\n0.408362\n\n\n175\n2000\n28\n0.479915\n\n\n176\n2000\n29\n0.445542"
+    "text": "Calculating life-cycle profiles\n\nv_w = @chain data begin\n  @transform :cohort = Int.(round.((:YEAR .- :AGE) ./ 10) .* 10)\n  groupby([:cohort,:AGE])\n  @combine :var_logw = var(log.(:WAGE),weights(:ASECWT))\nend\n\n176×3 DataFrame151 rows omitted\n\n\n\nRow\ncohort\nAGE\nvar_logw\n\n\n\nInt64\nInt64\nFloat64\n\n\n\n\n1\n1930\n56\n0.617128\n\n\n2\n1930\n57\n0.555906\n\n\n3\n1930\n58\n0.526267\n\n\n4\n1930\n59\n0.595774\n\n\n5\n1930\n60\n0.602591\n\n\n6\n1930\n61\n0.635663\n\n\n7\n1930\n62\n0.626394\n\n\n8\n1930\n63\n0.715607\n\n\n9\n1930\n64\n0.710725\n\n\n10\n1940\n45\n0.553349\n\n\n11\n1940\n46\n0.51878\n\n\n12\n1940\n47\n0.554579\n\n\n13\n1940\n48\n0.498058\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n165\n1990\n32\n0.495593\n\n\n166\n1990\n33\n0.483012\n\n\n167\n1990\n34\n0.527871\n\n\n168\n1990\n35\n0.539062\n\n\n169\n1990\n36\n0.549061\n\n\n170\n1990\n37\n0.590262\n\n\n171\n1990\n38\n0.553557\n\n\n172\n2000\n25\n0.443045\n\n\n173\n2000\n26\n0.387629\n\n\n174\n2000\n27\n0.408362\n\n\n175\n2000\n28\n0.479915\n\n\n176\n2000\n29\n0.445542"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#variance-in-log-wages-increases-with-age",
     "href": "lectures/1-DocumentingInequality.html#variance-in-log-wages-increases-with-age",
     "title": "Documenting Inequality",
     "section": "Variance in log-wages increases with age",
-    "text": "Variance in log-wages increases with age\n\n\nWhat do you think could be driving this pattern? Why does it matter?"
+    "text": "Variance in log-wages increases with age\n\n@df v_w plot(:AGE,:var_logw,group=:cohort,linewidth=1.5)\n\n\n\n\n. . .\nWhat do you think could be driving this pattern? Why does it matter?"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html",
+    "href": "lectures/1-DocumentingInequality.html",
+    "title": "Documenting Inequality",
+    "section": "",
+    "text": "In this section of the class we’ll look at what the data tells us about labor market inequality in the United States\nWill look at trends in inequality over time and over the life-cycle\nWill focus on labor market inequality\nSome review of basic statistics along the way\nLater in the section will dig deeper into policy implications"
+  },
+  {
+    "objectID": "recitations.html",
+    "href": "recitations.html",
+    "title": "Recitation Materials",
+    "section": "",
+    "text": "Materials will be updated here as we continue through the course.\nThese recitations have been rendered using Quarto notebooks. The original source files for the notebooks can be downloaded from this site’s Github repo. You may want to study the source files to learn how to format your own notebooks for the homework assignments.\n\n\n\nTopic\nNotebook\nData\n\n\n\n\nDocumenting Inequality"
+  },
+  {
+    "objectID": "lectures.html",
+    "href": "lectures.html",
+    "title": "Lecture Slides",
+    "section": "",
+    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\n\n\n\nEstimating Income Processes\n\n\n\nIntergenerational Mobility\n\n\n\nTheories of Human Capital\n\n\n\nEvidence"
   }
 ]
