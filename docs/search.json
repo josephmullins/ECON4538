@@ -87,8 +87,8 @@
     "objectID": "lectures/1-DocumentingInequality.html#overview",
     "href": "lectures/1-DocumentingInequality.html#overview",
     "title": "Documenting Inequality",
-    "section": "",
-    "text": "In this section of the class we’ll look at what the data tells us about labor market inequality in the United States\nWill look at trends in inequality over time and over the life-cycle\nWill focus on labor market inequality\nSome review of basic statistics along the way\nLater in the section will dig deeper into policy implications"
+    "section": "Overview",
+    "text": "Overview\n\n\nIn this section of the class we’ll look at what the data tells us about labor market inequality in the United States\nWill look at trends in inequality over time and over the life-cycle\nWill focus on labor market inequality\nSome review of basic statistics along the way\nLater in the section will dig deeper into policy implications"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#lets-start-with-some-data",
@@ -214,7 +214,7 @@
     "href": "lectures/1-DocumentingInequality.html#race-wage-gaps",
     "title": "Documenting Inequality",
     "section": "Race Wage Gaps",
-    "text": "Race Wage Gaps\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:RACE])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:RACE,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :black_white_gap = :wage_100 .- :wage_200\n  @df _ plot(:YEAR,:black_white_gap,label = \"race gap: black-white\")\nend\n\n\n\n\n\nHow much of this is sampling error?…"
+    "text": "Race Wage Gaps\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:RACE])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:RACE,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :black_white_gap = :wage_100 .- :wage_200\n  @df _ plot(:YEAR,:black_white_gap,label = \"race gap: black-white\")\nend\n\n\n\nHow much of this is sampling error?…"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#education-premia",
@@ -263,7 +263,7 @@
     "href": "lectures/1-DocumentingInequality.html#variance-in-log-wages-increases-with-age",
     "title": "Documenting Inequality",
     "section": "Variance in log-wages increases with age",
-    "text": "Variance in log-wages increases with age\n\n@df v_w plot(:AGE,:var_logw,group=:cohort,linewidth=1.5)\n\n\n\n\n. . .\nWhat do you think could be driving this pattern? Why does it matter?"
+    "text": "Variance in log-wages increases with age\n\n\nWhat do you think could be driving this pattern? Why does it matter?"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html",
