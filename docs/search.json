@@ -82,5 +82,187 @@
     "title": "ECON4538 - Syllabus",
     "section": "Grading, Policies, and Procedures",
     "text": "Grading, Policies, and Procedures\nPlease see the course Canvas page for the department grading scale and a statement of University policies and procedures."
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#overview",
+    "href": "lectures/1-DocumentingInequality.html#overview",
+    "title": "Documenting Inequality",
+    "section": "Overview",
+    "text": "Overview\n\n\nIn this section of the class we’ll look at what the data tells us about labor market inequality in the United States\nWill look at trends in inequality over time and over the life-cycle\nWill focus on labor market inequality\nSome review of basic statistics along the way\nLater in the section will dig deeper into policy implications"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#lets-start-with-some-data",
+    "href": "lectures/1-DocumentingInequality.html#lets-start-with-some-data",
+    "title": "Documenting Inequality",
+    "section": "Let’s start with some data",
+    "text": "Let’s start with some data\n\n\nData: the Current Population Survey (CPS)\nWill use the Annual Social and Economic Supplement (ASEC)\nYears: 1990 - 2024, Ages: 25-64\nCleaned and harmonized by IPUMS\nUsing annual wage income, hours, demographics\nDeflate using the Personal Consumption Expenditure Price Index\nConsult the data dictionary"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#section",
+    "href": "lectures/1-DocumentingInequality.html#section",
+    "title": "Documenting Inequality",
+    "section": "",
+    "text": "using DataFrames, CSV, StatsPlots, DataFramesMeta, Statistics\n\ncps_data = CSV.read(\"../data/cps_00049.csv\",DataFrame)\n\n3251344×27 DataFrame3251319 rows omitted\n\n\n\nRow\nYEAR\nSERIAL\nMONTH\nCPSID\nASECFLAG\nHFLAG\nASECWTH\nPERNUM\nCPSIDP\nCPSIDV\nASECWT\nAGE\nSEX\nRACE\nMARST\nNCHILD\nEDUC\nWKSWORK1\nUHRSWORKLY\nINCWAGE\nINCSS\nINCWELFR\nINCSSI\nINCUNEMP\nINCDISAB\nCTCCRD\nEITCRED\n\n\n\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64?\nFloat64\nInt64\nInt64\nInt64\nFloat64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64?\nInt64?\n\n\n\n\n1\n1990\n2\n3\n19900200210300\n1\nmissing\n573.23\n1\n19900200210301\n199002002103011\n573.23\n62\n2\n100\n4\n0\n50\n52\n20\n2288\n3024\n0\n2028\n0\n0\nmissing\nmissing\n\n\n2\n1990\n4\n3\n19900204118800\n1\nmissing\n588.25\n1\n19900204118801\n199002041188011\n588.25\n35\n2\n100\n3\n2\n121\n52\n25\n0\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n3\n1990\n5\n3\n19900200805500\n1\nmissing\n603.74\n1\n19900200805501\n199002008055011\n603.74\n48\n1\n100\n1\n0\n32\n52\n50\n31000\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n4\n1990\n5\n3\n19900200805500\n1\nmissing\n603.74\n2\n19900200805502\n199002008055021\n603.74\n45\n2\n100\n1\n0\n80\n52\n25\n9700\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n5\n1990\n6\n3\n19900202569900\n1\nmissing\n674.01\n1\n19900202569901\n199002025699011\n674.01\n32\n1\n100\n1\n0\n110\n52\n60\n60000\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n6\n1990\n6\n3\n19900202569900\n1\nmissing\n674.01\n2\n19900202569902\n199002025699021\n674.01\n30\n2\n100\n1\n0\n110\n52\n36\n30000\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n7\n1990\n7\n3\n19900202515200\n1\nmissing\n612.79\n1\n19900202515201\n199002025152011\n612.79\n49\n1\n100\n1\n1\n60\n0\n999\n0\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n8\n1990\n7\n3\n19900202515200\n1\nmissing\n612.79\n2\n19900202515202\n199002025152021\n612.79\n43\n2\n100\n1\n1\n60\n0\n999\n0\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n9\n1990\n9\n3\n19900205325800\n1\nmissing\n544.24\n1\n19900205325801\n199002053258011\n544.24\n52\n2\n100\n4\n1\n80\n30\n24\n5000\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n10\n1990\n10\n3\n19900201692900\n1\nmissing\n609.56\n1\n19900201692901\n199002016929011\n609.56\n41\n1\n100\n1\n2\n110\n52\n50\n72300\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n11\n1990\n10\n3\n19900201692900\n1\nmissing\n609.56\n2\n19900201692902\n199002016929021\n609.56\n40\n2\n100\n1\n2\n110\n50\n7\n2000\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n12\n1990\n11\n3\n19890105673300\n1\nmissing\n732.35\n2\n19890105673302\n198901056733021\n732.35\n63\n2\n100\n1\n1\n12\n0\n999\n0\n1884\n0\n0\n0\n0\nmissing\nmissing\n\n\n13\n1990\n11\n3\n19890105673300\n1\nmissing\n732.35\n3\n19890105673303\n198901056733031\n1026.84\n34\n1\n100\n5\n0\n72\n0\n999\n0\n5400\n0\n0\n0\n0\nmissing\nmissing\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n3251333\n2025\n88920\n3\n20241308947100\n1\nmissing\n476.63\n1\n20241308947101\n202413089471011\n476.63\n59\n1\n803\n6\n0\n111\n0\n999\n0\n12000\n0\n12000\n0\n0\n0\n0\n\n\n3251334\n2025\n88921\n3\n20241308947200\n1\nmissing\n511.75\n1\n20241308947201\n202413089472011\n511.75\n36\n2\n651\n6\n0\n81\n52\n20\n16100\n0\n0\n0\n0\n0\n0\n190\n\n\n3251335\n2025\n88921\n3\n20241308947200\n1\nmissing\n511.75\n2\n20241308947202\n202413089472021\n572.42\n28\n1\n651\n6\n0\n73\n0\n999\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n3251336\n2025\n88922\n3\n20241308947300\n1\nmissing\n459.63\n1\n20241308947301\n202413089473011\n459.63\n46\n1\n100\n1\n3\n92\n52\n40\n125000\n0\n0\n0\n0\n0\n6000\n0\n\n\n3251337\n2025\n88922\n3\n20241308947300\n1\nmissing\n459.63\n2\n20241308947302\n202413089473021\n459.63\n46\n2\n813\n1\n3\n111\n52\n40\n80000\n0\n0\n0\n0\n0\n0\n0\n\n\n3251338\n2025\n88923\n3\n20251308892300\n1\nmissing\n453.99\n1\n20251308892301\n202513088923011\n453.99\n55\n2\n651\n5\n2\n91\n0\n999\n0\n35000\n0\n0\n0\n0\n0\n0\n\n\n3251339\n2025\n88925\n3\n20251308892500\n1\nmissing\n824.76\n1\n20251308892501\n202513088925011\n824.76\n29\n1\n809\n6\n0\n81\n52\n40\n60000\n0\n0\n0\n0\n0\n0\n0\n\n\n3251340\n2025\n88925\n3\n20251308892500\n1\nmissing\n824.76\n2\n20251308892502\n202513088925021\n824.76\n29\n2\n809\n6\n0\n91\n48\n40\n60000\n0\n0\n0\n0\n0\n4000\n0\n\n\n3251341\n2025\n88927\n3\n20251308892700\n1\nmissing\n509.87\n1\n20251308892701\n202513088927011\n509.87\n57\n1\n652\n1\n1\n111\n0\n999\n0\n18966\n0\n0\n0\n0\n0\n0\n\n\n3251342\n2025\n88927\n3\n20251308892700\n1\nmissing\n509.87\n2\n20251308892702\n202513088927021\n509.87\n55\n2\n652\n1\n1\n73\n52\n40\n84000\n0\n0\n0\n0\n0\n0\n0\n\n\n3251343\n2025\n88930\n3\n20251308893000\n1\nmissing\n450.92\n3\n20251308893003\n202513088930031\n768.54\n28\n2\n652\n6\n0\n73\n52\n60\n60000\n0\n0\n0\n0\n0\n0\n0\n\n\n3251344\n2025\n88932\n3\n20251308893200\n1\nmissing\n455.7\n1\n20251308893201\n202513088932011\n455.7\n38\n1\n651\n6\n0\n111\n52\n40\n85000\n0\n0\n0\n0\n0\n0\n0"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#section-1",
+    "href": "lectures/1-DocumentingInequality.html#section-1",
+    "title": "Documenting Inequality",
+    "section": "",
+    "text": "using DataFrames, CSV, StatsPlots, DataFramesMeta, Statistics\npce = CSV.read(\"../data/PCE_index.csv\",DataFrame)\n\ndata = @chain CSV.read(\"../data/cps_00049.csv\",DataFrame) begin\n  @subset :INCWAGE .&gt;0 #&lt;- keep only if positive earnings\n  @subset :WKSWORK1 .&gt;0 #&lt;- keep only if positive work\n  @transform :HOURS = :UHRSWORKLY .* :WKSWORK1 #&lt;- calculate annual hours\n  innerjoin(pce,on=:YEAR)\n  @transform :INCWAGE = 100 * :INCWAGE ./ :PCE #&lt;- deflate earnings (2017 base)\n  @transform :WAGE = :INCWAGE ./ :HOURS #&lt;- annual earnings / annual hours\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#section-2",
+    "href": "lectures/1-DocumentingInequality.html#section-2",
+    "title": "Documenting Inequality",
+    "section": "",
+    "text": "mean_wage = @chain data begin\n    groupby(:YEAR)\n    @combine :wage = mean(:WAGE)\n    @df _ plot(:YEAR,:wage)\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#testing-the-plot",
+    "href": "lectures/1-DocumentingInequality.html#testing-the-plot",
+    "title": "Documenting Inequality",
+    "section": "testing the plot",
+    "text": "testing the plot"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#some-cleaning-steps",
+    "href": "lectures/1-DocumentingInequality.html#some-cleaning-steps",
+    "title": "Documenting Inequality",
+    "section": "Some Cleaning Steps",
+    "text": "Some Cleaning Steps\n\nusing DataFrames, CSV, StatsPlots, DataFramesMeta, StatsBase\npce = CSV.read(\"../data/PCE_index.csv\",DataFrame)\n\ndata = @chain CSV.read(\"../data/cps_00049.csv\",DataFrame) begin\n  @subset :INCWAGE .&gt;0 #&lt;- keep only if positive earnings\n  @subset :WKSWORK1 .&gt;10 #&lt;- keep only if worked more than 10 weeks\n  @transform :HOURS = :UHRSWORKLY .* :WKSWORK1 #&lt;- calculate annual hours\n  innerjoin(pce,on=:YEAR)\n  @transform :INCWAGE = 100 * :INCWAGE ./ :PCE #&lt;- deflate earnings (2017 base)\n  @transform :WAGE = :INCWAGE ./ :HOURS #&lt;- annual earnings / annual hours\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#reviewing-population-weights",
+    "href": "lectures/1-DocumentingInequality.html#reviewing-population-weights",
+    "title": "Documenting Inequality",
+    "section": "Reviewing Population Weights",
+    "text": "Reviewing Population Weights\n\nUnweightedWeighted\n\n\n\nmean_wage = @chain data begin\n    groupby(:YEAR)\n    @combine :wage = mean(:WAGE)\n    @df _ plot(:YEAR,:wage)\nend\n\n\n\n\n\n\n\nmean_wage = @chain data begin\n    groupby(:YEAR)\n    @combine :wage = mean(:WAGE,weights(:ASECWT))\n    @df _ plot(:YEAR,:wage)\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#reviewing-population-weights-exercise",
+    "href": "lectures/1-DocumentingInequality.html#reviewing-population-weights-exercise",
+    "title": "Documenting Inequality",
+    "section": "Reviewing Population Weights (Exercise)",
+    "text": "Reviewing Population Weights (Exercise)\n\nUnweightedWeightedEarningsHours\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :wage = mean(:WAGE)\n    @df _ plot(:YEAR,:wage)\nend\n\n\n\n\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :wage = mean(:WAGE,weights(:ASECWT))\n    @df _ plot(:YEAR,:wage)\nend\n\n\n\n\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :earn = mean(:INCWAGE,weights(:ASECWT))\n    @df _ plot(:YEAR,:earn)\nend\n\n\n\n\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :hours = mean(:HOURS,weights(:ASECWT))\n    @df _ plot(:YEAR,:hours)\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#trends-in-inequality",
+    "href": "lectures/1-DocumentingInequality.html#trends-in-inequality",
+    "title": "Documenting Inequality",
+    "section": "Trends in Inequality",
+    "text": "Trends in Inequality\n\n\nHow should we document inequality?\nSome natural statistics to analyze the distribution of earnings and wages\n\nVariance (definition)\nPercentiles (definition)"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#variance-in-log-wages",
+    "href": "lectures/1-DocumentingInequality.html#variance-in-log-wages",
+    "title": "Documenting Inequality",
+    "section": "Variance in log wages",
+    "text": "Variance in log wages\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :var_lw = var(log.(:WAGE),weights(:ASECWT))\n    @df _ plot(:YEAR,:var_lw)\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages",
+    "href": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages",
+    "title": "Documenting Inequality",
+    "section": "Percentiles of log wages",
+    "text": "Percentiles of log wages\n\n\nCode\npctiles = @chain data begin\n    groupby(:YEAR)\n    @combine begin \n    :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)\n    :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)\n    end\n    stack(Not(:YEAR))\n    @df _ plot(:YEAR,:value,group=:variable)\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages-normalized",
+    "href": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages-normalized",
+    "title": "Documenting Inequality",
+    "section": "Percentiles of log wages (normalized)",
+    "text": "Percentiles of log wages (normalized)\n\n\nCode\npctiles = @chain data begin\n    groupby(:YEAR)\n    @combine begin \n    :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)\n    :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)\n    end\n    stack(Not(:YEAR))\n    groupby(:variable)\n    @transform :value = :value .- :value[1]\n    @df _ plot(:YEAR,:value,group=:variable)\nend\nplot!([1990,2024],[0.,0.],linestyle=:dash,color=\"grey\",label=false)"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages-normalized-1",
+    "href": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages-normalized-1",
+    "title": "Documenting Inequality",
+    "section": "Percentiles of log wages (normalized)",
+    "text": "Percentiles of log wages (normalized)\n\n\nCode\npctiles = @chain data begin\n    groupby(:YEAR)\n    @combine begin \n    :p_90 = quantile(log.(:WAGE),weights(:ASECWT),0.9)\n    :p_10 = quantile(log.(:WAGE),weights(:ASECWT),0.1)\n    :p_75 = quantile(log.(:WAGE),weights(:ASECWT),0.75)\n    :p_25 = quantile(log.(:WAGE),weights(:ASECWT),0.25)\n    end\n    stack(Not(:YEAR))\n    groupby(:variable)\n    @transform :value = :value .- :value[1]\n    @df _ plot(:YEAR,:value,group=:variable)\nend\nplot!([1990,2024],[0.,0.],linestyle=:dash,color=\"grey\",label=false)"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#a-quick-look-at-sample-sizes",
+    "href": "lectures/1-DocumentingInequality.html#a-quick-look-at-sample-sizes",
+    "title": "Documenting Inequality",
+    "section": "A Quick Look at Sample Sizes",
+    "text": "A Quick Look at Sample Sizes\n\n@chain data begin\n  groupby(:YEAR)\n  @combine :N = length(:INCWAGE)\nend\n\n35×2 DataFrame10 rows omitted\n\n\n\nRow\nYEAR\nN\n\n\n\nInt64\nInt64\n\n\n\n\n1\n1990\n58717\n\n\n2\n1991\n58766\n\n\n3\n1992\n58119\n\n\n4\n1993\n57397\n\n\n5\n1994\n55548\n\n\n6\n1995\n56241\n\n\n7\n1996\n50030\n\n\n8\n1997\n51095\n\n\n9\n1998\n50855\n\n\n10\n1999\n51486\n\n\n11\n2000\n52598\n\n\n12\n2001\n85045\n\n\n13\n2002\n84521\n\n\n⋮\n⋮\n⋮\n\n\n24\n2013\n75820\n\n\n25\n2014\n74821\n\n\n26\n2015\n74531\n\n\n27\n2016\n69321\n\n\n28\n2017\n69995\n\n\n29\n2018\n67662\n\n\n30\n2019\n68224\n\n\n31\n2020\n60274\n\n\n32\n2021\n60457\n\n\n33\n2022\n56637\n\n\n34\n2023\n54834\n\n\n35\n2024\n54787"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#most-things-we-will-get-very-precisely",
+    "href": "lectures/1-DocumentingInequality.html#most-things-we-will-get-very-precisely",
+    "title": "Documenting Inequality",
+    "section": "Most things we will get very precisely",
+    "text": "Most things we will get very precisely\ne.g. gender wage gaps:\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:SEX])\n  @combine begin \n    :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n    :v_est = var(log.(:WAGE),weights(:ASECWT)) / length(:WAGE)\n    end\n  @transform :ci_width = 1.96 * sqrt.(:v_est)\n  @df _ scatter(:YEAR,:m_wage,yerror=:ci_width,group=:SEX)\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#wage-gaps",
+    "href": "lectures/1-DocumentingInequality.html#wage-gaps",
+    "title": "Documenting Inequality",
+    "section": "Wage Gaps",
+    "text": "Wage Gaps\n\n\nWhile overall wage inequality is a main topic of interest, other metrics may matter for policy questions\nE.g. gaps by education, gender/sex, race\nWill look at these using the same data"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#gender-wage-gaps",
+    "href": "lectures/1-DocumentingInequality.html#gender-wage-gaps",
+    "title": "Documenting Inequality",
+    "section": "Gender Wage Gaps",
+    "text": "Gender Wage Gaps\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:SEX])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:SEX,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :gender_gap = :wage_1 .- :wage_2\n  @df _ plot(:YEAR,:gender_gap,label = \"gender wage gap\")\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#race-wage-gaps",
+    "href": "lectures/1-DocumentingInequality.html#race-wage-gaps",
+    "title": "Documenting Inequality",
+    "section": "Race Wage Gaps",
+    "text": "Race Wage Gaps\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:RACE])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:RACE,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :black_white_gap = :wage_100 .- :wage_200\n  @df _ plot(:YEAR,:black_white_gap,label = \"race gap: black-white\")\nend\n\n\n\nHow much of this is sampling error?…"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#education-premia",
+    "href": "lectures/1-DocumentingInequality.html#education-premia",
+    "title": "Documenting Inequality",
+    "section": "Education Premia",
+    "text": "Education Premia\nDefine the “college premium” or “returns to college” as:\n\\[ \\mathbb{E}[\\log(\\text{wage})\\ |\\ \\geq \\text{Bachelor's}] - \\mathbb{E}[\\log(\\text{wage})\\ |\\ \\geq \\text{High School or Equiv}] \\]"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#race-wage-gaps-1",
+    "href": "lectures/1-DocumentingInequality.html#race-wage-gaps-1",
+    "title": "Documenting Inequality",
+    "section": "Race Wage Gaps",
+    "text": "Race Wage Gaps\n\n\nCode\n@chain data begin\n  @subset :RACE .&lt;= 200\n  groupby([:YEAR,:RACE])\n  @combine begin \n    :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n    :v_est = var(log.(:WAGE),weights(:ASECWT)) / length(:WAGE)\n  end\n  stack()\n  @transform :variable = string.(:variable,\"_\",:RACE)\n  unstack(:YEAR,:variable,:value)\n  @transform begin\n    :black_white_gap = :m_wage_100 .- :m_wage_200\n    :std_err = 1.96*sqrt.(:v_est_100 .+ :v_est_200)\n  end\n  @df _ scatter(:YEAR,:black_white_gap,yerror = :std_err,label = \"race gap: black-white\")\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#yr-and-2-yr-college-premium",
+    "href": "lectures/1-DocumentingInequality.html#yr-and-2-yr-college-premium",
+    "title": "Documenting Inequality",
+    "section": "4-Yr and 2-Yr College Premium",
+    "text": "4-Yr and 2-Yr College Premium\n\n\nCode\n@chain data begin\n  @transform :educ = (:EDUC.&gt;=70) .+ (:EDUC.&gt;=90) .+ (:EDUC.&gt;=110)\n  groupby([:YEAR,:educ])\n  @combine begin \n    :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  end\n  unstack(:YEAR,:educ,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :two_yr = :wage_2 .- :wage_1 :four_yr = :wage_3 .- :wage_1\n  @df _ begin\n    plot(:YEAR,:two_yr,label=\"two-year prem\")\n    plot!(:YEAR,:four_yr,label=\"four-year prem\")\n  end\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#trends-in-household-structure",
+    "href": "lectures/1-DocumentingInequality.html#trends-in-household-structure",
+    "title": "Documenting Inequality",
+    "section": "Trends in Household Structure",
+    "text": "Trends in Household Structure\n\n\nCode\ntest = @chain data begin\n  @subset :NCHILD.&gt;0\n  groupby(:YEAR)\n  @combine begin\n    :divorce = mean(:MARST.==4)\n    :never_married = mean(:MARST.==6)\n    :single = mean(:MARST.&gt;2)\n  end\n  stack(Not(:YEAR))\n  @df _ plot(:YEAR,:value,group=:variable)\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#life-cycle-wage-dynamics",
+    "href": "lectures/1-DocumentingInequality.html#life-cycle-wage-dynamics",
+    "title": "Documenting Inequality",
+    "section": "Life-cycle wage dynamics",
+    "text": "Life-cycle wage dynamics\n\n\nSo far we have seen changes in wage distributions and wage gaps over time\nBut perhaps these statistics vary with age, too.\nWe have 34 years of data to study cohorts over time"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#calculating-life-cycle-profiles",
+    "href": "lectures/1-DocumentingInequality.html#calculating-life-cycle-profiles",
+    "title": "Documenting Inequality",
+    "section": "Calculating life-cycle profiles",
+    "text": "Calculating life-cycle profiles\n\n\nCode\nv_w = @chain data begin\n  @transform :cohort = Int.(round.((:YEAR .- :AGE) ./ 10) .* 10)\n  groupby([:cohort,:AGE])\n  @combine :var_logw = var(log.(:WAGE),weights(:ASECWT))\nend\n\n\n176×3 DataFrame151 rows omitted\n\n\n\nRow\ncohort\nAGE\nvar_logw\n\n\n\nInt64\nInt64\nFloat64\n\n\n\n\n1\n1930\n56\n0.617128\n\n\n2\n1930\n57\n0.555906\n\n\n3\n1930\n58\n0.526267\n\n\n4\n1930\n59\n0.595774\n\n\n5\n1930\n60\n0.602591\n\n\n6\n1930\n61\n0.635663\n\n\n7\n1930\n62\n0.626394\n\n\n8\n1930\n63\n0.715607\n\n\n9\n1930\n64\n0.710725\n\n\n10\n1940\n45\n0.553349\n\n\n11\n1940\n46\n0.51878\n\n\n12\n1940\n47\n0.554579\n\n\n13\n1940\n48\n0.498058\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n165\n1990\n32\n0.495593\n\n\n166\n1990\n33\n0.483012\n\n\n167\n1990\n34\n0.527871\n\n\n168\n1990\n35\n0.539062\n\n\n169\n1990\n36\n0.549061\n\n\n170\n1990\n37\n0.590262\n\n\n171\n1990\n38\n0.553557\n\n\n172\n2000\n25\n0.443045\n\n\n173\n2000\n26\n0.387629\n\n\n174\n2000\n27\n0.408362\n\n\n175\n2000\n28\n0.479915\n\n\n176\n2000\n29\n0.445542"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#variance-in-log-wages-increases-with-age",
+    "href": "lectures/1-DocumentingInequality.html#variance-in-log-wages-increases-with-age",
+    "title": "Documenting Inequality",
+    "section": "Variance in log-wages increases with age",
+    "text": "Variance in log-wages increases with age\n\n\nWhat do you think could be driving this pattern? Why does it matter?"
   }
 ]

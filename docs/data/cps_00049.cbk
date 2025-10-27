@@ -1,0 +1,483 @@
+Description: econ_4538
+Samples selected:
+      IPUMS-CPS, ASEC 1990
+            Note: 
+            Density of the full data file:  0.1%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 1991
+            Note: 
+            Density of the full data file:  0.1%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 1992
+            Note: 
+            Density of the full data file:  0.09%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 1993
+            Note: 
+            Density of the full data file:  0.09%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 1994
+            Note: 
+            Density of the full data file:  0.09%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 1995
+            Note: 
+            Density of the full data file:  0.09%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 1996
+            Note: 
+            Density of the full data file:  0.08%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 1997
+            Note: 
+            Density of the full data file:  0.08%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 1998
+            Note: 
+            Density of the full data file:  0.08%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 1999
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2000
+            Note: 
+            Density of the full data file:  0.08%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2001
+            Note: 
+            Density of the full data file:  0.15%
+            Density of your extract: 0.2%
+
+      IPUMS-CPS, ASEC 2002
+            Note: 
+            Density of the full data file:  0.15%
+            Density of your extract: 0.2%
+
+      IPUMS-CPS, ASEC 2003
+            Note: 
+            Density of the full data file:  0.15%
+            Density of your extract: 0.2%
+
+      IPUMS-CPS, ASEC 2004
+            Note: 
+            Density of the full data file:  0.15%
+            Density of your extract: 0.2%
+
+      IPUMS-CPS, ASEC 2005
+            Note: 
+            Density of the full data file:  0.15%
+            Density of your extract: 0.2%
+
+      IPUMS-CPS, ASEC 2006
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2007
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2008
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2009
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2010
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2011
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2012
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2013
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2014
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2015
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2016
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2017
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2018
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2019
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2020
+            Note: 
+            Density of the full data file:  0.07%
+            Density of your extract: 0.1%
+
+      IPUMS-CPS, ASEC 2021
+            Note: 
+            Density of the full data file:  0.01%
+            Density of your extract: 0.0%
+
+      IPUMS-CPS, ASEC 2022
+            Note: 
+            Density of the full data file:  0.01%
+            Density of your extract: 0.0%
+
+      IPUMS-CPS, ASEC 2023
+            Note: 
+            Density of the full data file:  0.01%
+            Density of your extract: 0.0%
+
+      IPUMS-CPS, ASEC 2024
+            Note: 
+            Density of the full data file:  0.01%
+            Density of your extract: 0.0%
+
+      IPUMS-CPS, ASEC 2025
+            Note: 
+            Density of the full data file:  0.01%
+            Density of your extract: 0.0%
+
+File Type:                    rectangular
+Case Selection:               Yes
+  Variable                         Columns        Len   03/1990 03/1991 03/1992 03/1993 03/1994 03/1995 03/1996 03/1997 03/1998 03/1999 03/2000 03/2001 03/2002 03/2003 03/2004 03/2005 03/2006 03/2007 03/2008 03/2009 03/2010 03/2011 03/2012 03/2013 03/2014 03/2015 03/2016 03/2017 03/2018 03/2019 03/2020 03/2021 03/2022 03/2023 03/2024 03/2025 
+  YEAR                         H   1-4            4     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  SERIAL                       H   5-9            5     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  MONTH                        H  10-11           2     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  CPSID                        H  12-25          14     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  ASECFLAG                     H  26              1     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  HFLAG                        H  27              1     .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       X       .       .       .       .       .       .       .       .       .       .       .       
+  ASECWTH                      H  28-38          11     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  PERNUM                       P  39-40           2     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  CPSIDP                       P  41-54          14     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  CPSIDV                       P  55-69          15     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  ASECWT                       P  70-80          11     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  AGE                          P  81-82           2     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  SEX                          P  83              1     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  RACE                         P  84-86           3     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  MARST                        P  87              1     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  NCHILD                       P  88              1     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  EDUC                         P  89-91           3     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  WKSWORK1                     P  92-93           2     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  UHRSWORKLY                   P  94-96           3     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  INCWAGE                      P  97-104          8     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  INCSS                        P 105-110          6     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  INCWELFR                     P 111-116          6     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  INCSSI                       P 117-122          6     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  INCUNEMP                     P 123-128          6     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  INCDISAB                     P 129-135          7     X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  CTCCRD                       P 136-141          6     .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+  EITCRED                      P 142-145          4     .       .       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       X       
+
+Variable Availability Key:
+All Years X - available in this sample
+All Years . - not available in this sample
+
+Case Selections:
+P AGE      25 25
+P AGE      26 26
+P AGE      27 27
+P AGE      28 28
+P AGE      29 29
+P AGE      30 30
+P AGE      31 31
+P AGE      32 32
+P AGE      33 33
+P AGE      34 34
+P AGE      35 35
+P AGE      36 36
+P AGE      37 37
+P AGE      38 38
+P AGE      39 39
+P AGE      40 40
+P AGE      41 41
+P AGE      42 42
+P AGE      43 43
+P AGE      44 44
+P AGE      45 45
+P AGE      46 46
+P AGE      47 47
+P AGE      48 48
+P AGE      49 49
+P AGE      50 50
+P AGE      51 51
+P AGE      52 52
+P AGE      53 53
+P AGE      54 54
+P AGE      55 55
+P AGE      56 56
+P AGE      57 57
+P AGE      58 58
+P AGE      59 59
+P AGE      60 60
+P AGE      61 61
+P AGE      62 62
+P AGE      63 63
+P AGE      64 64
+RECTYPE   Record type
+H         Household
+P         Person
+
+MONTH               Month
+01                  January
+02                  February
+03                  March
+04                  April
+05                  May
+06                  June
+07                  July
+08                  August
+09                  September
+10                  October
+11                  November
+12                  December
+
+ASECFLAG            Flag for ASEC
+1                   ASEC
+2                   March Basic
+
+HFLAG               Flag for the 3/8 file 2014
+0                   5/8 file
+1                   3/8 file
+
+AGE                 Age
+00                  Under 1 year
+01                  1
+02                  2
+03                  3
+04                  4
+05                  5
+06                  6
+07                  7
+08                  8
+09                  9
+10                  10
+11                  11
+12                  12
+13                  13
+14                  14
+15                  15
+16                  16
+17                  17
+18                  18
+19                  19
+20                  20
+21                  21
+22                  22
+23                  23
+24                  24
+25                  25
+26                  26
+27                  27
+28                  28
+29                  29
+30                  30
+31                  31
+32                  32
+33                  33
+34                  34
+35                  35
+36                  36
+37                  37
+38                  38
+39                  39
+40                  40
+41                  41
+42                  42
+43                  43
+44                  44
+45                  45
+46                  46
+47                  47
+48                  48
+49                  49
+50                  50
+51                  51
+52                  52
+53                  53
+54                  54
+55                  55
+56                  56
+57                  57
+58                  58
+59                  59
+60                  60
+61                  61
+62                  62
+63                  63
+64                  64
+65                  65
+66                  66
+67                  67
+68                  68
+69                  69
+70                  70
+71                  71
+72                  72
+73                  73
+74                  74
+75                  75
+76                  76
+77                  77
+78                  78
+79                  79
+80                  80
+81                  81
+82                  82
+83                  83
+84                  84
+85                  85
+86                  86
+87                  87
+88                  88
+89                  89
+90                  90 (90+, 1988-2002)
+91                  91
+92                  92
+93                  93
+94                  94
+95                  95
+96                  96
+97                  97
+98                  98
+99                  99+
+
+SEX                 Sex
+1                   Male
+2                   Female
+9                   NIU
+
+RACE                Race
+100                 White
+200                 Black
+300                 American Indian/Aleut/Eskimo
+650                 Asian or Pacific Islander
+651                 Asian only
+652                 Hawaiian/Pacific Islander only
+700                 Other (single) race, n.e.c.
+                    Two or more races
+801                 White-Black
+802                 White-American Indian
+803                 White-Asian
+804                 White-Hawaiian/Pacific Islander
+805                 Black-American Indian
+806                 Black-Asian
+807                 Black-Hawaiian/Pacific Islander
+808                 American Indian-Asian
+809                 Asian-Hawaiian/Pacific Islander
+810                 White-Black-American Indian
+811                 White-Black-Asian
+812                 White-American Indian-Asian
+813                 White-Asian-Hawaiian/Pacific Islander
+814                 White-Black-American Indian-Asian
+815                 American Indian-Hawaiian/Pacific Islander
+816                 White-Black--Hawaiian/Pacific Islander
+817                 White-American Indian-Hawaiian/Pacific Islander
+818                 Black-American Indian-Asian
+819                 White-American Indian-Asian-Hawaiian/Pacific Islander
+820                 Two or three races, unspecified
+830                 Four or five races, unspecified
+999                 Blank
+
+MARST               Marital status
+1                   Married, spouse present
+2                   Married, spouse absent
+3                   Separated
+4                   Divorced
+5                   Widowed
+6                   Never married/single
+7                   Widowed or Divorced
+9                   NIU
+
+NCHILD              Number of own children in household
+0                   0 children present
+1                   1 child present
+2                   2
+3                   3
+4                   4
+5                   5
+6                   6
+7                   7
+8                   8
+9                   9+
+
+EDUC                Educational attainment recode
+000                 NIU or no schooling
+001                 NIU or blank
+002                 None or preschool
+010                 Grades 1, 2, 3, or 4
+011                 Grade 1
+012                 Grade 2
+013                 Grade 3
+014                 Grade 4
+020                 Grades 5 or 6
+021                 Grade 5
+022                 Grade 6
+030                 Grades 7 or 8
+031                 Grade 7
+032                 Grade 8
+040                 Grade 9
+050                 Grade 10
+060                 Grade 11
+070                 Grade 12
+071                 12th grade, no diploma
+072                 12th grade, diploma unclear
+073                 High school diploma or equivalent
+080                 1 year of college
+081                 Some college but no degree
+090                 2 years of college
+091                 Associate's degree, occupational/vocational program
+092                 Associate's degree, academic program
+100                 3 years of college
+110                 4 years of college
+111                 Bachelor's degree
+120                 5+ years of college
+121                 5 years of college
+122                 6+ years of college
+123                 Master's degree
+124                 Professional school degree
+125                 Doctorate degree
+999                 Missing/Unknown
+

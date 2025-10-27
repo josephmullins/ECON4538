@@ -1,0 +1,387 @@
+---
+title: "Documenting Inequality"
+format:
+  revealjs:
+    theme: solarized
+    transition: slide
+    chalkboard:
+        theme: whiteboard
+        chalk-effect: 0.0
+        chalk-width: 6
+jupyter: julia-1.11
+---
+
+## Overview
+
+:::{.incremental}
+- In this section of the class we'll look at what the data tells us about labor market inequality in the United States
+- Will look at trends in inequality *over time* and *over the life-cycle*
+- Will focus on **labor market inequality**
+- Some review of basic statistics along the way
+- Later in the section will dig deeper into *policy implications*
+:::
+
+## Let's start with some data
+
+:::{.incremental}
+- Data: the *Current Population Survey* (CPS) 
+- Will use the Annual Social and Economic Supplement (ASEC)
+- Years: 1990 - 2024, Ages: 25-64
+- Cleaned and harmonized by [IPUMS](https://cps.ipums.org/cps/index.shtml)
+- Using annual wage income, hours, demographics
+- Deflate using the Personal Consumption Expenditure Price Index
+- Consult the [data dictionary](../data/cps_00049.cbk)
+:::
+
+
+## Some Cleaning Steps
+
+```{julia}
+#| code-line-numbers: "4|5|6|7|8-9|10"
+#| echo: true
+#| output: false
+using DataFrames, CSV, StatsPlots, DataFramesMeta, StatsBase
+pce = CSV.read("../data/PCE_index.csv",DataFrame)
+
+data = @chain CSV.read("../data/cps_00049.csv",DataFrame) begin
+  @subset :INCWAGE .>0 #<- keep only if positive earnings
+  @subset :WKSWORK1 .>10 #<- keep only if worked more than 10 weeks
+  @transform :HOURS = :UHRSWORKLY .* :WKSWORK1 #<- calculate annual hours
+  innerjoin(pce,on=:YEAR)
+  @transform :INCWAGE = 100 * :INCWAGE ./ :PCE #<- deflate earnings (2017 base)
+  @transform :WAGE = :INCWAGE ./ :HOURS #<- annual earnings / annual hours
+end
+
+```
+
+
+## A Quick Look at Sample Sizes
+
+```{julia}
+#| echo: true
+
+@chain data begin
+  groupby(:YEAR)
+  @combine :N = length(:INCWAGE)
+end
+
+```
+
+## Most things we will get very precisely
+e.g. gender wage gaps:
+```{julia}
+#| code-fold: true
+#| echo: true
+@chain data begin
+  groupby([:YEAR,:SEX])
+  @combine begin 
+    :m_wage = mean(log.(:WAGE),weights(:ASECWT))
+    :v_est = var(log.(:WAGE),weights(:ASECWT)) / length(:WAGE)
+    end
+  @transform :ci_width = 1.96 * sqrt.(:v_est)
+  @df _ scatter(:YEAR,:m_wage,yerror=:ci_width,group=:SEX)
+end
+
+```
+
+## Reviewing Population Weights (Exercise)
+
+::: {.panel-tabset}
+
+### Unweighted
+
+```{julia}
+#| echo: true
+@chain data begin
+    groupby(:YEAR)
+    @combine :wage = mean(:WAGE)
+    @df _ plot(:YEAR,:wage)
+end
+
+```
+
+### Weighted
+
+```{julia}
+#| echo: true
+
+@chain data begin
+    groupby(:YEAR)
+    @combine :wage = mean(:WAGE,weights(:ASECWT))
+    @df _ plot(:YEAR,:wage)
+end
+
+```
+
+### Earnings
+
+```{julia}
+#| echo: true
+
+@chain data begin
+    groupby(:YEAR)
+    @combine :earn = mean(:INCWAGE,weights(:ASECWT))
+    @df _ plot(:YEAR,:earn)
+end
+
+```
+
+### Hours
+
+```{julia}
+#| echo: true
+
+@chain data begin
+    groupby(:YEAR)
+    @combine :hours = mean(:HOURS,weights(:ASECWT))
+    @df _ plot(:YEAR,:hours)
+end
+
+```
+
+:::
+
+# Some Basic Facts About
+
+## Trends in Inequality
+
+:::{.incremental}
+
+- How should we document inequality?
+- Some natural statistics to analyze the distribution of earnings and wages
+  - Variance (definition)
+  - Percentiles (definition)
+
+:::
+
+## Variance in log wages
+
+```{julia}
+#| echo: true
+
+@chain data begin
+    groupby(:YEAR)
+    @combine :var_lw = var(log.(:WAGE),weights(:ASECWT))
+    @df _ plot(:YEAR,:var_lw)
+end
+
+
+```
+
+
+## Percentiles of log wages
+
+```{julia}
+#| code-fold: true
+#| echo: true
+pctiles = @chain data begin
+    groupby(:YEAR)
+    @combine begin 
+    :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)
+    :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)
+    end
+    stack(Not(:YEAR))
+    @df _ plot(:YEAR,:value,group=:variable)
+end
+
+```
+
+## Percentiles of log wages (normalized)
+
+```{julia}
+#| code-fold: true
+#| echo: true
+pctiles = @chain data begin
+    groupby(:YEAR)
+    @combine begin 
+    :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)
+    :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)
+    end
+    stack(Not(:YEAR))
+    groupby(:variable)
+    @transform :value = :value .- :value[1]
+    @df _ plot(:YEAR,:value,group=:variable)
+end
+plot!([1990,2024],[0.,0.],linestyle=:dash,color="grey",label=false)
+
+```
+
+## Percentiles of log wages (normalized)
+
+```{julia}
+#| code-fold: true
+#| echo: true
+pctiles = @chain data begin
+    groupby(:YEAR)
+    @combine begin 
+    :p_90 = quantile(log.(:WAGE),weights(:ASECWT),0.9)
+    :p_10 = quantile(log.(:WAGE),weights(:ASECWT),0.1)
+    :p_75 = quantile(log.(:WAGE),weights(:ASECWT),0.75)
+    :p_25 = quantile(log.(:WAGE),weights(:ASECWT),0.25)
+    end
+    stack(Not(:YEAR))
+    groupby(:variable)
+    @transform :value = :value .- :value[1]
+    @df _ plot(:YEAR,:value,group=:variable)
+end
+plot!([1990,2024],[0.,0.],linestyle=:dash,color="grey",label=false)
+
+```
+
+# Trends in Other Metrics
+
+## Wage Gaps
+
+:::.{incremental}
+
+- While overall wage inequality is a main topic of interest, other metrics may matter for policy questions
+- E.g. gaps by education, gender/sex, race
+- Will look at these using the same data
+
+:::
+
+## Gender Wage Gaps
+
+```{julia}
+#| code-fold: true
+#| echo: true
+#| code-line-numbers: 2-3|4|5|6
+
+@chain data begin
+  groupby([:YEAR,:SEX])
+  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))
+  unstack(:YEAR,:SEX,:m_wage,renamecols=x->Symbol(:wage_, x))
+  @transform :gender_gap = :wage_1 .- :wage_2
+  @df _ plot(:YEAR,:gender_gap,label = "gender wage gap")
+end
+
+```
+
+## Race Wage Gaps
+
+```{julia}
+#| code-fold: true
+#| echo: true
+
+@chain data begin
+  groupby([:YEAR,:RACE])
+  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))
+  unstack(:YEAR,:RACE,:m_wage,renamecols=x->Symbol(:wage_, x))
+  @transform :black_white_gap = :wage_100 .- :wage_200
+  @df _ plot(:YEAR,:black_white_gap,label = "race gap: black-white")
+end
+
+```
+How much of this is sampling error?...
+
+## Race Wage Gaps
+
+```{julia}
+#| code-fold: true
+#| echo: true
+#| code-line-numbers:  5-6|8|9-10|12-13
+
+@chain data begin
+  @subset :RACE .<= 200
+  groupby([:YEAR,:RACE])
+  @combine begin 
+    :m_wage = mean(log.(:WAGE),weights(:ASECWT))
+    :v_est = var(log.(:WAGE),weights(:ASECWT)) / length(:WAGE)
+  end
+  stack()
+  @transform :variable = string.(:variable,"_",:RACE)
+  unstack(:YEAR,:variable,:value)
+  @transform begin
+    :black_white_gap = :m_wage_100 .- :m_wage_200
+    :std_err = 1.96*sqrt.(:v_est_100 .+ :v_est_200)
+  end
+  @df _ scatter(:YEAR,:black_white_gap,yerror = :std_err,label = "race gap: black-white")
+end
+
+```
+
+## Education Premia
+
+Define the "college premium" or "returns to college" as:
+
+$$ \mathbb{E}[\log(\text{wage})\ |\ \geq \text{Bachelor's}] - \mathbb{E}[\log(\text{wage})\ |\ \geq \text{High School or Equiv}] $$
+
+## 4-Yr and 2-Yr College Premium
+
+```{julia}
+#| code-fold: true
+#| echo: true
+#| code-line-numbers:  2|8
+
+@chain data begin
+  @transform :educ = (:EDUC.>=70) .+ (:EDUC.>=90) .+ (:EDUC.>=110)
+  groupby([:YEAR,:educ])
+  @combine begin 
+    :m_wage = mean(log.(:WAGE),weights(:ASECWT))
+  end
+  unstack(:YEAR,:educ,:m_wage,renamecols=x->Symbol(:wage_, x))
+  @transform :two_yr = :wage_2 .- :wage_1 :four_yr = :wage_3 .- :wage_1
+  @df _ begin
+    plot(:YEAR,:two_yr,label="two-year prem")
+    plot!(:YEAR,:four_yr,label="four-year prem")
+  end
+end
+
+```
+
+## Trends in Household Structure
+
+```{julia}
+#| code-fold: true
+#| echo: true
+#| code-line-numbers:  2|4-6
+
+test = @chain data begin
+  @subset :NCHILD.>0
+  groupby(:YEAR)
+  @combine begin
+    :divorce = mean(:MARST.==4)
+    :never_married = mean(:MARST.==6)
+    :single = mean(:MARST.>2)
+  end
+  stack(Not(:YEAR))
+  @df _ plot(:YEAR,:value,group=:variable)
+end
+
+```
+
+# Trends over the life-cycle
+
+## Life-cycle wage dynamics
+
+:::{.incremental}
+- So far we have seen changes in wage distributions and wage gaps over time
+- But perhaps these statistics vary with age, too.
+- We have 34 years of data to study cohorts over time
+- Beware the rank condition!
+:::
+
+## Calculating life-cycle profiles
+
+```{julia}
+#| echo: true
+#| code-line-numbers:  2|3-4
+
+v_w = @chain data begin
+  @transform :cohort = Int.(round.((:YEAR .- :AGE) ./ 10) .* 10)
+  groupby([:cohort,:AGE])
+  @combine :var_logw = var(log.(:WAGE),weights(:ASECWT))
+end
+
+```
+
+## Variance in log-wages increases with age
+
+```{julia}
+@df v_w plot(:AGE,:var_logw,group=:cohort,linewidth=1.5)
+
+```
+
+. . .
+
+What do you think could be driving this pattern? Why does it matter?

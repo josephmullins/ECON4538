@@ -96,7 +96,7 @@ We review and replicate facts about labor market inequality in the United States
 - Estimation of income risk [@moffitt2011; @Meghir2004; @Low2010; @Guvenen2009]
 - Welfare implications of income inequality [@Storesletten2004]
     - Redistribution vs Insurance
-- The Intergenerational Elasticity of Earnings [@corak2013; @mazumder2018]
+- The Intergenerational Elasticity of Earnings [@corak2013; @mazumder2005; @mazumder2018]
 - Skills and Inequality [@Heckman2006; @Cunha2008a; @Cunha2009]
 
 ### Theories of Human Capital and Inequality
