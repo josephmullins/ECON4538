@@ -102,7 +102,7 @@
     "href": "lectures/1-DocumentingInequality.html#section",
     "title": "Documenting Inequality",
     "section": "",
-    "text": "using DataFrames, CSV, StatsPlots, DataFramesMeta, Statistics\n\ncps_data = CSV.read(\"../data/cps_00049.csv\",DataFrame)\n\n3251344×27 DataFrame3251319 rows omitted\n\n\n\nRow\nYEAR\nSERIAL\nMONTH\nCPSID\nASECFLAG\nHFLAG\nASECWTH\nPERNUM\nCPSIDP\nCPSIDV\nASECWT\nAGE\nSEX\nRACE\nMARST\nNCHILD\nEDUC\nWKSWORK1\nUHRSWORKLY\nINCWAGE\nINCSS\nINCWELFR\nINCSSI\nINCUNEMP\nINCDISAB\nCTCCRD\nEITCRED\n\n\n\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64?\nFloat64\nInt64\nInt64\nInt64\nFloat64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64?\nInt64?\n\n\n\n\n1\n1990\n2\n3\n19900200210300\n1\nmissing\n573.23\n1\n19900200210301\n199002002103011\n573.23\n62\n2\n100\n4\n0\n50\n52\n20\n2288\n3024\n0\n2028\n0\n0\nmissing\nmissing\n\n\n2\n1990\n4\n3\n19900204118800\n1\nmissing\n588.25\n1\n19900204118801\n199002041188011\n588.25\n35\n2\n100\n3\n2\n121\n52\n25\n0\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n3\n1990\n5\n3\n19900200805500\n1\nmissing\n603.74\n1\n19900200805501\n199002008055011\n603.74\n48\n1\n100\n1\n0\n32\n52\n50\n31000\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n4\n1990\n5\n3\n19900200805500\n1\nmissing\n603.74\n2\n19900200805502\n199002008055021\n603.74\n45\n2\n100\n1\n0\n80\n52\n25\n9700\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n5\n1990\n6\n3\n19900202569900\n1\nmissing\n674.01\n1\n19900202569901\n199002025699011\n674.01\n32\n1\n100\n1\n0\n110\n52\n60\n60000\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n6\n1990\n6\n3\n19900202569900\n1\nmissing\n674.01\n2\n19900202569902\n199002025699021\n674.01\n30\n2\n100\n1\n0\n110\n52\n36\n30000\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n7\n1990\n7\n3\n19900202515200\n1\nmissing\n612.79\n1\n19900202515201\n199002025152011\n612.79\n49\n1\n100\n1\n1\n60\n0\n999\n0\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n8\n1990\n7\n3\n19900202515200\n1\nmissing\n612.79\n2\n19900202515202\n199002025152021\n612.79\n43\n2\n100\n1\n1\n60\n0\n999\n0\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n9\n1990\n9\n3\n19900205325800\n1\nmissing\n544.24\n1\n19900205325801\n199002053258011\n544.24\n52\n2\n100\n4\n1\n80\n30\n24\n5000\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n10\n1990\n10\n3\n19900201692900\n1\nmissing\n609.56\n1\n19900201692901\n199002016929011\n609.56\n41\n1\n100\n1\n2\n110\n52\n50\n72300\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n11\n1990\n10\n3\n19900201692900\n1\nmissing\n609.56\n2\n19900201692902\n199002016929021\n609.56\n40\n2\n100\n1\n2\n110\n50\n7\n2000\n0\n0\n0\n0\n0\nmissing\nmissing\n\n\n12\n1990\n11\n3\n19890105673300\n1\nmissing\n732.35\n2\n19890105673302\n198901056733021\n732.35\n63\n2\n100\n1\n1\n12\n0\n999\n0\n1884\n0\n0\n0\n0\nmissing\nmissing\n\n\n13\n1990\n11\n3\n19890105673300\n1\nmissing\n732.35\n3\n19890105673303\n198901056733031\n1026.84\n34\n1\n100\n5\n0\n72\n0\n999\n0\n5400\n0\n0\n0\n0\nmissing\nmissing\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n3251333\n2025\n88920\n3\n20241308947100\n1\nmissing\n476.63\n1\n20241308947101\n202413089471011\n476.63\n59\n1\n803\n6\n0\n111\n0\n999\n0\n12000\n0\n12000\n0\n0\n0\n0\n\n\n3251334\n2025\n88921\n3\n20241308947200\n1\nmissing\n511.75\n1\n20241308947201\n202413089472011\n511.75\n36\n2\n651\n6\n0\n81\n52\n20\n16100\n0\n0\n0\n0\n0\n0\n190\n\n\n3251335\n2025\n88921\n3\n20241308947200\n1\nmissing\n511.75\n2\n20241308947202\n202413089472021\n572.42\n28\n1\n651\n6\n0\n73\n0\n999\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n3251336\n2025\n88922\n3\n20241308947300\n1\nmissing\n459.63\n1\n20241308947301\n202413089473011\n459.63\n46\n1\n100\n1\n3\n92\n52\n40\n125000\n0\n0\n0\n0\n0\n6000\n0\n\n\n3251337\n2025\n88922\n3\n20241308947300\n1\nmissing\n459.63\n2\n20241308947302\n202413089473021\n459.63\n46\n2\n813\n1\n3\n111\n52\n40\n80000\n0\n0\n0\n0\n0\n0\n0\n\n\n3251338\n2025\n88923\n3\n20251308892300\n1\nmissing\n453.99\n1\n20251308892301\n202513088923011\n453.99\n55\n2\n651\n5\n2\n91\n0\n999\n0\n35000\n0\n0\n0\n0\n0\n0\n\n\n3251339\n2025\n88925\n3\n20251308892500\n1\nmissing\n824.76\n1\n20251308892501\n202513088925011\n824.76\n29\n1\n809\n6\n0\n81\n52\n40\n60000\n0\n0\n0\n0\n0\n0\n0\n\n\n3251340\n2025\n88925\n3\n20251308892500\n1\nmissing\n824.76\n2\n20251308892502\n202513088925021\n824.76\n29\n2\n809\n6\n0\n91\n48\n40\n60000\n0\n0\n0\n0\n0\n4000\n0\n\n\n3251341\n2025\n88927\n3\n20251308892700\n1\nmissing\n509.87\n1\n20251308892701\n202513088927011\n509.87\n57\n1\n652\n1\n1\n111\n0\n999\n0\n18966\n0\n0\n0\n0\n0\n0\n\n\n3251342\n2025\n88927\n3\n20251308892700\n1\nmissing\n509.87\n2\n20251308892702\n202513088927021\n509.87\n55\n2\n652\n1\n1\n73\n52\n40\n84000\n0\n0\n0\n0\n0\n0\n0\n\n\n3251343\n2025\n88930\n3\n20251308893000\n1\nmissing\n450.92\n3\n20251308893003\n202513088930031\n768.54\n28\n2\n652\n6\n0\n73\n52\n60\n60000\n0\n0\n0\n0\n0\n0\n0\n\n\n3251344\n2025\n88932\n3\n20251308893200\n1\nmissing\n455.7\n1\n20251308893201\n202513088932011\n455.7\n38\n1\n651\n6\n0\n111\n52\n40\n85000\n0\n0\n0\n0\n0\n0\n0"
+    "text": "Heathcote, Jonathan, Fabrizio Perri, and Giovanni L. Violante. 2010. “Unequal We Stand: An Empirical Analysis of Economic Inequality in the United States, 1967–2006.” Review of Economic Dynamics, no. 1: 15–51. https://doi.org/10.1016/j.red.2009.10.010.\n\n\nHeathcote, Jonathan, Fabrizio Perri, Giovanni L. Violante, and Lichen Zhang. 2023. “More Unequal We Stand? Inequality Dynamics in the United States, 1967–2021.” Review of Economic Dynamics, 235–66. https://doi.org/10.1016/j.red.2023.07.014."
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#section-1",
@@ -144,7 +144,7 @@
     "href": "lectures/1-DocumentingInequality.html#reviewing-population-weights-exercise",
     "title": "Documenting Inequality",
     "section": "Reviewing Population Weights (Exercise)",
-    "text": "Reviewing Population Weights (Exercise)\n\nUnweightedWeightedEarningsHours\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :wage = mean(:WAGE)\n    @df _ plot(:YEAR,:wage)\nend\n\n\n\n\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :wage = mean(:WAGE,weights(:ASECWT))\n    @df _ plot(:YEAR,:wage)\nend\n\n\n\n\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :earn = mean(:INCWAGE,weights(:ASECWT))\n    @df _ plot(:YEAR,:earn)\nend\n\n\n\n\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :hours = mean(:HOURS,weights(:ASECWT))\n    @df _ plot(:YEAR,:hours)\nend"
+    "text": "Reviewing Population Weights (Exercise)\n\nUnweightedWeightedEarningsHours\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :wage = mean(:WAGE)\n    @df _ plot(:YEAR,:wage)\nend\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :wage = mean(:WAGE,weights(:ASECWT))\n    @df _ plot(:YEAR,:wage)\nend\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :earn = mean(:INCWAGE,weights(:ASECWT))\n    @df _ plot(:YEAR,:earn)\nend\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :hours = mean(:HOURS,weights(:ASECWT))\n    @df _ plot(:YEAR,:hours)\nend"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#trends-in-inequality",
@@ -158,28 +158,28 @@
     "href": "lectures/1-DocumentingInequality.html#variance-in-log-wages",
     "title": "Documenting Inequality",
     "section": "Variance in log wages",
-    "text": "Variance in log wages\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :var_lw = var(log.(:WAGE),weights(:ASECWT))\n    @df _ plot(:YEAR,:var_lw)\nend"
+    "text": "Variance in log wages\n\n@chain data begin\n    groupby(:YEAR)\n    @combine :var_lw = var(log.(:WAGE),weights(:ASECWT))\n    @df _ plot(:YEAR,:var_lw,linewidth=3)\nend"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages",
     "href": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages",
     "title": "Documenting Inequality",
     "section": "Percentiles of log wages",
-    "text": "Percentiles of log wages\n\n\nCode\npctiles = @chain data begin\n    groupby(:YEAR)\n    @combine begin \n    :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)\n    :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)\n    end\n    stack(Not(:YEAR))\n    @df _ plot(:YEAR,:value,group=:variable)\nend"
+    "text": "Percentiles of log wages\n\n\nCode\npctiles = @chain data begin\n    groupby(:YEAR)\n    @combine begin \n    :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)\n    :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)\n    end\n    stack(Not(:YEAR))\n    @df _ plot(:YEAR,:value,group=:variable,linewidth=3)\nend"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages-normalized",
     "href": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages-normalized",
     "title": "Documenting Inequality",
     "section": "Percentiles of log wages (normalized)",
-    "text": "Percentiles of log wages (normalized)\n\n\nCode\npctiles = @chain data begin\n    groupby(:YEAR)\n    @combine begin \n    :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)\n    :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)\n    end\n    stack(Not(:YEAR))\n    groupby(:variable)\n    @transform :value = :value .- :value[1]\n    @df _ plot(:YEAR,:value,group=:variable)\nend\nplot!([1990,2024],[0.,0.],linestyle=:dash,color=\"grey\",label=false)"
+    "text": "Percentiles of log wages (normalized)\n\n\nCode\npctiles = @chain data begin\n    groupby(:YEAR)\n    @combine begin \n    :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)\n    :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)\n    end\n    stack(Not(:YEAR))\n    groupby(:variable)\n    @transform :value = :value .- :value[1]\n    @df _ plot(:YEAR,:value,group=:variable,linewidth=3)\nend\nplot!([1990,2024],[0.,0.],linestyle=:dash,color=\"grey\",label=false)"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages-normalized-1",
     "href": "lectures/1-DocumentingInequality.html#percentiles-of-log-wages-normalized-1",
     "title": "Documenting Inequality",
     "section": "Percentiles of log wages (normalized)",
-    "text": "Percentiles of log wages (normalized)\n\n\nCode\npctiles = @chain data begin\n    groupby(:YEAR)\n    @combine begin \n    :p_90 = quantile(log.(:WAGE),weights(:ASECWT),0.9)\n    :p_10 = quantile(log.(:WAGE),weights(:ASECWT),0.1)\n    :p_75 = quantile(log.(:WAGE),weights(:ASECWT),0.75)\n    :p_25 = quantile(log.(:WAGE),weights(:ASECWT),0.25)\n    end\n    stack(Not(:YEAR))\n    groupby(:variable)\n    @transform :value = :value .- :value[1]\n    @df _ plot(:YEAR,:value,group=:variable)\nend\nplot!([1990,2024],[0.,0.],linestyle=:dash,color=\"grey\",label=false)"
+    "text": "Percentiles of log wages (normalized)\n\n\nCode\npctiles = @chain data begin\n    groupby(:YEAR)\n    @combine begin \n    :p_90 = quantile(log.(:WAGE),weights(:ASECWT),0.9)\n    :p_10 = quantile(log.(:WAGE),weights(:ASECWT),0.1)\n    :p_75 = quantile(log.(:WAGE),weights(:ASECWT),0.75)\n    :p_25 = quantile(log.(:WAGE),weights(:ASECWT),0.25)\n    end\n    stack(Not(:YEAR))\n    groupby(:variable)\n    @transform :value = :value .- :value[1]\n    @df _ plot(:YEAR,:value,group=:variable,linewidth=3)\nend\nplot!([1990,2024],[0.,0.],linestyle=:dash,color=\"grey\",label=false)"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#a-quick-look-at-sample-sizes",
@@ -207,21 +207,21 @@
     "href": "lectures/1-DocumentingInequality.html#gender-wage-gaps",
     "title": "Documenting Inequality",
     "section": "Gender Wage Gaps",
-    "text": "Gender Wage Gaps\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:SEX])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:SEX,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :gender_gap = :wage_1 .- :wage_2\n  @df _ plot(:YEAR,:gender_gap,label = \"gender wage gap\")\nend"
+    "text": "Gender Wage Gaps\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:SEX])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:SEX,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :gender_gap = :wage_1 .- :wage_2\n  @df _ plot(:YEAR,:gender_gap,label = \"gender wage gap\",linewidth=3.)\nend"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#race-wage-gaps",
     "href": "lectures/1-DocumentingInequality.html#race-wage-gaps",
     "title": "Documenting Inequality",
     "section": "Race Wage Gaps",
-    "text": "Race Wage Gaps\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:RACE])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:RACE,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :black_white_gap = :wage_100 .- :wage_200\n  @df _ plot(:YEAR,:black_white_gap,label = \"race gap: black-white\")\nend\n\n\n\nHow much of this is sampling error?…"
+    "text": "Race Wage Gaps\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:RACE])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:RACE,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :black_white_gap = :wage_100 .- :wage_200\n  @df _ plot(:YEAR,:black_white_gap,label = \"race gap: black-white\",linewidth=3.)\nend\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow much of this is sampling error?…"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#education-premia",
     "href": "lectures/1-DocumentingInequality.html#education-premia",
     "title": "Documenting Inequality",
     "section": "Education Premia",
-    "text": "Education Premia\nDefine the “college premium” or “returns to college” as:\n\\[ \\mathbb{E}[\\log(\\text{wage})\\ |\\ \\geq \\text{Bachelor's}] - \\mathbb{E}[\\log(\\text{wage})\\ |\\ \\geq \\text{High School or Equiv}] \\]"
+    "text": "Education Premia\n\nDefine the “college premium” or “returns to college” as: \\[ \\mathbb{E}[\\log(\\text{wage})\\ |\\ \\geq \\text{degree}] - \\mathbb{E}[\\log(\\text{wage})\\ |\\ \\geq \\text{High School or Equiv}] \\]\nNote: there are other definitions Heathcote et al. (2023)"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html#race-wage-gaps-1",
@@ -263,7 +263,7 @@
     "href": "lectures/1-DocumentingInequality.html#variance-in-log-wages-increases-with-age",
     "title": "Documenting Inequality",
     "section": "Variance in log-wages increases with age",
-    "text": "Variance in log-wages increases with age\n\n\nWhat do you think could be driving this pattern? Why does it matter?"
+    "text": "Variance in log-wages increases with age\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhat do you think could be driving this pattern? Why does it matter? (Exercise at board on income processes)"
   },
   {
     "objectID": "lectures/1-DocumentingInequality.html",
@@ -355,5 +355,110 @@
     "title": "Syllabus",
     "section": "Citations",
     "text": "Citations\n\n\n\n\nBecker, Gary S., and Nigel Tomes. 1979. “An Equilibrium Theory of the Distribution of Income and Intergenerational Mobility.” The Journal of Political Economy, no. 6: 1153–89. https://doi.org/10.1086/260831.\n\n\n———. 1986. “Human Capital and the Rise and Fall of Families.” Journal of Labor Economics, no. 3: S1–39. https://doi.org/10.1086/298118.\n\n\nHeathcote, Jonathan, Fabrizio Perri, Giovanni L. Violante, and Lichen Zhang. 2023. “More Unequal We Stand? Inequality Dynamics in the United States, 1967–2021.” Review of Economic Dynamics, 235–66. https://doi.org/10.1016/j.red.2023.07.014."
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#overview-heathcote2023",
+    "href": "lectures/1-DocumentingInequality.html#overview-heathcote2023",
+    "title": "Documenting Inequality",
+    "section": "Overview: Heathcote et al. (2023)",
+    "text": "Overview: Heathcote et al. (2023)\n\n\nHeathcote, Perri, Violante, and Zhang (2023) update their 2010 analysis (Heathcote, Perri, and Violante 2010) through 2021\nUse the household budget constraint as organizing framework \\[ c + s = \\sum_{i=1}^{N}w_{i}h_{i} + d + b^{p} + b^{g} - \\tau \\]\n\\(d\\): asset income, \\(b^{p}\\)/\\(b^{g}\\): private/gov transfers, \\(\\tau\\): taxes\nStart with individual wages → add hours → add household members → add government\nMultiple data sources: CPS, ACS, PSID, CES, SCF"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#key-finding-1-wage-inequality-trends",
+    "href": "lectures/1-DocumentingInequality.html#key-finding-1-wage-inequality-trends",
+    "title": "Documenting Inequality",
+    "section": "Key Finding 1: Wage Inequality Trends",
+    "text": "Key Finding 1: Wage Inequality Trends\n\n\n\n\n\n\n\nAt the top: Steady growth in inequality since mid-1980s\nAt the bottom: Remarkably stable since 2000\nCollege premium stopped growing after early 2000s\nGender wage gap continues to shrink"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#key-finding-2-the-role-of-labor-supply",
+    "href": "lectures/1-DocumentingInequality.html#key-finding-2-the-role-of-labor-supply",
+    "title": "Documenting Inequality",
+    "section": "Key Finding 2: The Role of Labor Supply",
+    "text": "Key Finding 2: The Role of Labor Supply\n\n\n\n\n\n\nEarnings, wages, and weeks worked in three slices of the earnings distribution (Heathcote et al. 2023)\n\n\n\n\n\nTop earners: Inequality driven entirely by wages (hours stable at ~50 weeks/year)\nBottom earners: Weeks worked fell 80% since 1967, wages fell 20%\nEmployment differences are key driver at the bottom"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#key-finding-3-the-declining-role-of-the-household",
+    "href": "lectures/1-DocumentingInequality.html#key-finding-3-the-declining-role-of-the-household",
+    "title": "Documenting Inequality",
+    "section": "Key Finding 3: The Declining Role of the Household",
+    "text": "Key Finding 3: The Declining Role of the Household\n\n\nDefine index of household income pooling: \\[ HP_{t} = \\left(var(y_{it}) - var(\\bar{y}_{it})\\right) / var(y_{it}) \\]\n\\(\\bar{y}_{i}\\): per-person income in household \\(i\\)\nInterpretation: the share of variance in income reduced by pooling at household level\nHousehold income pooling used to reduce inequality by 60% in 1967\nBy 2021, only reduces inequality by 35%\nWhy the decline? (decomposition exercise at board)\n\nNarrowing gender earnings gap → women less reliant on spousal income\nRising correlation of earnings within couples → less insurance\n\nSingle households increasingly disadvantaged"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#key-finding-4-the-growing-role-of-government",
+    "href": "lectures/1-DocumentingInequality.html#key-finding-4-the-growing-role-of-government",
+    "title": "Documenting Inequality",
+    "section": "Key Finding 4: The Growing Role of Government",
+    "text": "Key Finding 4: The Growing Role of Government\n\n\n\n\n\n\nInequality reduction mechanisms (Heathcote et al. 2023)\n\n\n\n\n\nGovernment redistribution (taxes + transfers) increasingly important\nIndex: compare pretax to post-tax and transfer income"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#key-finding-5-income-vs.-consumption-inequality",
+    "href": "lectures/1-DocumentingInequality.html#key-finding-5-income-vs.-consumption-inequality",
+    "title": "Documenting Inequality",
+    "section": "Key Finding 5: Income vs. Consumption Inequality",
+    "text": "Key Finding 5: Income vs. Consumption Inequality\n\nIncome and consumption inequality (Heathcote et al. 2023)\n\nMarket income: Large increase in inequality (especially at bottom during recessions)\nDisposable income: Much smaller increase (government smooths fluctuations)\nConsumption: Remarkably stable over entire period"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#key-finding-6-wealth-amplifies-inequality",
+    "href": "lectures/1-DocumentingInequality.html#key-finding-6-wealth-amplifies-inequality",
+    "title": "Documenting Inequality",
+    "section": "Key Finding 6: Wealth Amplifies Inequality",
+    "text": "Key Finding 6: Wealth Amplifies Inequality\n\n\nWealth inequality has grown significantly since 1990s\nTop 10% wealth share: ~65% in late 1980s → ~75% by 2019\nAsymmetric pattern:\n\nBelow median: wealth ratios similar to income ratios\nAbove median: wealth ratios much larger and growing faster\n\nTop households accumulate wealth faster than income grows"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#main-takeaways-from-heathcote2023",
+    "href": "lectures/1-DocumentingInequality.html#main-takeaways-from-heathcote2023",
+    "title": "Documenting Inequality",
+    "section": "Main Takeaways from Heathcote et al. (2023)",
+    "text": "Main Takeaways from Heathcote et al. (2023)\n\n\nInequality at top: Driven by wage differentials, continues to grow (but more slowly)\nInequality at bottom: Driven by employment, dominated by cyclical fluctuations\nThe household: Declining importance as inequality-reducing mechanism\nThe government: Increasing role in redistribution and stabilization\nConsumption: Remains remarkably stable despite income inequality trends"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#policy-implications",
+    "href": "lectures/1-DocumentingInequality.html#policy-implications",
+    "title": "Documenting Inequality",
+    "section": "Policy Implications",
+    "text": "Policy Implications\n\n\nLabor market policies matter differently across distribution:\n\nTop: Focus on wage-setting, skills, technology\nBottom: Focus on employment, labor force participation\n\nGovernment transfers are increasingly important for:\n\nReducing long-run inequality\nStabilizing incomes during recessions (especially at bottom)\n\nMarriage/family policies less effective as earnings correlate more within couples\nConsumption smoothing: Households appear to insure well despite income volatility\n\n\n\n\n\n\nHeathcote, Jonathan, Fabrizio Perri, and Giovanni L. Violante. 2010. “Unequal We Stand: An Empirical Analysis of Economic Inequality in the United States, 1967–2006.” Review of Economic Dynamics, no. 1: 15–51. https://doi.org/10.1016/j.red.2009.10.010.\n\n\nHeathcote, Jonathan, Fabrizio Perri, Giovanni L. Violante, and Lichen Zhang. 2023. “More Unequal We Stand? Inequality Dynamics in the United States, 1967–2021.” Review of Economic Dynamics, 235–66. https://doi.org/10.1016/j.red.2023.07.014."
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#whats-next",
+    "href": "lectures/1-DocumentingInequality.html#whats-next",
+    "title": "Documenting Inequality",
+    "section": "What’s next?",
+    "text": "What’s next?\n\nWe’ve got a good picture of:\n\nPatterns of inequality over time and over the life-cycle\nThe role that government transfers can play in off-setting this\n\nBut we don’t yet know:\n\nWhat are the welfare implications of these facts?\nHow much would people value programs that insure / redistribute?\nWhat are the origins of this inequality and should we counteract with policy?\n\nThese are the topics we will work on for the rest of this course"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#yr-and-2-yr-college-premia",
+    "href": "lectures/1-DocumentingInequality.html#yr-and-2-yr-college-premia",
+    "title": "Documenting Inequality",
+    "section": "4-Yr and 2-Yr College Premia",
+    "text": "4-Yr and 2-Yr College Premia\n\n\nCode\n@chain data begin\n  @transform :educ = (:EDUC.&gt;=70) .+ (:EDUC.&gt;=90) .+ (:EDUC.&gt;=110)\n  groupby([:YEAR,:educ])\n  @combine begin \n    :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  end\n  unstack(:YEAR,:educ,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :two_yr = :wage_2 .- :wage_1 :four_yr = :wage_3 .- :wage_1\n  @df _ begin\n    plot(:YEAR,:two_yr,label=\"two-year prem\",linewidth=3)\n    plot!(:YEAR,:four_yr,label=\"four-year prem\",linewidth=3)\n  end\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#trends-in-single-parenthood",
+    "href": "lectures/1-DocumentingInequality.html#trends-in-single-parenthood",
+    "title": "Documenting Inequality",
+    "section": "Trends in Single Parenthood",
+    "text": "Trends in Single Parenthood\n\n\nCode\ntest = @chain data begin\n  @subset :NCHILD.&gt;0\n  groupby(:YEAR)\n  @combine begin\n    :divorce = mean(:MARST.==4)\n    :never_married = mean(:MARST.==6)\n    :single = mean(:MARST.&gt;2)\n  end\n  stack(Not(:YEAR))\n  @df _ plot(:YEAR,:value,group=:variable,linewidth=3)\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#gender-wage-gap",
+    "href": "lectures/1-DocumentingInequality.html#gender-wage-gap",
+    "title": "Documenting Inequality",
+    "section": "Gender Wage Gap",
+    "text": "Gender Wage Gap\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:SEX])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:SEX,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :gender_gap = :wage_1 .- :wage_2\n  @df _ plot(:YEAR,:gender_gap,label = \"gender wage gap\",linewidth=3.)\nend"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#race-wage-gap",
+    "href": "lectures/1-DocumentingInequality.html#race-wage-gap",
+    "title": "Documenting Inequality",
+    "section": "Race Wage Gap",
+    "text": "Race Wage Gap\n\n\nCode\n@chain data begin\n  groupby([:YEAR,:RACE])\n  @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n  unstack(:YEAR,:RACE,:m_wage,renamecols=x-&gt;Symbol(:wage_, x))\n  @transform :black_white_gap = :wage_100 .- :wage_200\n  @df _ plot(:YEAR,:black_white_gap,label = \"race gap: black-white\",linewidth=3.)\nend\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow much of this is sampling error?…"
+  },
+  {
+    "objectID": "lectures/1-DocumentingInequality.html#race-wage-gap-1",
+    "href": "lectures/1-DocumentingInequality.html#race-wage-gap-1",
+    "title": "Documenting Inequality",
+    "section": "Race Wage Gap",
+    "text": "Race Wage Gap\n\n\nCode\n@chain data begin\n  @subset :RACE .&lt;= 200\n  groupby([:YEAR,:RACE])\n  @combine begin \n    :m_wage = mean(log.(:WAGE),weights(:ASECWT))\n    :v_est = var(log.(:WAGE),weights(:ASECWT)) / length(:WAGE)\n  end\n  stack()\n  @transform :variable = string.(:variable,\"_\",:RACE)\n  unstack(:YEAR,:variable,:value)\n  @transform begin\n    :black_white_gap = :m_wage_100 .- :m_wage_200\n    :std_err = 1.96*sqrt.(:v_est_100 .+ :v_est_200)\n  end\n  @df _ scatter(:YEAR,:black_white_gap,yerror = :std_err,label = \"race gap: black-white\")\nend"
   }
 ]

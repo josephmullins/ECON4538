@@ -1,6 +1,6 @@
 ---
 title: "Documenting Inequality"
-bibliography: reading_list.bib
+bibliography: ../reading_list.bib
 format:
   revealjs:
     theme: solarized
@@ -10,6 +10,9 @@ format:
         chalk-effect: 0.0
         chalk-width: 6
 jupyter: julia-1.11
+execute:
+  cache: true
+  freeze: auto
 ---
 
 ## Overview
@@ -163,7 +166,7 @@ end
 @chain data begin
     groupby(:YEAR)
     @combine :var_lw = var(log.(:WAGE),weights(:ASECWT))
-    @df _ plot(:YEAR,:var_lw)
+    @df _ plot(:YEAR,:var_lw,linewidth=3)
 end
 
 
@@ -182,7 +185,7 @@ pctiles = @chain data begin
     :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)
     end
     stack(Not(:YEAR))
-    @df _ plot(:YEAR,:value,group=:variable)
+    @df _ plot(:YEAR,:value,group=:variable,linewidth=3)
 end
 
 ```
@@ -201,7 +204,7 @@ pctiles = @chain data begin
     stack(Not(:YEAR))
     groupby(:variable)
     @transform :value = :value .- :value[1]
-    @df _ plot(:YEAR,:value,group=:variable)
+    @df _ plot(:YEAR,:value,group=:variable,linewidth=3)
 end
 plot!([1990,2024],[0.,0.],linestyle=:dash,color="grey",label=false)
 
@@ -223,7 +226,7 @@ pctiles = @chain data begin
     stack(Not(:YEAR))
     groupby(:variable)
     @transform :value = :value .- :value[1]
-    @df _ plot(:YEAR,:value,group=:variable)
+    @df _ plot(:YEAR,:value,group=:variable,linewidth=3)
 end
 plot!([1990,2024],[0.,0.],linestyle=:dash,color="grey",label=false)
 
@@ -241,7 +244,7 @@ plot!([1990,2024],[0.,0.],linestyle=:dash,color="grey",label=false)
 
 :::
 
-## Gender Wage Gaps
+## Gender Wage Gap
 
 ```{julia}
 #| code-fold: true
@@ -253,12 +256,12 @@ plot!([1990,2024],[0.,0.],linestyle=:dash,color="grey",label=false)
   @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))
   unstack(:YEAR,:SEX,:m_wage,renamecols=x->Symbol(:wage_, x))
   @transform :gender_gap = :wage_1 .- :wage_2
-  @df _ plot(:YEAR,:gender_gap,label = "gender wage gap")
+  @df _ plot(:YEAR,:gender_gap,label = "gender wage gap",linewidth=3.)
 end
 
 ```
 
-## Race Wage Gaps
+## Race Wage Gap
 
 ```{julia}
 #| code-fold: true
@@ -269,13 +272,13 @@ end
   @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))
   unstack(:YEAR,:RACE,:m_wage,renamecols=x->Symbol(:wage_, x))
   @transform :black_white_gap = :wage_100 .- :wage_200
-  @df _ plot(:YEAR,:black_white_gap,label = "race gap: black-white")
+  @df _ plot(:YEAR,:black_white_gap,label = "race gap: black-white",linewidth=3.)
 end
 
 ```
 How much of this is sampling error?...
 
-## Race Wage Gaps
+## Race Wage Gap
 
 ```{julia}
 #| code-fold: true
@@ -301,13 +304,13 @@ end
 
 ```
 
-## Education Premia
+## Education Premia {.smaller}
 
-Define the "college premium" or "returns to college" as:
+- Define the "college premium" or "returns to college" as:
+$$ \mathbb{E}[\log(\text{wage})\ |\ \geq \text{degree}] - \mathbb{E}[\log(\text{wage})\ |\ \geq \text{High School or Equiv}] $$
+- Note: there are other definitions @Heathcote2023
 
-$$ \mathbb{E}[\log(\text{wage})\ |\ \geq \text{Bachelor's}] - \mathbb{E}[\log(\text{wage})\ |\ \geq \text{High School or Equiv}] $$
-
-## 4-Yr and 2-Yr College Premium
+## 4-Yr and 2-Yr College Premia
 
 ```{julia}
 #| code-fold: true
@@ -323,14 +326,14 @@ $$ \mathbb{E}[\log(\text{wage})\ |\ \geq \text{Bachelor's}] - \mathbb{E}[\log(\t
   unstack(:YEAR,:educ,:m_wage,renamecols=x->Symbol(:wage_, x))
   @transform :two_yr = :wage_2 .- :wage_1 :four_yr = :wage_3 .- :wage_1
   @df _ begin
-    plot(:YEAR,:two_yr,label="two-year prem")
-    plot!(:YEAR,:four_yr,label="four-year prem")
+    plot(:YEAR,:two_yr,label="two-year prem",linewidth=3)
+    plot!(:YEAR,:four_yr,label="four-year prem",linewidth=3)
   end
 end
 
 ```
 
-## Trends in Household Structure
+## Trends in Single Parenthood
 
 ```{julia}
 #| code-fold: true
@@ -346,7 +349,7 @@ test = @chain data begin
     :single = mean(:MARST.>2)
   end
   stack(Not(:YEAR))
-  @df _ plot(:YEAR,:value,group=:variable)
+  @df _ plot(:YEAR,:value,group=:variable,linewidth=3)
 end
 
 ```
@@ -362,7 +365,7 @@ end
 - Beware the rank condition!
 :::
 
-## Calculating life-cycle profiles
+## Calculating life-cycle profiles {.scrollable}
 
 ```{julia}
 #| echo: true
@@ -379,10 +382,122 @@ end
 ## Variance in log-wages increases with age
 
 ```{julia}
-@df v_w plot(:AGE,:var_logw,group=:cohort,linewidth=1.5)
+@df v_w plot(:AGE,:var_logw,group=:cohort,linewidth=4)
 
 ```
 
 . . .
 
-What do you think could be driving this pattern? Why does it matter?
+What do you think could be driving this pattern? Why does it matter? (Exercise at board on income processes)
+
+# Summary: More Unequal We Stand?
+
+## Overview: @Heathcote2023 {.smaller}
+
+:::{.incremental}
+- Heathcote, Perri, Violante, and Zhang (2023) update their 2010 analysis [@Heathcote2010] through 2021
+- Use the **household budget constraint** as organizing framework
+$$ c + s = \sum_{i=1}^{N}w_{i}h_{i} + d + b^{p} + b^{g} - \tau $$
+- $d$: asset income, $b^{p}$/$b^{g}$: private/gov transfers, $\tau$: taxes
+- Start with individual wages → add hours → add household members → add government
+- Multiple data sources: CPS, ACS, PSID, CES, SCF
+:::
+
+## Key Finding 1: Wage Inequality Trends
+
+:::: {.columns}
+::: {.column width="55%"}
+<!-- Extract Figure 7 from papers/more_unequal_we_stand.pdf (page 10) -->
+![](../papers/figures/heathcote_fig7.png)
+:::
+
+::: {.column width="45%"}
+::: {.incremental style="font-size: 0.8em;"}
+- **At the top**: Steady growth in inequality since mid-1980s
+- **At the bottom**: Remarkably stable since 2000
+- College premium stopped growing after early 2000s
+- Gender wage gap continues to shrink
+:::
+:::
+::::
+
+## Key Finding 2: The Role of Labor Supply
+
+:::: {.columns}
+::: {.column width="60%"}
+<!-- Extract Figure 11 from papers/more_unequal_we_stand.pdf (page 14) -->
+![Earnings, wages, and weeks worked in three slices of the earnings distribution [@Heathcote2023]](../papers/figures/heathcote_fig11.png)
+:::
+
+::: {.column width="40%"}
+::: {.incremental style="font-size: 0.8em;"}
+- **Top earners**: Inequality driven entirely by wages (hours stable at ~50 weeks/year)
+- **Bottom earners**: Weeks worked fell 80% since 1967, wages fell 20%
+- Employment differences are key driver at the bottom
+:::
+:::
+::::
+
+## Key Finding 3: The Declining Role of the Household {.smaller}
+
+:::{.incremental}
+- Define index of **household income pooling**:
+$$ HP_{t} = \left(var(y_{it}) - var(\bar{y}_{it})\right) / var(y_{it}) $$
+- $\bar{y}_{i}$: per-person income in household $i$
+- *Interpretation*: the share of variance in income reduced by pooling at household level
+- Household income pooling used to reduce inequality by 60% in 1967
+- By 2021, only reduces inequality by 35%
+- **Why the decline?** (decomposition exercise at board)
+  - Narrowing gender earnings gap → women less reliant on spousal income
+  - Rising correlation of earnings within couples → less insurance
+- Single households increasingly disadvantaged
+:::
+
+## Key Finding 4: The Growing Role of Government
+
+:::: {.columns}
+::: {.column width="60%"}
+<!-- Extract Figure 19 from papers/more_unequal_we_stand.pdf (page 21) -->
+![Inequality reduction mechanisms [@Heathcote2023]](../papers/figures/heathcote_fig19.png)
+:::
+
+::: {.column width="40%"}
+::: {.incremental style="font-size: 0.8em;"}
+- Government redistribution (taxes + transfers) increasingly important
+- Index: compare pretax to post-tax and transfer income
+:::
+:::
+::::
+
+## Key Finding 5: Income vs. Consumption Inequality
+
+![Income and consumption inequality [@Heathcote2023]](../papers/figures/heathcote_fig21.png)
+
+::: {.incremental style="font-size: 0.5em;"}
+- **Market income**: Large increase in inequality (especially at bottom during recessions)
+- **Disposable income**: Much smaller increase (government smooths fluctuations)
+- **Consumption**: Remarkably stable over entire period
+:::
+
+## Main Takeaways from @Heathcote2023
+
+:::{.incremental}
+1. **Inequality at top**: Driven by wage differentials, continues to grow (but more slowly)
+2. **Inequality at bottom**: Driven by employment, dominated by cyclical fluctuations
+3. **The household**: Declining importance as inequality-reducing mechanism
+4. **The government**: Increasing role in redistribution and stabilization
+5. **Consumption**: Remains remarkably stable despite income inequality trends
+:::
+
+## What's next? {.smaller}
+
+- We've got a good picture of:
+  1. Patterns of inequality over time and over the life-cycle
+  2. The role that government transfers can play in off-setting this
+- But we don't yet know:
+  1. What are the **welfare implications** of these facts?
+  2. How much would people value programs that insure / redistribute?
+  3. What are the origins of this inequality and should we counteract with policy?
+- These are the topics we will work on for the rest of this course
+
+## 
