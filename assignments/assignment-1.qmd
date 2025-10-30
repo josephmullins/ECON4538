@@ -1,0 +1,12 @@
+---
+title: "Assignment 1"
+bibliography: ../reading_list.bib
+---
+
+1. Following [Recitation 1](../recitations/recitation-1.qmd), load the [CPS-ASEC data](../data/asec_1979_2019.csv) and perform the same steps to deflate nominal \$ values to 2017 dollars.
+2. In @Heathcote2023, the *Household Pooling index* $HP_{t}$ is defined as
+$$ HP_{t} = \frac{var(y_{it}) - var(\bar{y}_{it})}{var(y_{it})}$$
+where $\bar{y}_{it}$ is per-person income for household $i$ at time $t$. Calculate this index when $y$ is defined solely as labor market earnings (i.e. wage earnings) and when $y$ is defined as labor market + business income. Plot both lines to compare them and comment on any differences.
+3. Calculate and plot an equivalent index for government transfers where now $y_{it}$ is per-person household earnings (business + wage income) and $\bar{y}_{it}$ is per-person household income + government transfers. You can follow the variable for transfers we constructed in Recitation 1. Name at least one way that this measure differs from the measure used to construct the Government redistribution index in Figure 19 of @Heathcote2023.
+4. Re-compute this index for government transfers for households below the 20th percentile of per-person income in each year. Comment on any differences with the previous figure.
+5. In Recitation 1, we plotted the share of total transfers coming from each of five programs. Re-calculate this share for only the poorest 20% of households (as measured by per-person earnings) and comment on any differences you see compared to the original figure (**extra credit**)

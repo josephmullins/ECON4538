@@ -1,0 +1,9 @@
+---
+title: "Assignments"
+---
+
+All submissions should be made on Canvas in `pdf` or `html` format using a `quarto` or `jupyter` notebook that shows all code and output. Due dates are also provided on Canvas.
+
+| Assignment | Notebook | 
+| ----- | -------- |
+| Assignment 1 | [link](assignments/assignment-1.qmd) | 
