@@ -3,7 +3,7 @@ title: "Assignment 1"
 bibliography: ../reading_list.bib
 ---
 
-1. Following [Recitation 1](../recitations/recitation-1.qmd), load the [CPS-ASEC data](../data/asec_1979_2019.csv) and perform the same steps to deflate nominal \$ values to 2017 dollars.
+1. Following [Recitation 1](../recitations/recitation-1.qmd), load the [CPS-ASEC data](https://github.com/josephmullins/ECON4538/tree/main/data) and perform the same steps to deflate nominal \$ values to 2017 dollars.
 2. In @Heathcote2023, the *Household Pooling index* $HP_{t}$ is defined as
 $$ HP_{t} = \frac{var(y_{it}) - var(\bar{y}_{it})}{var(y_{it})}$$
 where $\bar{y}_{it}$ is per-person income for household $i$ at time $t$. Calculate this index when $y$ is defined solely as labor market earnings (i.e. wage earnings) and when $y$ is defined as labor market + business income. Plot both lines to compare them and comment on any differences.
