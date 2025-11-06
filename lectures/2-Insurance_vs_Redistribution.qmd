@@ -1,0 +1,138 @@
+---
+title: "Policy Implications: Insurance vs Redistribution"
+bibliography: ../reading_list.bib
+format:
+  revealjs:
+    theme: solarized
+    transition: slide
+    chalkboard:
+        theme: whiteboard
+        chalk-effect: 0.0
+        chalk-width: 6
+jupyter: julia-1.11
+execute:
+  cache: true
+  freeze: auto
+---
+
+## Overview
+
+:::{.incremental}
+- We documented that inequality is increasing in the US
+- We don't yet have a model to think about policy implications
+- A natural policy to consider is **taxes** and **transfers**
+- Look at planner's problem
+- Distinguish between **insurance** vs **redistribution** effects
+- Look at a research application: @Storesletten2004
+:::
+
+# Redistribution vs Insurance
+
+## Example 1: Static Economy
+
+:::{.incremental}
+- One period economy
+- Two types of agent: $\tau\in\{L,H\}$ (equal proportions)
+- Uncertain income: $\{y_{L},y_{H}\}$, $y_{L}<y_{H}$
+- Distributions: $\{\pi,1-\pi\}$ for low type, $\{1-\pi,\pi\}$ for high type, $\pi>0.5$. 
+- Concave utility $u(\cdot)$
+- No insurance market:
+$$ V_{L} = \mathbb{E}[u(y)|L] = \pi u(y_{L}) + (1-\pi) u(y_{H})$$
+and symmetric for $V_{H}$.
+:::
+
+## Example 1: Planner's Problem {.smaller}
+:::{.incremental}
+- Let $c(\tau,y)$ be consumption of type $\tau$ when income $y$ is realized.
+- Planner's objective:
+$$ W = \mathbb{E}[u(c(\tau,y))] = 0.5\mathbb{E}[u(c(L,y))|L] + 0.5\mathbb{E}[u(c(H,y))|H] $$
+- In the laissez-faire economy:
+$$ W_{0} = 0.5u(y_{L}) + 0.5u(y_{H}) $$
+- Planner's problem:
+$$\max_{c(\tau,y)}\mathbb{E}[u(c(\tau,y))]\ s.t. \mathbb{E}[c(\tau,y)] = 0.5y_{L} + 0.5y_{H} $$
+- **Exercise**: show that $c^*(\tau,y) = 0.5y_{L} + 0.5y_{H}$
+:::
+
+## Example 1: Welfare Gains
+picture here of welfare gains
+
+## Example 1:
+
+:::{.incremental}
+- Something to notice: planner cares only about average utility, doesn't care about changes in $V_{H}$ and $V_{L}$
+- **Exercise**: study changes in $V_{\tau}$ for different values of $\pi$
+- Redistribution and insurance effects are **bundled together**
+- How to separate?
+- Define **certainty equivalent**:
+$$ u(\bar{c}_{\tau}) = \mathbb{E}[u(c)|\tau],\ \tau\in\{L,H\}$$
+:::
+
+## Example 1: Static Economy
+Exercises:
+
+:::{.incremental}
+- Show that $c^*(\tau,y) = 0.5y_{L} + 0.5y_{L}$ (perfect smoothing)
+- Define consumption equivalent:
+$$ \mathbb{E}u(c^*(\tau,y)) = \mathbb{E}u((1+\omega)y) $$
+as a measure of welfare gain
+- Define **certainty equivalent**:
+$$ u(\bar{c}_{\tau}) = \mathbb{E}_{\tau}u(y) $$ 
+for each type $\tau$.
+- Interpretation: guaranteed consumption that would deliver same value
+:::
+
+## Example 1: Gains from redistribution {.smaller}
+
+:::{.incremental}
+- Let
+$$ \bar{C} = 0.5\bar{c}_{L} + 0.5\bar{c}_{H} $$
+be average certainty equivalent
+- $u(\bar{C})$ is utility if everyone could be given the average certainty equivalent from benchmark economy.
+- $$u(\bar{C}) - \mathbb{E}[u(y)] = u(0.5\bar{c}_{L}+0.5\bar{c}_{H}) - 0.5u(\bar{c}_{L}) - 0.5u(\bar{c}_{H})$$ 
+is a measure of the **gains from redistribution** when uncertainty is removed via certainty equivalence
+:::
+
+## Example 1: A decomposition 
+
+:::{.incremental}
+- $u(C^*) - u(\bar{C})$ is likewise a measure of the **gains from insurance** derived from valuing gains in certainty equivalents.
+- This gives a decomposition:
+$$ W_{1} - W_{0} = \underbrace{u(C^*) - u(\bar{C})}_{\text{insurance}} + \underbrace{u(\bar{C}) - \mathbb{E}[u(y)]}_{\text{redistribution}} $$
+- **Exercises**:
+    - Calculate the decomposition with log utility
+    - Look at how it changes with $\pi$
+:::
+
+## Example 1: picturing the decomposition
+
+
+## Example 2: a dynamic economy
+
+:::{.incremental}
+- Assume same type structure, $\tau(i)\in\{L,H}$ for all agents $i$
+- But now infinite horizon, $t=0,1,2,...,\infty$
+- $\log(y_{it}) = \mu_{\tau(i)} + \varepsilon_{it}$,\ $\varepsilon_{it}\sim\mathcal{N}(0,\sigma^2)$, $\mu_{L}<\mu_{H}$ 
+- Benchmark: no private insurance markets, $c_{it} = y_{it}$.
+- $V_{i} = \mathbb{E}\left[\sum_{t=0}^\infty u(c_{it})\right]
+:::
+
+## Example 2
+
+**Exercises**:
+
+:::{.incremental}
+- Derive $V_{\tau}$ for each type in benchmark
+- Solve planner's problem
+- Derive decomposition
+- Analyze decomposition as $\mu_{L}\rightarrow\mu_{H}$, $\sigma^2\rightarrow0$
+:::
+
+## Example 3
+
+:::{.incremental}
+- same economy as example (2), **except** assume that individuals can insure against $\varepsilon_{it}$, i.e. in the benchmark for all $i$, $t$:
+$$ c_{it} = \exp\left(\mu_{\tau(i)} + \frac{1}{2}\sigma^2\right) $$
+- What does the decomposition look like in this case?
+:::
+
+##

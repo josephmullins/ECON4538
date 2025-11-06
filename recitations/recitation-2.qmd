@@ -1,0 +1,219 @@
+---
+title: "Recitation 2"
+bibliography: ../reading_list.bib
+---
+
+```{julia}
+using LinearAlgebra, Plots
+```
+
+# Welfare Implications of Income Risk
+
+In class, we concluded our section on trends in inequality by thinking about the implications for welfare and policy. Today we'll use a life-cycle savings model to study the welfare implications of different models of wage risk.
+
+## Model
+
+Let's assume that individuals live for $T$ periods. They face an income process that follows:
+
+$$ \log(y_{it}) = \mu_{t} + \varepsilon_{it} $$
+
+where
+
+$$ \varepsilon_{it} = \rho \varepsilon_{it-1} + \zeta_{it},\ \zeta_{it} \sim \mathcal{N}(0,\sigma^2_{\zeta}).$$
+
+We assume a single risk-free asset with a rate of return $r$, so that the model can be phrased recursively:
+
+$$ V_{t}(a,y) = \max_{a^\prime}\left\{u(y + a - (1+r)^{-1}a^\prime) + \beta \mathbb{E}_{y'}V_{t+1}(a',y') \right\} $$
+
+with $V_{T+1}=0$.
+
+We assume that utility $u$ is of the CRRA type, so we can write the function as:
+
+```{julia}
+utility(c,σ) = c^(1 - σ) / (1 - σ)
+```
+
+Note that $\mu_{t}$ is the mean of log income and can evolve with the age $t$ of the agent, but this *life-cycle profile* in wages is known. $\varepsilon$ is the unknown component of income and the source of risk in the model.
+
+## Approximating the income process
+
+There are a number of methods for approximating the **AR(1) process** for income outlined above using a discrete state Markov process. A popular version is Tauchen's method. The code below is a function to produce a transition matrix $\Pi$ and a grid of values that approximates the variance and autocovariance of an AR(1) process.
+
+```{julia}
+using Distributions
+
+function tauchen(N, ρ, σ)
+    # Unconditional standard deviation of the process
+    σ_y = σ / sqrt(1 - ρ^2)
+
+    # Create the grid
+    y_max = 3. * σ_y
+    y_min = - 3. * σ_y
+    grid = range(y_min, y_max, length=N)
+
+    # Step size
+    step = (y_max - y_min) / (N - 1)
+
+    # Initialize transition matrix
+    Π = zeros(N, N)
+
+    # Standard normal distribution
+    d = Normal(0, 1)
+
+    # Fill in the transition matrix
+    for i in 1:N
+        for j in 1:N
+            if j == 1
+                # Probability of transitioning to the lowest state
+                Π[j, i] = cdf(d, (grid[j] - ρ * grid[i] + step/2) / σ)
+            elseif j == N
+                # Probability of transitioning to the highest state
+                Π[j, i] = 1 - cdf(d, (grid[j] - ρ * grid[i] - step/2) / σ)
+            else
+                # Probability of transitioning to intermediate states
+                Π[j, i] = cdf(d, (grid[j] - ρ * grid[i] + step/2) / σ) -
+                         cdf(d, (grid[j] - ρ * grid[i] - step/2) / σ)
+            end
+        end
+    end
+    return collect(grid), Π
+end
+
+```
+
+This is going to produce a matrix where $\Pi[j,i]$ contains the probability of moving to state $j$ when currently in state $i$.
+
+## Solving the Model
+
+This model can be solved almost identically to the infinite horizon version. We can start by writing a function to solve the maximization problem given a point in the asset and income grid.
+
+```{julia}
+function solve_value(ai,yi,V,p,t)
+    (;σ,β,Π,r,asset_grid,income_grid) = p
+    a = asset_grid[ai]
+    y = exp(income_grid[yi,t])
+    vmax = -Inf
+    amax = 0
+    for ai_next in eachindex(asset_grid)
+        a_next = asset_grid[ai_next]
+        c = y + a - a_next/(1+r)
+        if c>0
+            @views v = utility(c,σ) + β*dot(Π[:,yi],V[:,ai_next,t+1])
+            if v>vmax
+                vmax = v
+                amax = a_next
+            end
+        end
+    end
+    return vmax,amax
+end
+
+```
+
+With this function in hand we can then write a function to iterate over each grid point and calculate $V_{t}$ given $V_{t+1}$:
+
+```{julia}
+function iterate_value_function!(p,V,A,t)
+    for ai in axes(V,2), yi in axes(V,1)
+        v,a_next = solve_value(ai,yi,V,p,t)
+        V[yi,ai,t] = v
+        A[yi,ai,t] = a_next
+    end
+end
+```
+
+And finally we can solve the model by doing backward induction from $T$ down to the first period.
+
+```{julia}
+function solve_model(p)
+    (;T,Π,asset_grid) = p
+    K_a = length(asset_grid)
+    K_y = size(Π,1)
+    V = zeros(K_y,K_a,T+1)
+    A = zeros(K_y,K_a,T)
+    for t in reverse(1:T)
+        iterate_value_function!(p,V,A,t)
+    end
+    return (;V,A)
+end
+
+```
+
+## Setting Parameters
+
+In theory we can manipulate $\mu_{t}$ to match observed life-cycle profiles in mean earnings. Next week in recitation we will play around with this. For now, assume that $\mu$ is constant. The code below sets some parameters `p` for the model.
+
+```{julia}
+μ = log(10.) #
+egrid,Π = tauchen(5,0.9,0.1)
+T = 60
+income_grid = [μ+egrid[i] for i in 1:5, t in 1:T]
+p = (;
+    T,
+    asset_grid = LinRange(0,100,100),
+    income_grid,
+    β = 0.96,
+    r = 0.04,
+    Π,
+    σ = 2.
+)
+
+```
+
+## An example solution
+
+Let's solve this model and take a look at the optimal savings policy.
+
+```{julia}
+model = solve_model(p)
+(;V,A) = model
+
+plot(p.asset_grid,A[1,:,1],label = "Low shock, period 1")
+plot!(p.asset_grid,A[5,:,1],label = "High shock, period 1")
+plot!(p.asset_grid,A[5,:,30],label = "High shock, period 30")
+plot!(p.asset_grid,A[1,:,30],label = "Low shock, period 30")
+plot!(p.asset_grid,A[1,:,55],label = "Low shock, period 50")
+plot!(p.asset_grid,A[5,:,55],label = "High shock, period 50")
+```
+
+Can you interpret what is going on here?
+
+## Calculating welfare effects
+
+Let's assume that everyone starts off with no assets, and then consider the welfare effects of differences in $\rho$. In particular let's let the persistence of $\rho$ decline and see what happens.
+
+```{julia}
+egrid,Π = tauchen(5,0.45,0.1) #<- move ρ from 0.9 to 0.45
+income_grid = [μ+egrid[i] for i in 1:5, t in 1:T]
+p2 = (;p...,income_grid,Π)
+model2 = solve_model(p2)
+plot(model.V[:,1,1],label = "ρ = 0.9")
+plot!(model2.V[:,1,1], label = "ρ = 0.45")
+
+```
+
+Spend some time interpreting this! Why does decreasing $\rho$ have this effect on welfare?
+
+## Consumption equivalents
+
+The welfare comparisons above are in arbitrary units. How can we convert them to something interpretable? One option is to think about a *consumption equivalent*: the percentage increase in consumption that someone would be willing to take to move from one regime to another. For example, given an initial income level, $y$, the consumption equivalent here would solve:
+
+$$ \mathbb{E}[\sum_{t=0}^{T}\beta^{t}u((1+\omega(y))c_{t}) | y, \rho = 0.9] = \mathbb{E}[\sum_{t=0}^{T}\beta^{t}u(c_{t}) | y, \rho = 0.45] $$
+
+which solves out to:
+
+$$ \omega(y) = \left[\frac{V_{0}(0,y ; \rho = 0.45)}{V_{0}(0,y ; \rho = 0.9)}\right]^{1/(1-\sigma)} - 1 $$
+
+Let's calculate and plot this for each income level:
+
+```{julia}
+(;σ,β) = p
+cev = (model2.V[:,1,1] ./ model.V[:,1,1]) .^ (1/(1 - σ)) .- 1
+plot(cev)
+```
+
+Which tells us that when we move from $\rho=0.9$ to $\rho=0.45$, individuals who begin at the lowest level of $\varepsilon$ would enjoy a welfare gain that is equivalent to a 33\% increase in consumption in every period. That's a lot!
+
+## Additional Exercise
+
+Assume that the initial draw of $\varepsilon$ is from the stationary distribution of $\Pi$. Suppose that we want to calculate the average consumption equivalent (i.e. not conditioning on $y$). How could we calculate this? 

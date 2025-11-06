@@ -495,5 +495,173 @@
     "title": "Assignments",
     "section": "",
     "text": "All submissions should be made on Canvas in pdf or html format using a quarto or jupyter notebook that shows all code and output. Due dates are also provided on Canvas.\n\n\n\nAssignment\nNotebook\n\n\n\n\nAssignment 1\nlink"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#overview",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#overview",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Overview",
+    "text": "Overview\n\n\nWe documented that inequality is increasing in the US\nWe don’t yet have a model to think about policy implications\nA natural policy to consider is taxes and transfers\nLook at planner’s problem\nDistinguish between insurance vs redistribution effects\nLook at a research application: Storesletten, Telmer, and Yaron (2004)"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-static-economy",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-static-economy",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: Static Economy",
+    "text": "Example 1: Static Economy\n\n\nOne period economy\nTwo types of agent: \\(\\tau\\in\\{L,H\\}\\) (equal proportions)\nUncertain income: \\(\\{y_{L},y_{H}\\}\\), \\(y_{L}&lt;y_{H}\\)\nDistributions: \\(\\{\\pi,1-\\pi\\}\\) for low type, \\(\\{1-\\pi,\\pi\\}\\) for high type, \\(\\pi&gt;0.5\\).\nConcave utility \\(u(\\cdot)\\)\nNo insurance market: \\[ V_{L} = \\mathbb{E}[u(y)|L] = \\pi u(y_{L}) + (1-\\pi) u(y_{H})\\] and symmetric for \\(V_{H}\\)."
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#section",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#section",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "",
+    "text": "Storesletten, Kjetil, Christopher I. Telmer, and Amir Yaron. 2004. “Consumption and Risk Sharing over the Life Cycle.” Journal of Monetary Economics, no. 3: 609–33. https://doi.org/10.1016/j.jmoneco.2003.06.005."
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-static-economy-1",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-static-economy-1",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: Static Economy",
+    "text": "Example 1: Static Economy\nExercises:\n\n\nShow that \\(c^*(\\tau,y) = 0.5y_{L} + 0.5y_{L}\\) (perfect smoothing)\nDefine consumption equivalent: \\[ \\mathbb{E}u(c^*(\\tau,y)) = \\mathbb{E}u((1+\\omega)y) \\] as a measure of welfare gain\nDefine certainty equivalent: \\[ u(\\bar{c}_{\\tau}) = \\mathbb{E}_{\\tau}u(y) \\] for each type \\(\\tau\\).\nInterpretation: guaranteed consumption that would deliver same value"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-planners-problem",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-planners-problem",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: Planner’s Problem",
+    "text": "Example 1: Planner’s Problem\n\n\nLet \\(c(\\tau,y)\\) be consumption of type \\(\\tau\\) when income \\(y\\) is realized.\nPlanner’s objective: \\[ W = \\mathbb{E}[u(c(\\tau,y))] = 0.5\\mathbb{E}[u(c(L,y))|L] + 0.5\\mathbb{E}[u(c(H,y))|H] \\]\nIn the laissez-faire economy: \\[ W_{0} = 0.5u(y_{L}) + 0.5u(y_{H}) \\]\nPlanner’s problem: \\[\\max_{c(\\tau,y)}\\mathbb{E}[u(c(\\tau,y))]\\ s.t. \\mathbb{E}[c(\\tau,y)] = 0.5y_{L} + 0.5y_{H} \\]\nExercise: show that \\(c^*(\\tau,y) = 0.5y_{L} + 0.5y_{H}\\)"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-welfare-gains",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-welfare-gains",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: Welfare Gains",
+    "text": "Example 1: Welfare Gains\npicture here of welfare gains"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1:",
+    "text": "Example 1:\n\n\nSomething to notice: planner cares only about average utility, doesn’t care about changes in \\(V_{H}\\) and \\(V_{L}\\)\nExercise: study changes in \\(V_{\\tau}\\) for different values of \\(\\pi\\)\nRedistribution and insurance effects are bundled together\nHow to separate?\nDefine certainty equivalent: \\[ u(\\bar{c}_{\\tau}) = \\mathbb{E}[u(c)|\\tau],\\ \\tau\\in\\{L,H\\}\\]"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-a-decomposition",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-a-decomposition",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: A decomposition",
+    "text": "Example 1: A decomposition\n\n\n\\(u(C^*) - u(\\bar{C})\\) is likewise a measure of the gains from insurance derived from valuing gains in certainty equivalents.\nThis gives a decomposition: \\[ W_{1} - W_{0} = \\underbrace{u(C^*) - u(\\bar{C})}_{\\text{insurance}} + \\underbrace{u(\\bar{C}) - \\mathbb{E}[u(y)]}_{\\text{redistribution}} \\]\nExercises:\n\nCalculate the decomposition with log utility\nLook at how it changes with \\(\\pi\\)"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-picturing-the-decomposition",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-picturing-the-decomposition",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: picturing the decomposition",
+    "text": "Example 1: picturing the decomposition"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-gains-from-redistribution",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-gains-from-redistribution",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: Gains from redistribution",
+    "text": "Example 1: Gains from redistribution\n\n\nLet \\[ \\bar{C} = 0.5\\bar{c}_{L} + 0.5\\bar{c}_{H} \\] be average certainty equivalent\n\\(u(\\bar{C})\\) is utility if everyone could be given the average certainty equivalent from benchmark economy.\n\\[u(\\bar{C}) - \\mathbb{E}[u(y)] = u(0.5\\bar{c}_{L}+0.5\\bar{c}_{H}) - 0.5u(\\bar{c}_{L}) - 0.5u(\\bar{c}_{H})\\] is a measure of the gains from redistribution when uncertainty is removed via certainty equivalence"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-gains-from-insurance",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-gains-from-insurance",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: Gains from insurance",
+    "text": "Example 1: Gains from insurance\n\n\n\\(u(C^*) - u(\\bar{C})\\) is a measure of the gains from insurance when comparing welfare from average consumption equivalent to actual welfare\nThis gives a decomposition: \\[ W_{1} - W_{0} = u(C^*) - u(\\bar{C}) + u(\\bar(C)) - \\mathbb{E}[u(y)] \\]\nExercises:\n\nCalculate the decomposition\nLook at how it changes with \\(\\pi\\)"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-2-a-dynamic-economy",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-2-a-dynamic-economy",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 2: a dynamic economy",
+    "text": "Example 2: a dynamic economy\n\n\nAssume same type structure, \\(\\tau(i)\\in\\{L,H}\\) for all agents \\(i\\)\nBut now infinite horizon, \\(t=0,1,2,...,\\infty\\)\n\\(\\log(y_{it}) = \\mu_{\\tau(i)} + \\varepsilon_{it}\\), \\(\\varepsilon_{it}\\sim\\mathcal{N}(0,\\sigma^2)\\), \\(\\mu_{L}&lt;\\mu_{H}\\)\nBenchmark: no private insurance markets, \\(c_{it} = y_{it}\\).\n$V_{i} ="
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-2",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-2",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 2",
+    "text": "Example 2\nExercises:\n\n\nDerive \\(V_{\\tau}\\) for each type in benchmark\nSolve planner’s problem\nDerive decomposition\nAnalyze decomposition as \\(\\mu_{L}\\rightarrow\\mu_{H}\\), \\(\\sigma^2\\rightarrow0\\)"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-3",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-3",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 3",
+    "text": "Example 3\n\n\nsame economy as example (2), except assume that individuals can insure against \\(\\varepsilon_{it}\\), i.e. in the benchmark for all \\(i\\), \\(t\\): \\[ c_{it} = \\exp\\left(\\mu_{\\tau(i)} + \\frac{1}{2}\\sigma^2\\right) \\]\nWhat does the decomposition look like in this case?"
+  },
+  {
+    "objectID": "recitations/recitation-2.html",
+    "href": "recitations/recitation-2.html",
+    "title": "Recitation 2",
+    "section": "",
+    "text": "using LinearAlgebra, Plots"
+  },
+  {
+    "objectID": "recitations/recitation-2.html#model",
+    "href": "recitations/recitation-2.html#model",
+    "title": "Recitation 2",
+    "section": "Model",
+    "text": "Model\nLet’s assume that individuals live for \\(T\\) periods. They face an income process that follows:\n\\[ \\log(y_{it}) = \\mu_{t} + \\varepsilon_{it} \\]\nwhere\n\\[ \\varepsilon_{it} = \\rho \\varepsilon_{it-1} + \\zeta_{it},\\ \\zeta_{it} \\sim \\mathcal{N}(0,\\sigma^2_{\\zeta}).\\]\nWe assume a single risk-free asset with a rate of return \\(r\\), so that the model can be phrased recursively:\n\\[ V_{t}(a,y) = \\max_{a^\\prime}\\left\\{u(y + a - (1+r)^{-1}a^\\prime) + \\beta \\mathbb{E}_{y'}V_{t+1}(a',y') \\right\\} \\]\nwith \\(V_{T+1}=0\\).\nWe assume that utility \\(u\\) is of the CRRA type, so we can write the function as:\n\nutility(c,σ) = c^(1 - σ) / (1 - σ)\n\nutility (generic function with 1 method)\n\n\nNote that \\(\\mu_{t}\\) is the mean of log income and can evolve with the age \\(t\\) of the agent, but this life-cycle profile in wages is known. \\(\\varepsilon\\) is the unknown component of income and the source of risk in the model."
+  },
+  {
+    "objectID": "recitations/recitation-2.html#solving-the-model",
+    "href": "recitations/recitation-2.html#solving-the-model",
+    "title": "Recitation 2",
+    "section": "Solving the Model",
+    "text": "Solving the Model\nThis model can be solved almost identically to the infinite horizon version. We can start by writing a function to solve the maximization problem given a point in the asset and income grid.\n\nfunction solve_value(ai,yi,V,p,t)\n    (;σ,β,Π,r,asset_grid,income_grid) = p\n    a = asset_grid[ai]\n    y = exp(income_grid[yi,t])\n    vmax = -Inf\n    amax = 0\n    for ai_next in eachindex(asset_grid)\n        a_next = asset_grid[ai_next]\n        c = y + a - a_next/(1+r)\n        if c&gt;0\n            @views v = utility(c,σ) + β*dot(Π[:,yi],V[:,ai_next,t+1])\n            if v&gt;vmax\n                vmax = v\n                amax = a_next\n            end\n        end\n    end\n    return vmax,amax\nend\n\nsolve_value (generic function with 1 method)\n\n\nWith this function in hand we can then write a function to iterate over each grid point and calculate \\(V_{t}\\) given \\(V_{t+1}\\):\n\nfunction iterate_value_function!(p,V,A,t)\n    for ai in axes(V,2), yi in axes(V,1)\n        v,a_next = solve_value(ai,yi,V,p,t)\n        V[yi,ai,t] = v\n        A[yi,ai,t] = a_next\n    end\nend\n\niterate_value_function! (generic function with 1 method)\n\n\nAnd finally we can solve the model by doing backward induction from \\(T\\) down to the first period.\n\nfunction solve_model(p)\n    (;T,Π,asset_grid) = p\n    K_a = length(asset_grid)\n    K_y = size(Π,1)\n    V = zeros(K_y,K_a,T+1)\n    A = zeros(K_y,K_a,T)\n    for t in reverse(1:T)\n        iterate_value_function!(p,V,A,t)\n    end\n    return (;V,A)\nend\n\nsolve_model (generic function with 1 method)"
+  },
+  {
+    "objectID": "recitations/recitation-2.html#approximating-the-income-process",
+    "href": "recitations/recitation-2.html#approximating-the-income-process",
+    "title": "Recitation 2",
+    "section": "Approximating the income process",
+    "text": "Approximating the income process\nThere are a number of methods for approximating the AR(1) process for income outlined above using a discrete state Markov process. A popular version is Tauchen’s method. The code below is a function to produce a transition matrix \\(\\Pi\\) and a grid of values that approximates the variance and autocovariance of an AR(1) process.\n\nusing Distributions\n\nfunction tauchen(N, ρ, σ)\n    # Unconditional standard deviation of the process\n    σ_y = σ / sqrt(1 - ρ^2)\n\n    # Create the grid\n    y_max = 3. * σ_y\n    y_min = - 3. * σ_y\n    grid = range(y_min, y_max, length=N)\n\n    # Step size\n    step = (y_max - y_min) / (N - 1)\n\n    # Initialize transition matrix\n    Π = zeros(N, N)\n\n    # Standard normal distribution\n    d = Normal(0, 1)\n\n    # Fill in the transition matrix\n    for i in 1:N\n        for j in 1:N\n            if j == 1\n                # Probability of transitioning to the lowest state\n                Π[j, i] = cdf(d, (grid[j] - ρ * grid[i] + step/2) / σ)\n            elseif j == N\n                # Probability of transitioning to the highest state\n                Π[j, i] = 1 - cdf(d, (grid[j] - ρ * grid[i] - step/2) / σ)\n            else\n                # Probability of transitioning to intermediate states\n                Π[j, i] = cdf(d, (grid[j] - ρ * grid[i] + step/2) / σ) -\n                         cdf(d, (grid[j] - ρ * grid[i] - step/2) / σ)\n            end\n        end\n    end\n    return collect(grid), Π\nend\n\ntauchen (generic function with 1 method)\n\n\nThis is going to produce a matrix where \\(\\Pi[j,i]\\) contains the probability of moving to state \\(j\\) when currently in state \\(i\\)."
+  },
+  {
+    "objectID": "recitations/recitation-2.html#setting-parameters",
+    "href": "recitations/recitation-2.html#setting-parameters",
+    "title": "Recitation 2",
+    "section": "Setting Parameters",
+    "text": "Setting Parameters\nIn theory we can manipulate \\(\\mu_{t}\\) to match observed life-cycle profiles in mean earnings. Next week in recitation we will play around with this. For now, assume that \\(\\mu\\) is constant. The code below sets some parameters p for the model.\n\nμ = log(10.) #\negrid,Π = tauchen(5,0.9,0.1)\nT = 60\nincome_grid = [μ+egrid[i] for i in 1:5, t in 1:T]\np = (;\n    T,\n    asset_grid = LinRange(0,100,100),\n    income_grid,\n    β = 0.96,\n    r = 0.04,\n    Π,\n    σ = 2.\n)\n\n(T = 60, asset_grid = LinRange{Float64}(0.0, 100.0, 100), income_grid = [1.6143378913823603 1.6143378913823603 … 1.6143378913823603 1.6143378913823603; 1.958461492188203 1.958461492188203 … 1.958461492188203 1.958461492188203; … ; 2.6467086937998885 2.6467086937998885 … 2.6467086937998885 2.6467086937998885; 2.9908322946057315 2.9908322946057315 … 2.9908322946057315 2.9908322946057315], β = 0.96, r = 0.04, Π = [0.8490507777857361 0.019473727871012682 … 7.346962855655732e-17 3.459030953951809e-30; 0.15094537665867624 0.8961919626850798 … 7.260018586910001e-7 1.237828285826989e-15; … ; 1.2212453270876722e-15 7.260018586308092e-7 … 0.8961919626850798 0.15094537665867622; 0.0 1.1102230246251565e-16 … 0.019473727871012647 0.8490507777857361], σ = 2.0)"
+  },
+  {
+    "objectID": "recitations/recitation-2.html#an-example-solution",
+    "href": "recitations/recitation-2.html#an-example-solution",
+    "title": "Recitation 2",
+    "section": "An example solution",
+    "text": "An example solution\nLet’s solve this model and take a look at the optimal savings policy.\n\nmodel = solve_model(p)\n(;V,A) = model\n\nplot(p.asset_grid,A[1,:,1],label = \"Low shock, period 1\")\nplot!(p.asset_grid,A[5,:,1],label = \"High shock, period 1\")\nplot!(p.asset_grid,A[5,:,30],label = \"High shock, period 30\")\nplot!(p.asset_grid,A[1,:,30],label = \"Low shock, period 30\")\nplot!(p.asset_grid,A[1,:,55],label = \"Low shock, period 50\")\nplot!(p.asset_grid,A[5,:,55],label = \"High shock, period 50\")\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCan you interpret what is going on here?"
+  },
+  {
+    "objectID": "recitations/recitation-2.html#calculating-welfare",
+    "href": "recitations/recitation-2.html#calculating-welfare",
+    "title": "Recitation 2",
+    "section": "Calculating welfare",
+    "text": "Calculating welfare\nLet’s assume that everyone starts off with no assets, and then consider the welfare effects of differences in \\(\\rho\\). In particular let’s let the persistence of \\(\\rho\\) decline and see what happens.\n\negrid,Π = tauchen(5,0.45,0.1) #&lt;- move ρ from 0.9 to 0.45\nincome_grid = [μ+egrid[i] for i in 1:5, t in 1:T]\np2 = (;p...,income_grid,Π)\nmodel2 = solve_model(p2)\nplot(model.V[:,1,1],label = \"ρ = 0.9\")\nplot!(model2.V[:,1,1], label = \"ρ = 0.45\")\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpend some time interpreting this! Why does welfare look this way?"
+  },
+  {
+    "objectID": "recitations/recitation-2.html#consumption-equivalents",
+    "href": "recitations/recitation-2.html#consumption-equivalents",
+    "title": "Recitation 2",
+    "section": "Consumption equivalents",
+    "text": "Consumption equivalents\nThe welfare comparisons above are in arbitrary units. How can we convert them to something interpretable? One option is to think about a consumption equivalent: the percentage increase in consumption that someone would be willing to take to move from one regime to another. For example, given an initial income level, \\(y\\), the consumption equivalent here would solve:\n\\[ \\mathbb{E}[\\sum_{t=0}^{T}\\beta^{t}u((1+\\omega(y))c_{t}) | y, \\rho = 0.9] = \\mathbb{E}[\\sum_{t=0}^{T}\\beta^{t}u(c_{t}) | y, \\rho = 0.45] \\]\nwhich solves out to:\n\\[ \\omega(y) = \\left[\\frac{V_{0}(0,y ; \\rho = 0.45)}{V_{0}(0,y ; \\rho = 0.9)}\\right]^{1/(1-\\sigma)} - 1 \\]\nLet’s calculate and plot this for each income level:\n\n(;σ,β) = p\ncev = (model2.V[:,1,1] ./ model.V[:,1,1]) .^ (1/(1 - σ)) .- 1\nplot(cev)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhich tells us that when we move from \\(\\rho=0.9\\) to \\(\\rho=0.45\\), individuals who begin at the lowest level of \\(\\varepsilon\\) would enjoy a welfare gain that is equivalent to a 33% increase in consumption in every period. That’s a lot!"
+  },
+  {
+    "objectID": "recitations/recitation-2.html#additional-exercise",
+    "href": "recitations/recitation-2.html#additional-exercise",
+    "title": "Recitation 2",
+    "section": "Additional Exercise",
+    "text": "Additional Exercise\nAssume that the initial draw of \\(\\varepsilon\\) is from the stationary distribution of \\(\\Pi\\). Suppose that we want to calculate the average consumption equivalent (i.e. not conditioning on \\(y\\)). How could we calculate this?"
+  },
+  {
+    "objectID": "recitations/recitation-2.html#calculating-welfare-effects",
+    "href": "recitations/recitation-2.html#calculating-welfare-effects",
+    "title": "Recitation 2",
+    "section": "Calculating welfare effects",
+    "text": "Calculating welfare effects\nLet’s assume that everyone starts off with no assets, and then consider the welfare effects of differences in \\(\\rho\\). In particular let’s let the persistence of \\(\\rho\\) decline and see what happens.\n\negrid,Π = tauchen(5,0.45,0.1) #&lt;- move ρ from 0.9 to 0.45\nincome_grid = [μ+egrid[i] for i in 1:5, t in 1:T]\np2 = (;p...,income_grid,Π)\nmodel2 = solve_model(p2)\nplot(model.V[:,1,1],label = \"ρ = 0.9\")\nplot!(model2.V[:,1,1], label = \"ρ = 0.45\")\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpend some time interpreting this! Why does decreasing \\(\\rho\\) have this effect on welfare?"
   }
 ]
