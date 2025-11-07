@@ -277,7 +277,7 @@
     "href": "recitations.html",
     "title": "Recitation Materials",
     "section": "",
-    "text": "Materials will be updated here as we continue through the course.\nThese recitations have been rendered using Quarto notebooks. The original source files for the notebooks can be downloaded from this site’s Github repo. You may want to study the source files to learn how to format your own notebooks for the homework assignments.\n\n\n\nTopic\nNotebook\n\n\n\n\nDocumenting Inequality\nWeek 1"
+    "text": "Materials will be updated here as we continue through the course.\nThese recitations have been rendered using Quarto notebooks. The original source files for the notebooks can be downloaded from this site’s Github repo. You may want to study the source files to learn how to format your own notebooks for the homework assignments.\n\n\n\nTopic\nNotebook\n\n\n\n\nDocumenting Inequality\nWeek 1\n\n\nWelfare and Income Risk\nWeek 2"
   },
   {
     "objectID": "lectures.html",
@@ -663,5 +663,89 @@
     "title": "Recitation 2",
     "section": "Calculating welfare effects",
     "text": "Calculating welfare effects\nLet’s assume that everyone starts off with no assets, and then consider the welfare effects of differences in \\(\\rho\\). In particular let’s let the persistence of \\(\\rho\\) decline and see what happens.\n\negrid,Π = tauchen(5,0.45,0.1) #&lt;- move ρ from 0.9 to 0.45\nincome_grid = [μ+egrid[i] for i in 1:5, t in 1:T]\np2 = (;p...,income_grid,Π)\nmodel2 = solve_model(p2)\nplot(model.V[:,1,1],label = \"ρ = 0.9\")\nplot!(model2.V[:,1,1], label = \"ρ = 0.45\")\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpend some time interpreting this! Why does decreasing \\(\\rho\\) have this effect on welfare?"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-4",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-4",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 4",
+    "text": "Example 4\nA harder exercise for you try.\n\n\nAssume \\[ y_{it} = \\mu + \\rho(y_{it-1} - \\mu) + \\zeta_{it},\\ \\ \\zeta_{it}\\sim{N}(0,\\sigma^2_{\\zeta}) \\]\nNo borrowing or saving (consume \\(y_{it}\\))."
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#overview-storesletten2004",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#overview-storesletten2004",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Overview: Storesletten, Telmer, and Yaron (2004)",
+    "text": "Overview: Storesletten, Telmer, and Yaron (2004)\nMain Question: Can individual earnings risk explain why consumption and income inequality increase with age?\n\n\nKey Finding: Yes! An overlapping generations model with uninsurable earnings shocks can account for:\n\nBoth earnings and consumption inequality over the life cycle\nThe fact that consumption inequality increases less than earnings inequality\n\nData Sources:\n\nEarnings: Panel Study of Income Dynamics (PSID), 1969-1992\nConsumption: Consumer Expenditure Survey (CEX), 1980-1990"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#the-empirical-facts",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#the-empirical-facts",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "The Empirical Facts",
+    "text": "The Empirical Facts\n\nFigure 1 from Storesletten, Telmer, and Yaron (2004): Cross-sectional variance of log earnings and consumption by ageThree striking patterns in U.S. data:\n\nBoth earnings and consumption inequality increase substantially with age (ages 23-60)\nConsumption inequality rises less than earnings inequality\nBoth increase approximately linearly over working years\n\nInterpretation: Imperfect risk sharing - something between complete markets and autarky"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#is-it-just-predetermined-skills",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#is-it-just-predetermined-skills",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Is It Just Predetermined Skills?",
+    "text": "Is It Just Predetermined Skills?\n\nFigure 2 from Storesletten, Telmer, and Yaron (2004): Inequality by education group\n\nIf inequality were just about predetermined skills, we’d see flat profiles within education groups\nBut we see rising inequality within each education group!\nThis supports the “shocks” story over the “skills” story\nEven controlling for broad skill measures, idiosyncratic risk matters"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#the-earnings-process",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#the-earnings-process",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "The Earnings Process",
+    "text": "The Earnings Process\nLog earnings for household \\(i\\) at age \\(h\\): \\[ \\log(n_{ih}) = \\kappa_h + \\alpha_i + z_{ih} + \\varepsilon_{ih} \\]\n\n\n\\(\\kappa_h\\): deterministic age profile\n\\(\\alpha_i \\sim N(0, \\sigma^2_\\alpha)\\): fixed effect (realized at birth, permanent)\n\\(z_{ih}\\): persistent shock: \\(z_{ih} = \\rho z_{i,h-1} + \\eta_{ih}\\), where \\(\\eta_{ih} \\sim N(0, \\sigma^2_\\eta)\\)\n\\(\\varepsilon_{ih} \\sim N(0, \\sigma^2_\\varepsilon)\\): transitory shock (i.i.d.)\n\n\n\nKey Estimate: \\(\\rho \\approx 0.999\\) (near unit root!)"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#why-near-unit-root-persistence",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#why-near-unit-root-persistence",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Why Near Unit-Root Persistence?",
+    "text": "Why Near Unit-Root Persistence?\n\nFigure 3 from Storesletten, Telmer, and Yaron (2004): Model fit to earnings inequality profile\n\nThe linear shape of the age-variance profile is crucial\nLower persistence (ρ &lt; 0.95) would generate concave profiles\nNear unit-root (ρ ≈ 1) generates the linear pattern we see in data\nThis is a robust finding across different specifications"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#the-model-key-features",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#the-model-key-features",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "The Model: Key Features",
+    "text": "The Model: Key Features\nOverlapping Generations Economy:\n\n\nAgents live ages 22-100, retire at 65\nFace uninsurable idiosyncratic earnings shocks\nCan save/borrow via a single asset (capital)\nPay-as-you-go social security system\nGeneral equilibrium: aggregate wealth is endogenous\n\n\n\nCalibration Strategy: - Match aggregate wealth/income ratio = 3.1 (for bottom 99%) - Match earnings process to PSID data - Check if model matches consumption inequality from CEX"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#main-results",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#main-results",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Main Results",
+    "text": "Main Results\n\nFigure 4 from Storesletten, Telmer, and Yaron (2004): Model predictions for consumption inequality\n\nModel matches earnings inequality by construction (calibration target)\nBenchmark (no social security): 20% too much consumption inequality\nWith social security: Nearly perfect match!\nSocial security’s concave replacement rate provides implicit insurance within generations"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#the-role-of-wealth",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#the-role-of-wealth",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "The Role of Wealth",
+    "text": "The Role of Wealth\n\nAggregate wealth is crucial for risk sharing:\n\nMore wealth → more buffer-stock savings → more consumption smoothing\nModel calibrated to match U.S. wealth/income ratio = 3.1\n\nExperiment: Reduce wealth/income ratio from 3.1 to 1.5 - Result: Consumption inequality ↑ by 17% - Would need 36% (vs. 20%) reduction in shock variances to match data\n\n\nImplication: General equilibrium matters! The amount of self-insurance feasible depends critically on economy-wide wealth accumulation."
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#insurance-vs.-redistribution-decomposition",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#insurance-vs.-redistribution-decomposition",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Insurance vs. Redistribution Decomposition",
+    "text": "Insurance vs. Redistribution Decomposition\nKey Welfare Question: Which matters more?\n\nFixed effects (\\(\\alpha_i\\)): Inequality determined at birth\nLife-cycle shocks (\\(z_{ih}, \\varepsilon_{ih}\\)): Shocks received during working years\n\n\nResults:\n\n\n\nType of Risk\nWelfare Cost (% of consumption)\n\n\n\n\nLife-cycle shocks\n27.4%\n\n\nFixed effects\n20.2%\n\n\n\n\n\nComparison with Keane & Wolpin (1997): - They found: 90% of lifetime utility variance from fixed effects - STY (2004): Only 47% from fixed effects"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#policy-implications",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#policy-implications",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Policy Implications",
+    "text": "Policy Implications\n\n\nLife-cycle shocks are important for welfare\n\nNot just predetermined heterogeneity!\nBuffer-stock savings and precautionary behavior matter\n\nSocial security provides valuable insurance\n\nConcave replacement rate redistributes within generations\nAccounts for ~1.6% of lifetime consumption in welfare gains\n\nPolicy design matters\n\nInsurance against life-cycle shocks is as important as addressing inequality at birth\nBoth pre-labor market interventions (education) AND insurance mechanisms (social security, unemployment insurance) are valuable"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#conclusion-what-we-learned",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#conclusion-what-we-learned",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Conclusion: What We Learned",
+    "text": "Conclusion: What We Learned\n\n\nEmpirical: Earnings shocks are highly persistent (ρ ≈ 1)\n\nThis is necessary to match linear increase in inequality\n\nTheoretical: Incomplete markets model can quantitatively account for consumption inequality over life cycle\n\nKey ingredients: persistent shocks + calibrated wealth + social security\n\nNormative: Life-cycle uncertainty is at least as important as fixed heterogeneity\n\nChallenges the view that all inequality is predetermined\nSupports role for insurance mechanisms and financial markets\n\nMethodological: Age profiles of inequality are informative about risk sharing\n\nRising consumption inequality → imperfect insurance\nGeneral equilibrium + quantitative calibration crucial\n\n\n\n\n\n\n\nStoresletten, Kjetil, Christopher I. Telmer, and Amir Yaron. 2004. “Consumption and Risk Sharing over the Life Cycle.” Journal of Monetary Economics, no. 3: 609–33. https://doi.org/10.1016/j.jmoneco.2003.06.005."
   }
 ]

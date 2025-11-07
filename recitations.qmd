@@ -9,4 +9,5 @@ These recitations have been rendered using [Quarto](https://quarto.org) notebook
 | Topic | Notebook | 
 | ----- | -------- |
 | Documenting Inequality | [Week 1](recitations/recitation-1.qmd) |
+| Welfare and Income Risk | [Week 2](recitations/recitation-2.qmd) |
 

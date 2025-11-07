@@ -163,7 +163,7 @@
 <li class="fragment">A natural policy to consider is <strong>taxes</strong> and <strong>transfers</strong></li>
 <li class="fragment">Look at planner’s problem</li>
 <li class="fragment">Distinguish between <strong>insurance</strong> vs <strong>redistribution</strong> effects</li>
-<li class="fragment">Look at a research application: <span class="citation" data-cites="Storesletten2004">Storesletten, Telmer, and Yaron (<a href="#/section" role="doc-biblioref" onclick="">2004</a>)</span></li>
+<li class="fragment">Look at a research application: <span class="citation" data-cites="Storesletten2004">Storesletten, Telmer, and Yaron (<a href="#/conclusion-what-we-learned" role="doc-biblioref" onclick="">2004</a>)</span></li>
 </ul>
 </div>
 </section>
@@ -285,8 +285,209 @@
 </ul>
 </div>
 </section>
-<section id="section" class="slide level2 smaller scrollable">
-<h2></h2>
+<section id="example-4" class="slide level2">
+<h2>Example 4</h2>
+<p>A harder exercise for you try.</p>
+<div>
+<ul>
+<li class="fragment">Assume <span class="math display">\[ y_{it} = \mu + \rho(y_{it-1} - \mu) + \zeta_{it},\ \ \zeta_{it}\sim{N}(0,\sigma^2_{\zeta}) \]</span></li>
+<li class="fragment">No borrowing or saving (consume <span class="math inline">\(y_{it}\)</span>).</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="application-storesletten-telmer-yaron-2004" class="title-slide slide level1 center">
+<h1>Application: Storesletten, Telmer &amp; Yaron (2004)</h1>
+
+</section>
+<section id="overview-storesletten2004" class="slide level2 smaller">
+<h2>Overview: <span class="citation" data-cites="Storesletten2004">Storesletten, Telmer, and Yaron (<a href="#/conclusion-what-we-learned" role="doc-biblioref" onclick="">2004</a>)</span></h2>
+<p><strong>Main Question</strong>: Can individual earnings risk explain why consumption and income inequality increase with age?</p>
+<div>
+<ul>
+<li class="fragment"><strong>Key Finding</strong>: Yes! An overlapping generations model with uninsurable earnings shocks can account for:
+<ul>
+<li class="fragment">Both earnings and consumption inequality over the life cycle</li>
+<li class="fragment">The fact that consumption inequality increases less than earnings inequality</li>
+</ul></li>
+<li class="fragment"><strong>Data Sources</strong>:
+<ul>
+<li class="fragment">Earnings: Panel Study of Income Dynamics (PSID), 1969-1992</li>
+<li class="fragment">Consumption: Consumer Expenditure Survey (CEX), 1980-1990</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="the-empirical-facts" class="slide level2 smaller">
+<h2>The Empirical Facts</h2>
+
+<img data-src="../papers/figures/sty_fig1.png" style="width:70.0%" class="r-stretch quarto-figure-center"><p class="caption">Figure 1 from <span class="citation" data-cites="Storesletten2004">Storesletten, Telmer, and Yaron (<a href="#/conclusion-what-we-learned" role="doc-biblioref" onclick="">2004</a>)</span>: Cross-sectional variance of log earnings and consumption by age</p><p>Three striking patterns in U.S. data:</p>
+<ol type="1">
+<li><strong>Both earnings and consumption inequality increase substantially with age</strong> (ages 23-60)</li>
+<li><strong>Consumption inequality rises less than earnings inequality</strong></li>
+<li><strong>Both increase approximately linearly</strong> over working years</li>
+</ol>
+<p><strong>Interpretation</strong>: Imperfect risk sharing - something between complete markets and autarky</p>
+</section>
+<section id="is-it-just-predetermined-skills" class="slide level2 smaller">
+<h2>Is It Just Predetermined Skills?</h2>
+
+<img data-src="../papers/figures/sty_fig2.png" style="width:75.0%" class="r-stretch quarto-figure-center"><p class="caption">Figure 2 from <span class="citation" data-cites="Storesletten2004">Storesletten, Telmer, and Yaron (<a href="#/conclusion-what-we-learned" role="doc-biblioref" onclick="">2004</a>)</span>: Inequality by education group</p><div>
+<ul>
+<li class="fragment">If inequality were just about predetermined skills, we’d see flat profiles <strong>within</strong> education groups</li>
+<li class="fragment">But we see rising inequality <strong>within</strong> each education group!</li>
+<li class="fragment">This supports the “shocks” story over the “skills” story</li>
+<li class="fragment">Even controlling for broad skill measures, idiosyncratic risk matters</li>
+</ul>
+</div>
+</section>
+<section id="the-earnings-process" class="slide level2 smaller">
+<h2>The Earnings Process</h2>
+<p>Log earnings for household <span class="math inline">\(i\)</span> at age <span class="math inline">\(h\)</span>: <span class="math display">\[ \log(n_{ih}) = \kappa_h + \alpha_i + z_{ih} + \varepsilon_{ih} \]</span></p>
+<div>
+<ul>
+<li class="fragment"><span class="math inline">\(\kappa_h\)</span>: deterministic age profile</li>
+<li class="fragment"><span class="math inline">\(\alpha_i \sim N(0, \sigma^2_\alpha)\)</span>: <strong>fixed effect</strong> (realized at birth, permanent)</li>
+<li class="fragment"><span class="math inline">\(z_{ih}\)</span>: <strong>persistent shock</strong>: <span class="math inline">\(z_{ih} = \rho z_{i,h-1} + \eta_{ih}\)</span>, where <span class="math inline">\(\eta_{ih} \sim N(0, \sigma^2_\eta)\)</span></li>
+<li class="fragment"><span class="math inline">\(\varepsilon_{ih} \sim N(0, \sigma^2_\varepsilon)\)</span>: <strong>transitory shock</strong> (i.i.d.)</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Key Estimate</strong>: <span class="math inline">\(\rho \approx 0.999\)</span> (near unit root!)</p>
+</div>
+</section>
+<section id="why-near-unit-root-persistence" class="slide level2 smaller">
+<h2>Why Near Unit-Root Persistence?</h2>
+
+<img data-src="../papers/figures/sty_fig3.png" style="width:65.0%" class="r-stretch quarto-figure-center"><p class="caption">Figure 3 from <span class="citation" data-cites="Storesletten2004">Storesletten, Telmer, and Yaron (<a href="#/conclusion-what-we-learned" role="doc-biblioref" onclick="">2004</a>)</span>: Model fit to earnings inequality profile</p><div>
+<ul>
+<li class="fragment">The <strong>linear</strong> shape of the age-variance profile is crucial</li>
+<li class="fragment">Lower persistence (ρ &lt; 0.95) would generate <strong>concave</strong> profiles</li>
+<li class="fragment">Near unit-root (ρ ≈ 1) generates the linear pattern we see in data</li>
+<li class="fragment">This is a robust finding across different specifications</li>
+</ul>
+</div>
+</section>
+<section id="the-model-key-features" class="slide level2 smaller">
+<h2>The Model: Key Features</h2>
+<p><strong>Overlapping Generations Economy</strong>:</p>
+<div>
+<ul>
+<li class="fragment">Agents live ages 22-100, retire at 65</li>
+<li class="fragment">Face uninsurable idiosyncratic earnings shocks</li>
+<li class="fragment">Can save/borrow via a single asset (capital)</li>
+<li class="fragment">Pay-as-you-go social security system</li>
+<li class="fragment"><strong>General equilibrium</strong>: aggregate wealth is endogenous</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Calibration Strategy</strong>: - Match aggregate wealth/income ratio = 3.1 (for bottom 99%) - Match earnings process to PSID data - Check if model matches consumption inequality from CEX</p>
+</div>
+</section>
+<section id="main-results" class="slide level2 smaller">
+<h2>Main Results</h2>
+
+<img data-src="../papers/figures/sty_fig4.png" style="width:70.0%" class="r-stretch quarto-figure-center"><p class="caption">Figure 4 from <span class="citation" data-cites="Storesletten2004">Storesletten, Telmer, and Yaron (<a href="#/conclusion-what-we-learned" role="doc-biblioref" onclick="">2004</a>)</span>: Model predictions for consumption inequality</p><div>
+<ul>
+<li class="fragment"><strong>Model matches earnings inequality by construction</strong> (calibration target)</li>
+<li class="fragment"><strong>Benchmark (no social security)</strong>: 20% too much consumption inequality</li>
+<li class="fragment"><strong>With social security</strong>: Nearly perfect match!</li>
+<li class="fragment">Social security’s concave replacement rate provides implicit insurance within generations</li>
+</ul>
+</div>
+</section>
+<section id="the-role-of-wealth" class="slide level2 smaller">
+<h2>The Role of Wealth</h2>
+<div>
+<p><strong>Aggregate wealth is crucial for risk sharing</strong>:</p>
+<ul>
+<li class="fragment">More wealth → more buffer-stock savings → more consumption smoothing</li>
+<li class="fragment">Model calibrated to match U.S. wealth/income ratio = 3.1</li>
+</ul>
+<p><strong>Experiment</strong>: Reduce wealth/income ratio from 3.1 to 1.5 - Result: Consumption inequality ↑ by 17% - Would need 36% (vs.&nbsp;20%) reduction in shock variances to match data</p>
+</div>
+<div class="fragment">
+<p><strong>Implication</strong>: General equilibrium matters! The amount of self-insurance feasible depends critically on economy-wide wealth accumulation.</p>
+</div>
+</section>
+<section id="insurance-vs.-redistribution-decomposition" class="slide level2 smaller">
+<h2>Insurance vs.&nbsp;Redistribution Decomposition</h2>
+<p><strong>Key Welfare Question</strong>: Which matters more?</p>
+<ol type="1">
+<li><strong>Fixed effects</strong> (<span class="math inline">\(\alpha_i\)</span>): Inequality determined at birth</li>
+<li><strong>Life-cycle shocks</strong> (<span class="math inline">\(z_{ih}, \varepsilon_{ih}\)</span>): Shocks received during working years</li>
+</ol>
+<div class="fragment">
+<p><strong>Results</strong>:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Type of Risk</th>
+<th>Welfare Cost (% of consumption)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Life-cycle shocks</td>
+<td><strong>27.4%</strong></td>
+</tr>
+<tr class="even">
+<td>Fixed effects</td>
+<td><strong>20.2%</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<p><strong>Comparison with Keane &amp; Wolpin (1997)</strong>: - They found: 90% of lifetime utility variance from fixed effects - STY (2004): Only 47% from fixed effects</p>
+</div>
+</section>
+<section id="policy-implications" class="slide level2 smaller">
+<h2>Policy Implications</h2>
+<div>
+<ol type="1">
+<li class="fragment"><strong>Life-cycle shocks are important for welfare</strong>
+<ul>
+<li class="fragment">Not just predetermined heterogeneity!</li>
+<li class="fragment">Buffer-stock savings and precautionary behavior matter</li>
+</ul></li>
+<li class="fragment"><strong>Social security provides valuable insurance</strong>
+<ul>
+<li class="fragment">Concave replacement rate redistributes within generations</li>
+<li class="fragment">Accounts for ~1.6% of lifetime consumption in welfare gains</li>
+</ul></li>
+<li class="fragment"><strong>Policy design matters</strong>
+<ul>
+<li class="fragment">Insurance against life-cycle shocks is as important as addressing inequality at birth</li>
+<li class="fragment">Both pre-labor market interventions (education) AND insurance mechanisms (social security, unemployment insurance) are valuable</li>
+</ul></li>
+</ol>
+</div>
+</section>
+<section id="conclusion-what-we-learned" class="slide level2 smaller scrollable">
+<h2>Conclusion: What We Learned</h2>
+<div>
+<ol type="1">
+<li class="fragment"><strong>Empirical</strong>: Earnings shocks are highly persistent (ρ ≈ 1)
+<ul>
+<li class="fragment">This is necessary to match linear increase in inequality</li>
+</ul></li>
+<li class="fragment"><strong>Theoretical</strong>: Incomplete markets model can quantitatively account for consumption inequality over life cycle
+<ul>
+<li class="fragment">Key ingredients: persistent shocks + calibrated wealth + social security</li>
+</ul></li>
+<li class="fragment"><strong>Normative</strong>: Life-cycle uncertainty is at least as important as fixed heterogeneity
+<ul>
+<li class="fragment">Challenges the view that all inequality is predetermined</li>
+<li class="fragment">Supports role for insurance mechanisms and financial markets</li>
+</ul></li>
+<li class="fragment"><strong>Methodological</strong>: Age profiles of inequality are informative about risk sharing
+<ul>
+<li class="fragment">Rising consumption inequality → imperfect insurance</li>
+<li class="fragment">General equilibrium + quantitative calibration crucial</li>
+</ul></li>
+</ol>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
