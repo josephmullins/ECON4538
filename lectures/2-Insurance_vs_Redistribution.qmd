@@ -92,28 +92,323 @@ be average certainty equivalent
 is a measure of the **gains from redistribution** when uncertainty is removed via certainty equivalence
 :::
 
-## Example 1: A decomposition 
+## Example 1: A decomposition {.smaller}
 
 :::{.incremental}
 - $u(C^*) - u(\bar{C})$ is likewise a measure of the **gains from insurance** derived from valuing gains in certainty equivalents.
 - This gives a decomposition:
-$$ W_{1} - W_{0} = \underbrace{u(C^*) - u(\bar{C})}_{\text{insurance}} + \underbrace{u(\bar{C}) - \mathbb{E}[u(y)]}_{\text{redistribution}} $$
+$$\begin{aligned}
+W_{1} - W_{0} &= \Big[u(C^*) - u(\bar{C})\Big] + \Big[u(\bar{C}) - \mathbb{E}[u(y)]\Big]\\[0.3em]
+&= \text{insurance} + \text{redistribution}
+\end{aligned}$$
 - **Exercises**:
     - Calculate the decomposition with log utility
     - Look at how it changes with $\pi$
 :::
 
-## Example 1: picturing the decomposition
+## Example 1: Step 1 - Total welfare gain
 
+```{julia}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6.5
+
+using Plots
+
+# Parameters
+y_L = 0.5
+y_H = 3.0
+π = 0.75  # probability of low income for low type
+
+# Calculate key values
+C_star = 0.5*y_H + 0.5*y_L
+W_0 = 0.5*log(y_L) + 0.5*log(y_H)  # E[log(y)] - laissez-faire
+U_L = π*log(y_L) + (1-π)*log(y_H)  # Utility of type L
+U_H = π*log(y_H) + (1-π)*log(y_L)  # Utility of type H
+E_L = π*y_L + (1-π)*y_H            # Expected income type L
+E_H = π*y_H + (1-π)*y_L            # Expected income type H
+c_L = exp(U_L)                      # Certainty equivalent type L
+c_H = exp(U_H)                      # Certainty equivalent type H
+U_star = log(C_star)                # Utility with perfect insurance
+C_bar = 0.5*c_L + 0.5*c_H          # Average certainty equivalent
+
+# Create the plot
+y_range = range(0.5, 3.5, length=200)
+y_left = 0.
+y_width = C_star
+y_min = log(y_L)
+
+p = plot(y_range, log.(y_range),
+     label="u(c) = log(c)",
+     linewidth=4,
+     color=:blue,
+     xlabel="Consumption",
+     ylabel="Utility",
+     legend=:bottomright,
+     size=(1000, 600),
+     grid=false,
+     thickness_scaling=1.5,
+     legendfontsize=10,
+     guidefontsize=13,
+     tickfontsize=11,
+     xlims=(0., 3.5),
+     ylims=(-1., 1.2))
+
+# Income realizations
+scatter!([y_L, y_H], [log(y_L), log(y_H)],
+         markersize=8, color=:red, markerstrokewidth=2, label="Income realizations")
+plot!([y_L, y_H], [log(y_L), log(y_H)], color=:red, linewidth=2, alpha=0.5, label="")
+plot!([y_H,y_H],[y_min,log(y_H)],linestyle=:dash, color=:red)
+
+# Welfare levels
+# plot!([0, C_star], [W_0, W_0], linestyle=:dash, color=:red, linewidth=2.5,
+#       label="E[log(y)] - Laissez-faire")
+# plot!([0, C_star], [U_star, U_star], linestyle=:dash, color=RGB(0, 0.6, 0),
+#       linewidth=2.5, label="log(C*) - Perfect insurance")
+scatter!([E_L, E_H], [U_L, U_H], markersize=8, color=:purple,
+         markerstrokewidth=2)
+scatter!([C_star,C_star],[W_0,U_star], color=RGB(0, 0.6, 0))
+plot!([C_star,C_star],[y_min,U_star],linestyle=:dash,color=RGB(0, 0.6, 0))
+
+# Annotations
+annotate!(y_L, -0.8, text("yₗ", :red, :center, 11))
+annotate!(y_H, -0.8, text("yₕ", :red, :center, 11))
+annotate!(C_star, -0.8, text("C*", RGB(0, 0.6, 0), :center, 11, :bold))
+
+# Total gain shading
+plot!([y_left, y_left+y_width, y_left+y_width, y_left, y_left],
+      [W_0, W_0, U_star, U_star, W_0], fillrange=W_0,
+      fillalpha=0.25, fillcolor=RGB(0, 0.6, 0), linecolor=:gray, linewidth=2, label="")
+annotate!(0.15, (W_0 + U_star)/2,
+          text("Total welfare gain", :gray, :left, 10, :bold))
+
+plot!(legend=false)
+```
+
+## Example 1: Step 2 - Certainty equivalents
+
+```{julia}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6.5
+
+p = plot(y_range, log.(y_range),
+     label="u(c) = log(c)",
+     linewidth=4,
+     color=:blue,
+     xlabel="Consumption",
+     ylabel="Utility",
+     legend=:bottomright,
+     size=(1000, 600),
+     grid=false,
+     thickness_scaling=1.5,
+     legendfontsize=10,
+     guidefontsize=13,
+     tickfontsize=11,
+     xlims=(0., 3.5),
+     ylims=(-1., 1.2))
+
+# Income realizations
+scatter!([y_L, y_H], [log(y_L), log(y_H)],
+         markersize=8, color=:red, markerstrokewidth=2, label="Income realizations")
+scatter!([C_star,C_star],[W_0,U_star], color=RGB(0, 0.6, 0))
+plot!([y_L, y_H], [log(y_L), log(y_H)], color=:red, linewidth=2, alpha=0.5, label="")
+
+# Welfare levels
+
+# Add certainty equivalents
+scatter!([E_L, E_H], [U_L, U_H], markersize=8, color=:purple,
+         markerstrokewidth=2, label="Type certainty equivalents")
+plot!([c_L, E_L], [U_L, U_L], color=:purple, linewidth=1.5, alpha=0.6, linestyle=:dot, label="")
+plot!([c_H, E_H], [U_H, U_H], color=:purple, linewidth=1.5, alpha=0.6, linestyle=:dot, label="")
+plot!([c_L, c_L], [y_min, U_L], color=:purple, linewidth=1.5, alpha=0.4, linestyle=:dot, label="")
+plot!([c_H, c_H], [y_min, U_H], color=:purple, linewidth=1.5, alpha=0.4, linestyle=:dot, label="")
+plot!([C_star,C_star],[y_min,U_star],linestyle=:dash,color=RGB(0, 0.6, 0))
+plot!([c_L,c_H],[y_min,y_min],color=:purple, linestyle=:dash)
+scatter!([C_bar],[y_min],color=:orange)
+
+# # Average certainty equivalent
+# plot!([0, C_bar], [log(C_bar), log(C_bar)], linestyle=:dash, color=:orange,
+#       linewidth=2.5, label="log(C̄) - Avg certainty equiv")
+# plot!([C_bar, C_bar], [-0.5, log(C_bar)], color=:orange, linewidth=2,
+#       alpha=0.5, linestyle=:dot, label="")
+
+# Annotations
+annotate!(c_L, -0.8, text("c̄ₗ", :purple, :center, 11))
+annotate!(c_H, -0.8, text("c̄ₕ", :purple, :center, 11))
+annotate!(C_bar, -0.8, text("C̄", :orange, :center, 11, :bold))
+annotate!(C_star, -0.8, text("C*", RGB(0, 0.6, 0), :center, 11, :bold))
+annotate!(y_L, -0.8, text("yₗ", :red, :center, 11))
+annotate!(y_H, -0.8, text("yₕ", :red, :center, 11))
+
+plot!(legend=false)
+```
+
+## Example 1: Step 3 - The decomposition
+
+```{julia}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6.5
+
+p = plot(y_range, log.(y_range),
+     label="u(c) = log(c)",
+     linewidth=4,
+     color=:blue,
+     xlabel="Consumption",
+     ylabel="Utility",
+     legend=:bottomright,
+     size=(1000, 600),
+     grid=false,
+     thickness_scaling=1.5,
+     legendfontsize=10,
+     guidefontsize=13,
+     tickfontsize=11,
+     xlims=(0., 3.5),
+     ylims=(-1., 1.2))
+
+# Income realizations
+scatter!([y_L, y_H], [log(y_L), log(y_H)],
+         markersize=8, color=:red, markerstrokewidth=2, label="Income realizations")
+plot!([y_L, y_H], [log(y_L), log(y_H)], color=:red, linewidth=2, alpha=0.5, label="")
+
+# Welfare levels
+plot!([0, C_star], [W_0, W_0], linestyle=:dash, color=:red, linewidth=2.5,
+      label="E[log(y)] - Laissez-faire")
+plot!([0, C_bar], [log(C_bar), log(C_bar)], linestyle=:dash, color=:orange,
+      linewidth=2.5, label="log(C̄) - Redistribution")
+plot!([0, C_star], [U_star, U_star], linestyle=:dash, color=RGB(0, 0.6, 0),
+      linewidth=2.5, label="log(C*) - Perfect insurance")
+plot!([C_star,C_star],[y_min,U_star],linestyle=:dash,color=RGB(0, 0.6, 0))
+
+# Certainty equivalents
+scatter!([E_L, E_H], [U_L, U_H], markersize=8, color=:purple,
+         markerstrokewidth=2, label="Type certainty equivalents")
+plot!([C_bar, C_bar], [y_min, log(C_bar)], color=:orange, linewidth=2,
+      alpha=0.5, linestyle=:dot, label="")
+
+# Annotations
+annotate!(c_L, -0.8, text("c̄ₗ", :purple, :center, 11))
+annotate!(c_H, -0.8, text("c̄ₕ", :purple, :center, 11))
+annotate!(C_bar, -0.8, text("C̄", :orange, :center, 11, :bold))
+annotate!(C_star, -0.8, text("C*", RGB(0, 0.6, 0), :center, 11, :bold))
+annotate!(y_L, -0.8, text("yₗ", :red, :center, 11))
+annotate!(y_H, -0.8, text("yₕ", :red, :center, 11))
+
+# Decomposition shading
+plot!([y_left, y_left+y_width, y_left+y_width, y_left, y_left],
+      [W_0, W_0, log(C_bar), log(C_bar), W_0], fillrange=W_0,
+      fillalpha=0.25, fillcolor=:orange, linecolor=:orange, linewidth=2, label="")
+plot!([y_left, y_left+y_width, y_left+y_width, y_left, y_left],
+      [log(C_bar), log(C_bar), U_star, U_star, log(C_bar)], fillrange=log(C_bar),
+      fillalpha=0.25, fillcolor=RGB(0, 0.6, 0), linecolor=RGB(0, 0.6, 0),
+      linewidth=2, label="")
+
+annotate!( 0.15, (W_0 + log(C_bar))/2,
+          text("Redistribution gain", :orange, :left, 10, :bold))
+annotate!( 0.15, (log(C_bar) + U_star)/2,
+          text("Insurance gain", RGB(0, 0.6, 0), :left, 10, :bold))
+
+plot!(legend=false)
+```
+
+
+## Example 1: Step 3 - Letting $\pi$ increase...
+
+```{julia}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6.5
+
+π = 0.9  # probability of low income for low type
+
+# Calculate key values
+C_star = 0.5*y_H + 0.5*y_L
+W_0 = 0.5*log(y_L) + 0.5*log(y_H)  # E[log(y)] - laissez-faire
+U_L = π*log(y_L) + (1-π)*log(y_H)  # Utility of type L
+U_H = π*log(y_H) + (1-π)*log(y_L)  # Utility of type H
+E_L = π*y_L + (1-π)*y_H            # Expected income type L
+E_H = π*y_H + (1-π)*y_L            # Expected income type H
+c_L = exp(U_L)                      # Certainty equivalent type L
+c_H = exp(U_H)                      # Certainty equivalent type H
+U_star = log(C_star)                # Utility with perfect insurance
+C_bar = 0.5*c_L + 0.5*c_H          # Average certainty equivalent
+
+# Create the plot
+y_range = range(0.5, 3.5, length=200)
+y_left = 0.
+y_width = C_star
+
+
+p = plot(y_range, log.(y_range),
+     label="u(c) = log(c)",
+     linewidth=4,
+     color=:blue,
+     xlabel="Consumption",
+     ylabel="Utility",
+     legend=:bottomright,
+     size=(1000, 600),
+     grid=false,
+     thickness_scaling=1.5,
+     legendfontsize=10,
+     guidefontsize=13,
+     tickfontsize=11,
+     xlims=(0., 3.5),
+     ylims=(-1., 1.2))
+
+# Income realizations
+scatter!([y_L, y_H], [log(y_L), log(y_H)],
+         markersize=8, color=:red, markerstrokewidth=2, label="Income realizations")
+plot!([y_L, y_H], [log(y_L), log(y_H)], color=:red, linewidth=2, alpha=0.5, label="")
+
+# Welfare levels
+plot!([0, C_star], [W_0, W_0], linestyle=:dash, color=:red, linewidth=2.5,
+      label="E[log(y)] - Laissez-faire")
+plot!([0, C_bar], [log(C_bar), log(C_bar)], linestyle=:dash, color=:orange,
+      linewidth=2.5, label="log(C̄) - Redistribution")
+plot!([0, C_star], [U_star, U_star], linestyle=:dash, color=RGB(0, 0.6, 0),
+      linewidth=2.5, label="log(C*) - Perfect insurance")
+plot!([C_star,C_star],[y_min,U_star],linestyle=:dash,color=RGB(0, 0.6, 0))
+
+# Certainty equivalents
+scatter!([E_L, E_H], [U_L, U_H], markersize=8, color=:purple,
+         markerstrokewidth=2, label="Type certainty equivalents")
+plot!([C_bar, C_bar], [y_min, log(C_bar)], color=:orange, linewidth=2,
+      alpha=0.5, linestyle=:dot, label="")
+
+# Annotations
+annotate!(c_L, -0.8, text("c̄ₗ", :purple, :center, 11))
+annotate!(c_H, -0.8, text("c̄ₕ", :purple, :center, 11))
+annotate!(C_bar, -0.8, text("C̄", :orange, :center, 11, :bold))
+annotate!(C_star, -0.8, text("C*", RGB(0, 0.6, 0), :center, 11, :bold))
+annotate!(y_L, -0.8, text("yₗ", :red, :center, 11))
+annotate!(y_H, -0.8, text("yₕ", :red, :center, 11))
+
+# Decomposition shading
+plot!([y_left, y_left+y_width, y_left+y_width, y_left, y_left],
+      [W_0, W_0, log(C_bar), log(C_bar), W_0], fillrange=W_0,
+      fillalpha=0.25, fillcolor=:orange, linecolor=:orange, linewidth=2, label="")
+plot!([y_left, y_left+y_width, y_left+y_width, y_left, y_left],
+      [log(C_bar), log(C_bar), U_star, U_star, log(C_bar)], fillrange=log(C_bar),
+      fillalpha=0.25, fillcolor=RGB(0, 0.6, 0), linecolor=RGB(0, 0.6, 0),
+      linewidth=2, label="")
+
+annotate!( 0.15, (W_0 + log(C_bar))/2,
+          text("Redistribution gain", :orange, :left, 10, :bold))
+annotate!( 0.15, (log(C_bar) + U_star)/2,
+          text("Insurance gain", RGB(0, 0.6, 0), :left, 10, :bold))
+
+plot!(legend=false)
+```
 
 ## Example 2: a dynamic economy
 
 :::{.incremental}
-- Assume same type structure, $\tau(i)\in\{L,H}$ for all agents $i$
+- Assume same type structure, $\tau(i)\in\{L,H\}$ for all agents $i$
 - But now infinite horizon, $t=0,1,2,...,\infty$
-- $\log(y_{it}) = \mu_{\tau(i)} + \varepsilon_{it}$,\ $\varepsilon_{it}\sim\mathcal{N}(0,\sigma^2)$, $\mu_{L}<\mu_{H}$ 
+- $\log(y_{it}) = \mu_{\tau(i)} + \varepsilon_{it}$,\ $\varepsilon_{it}\sim{N}(0,\sigma^2)$, $\mu_{L}<\mu_{H}$ 
 - Benchmark: no private insurance markets, $c_{it} = y_{it}$.
-- $V_{i} = \mathbb{E}\left[\sum_{t=0}^\infty u(c_{it})\right]
+- $V_{i} = \mathbb{E}\left[\sum_{t=0}^\infty u(c_{it})\right]$
 :::
 
 ## Example 2
@@ -161,8 +456,12 @@ $$ y_{it} = \mu + \rho(y_{it-1} - \mu) + \zeta_{it},\ \ \zeta_{it}\sim{N}(0,\sig
 
 ## The Empirical Facts {.smaller}
 
-![Figure 1 from @Storesletten2004: Cross-sectional variance of log earnings and consumption by age](../papers/figures/sty_fig1.png){width=70%}
 
+:::: {.columns}
+::: {.column width="50%"}
+![](../papers/figures/sty_fig1.png){width=100%}
+:::
+::: {.column width="50%"}
 Three striking patterns in U.S. data:
 
 1. **Both earnings and consumption inequality increase substantially with age** (ages 23-60)
@@ -170,17 +469,21 @@ Three striking patterns in U.S. data:
 3. **Both increase approximately linearly** over working years
 
 **Interpretation**: Imperfect risk sharing - something between complete markets and autarky
-
+:::
+::::
 ## Is It Just Predetermined Skills? {.smaller}
 
-![Figure 2 from @Storesletten2004: Inequality by education group](../papers/figures/sty_fig2.png){width=75%}
-
+:::: {.columns}
+::: {.column width="55%"}
+![](../papers/figures/sty_fig2.png){width=90%}
+:::
+::: {.column width="45%"}
 :::{.incremental}
-- If inequality were just about predetermined skills, we'd see flat profiles **within** education groups
-- But we see rising inequality **within** each education group!
-- This supports the "shocks" story over the "skills" story
+- We see rising inequality **within** each education group
 - Even controlling for broad skill measures, idiosyncratic risk matters
 :::
+:::
+::::
 
 ## The Earnings Process {.smaller}
 
@@ -200,14 +503,19 @@ $$ \log(n_{ih}) = \kappa_h + \alpha_i + z_{ih} + \varepsilon_{ih} $$
 
 ## Why Near Unit-Root Persistence? {.smaller}
 
-![Figure 3 from @Storesletten2004: Model fit to earnings inequality profile](../papers/figures/sty_fig3.png){width=65%}
-
+:::: {.columns}
+::: {.column width="50%"}
+![](../papers/figures/sty_fig3.png){width=100%}
+:::
+::: {.column width="50%"}
 :::{.incremental}
 - The **linear** shape of the age-variance profile is crucial
 - Lower persistence (ρ < 0.95) would generate **concave** profiles
 - Near unit-root (ρ ≈ 1) generates the linear pattern we see in data
 - This is a robust finding across different specifications
 :::
+:::
+::::
 
 ## The Model: Key Features {.smaller}
 
@@ -224,20 +532,64 @@ $$ \log(n_{ih}) = \kappa_h + \alpha_i + z_{ih} + \varepsilon_{ih} $$
 . . .
 
 **Calibration Strategy**:
+
 - Match aggregate wealth/income ratio = 3.1 (for bottom 99%)
 - Match earnings process to PSID data
 - Check if model matches consumption inequality from CEX
 
+## The Model: Household Problem {.smaller}
+
+**Recursive Formulation**:
+
+Agent of age $h$ with asset holdings $a$ and persistent shock $z$ solves:
+$$ V_h(a,z) = \max_{c, a'} \left\{ u(c) + \beta \psi_h \mathbb{E}[V_{h+1}(a',z')|z] \right\} $$
+
+subject to:
+$$\begin{aligned}
+c + a' &= (1+r)a + n_h(z) - T(n_h(z)) \\
+a' &\geq \underline{a} \quad \text{(borrowing limit)} \\
+z' &= \rho z + \eta', \quad \eta' \sim N(0,\sigma^2_\eta)
+\end{aligned}$$
+
+:::{.incremental}
+- $\psi_h$: survival probability to age $h+1$
+- $n_h(z) = \exp(\kappa_h + \alpha + z + \varepsilon)$: labor earnings
+- $T(\cdot)$: tax/transfer function (includes social security)
+:::
+
+## The Model: Equilibrium {.smaller}
+
+**Stationary Competitive Equilibrium** consists of:
+
+:::{.incremental}
+1. **Value and policy functions**: $\{V_h(a,z), c_h(a,z), a_{h+1}(a,z)\}_{h=22}^{100}$
+2. **Distribution**: Stationary distribution $\Phi(h,a,z,\alpha)$ over age, assets, persistent shock, and fixed effect
+3. **Prices**: Interest rate $r$ and wage $w$ satisfy:
+   $$\begin{aligned}
+   r &= f_K(K, L) - \delta \\
+   w &= f_L(K, L)
+   \end{aligned}$$
+   where $f(K,L) = K^\theta L^{1-\theta}$ is aggregate production function
+4. **Market clearing**:
+   $$K = \int a \, d\Phi(h,a,z,\alpha),\ \ L = \int n_h(z) \, d\Phi(h,a,z,\alpha)$$
+5. **Government budget balance**: Social security system is self-financing
+:::
+
 ## Main Results {.smaller}
 
-![Figure 4 from @Storesletten2004: Model predictions for consumption inequality](../papers/figures/sty_fig4.png){width=70%}
-
+:::: {.columns}
+::: {.column width="50%"}
+![](../papers/figures/sty_fig4.png){width=100%}
+:::
+::: {.column width="50%"}
 :::{.incremental}
 - **Model matches earnings inequality by construction** (calibration target)
 - **Benchmark (no social security)**: 20% too much consumption inequality
 - **With social security**: Nearly perfect match!
 - Social security's concave replacement rate provides implicit insurance within generations
 :::
+:::
+::::
 
 ## The Role of Wealth {.smaller}
 
@@ -246,15 +598,10 @@ $$ \log(n_{ih}) = \kappa_h + \alpha_i + z_{ih} + \varepsilon_{ih} $$
 
 - More wealth → more buffer-stock savings → more consumption smoothing
 - Model calibrated to match U.S. wealth/income ratio = 3.1
-
-**Experiment**: Reduce wealth/income ratio from 3.1 to 1.5
-- Result: Consumption inequality ↑ by 17%
-- Would need 36% (vs. 20%) reduction in shock variances to match data
+- **Experiment**: Reduce wealth/income ratio from 3.1 to 1.5
+    - Result: Consumption inequality ↑ by 17%
+    - Would need 36% (vs. 20%) reduction in shock variances to match data
 :::
-
-. . .
-
-**Implication**: General equilibrium matters! The amount of self-insurance feasible depends critically on economy-wide wealth accumulation.
 
 ## Insurance vs. Redistribution Decomposition {.smaller}
 
@@ -272,11 +619,6 @@ $$ \log(n_{ih}) = \kappa_h + \alpha_i + z_{ih} + \varepsilon_{ih} $$
 | Life-cycle shocks | **27.4%** |
 | Fixed effects | **20.2%** |
 
-. . .
-
-**Comparison with Keane & Wolpin (1997)**:
-- They found: 90% of lifetime utility variance from fixed effects
-- STY (2004): Only 47% from fixed effects
 
 ## Policy Implications {.smaller}
 

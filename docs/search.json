@@ -284,7 +284,7 @@
     "href": "lectures.html",
     "title": "Lecture Slides",
     "section": "",
-    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nSyllabus\nSlides\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\n\n\n\nEstimating Income Processes\n\n\n\nIntergenerational Mobility\n\n\n\nTheories of Human Capital\n\n\n\nEvidence"
+    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nSyllabus\nSlides\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\nSlides\n\n\nEstimating Income Processes\n\n\n\nIntergenerational Mobility\n\n\n\nTheories of Human Capital\n\n\n\nEvidence"
   },
   {
     "objectID": "lectures/Syllabus.html#facts-about-inequality",
@@ -550,14 +550,14 @@
     "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-a-decomposition",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Example 1: A decomposition",
-    "text": "Example 1: A decomposition\n\n\n\\(u(C^*) - u(\\bar{C})\\) is likewise a measure of the gains from insurance derived from valuing gains in certainty equivalents.\nThis gives a decomposition: \\[ W_{1} - W_{0} = \\underbrace{u(C^*) - u(\\bar{C})}_{\\text{insurance}} + \\underbrace{u(\\bar{C}) - \\mathbb{E}[u(y)]}_{\\text{redistribution}} \\]\nExercises:\n\nCalculate the decomposition with log utility\nLook at how it changes with \\(\\pi\\)"
+    "text": "Example 1: A decomposition\n\n\n\\(u(C^*) - u(\\bar{C})\\) is likewise a measure of the gains from insurance derived from valuing gains in certainty equivalents.\nThis gives a decomposition: \\[\\begin{aligned}\nW_{1} - W_{0} &= \\Big[u(C^*) - u(\\bar{C})\\Big] + \\Big[u(\\bar{C}) - \\mathbb{E}[u(y)]\\Big]\\\\[0.3em]\n&= \\text{insurance} + \\text{redistribution}\n\\end{aligned}\\]\nExercises:\n\nCalculate the decomposition with log utility\nLook at how it changes with \\(\\pi\\)"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-picturing-the-decomposition",
     "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-picturing-the-decomposition",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Example 1: picturing the decomposition",
-    "text": "Example 1: picturing the decomposition"
+    "text": "Example 1: picturing the decomposition\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nC̄\n\n\nC*\n\n\nRedistribution\n\n\ngain\n\n\nInsurance\n\n\ngain"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-gains-from-redistribution",
@@ -578,7 +578,7 @@
     "href": "lectures/2-Insurance_vs_Redistribution.html#example-2-a-dynamic-economy",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Example 2: a dynamic economy",
-    "text": "Example 2: a dynamic economy\n\n\nAssume same type structure, \\(\\tau(i)\\in\\{L,H}\\) for all agents \\(i\\)\nBut now infinite horizon, \\(t=0,1,2,...,\\infty\\)\n\\(\\log(y_{it}) = \\mu_{\\tau(i)} + \\varepsilon_{it}\\), \\(\\varepsilon_{it}\\sim\\mathcal{N}(0,\\sigma^2)\\), \\(\\mu_{L}&lt;\\mu_{H}\\)\nBenchmark: no private insurance markets, \\(c_{it} = y_{it}\\).\n$V_{i} ="
+    "text": "Example 2: a dynamic economy\n\n\nAssume same type structure, \\(\\tau(i)\\in\\{L,H\\}\\) for all agents \\(i\\)\nBut now infinite horizon, \\(t=0,1,2,...,\\infty\\)\n\\(\\log(y_{it}) = \\mu_{\\tau(i)} + \\varepsilon_{it}\\), \\(\\varepsilon_{it}\\sim{N}(0,\\sigma^2)\\), \\(\\mu_{L}&lt;\\mu_{H}\\)\nBenchmark: no private insurance markets, \\(c_{it} = y_{it}\\).\n\\(V_{i} = \\mathbb{E}\\left[\\sum_{t=0}^\\infty u(c_{it})\\right]\\)"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-2",
@@ -683,14 +683,14 @@
     "href": "lectures/2-Insurance_vs_Redistribution.html#the-empirical-facts",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "The Empirical Facts",
-    "text": "The Empirical Facts\n\nFigure 1 from Storesletten, Telmer, and Yaron (2004): Cross-sectional variance of log earnings and consumption by ageThree striking patterns in U.S. data:\n\nBoth earnings and consumption inequality increase substantially with age (ages 23-60)\nConsumption inequality rises less than earnings inequality\nBoth increase approximately linearly over working years\n\nInterpretation: Imperfect risk sharing - something between complete markets and autarky"
+    "text": "The Empirical Facts\n\n\n\n\nThree striking patterns in U.S. data:\n\nBoth earnings and consumption inequality increase substantially with age (ages 23-60)\nConsumption inequality rises less than earnings inequality\nBoth increase approximately linearly over working years\n\nInterpretation: Imperfect risk sharing - something between complete markets and autarky"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#is-it-just-predetermined-skills",
     "href": "lectures/2-Insurance_vs_Redistribution.html#is-it-just-predetermined-skills",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Is It Just Predetermined Skills?",
-    "text": "Is It Just Predetermined Skills?\n\nFigure 2 from Storesletten, Telmer, and Yaron (2004): Inequality by education group\n\nIf inequality were just about predetermined skills, we’d see flat profiles within education groups\nBut we see rising inequality within each education group!\nThis supports the “shocks” story over the “skills” story\nEven controlling for broad skill measures, idiosyncratic risk matters"
+    "text": "Is It Just Predetermined Skills?\n\n\n\n\n\n\nWe see rising inequality within each education group\nEven controlling for broad skill measures, idiosyncratic risk matters"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#the-earnings-process",
@@ -704,35 +704,35 @@
     "href": "lectures/2-Insurance_vs_Redistribution.html#why-near-unit-root-persistence",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Why Near Unit-Root Persistence?",
-    "text": "Why Near Unit-Root Persistence?\n\nFigure 3 from Storesletten, Telmer, and Yaron (2004): Model fit to earnings inequality profile\n\nThe linear shape of the age-variance profile is crucial\nLower persistence (ρ &lt; 0.95) would generate concave profiles\nNear unit-root (ρ ≈ 1) generates the linear pattern we see in data\nThis is a robust finding across different specifications"
+    "text": "Why Near Unit-Root Persistence?\n\n\n\n\n\n\nThe linear shape of the age-variance profile is crucial\nLower persistence (ρ &lt; 0.95) would generate concave profiles\nNear unit-root (ρ ≈ 1) generates the linear pattern we see in data\nThis is a robust finding across different specifications"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#the-model-key-features",
     "href": "lectures/2-Insurance_vs_Redistribution.html#the-model-key-features",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "The Model: Key Features",
-    "text": "The Model: Key Features\nOverlapping Generations Economy:\n\n\nAgents live ages 22-100, retire at 65\nFace uninsurable idiosyncratic earnings shocks\nCan save/borrow via a single asset (capital)\nPay-as-you-go social security system\nGeneral equilibrium: aggregate wealth is endogenous\n\n\n\nCalibration Strategy: - Match aggregate wealth/income ratio = 3.1 (for bottom 99%) - Match earnings process to PSID data - Check if model matches consumption inequality from CEX"
+    "text": "The Model: Key Features\nOverlapping Generations Economy:\n\n\nAgents live ages 22-100, retire at 65\nFace uninsurable idiosyncratic earnings shocks\nCan save/borrow via a single asset (capital)\nPay-as-you-go social security system\nGeneral equilibrium: aggregate wealth is endogenous\n\n\n\nCalibration Strategy:\n\nMatch aggregate wealth/income ratio = 3.1 (for bottom 99%)\nMatch earnings process to PSID data\nCheck if model matches consumption inequality from CEX"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#main-results",
     "href": "lectures/2-Insurance_vs_Redistribution.html#main-results",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Main Results",
-    "text": "Main Results\n\nFigure 4 from Storesletten, Telmer, and Yaron (2004): Model predictions for consumption inequality\n\nModel matches earnings inequality by construction (calibration target)\nBenchmark (no social security): 20% too much consumption inequality\nWith social security: Nearly perfect match!\nSocial security’s concave replacement rate provides implicit insurance within generations"
+    "text": "Main Results\n\n\n\n\n\n\nModel matches earnings inequality by construction (calibration target)\nBenchmark (no social security): 20% too much consumption inequality\nWith social security: Nearly perfect match!\nSocial security’s concave replacement rate provides implicit insurance within generations"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#the-role-of-wealth",
     "href": "lectures/2-Insurance_vs_Redistribution.html#the-role-of-wealth",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "The Role of Wealth",
-    "text": "The Role of Wealth\n\nAggregate wealth is crucial for risk sharing:\n\nMore wealth → more buffer-stock savings → more consumption smoothing\nModel calibrated to match U.S. wealth/income ratio = 3.1\n\nExperiment: Reduce wealth/income ratio from 3.1 to 1.5 - Result: Consumption inequality ↑ by 17% - Would need 36% (vs. 20%) reduction in shock variances to match data\n\n\nImplication: General equilibrium matters! The amount of self-insurance feasible depends critically on economy-wide wealth accumulation."
+    "text": "The Role of Wealth\n\nAggregate wealth is crucial for risk sharing:\n\nMore wealth → more buffer-stock savings → more consumption smoothing\nModel calibrated to match U.S. wealth/income ratio = 3.1\nExperiment: Reduce wealth/income ratio from 3.1 to 1.5\n\nResult: Consumption inequality ↑ by 17%\nWould need 36% (vs. 20%) reduction in shock variances to match data"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#insurance-vs.-redistribution-decomposition",
     "href": "lectures/2-Insurance_vs_Redistribution.html#insurance-vs.-redistribution-decomposition",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Insurance vs. Redistribution Decomposition",
-    "text": "Insurance vs. Redistribution Decomposition\nKey Welfare Question: Which matters more?\n\nFixed effects (\\(\\alpha_i\\)): Inequality determined at birth\nLife-cycle shocks (\\(z_{ih}, \\varepsilon_{ih}\\)): Shocks received during working years\n\n\nResults:\n\n\n\nType of Risk\nWelfare Cost (% of consumption)\n\n\n\n\nLife-cycle shocks\n27.4%\n\n\nFixed effects\n20.2%\n\n\n\n\n\nComparison with Keane & Wolpin (1997): - They found: 90% of lifetime utility variance from fixed effects - STY (2004): Only 47% from fixed effects"
+    "text": "Insurance vs. Redistribution Decomposition\nKey Welfare Question: Which matters more?\n\nFixed effects (\\(\\alpha_i\\)): Inequality determined at birth\nLife-cycle shocks (\\(z_{ih}, \\varepsilon_{ih}\\)): Shocks received during working years\n\n\nResults:\n\n\n\nType of Risk\nWelfare Cost (% of consumption)\n\n\n\n\nLife-cycle shocks\n27.4%\n\n\nFixed effects\n20.2%"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#policy-implications",
@@ -747,5 +747,54 @@
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Conclusion: What We Learned",
     "text": "Conclusion: What We Learned\n\n\nEmpirical: Earnings shocks are highly persistent (ρ ≈ 1)\n\nThis is necessary to match linear increase in inequality\n\nTheoretical: Incomplete markets model can quantitatively account for consumption inequality over life cycle\n\nKey ingredients: persistent shocks + calibrated wealth + social security\n\nNormative: Life-cycle uncertainty is at least as important as fixed heterogeneity\n\nChallenges the view that all inequality is predetermined\nSupports role for insurance mechanisms and financial markets\n\nMethodological: Age profiles of inequality are informative about risk sharing\n\nRising consumption inequality → imperfect insurance\nGeneral equilibrium + quantitative calibration crucial\n\n\n\n\n\n\n\nStoresletten, Kjetil, Christopher I. Telmer, and Amir Yaron. 2004. “Consumption and Risk Sharing over the Life Cycle.” Journal of Monetary Economics, no. 3: 609–33. https://doi.org/10.1016/j.jmoneco.2003.06.005."
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#the-model-household-problem",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#the-model-household-problem",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "The Model: Household Problem",
+    "text": "The Model: Household Problem\nRecursive Formulation:\nAgent of age \\(h\\) with asset holdings \\(a\\) and persistent shock \\(z\\) solves: \\[ V_h(a,z) = \\max_{c, a'} \\left\\{ u(c) + \\beta \\psi_h \\mathbb{E}[V_{h+1}(a',z')|z] \\right\\} \\]\nsubject to: \\[\\begin{aligned}\nc + a' &= (1+r)a + n_h(z) - T(n_h(z)) \\\\\na' &\\geq \\underline{a} \\quad \\text{(borrowing limit)} \\\\\nz' &= \\rho z + \\eta', \\quad \\eta' \\sim N(0,\\sigma^2_\\eta)\n\\end{aligned}\\]\n\n\n\\(\\psi_h\\): survival probability to age \\(h+1\\)\n\\(n_h(z) = \\exp(\\kappa_h + \\alpha + z + \\varepsilon)\\): labor earnings\n\\(T(\\cdot)\\): tax/transfer function (includes social security)"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#the-model-equilibrium",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#the-model-equilibrium",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "The Model: Equilibrium",
+    "text": "The Model: Equilibrium\nStationary Competitive Equilibrium consists of:\n\n\nValue and policy functions: \\(\\{V_h(a,z), c_h(a,z), a_{h+1}(a,z)\\}_{h=22}^{100}\\)\nDistribution: Stationary distribution \\(\\Phi(h,a,z,\\alpha)\\) over age, assets, persistent shock, and fixed effect\nPrices: Interest rate \\(r\\) and wage \\(w\\) satisfy: \\[\\begin{aligned}\nr &= f_K(K, L) - \\delta \\\\\nw &= f_L(K, L)\n\\end{aligned}\\] where \\(f(K,L) = K^\\theta L^{1-\\theta}\\) is aggregate production function\nMarket clearing: \\[K = \\int a \\, d\\Phi(h,a,z,\\alpha),\\ \\ L = \\int n_h(z) \\, d\\Phi(h,a,z,\\alpha)\\]\nGovernment budget balance: Social security system is self-financing"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-picturing-the-decomposition-1",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-picturing-the-decomposition-1",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: picturing the decomposition",
+    "text": "Example 1: picturing the decomposition\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRedistribution\n\n\ngain\n\n\nInsurance\n\n\ngain"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-step-1---total-welfare-gain",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-step-1---total-welfare-gain",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: Step 1 - Total welfare gain",
+    "text": "Example 1: Step 1 - Total welfare gain\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nC*\n\n\nTotal welfare gain"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-step-2---certainty-equivalents",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-step-2---certainty-equivalents",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: Step 2 - Certainty equivalents",
+    "text": "Example 1: Step 2 - Certainty equivalents\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nC̄\n\n\nC*"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-step-3---the-decomposition",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-step-3---the-decomposition",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: Step 3 - The decomposition",
+    "text": "Example 1: Step 3 - The decomposition\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nC̄\n\n\nC*\n\n\nRedistribution gain\n\n\nInsurance gain"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-step-3---letting-pi-increase",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-step-3---letting-pi-increase",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 1: Step 3 - Letting \\(\\pi\\) increase…",
+    "text": "Example 1: Step 3 - Letting \\(\\pi\\) increase…\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nC̄\n\n\nC*\n\n\nRedistribution gain\n\n\nInsurance gain"
   }
 ]

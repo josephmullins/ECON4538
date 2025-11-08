@@ -8,7 +8,7 @@ Materials here will be uploaded as we continue through the course.
 | ----- | ------ |
 | Syllabus | [Slides](lectures/Syllabus.qmd) |
 | Documenting Facts about Inequality | [Slides](lectures/1-DocumentingInequality.qmd) |
-| Policy Implications: Redistribution vs Insurance |  |
+| Policy Implications: Redistribution vs Insurance | [Slides](lectures/2-Insurance_vs_Redistribution.qmd)  |
 | Estimating Income Processes | |
 | Intergenerational Mobility | |
 | Theories of Human Capital | |
