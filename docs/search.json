@@ -494,7 +494,7 @@
     "href": "assignments.html",
     "title": "Assignments",
     "section": "",
-    "text": "All submissions should be made on Canvas in pdf or html format using a quarto or jupyter notebook that shows all code and output. Due dates are also provided on Canvas.\n\n\n\nAssignment\nNotebook\n\n\n\n\nAssignment 1\nlink"
+    "text": "All submissions should be made on Canvas in pdf or html format using a quarto or jupyter notebook that shows all code and output. Due dates are also provided on Canvas.\n\n\n\nAssignment\nNotebook\n\n\n\n\nAssignment 1\nlink\n\n\nAssignment 2\nlink"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#overview",
@@ -606,7 +606,7 @@
     "href": "recitations/recitation-2.html#model",
     "title": "Recitation 2",
     "section": "Model",
-    "text": "Model\nLet’s assume that individuals live for \\(T\\) periods. They face an income process that follows:\n\\[ \\log(y_{it}) = \\mu_{t} + \\varepsilon_{it} \\]\nwhere\n\\[ \\varepsilon_{it} = \\rho \\varepsilon_{it-1} + \\zeta_{it},\\ \\zeta_{it} \\sim \\mathcal{N}(0,\\sigma^2_{\\zeta}).\\]\nWe assume a single risk-free asset with a rate of return \\(r\\), so that the model can be phrased recursively:\n\\[ V_{t}(a,y) = \\max_{a^\\prime}\\left\\{u(y + a - (1+r)^{-1}a^\\prime) + \\beta \\mathbb{E}_{y'}V_{t+1}(a',y') \\right\\} \\]\nwith \\(V_{T+1}=0\\).\nWe assume that utility \\(u\\) is of the CRRA type, so we can write the function as:\n\nutility(c,σ) = c^(1 - σ) / (1 - σ)\n\nutility (generic function with 1 method)\n\n\nNote that \\(\\mu_{t}\\) is the mean of log income and can evolve with the age \\(t\\) of the agent, but this life-cycle profile in wages is known. \\(\\varepsilon\\) is the unknown component of income and the source of risk in the model."
+    "text": "Model\nLet’s assume that individuals live for \\(T\\) periods. They face an income process that follows:\n\\[ \\log(y_{it}) = \\mu_{t} + \\varepsilon_{it} \\]\nwhere\n\\[ \\varepsilon_{it} = \\rho \\varepsilon_{it-1} + \\zeta_{it},\\ \\zeta_{it} \\sim \\mathcal{N}(0,\\sigma^2_{\\zeta}).\\]\nWe assume a single risk-free asset with a rate of return \\(r\\), so that the model can be phrased recursively:\n\\[ V_{t}(a,y) = \\max_{a^\\prime}\\left\\{u(y + a - (1+r)^{-1}a^\\prime) + \\beta \\mathbb{E}_{y'}V_{t+1}(a',y') \\right\\} \\]\nwith \\(V_{T}=0\\).\nWe assume that utility \\(u\\) is of the CRRA type, so we can write the function as:\n\nutility(c,σ) = c^(1 - σ) / (1 - σ)\n\nutility (generic function with 1 method)\n\n\nNote that \\(\\mu_{t}\\) is the mean of log income and can evolve with the age \\(t\\) of the agent, but this life-cycle profile in wages is known. \\(\\varepsilon\\) is the unknown component of income and the source of risk in the model."
   },
   {
     "objectID": "recitations/recitation-2.html#solving-the-model",
@@ -796,5 +796,12 @@
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Example 1: Step 3 - Letting \\(\\pi\\) increase…",
     "text": "Example 1: Step 3 - Letting \\(\\pi\\) increase…\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nC̄\n\n\nC*\n\n\nRedistribution gain\n\n\nInsurance gain"
+  },
+  {
+    "objectID": "assignments/assignment-2.html",
+    "href": "assignments/assignment-2.html",
+    "title": "Assignment 2",
+    "section": "",
+    "text": "Using the same model outlined in recitation 2 and recitation 3, solve two versions of the model with \\(\\rho = 0.95\\) and \\(\\rho=0.1\\), keeping all other parameters the same as in those recitations.\nGiven agents live for \\(T\\) periods, note that for a guaranteed consumption level \\(\\bar{c}\\), we have: \\[ \\mathcal{V}(\\bar{c}) = \\sum_{t=0}^{T}\\beta^{t}u(\\bar{c}) = \\frac{1-\\beta^{T}}{1-\\beta}u(\\bar{c}).\\] Given this, show that: \\[ \\bar{c}(y) = \\left[(1-\\sigma)\\frac{1-\\beta}{1-\\beta^{T}}V(0,y)\\right]^{1/(1-\\sigma)} \\] is the consumption equivalent that, if delivered with certainty in every period, would achieve the same value as \\(V(0,y)\\).\nAssume that the government now levies a 10% proportional income tax that it then redistributes as a lump sum. Thus, net income for an agent is \\[ \\tilde{y} = 0.9 \\times y + 0.1\\times\\mathbb{E}[y] \\] where \\(\\mathbb{E}[y] = \\sum_{y}\\pi^*(y)y\\) and \\(\\pi^*\\) is the stationary distribution of the transition matrix \\(\\Pi\\).\nDefine \\[W^{r} = \\sum_{y}\\pi^*(y)V^{r}(0,y) = \\mathbb{E}[V^{r}(0,y)]\\] to be utilitarian welfare under regime \\(r\\in\\{A,B\\}\\) where regime \\(A\\) is the laissez-faire economy and regime \\(B\\) is the economy with taxes and transfers. For both models, calculate the following decomposition: \\[\\begin{align}\n\\frac{W^{B}}{W^{A}} &= \\frac{\\frac{W^{B}}{\\mathcal{V}(\\bar{C}^{B})}}{\\frac{W^{A}}{\\mathcal{V}(\\bar{C}^{A})}} \\times \\frac{\\frac{\\mathcal{V}(\\bar{C}^{B})}{\\mathcal{V}(C)}}{\\frac{\\mathcal{V}(\\bar{C}^{A})}{\\mathcal{V}(C)}} \\\\\n&= \\textrm{gain from redistribution}\\times\\text{gain from insurance}\n\\end{align}\n\\] where \\(C = \\mathbb{E}[y] = \\sum \\pi^*(y)y\\) and \\(\\bar{C}^{r} = \\sum_{y}\\pi^*(y)\\bar{c}^{r}(y)\\) is the average consumption equivalent for regime \\(r\\in\\{A,B\\}\\).\nComment on the difference in this decomposition for \\(\\rho=0.95\\) vs \\(\\rho=0.1\\). Can you give some intuition for the difference? (extra credit )"
   }
 ]

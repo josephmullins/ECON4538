@@ -1,0 +1,28 @@
+---
+title: "Assignment 2"
+bibliography: ../reading_list.bib
+---
+
+1. Using the same model outlined in [recitation 2](../recitations/recitation-2.qmd) and [recitation 3](../recitation-3.qmd), solve two versions of the model with $\rho = 0.95$ and $\rho=0.1$, keeping all other parameters the same as in those recitations.
+
+2. Given agents live for $T$ periods, note that for a guaranteed consumption level $\bar{c}$, we have:
+$$ \mathcal{V}(\bar{c}) = \sum_{t=0}^{T}\beta^{t}u(\bar{c}) = \frac{1-\beta^{T}}{1-\beta}u(\bar{c}).$$
+Given this, show that:
+$$ \bar{c}(y) = \left[(1-\sigma)\frac{1-\beta}{1-\beta^{T}}V(0,y)\right]^{1/(1-\sigma)} $$
+is the consumption equivalent that, if delivered with certainty in every period, would achieve the same value as $V(0,y)$.
+
+3. Assume that the government now levies a 10\% proportional income tax that it then redistributes as a lump sum. Thus, net income for an agent is
+$$ \tilde{y} = 0.9 \times y + 0.1\times\mathbb{E}[y] $$
+where $\mathbb{E}[y] = \sum_{y}\pi^*(y)y$ and $\pi^*$ is the stationary distribution of the transition matrix $\Pi$.
+
+4. Define 
+$$W^{r} = \sum_{y}\pi^*(y)V^{r}(0,y) = \mathbb{E}[V^{r}(0,y)]$$
+to be utilitarian welfare under regime $r\in\{A,B\}$ where regime $A$ is the laissez-faire economy and regime $B$ is the economy with taxes and transfers. For both models, calculate the following decomposition:
+$$\begin{align}
+\frac{W^{B}}{W^{A}} &= \frac{\frac{W^{B}}{\mathcal{V}(\bar{C}^{B})}}{\frac{W^{A}}{\mathcal{V}(\bar{C}^{A})}} \times \frac{\frac{\mathcal{V}(\bar{C}^{B})}{\mathcal{V}(C)}}{\frac{\mathcal{V}(\bar{C}^{A})}{\mathcal{V}(C)}} \\
+&= \textrm{gain from redistribution}\times\text{gain from insurance}
+\end{align}
+$$
+where $C = \mathbb{E}[y] = \sum \pi^*(y)y$ and $\bar{C}^{r} = \sum_{y}\pi^*(y)\bar{c}^{r}(y)$ is the average consumption equivalent for regime $r\in\{A,B\}$.
+
+5. Comment on the difference in this decomposition for $\rho=0.95$ vs $\rho=0.1$. Can you give some intuition for the difference? (**extra credit** )

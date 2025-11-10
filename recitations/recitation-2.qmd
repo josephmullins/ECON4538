@@ -25,7 +25,7 @@ We assume a single risk-free asset with a rate of return $r$, so that the model 
 
 $$ V_{t}(a,y) = \max_{a^\prime}\left\{u(y + a - (1+r)^{-1}a^\prime) + \beta \mathbb{E}_{y'}V_{t+1}(a',y') \right\} $$
 
-with $V_{T+1}=0$.
+with $V_{T}=0$.
 
 We assume that utility $u$ is of the CRRA type, so we can write the function as:
 
