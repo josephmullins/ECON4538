@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>recitation-3 – ECON4538</title>
+<title>Recitation 3 – ECON4538</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,10 +20,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -66,7 +100,39 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -115,17 +181,378 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#extending-the-welfare-decomposition-from-class" id="toc-extending-the-welfare-decomposition-from-class" class="nav-link active" data-scroll-target="#extending-the-welfare-decomposition-from-class">Extending the welfare decomposition from class</a>
+  <ul class="collapse">
+  <li><a href="#setup-and-definitions" id="toc-setup-and-definitions" class="nav-link" data-scroll-target="#setup-and-definitions">Setup and definitions</a></li>
+  <li><a href="#the-decomposition" id="toc-the-decomposition" class="nav-link" data-scroll-target="#the-decomposition">The decomposition</a></li>
+  </ul></li>
+  <li><a href="#adding-taxes-and-transfers-to-the-model" id="toc-adding-taxes-and-transfers-to-the-model" class="nav-link" data-scroll-target="#adding-taxes-and-transfers-to-the-model">Adding taxes and transfers to the model</a></li>
+  <li><a href="#welfare-decompositions-in-the-model" id="toc-welfare-decompositions-in-the-model" class="nav-link" data-scroll-target="#welfare-decompositions-in-the-model">Welfare decompositions in the model</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Recitation 3</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<div id="f15d74e9" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span>, <span class="bu">Plots</span>, <span class="bu">Distributions</span>, <span class="bu">Random</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="extending-the-welfare-decomposition-from-class" class="level1">
+<h1>Extending the welfare decomposition from class</h1>
+<p>In class we studied a decomposition of the gain in utilitarian welfare from moving to a laissez-faire economy to one with perfect reallocation (i.e.&nbsp;where everybody receives the same allocation).</p>
+<p>Let’s now consider a decomposition of the welfare differences between two general policy regimes, where neither necessarily provides perfect insurance. First, some definitions…</p>
+<section id="setup-and-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="setup-and-definitions">Setup and definitions</h2>
+<p>Let there be a unit measure of agents in the economy, indexed by <span class="math inline">\(i\in[0,1]\)</span>. As before, assume that agents rank probabilistic sequences of consumption according to:</p>
+<p><span class="math display">\[ V^{r}_{i} = \mathbb{E}\left[\sum_{t=0}^{T-1}\beta^{t}u(c^{r}_{i,t})\right]\]</span></p>
+<p>where <span class="math inline">\(\{c^{r}_{i,t}\}_{t=0}^{T-1}\)</span> is the sequence of consumption that agent <span class="math inline">\(i\)</span> enjoys under regime <span class="math inline">\(r\in\{A,B\}\)</span>.</p>
+<p>Let <span class="math inline">\(\bar{c}^{r}_{i}\)</span> be the <em>certainty equivalent</em> that solves: <span class="math display">\[ \sum_{t=0}^{T-1}\beta^{t}u(\bar{c}^{r}_{i}) = V^{r}_{i}\]</span> for <span class="math inline">\(r\in\{A,B\}\)</span>. We know that: <span class="math display">\[\sum_{t=0}^{T-1}u(\bar{c}^{r}_{i}) = \frac{(1-\beta^{T})}{1-\beta}\beta^{t}u(\bar{c}^{r}_{i}) = \mathcal{V}(\bar{c}^{r}_{i})\]</span> Finally, define <span class="math inline">\(C=\int y_{i,t}di = \int c_{i,t}di\)</span> as aggregate or average consumption in the economy. In both regimes we assume that the resource constraint always holds and there is no aggregate uncertainty. Just as in our lecture, we can define the aggregate certainty equivalent as: <span class="math display">\[ \bar{C}^{r} = \int \bar{c}^{r}_{i}di.\]</span></p>
+<p>Note that by definition, we have: <span class="math display">\[ W^{r} = \int V^{r}_{i}di = \int \mathcal{V}(\bar{c}^{r}_{i})di \]</span></p>
+</section>
+<section id="the-decomposition" class="level2">
+<h2 class="anchored" data-anchor-id="the-decomposition">The decomposition</h2>
+<p>Note that now we can write:</p>
+<p><span class="math display">\[ W^{r} = \mathcal{V}(C^{r}) \times \frac{\mathcal{V}(\bar{C}^{r})}{\mathcal{V}(C^{r})} \times \frac{\int \mathcal{V}(\bar{c}^{r}_{i})di}{\mathcal{V}(\bar{C}^{r})}\]</span> The first term here is the value obtained if we implemented perfect insurance (everyone gets the same consumption in all periods). The second term is the discount on this perfect insurance when everyone is given the average certainty equivalent, and the third term is the further discount coming from inequality in the allocations of certainty equivalents. You can think of the second and third terms as being “costs” relative to a benchmark. The second term is the cost of imperfect insurance in the model relative to a “perfect insurance” benchmark. The third term is the cost of inequality, stemming from differences in the distribution from the mean certainty equivalent. Welfare is therefore the product of an aggregate component, an insurance component, and a redistribution component.</p>
+<p>Since aggregate income and consumption are unchanged by the policies we consider, the first term cancels out when we decompose the welfare changes when moving from regime <span class="math inline">\(A\)</span> to regime <span class="math inline">\(B\)</span> as:</p>
+<p><span class="math display">\[ \frac{W^{B}}{W^{A}} = \frac{\frac{\mathcal{V}(\bar{C}^{B})}{\mathcal{V}(C^{B})}}{\frac{\mathcal{V}(\bar{C}^{A})}{\mathcal{V}(C^{A})}} \times \frac{\frac{\int \mathcal{V}(\bar{c}^{A}_{i})di}{\mathcal{V}(\bar{C}^{A})}}{\frac{\int \mathcal{V}(\bar{c}^{A}_{i})di}{\mathcal{V}(\bar{C}^{A})}}  \]</span></p>
+<p>We can convert these terms into consumption equivalent measures using the formula from <a href="../recitations/recitation-2.html">recitation 2</a>: <span class="math display">\[
+\begin{eqnarray}
+1 + \omega = \left[\frac{W^{B}}{W^{A}}\right]^{1/(1-\sigma)} \\
+1+\gamma = \left[\frac{\frac{\mathcal{V}(\bar{C}^{B})}{\mathcal{V}(C^{B})}}{\frac{\mathcal{V}(\bar{C}^{A})}{\mathcal{V}(C^{A})}}\right]^{1/(1-\sigma)} \\
+1 + \alpha = \left[\frac{\frac{\int \mathcal{V}(\bar{c}^{A}_{i})di}{\mathcal{V}(\bar{C}^{A})}}{\frac{\int \mathcal{V}(\bar{c}^{A}_{i})di}{\mathcal{V}(\bar{C}^{A})}}\right]^{1/(1-\sigma)}
+\end{eqnarray}
+\]</span> with <span class="math inline">\(1+\omega = (1+\gamma)(1+\alpha)\)</span> being the <em>final</em> decomposition.</p>
+<p>The <span class="math inline">\(\gamma\)</span> term here is the welfare effect of changes in insurance, the <span class="math inline">\(\alpha\)</span> is represents changes in inequality in certainty equivalents (e.g.&nbsp;redistribution).</p>
+</section>
+</section>
+<section id="adding-taxes-and-transfers-to-the-model" class="level1">
+<h1>Adding taxes and transfers to the model</h1>
+<p>In recitation 2 we wrote down code to solve the life-cycle savings model. Below we’ll show how to extend the code to allow for a generic system of taxes and transfers.</p>
+<div id="ca56bde2" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># utility</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">utility</span>(c,σ) <span class="op">=</span> c<span class="op">^</span>(<span class="fl">1</span> <span class="op">-</span> σ) <span class="op">/</span> (<span class="fl">1</span> <span class="op">-</span> σ)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># tauchen method</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">tauchen</span>(N, ρ, σ)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Unconditional standard deviation of the process</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    σ_y <span class="op">=</span> σ <span class="op">/</span> <span class="fu">sqrt</span>(<span class="fl">1</span> <span class="op">-</span> ρ<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the grid</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    y_max <span class="op">=</span> <span class="fl">3</span>. <span class="op">*</span> σ_y</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    y_min <span class="op">=</span> <span class="op">-</span> <span class="fl">3</span>. <span class="op">*</span> σ_y</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> <span class="fu">range</span>(y_min, y_max, length<span class="op">=</span>N)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step size</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    step <span class="op">=</span> (y_max <span class="op">-</span> y_min) <span class="op">/</span> (N <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize transition matrix</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    Π <span class="op">=</span> <span class="fu">zeros</span>(N, N)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Standard normal distribution</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill in the transition matrix</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>N</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>N</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> j <span class="op">==</span> <span class="fl">1</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Probability of transitioning to the lowest state</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                Π[j, i] <span class="op">=</span> <span class="fu">cdf</span>(d, (grid[j] <span class="op">-</span> ρ <span class="op">*</span> grid[i] <span class="op">+</span> step<span class="op">/</span><span class="fl">2</span>) <span class="op">/</span> σ)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elseif</span> j <span class="op">==</span> N</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Probability of transitioning to the highest state</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                Π[j, i] <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu">cdf</span>(d, (grid[j] <span class="op">-</span> ρ <span class="op">*</span> grid[i] <span class="op">-</span> step<span class="op">/</span><span class="fl">2</span>) <span class="op">/</span> σ)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Probability of transitioning to intermediate states</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                Π[j, i] <span class="op">=</span> <span class="fu">cdf</span>(d, (grid[j] <span class="op">-</span> ρ <span class="op">*</span> grid[i] <span class="op">+</span> step<span class="op">/</span><span class="fl">2</span>) <span class="op">/</span> σ) <span class="op">-</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">cdf</span>(d, (grid[j] <span class="op">-</span> ρ <span class="op">*</span> grid[i] <span class="op">-</span> step<span class="op">/</span><span class="fl">2</span>) <span class="op">/</span> σ)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">collect</span>(grid), Π</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate the value function</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">iterate_value_function!</span>(p,V,A,t)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ai <span class="kw">in</span> <span class="fu">axes</span>(V,<span class="fl">2</span>), yi <span class="kw">in</span> <span class="fu">axes</span>(V,<span class="fl">1</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        v,a_next <span class="op">=</span> <span class="fu">solve_value</span>(ai,yi,V,p,t)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        V[yi,ai,t] <span class="op">=</span> v</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        A[yi,ai,t] <span class="op">=</span> a_next</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="co"># solve the model</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">solve_model</span>(p)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    (;T,Π,asset_grid) <span class="op">=</span> p</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    K_a <span class="op">=</span> <span class="fu">length</span>(asset_grid)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    K_y <span class="op">=</span> <span class="fu">size</span>(Π,<span class="fl">1</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="fu">zeros</span>(K_y,K_a,T<span class="op">+</span><span class="fl">1</span>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> <span class="fu">zeros</span>(K_y,K_a,T)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="fu">reverse</span>(<span class="fl">1</span><span class="op">:</span>T)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="fu">iterate_value_function!</span>(p,V,A,t)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (;V,A)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>solve_model (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>The block above includes everything except the function <code>solve_value</code> which we are going to edit slightly:</p>
+<div id="cafe7f11" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">solve_value</span>(ai,yi,V,p,t)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># note here we assume that p contains a *function*</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># called net_income</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    (;σ,β,Π,r,asset_grid,income_grid,net_income) <span class="op">=</span> p</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> asset_grid[ai]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">exp</span>(income_grid[yi,t])</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    y_net <span class="op">=</span> <span class="fu">net_income</span>(y)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    vmax <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    amax <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ai_next <span class="kw">in</span> <span class="fu">eachindex</span>(asset_grid)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        a_next <span class="op">=</span> asset_grid[ai_next]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># now we include net income in the budget constraint</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># instead of just income</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> y_net <span class="op">+</span> a <span class="op">-</span> a_next<span class="op">/</span>(<span class="fl">1</span><span class="op">+</span>r)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> c<span class="op">&gt;</span><span class="fl">0</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            <span class="pp">@views</span> v <span class="op">=</span> <span class="fu">utility</span>(c,σ) <span class="op">+</span> <span class="fu">β*dot</span>(Π[<span class="op">:</span>,yi],V[<span class="op">:</span>,ai_next,t<span class="op">+</span><span class="fl">1</span>])</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> v<span class="op">&gt;</span>vmax</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                vmax <span class="op">=</span> v</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                amax <span class="op">=</span> a_next</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> vmax,amax</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<pre><code>solve_value (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>Now let’s consider a couple of different versions of the net income function.</p>
+<div id="160e2fc9" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">no_tax</span>(x) <span class="op">=</span> x</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">progressive_tax</span>(x,λ,τ) <span class="op">=</span> λ <span class="op">*</span> x<span class="op">^</span>(<span class="fl">1</span><span class="op">-</span>τ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>progressive_tax (generic function with 1 method)</code></pre>
+</div>
+</div>
+<div id="b377ecca" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>μ <span class="op">=</span> <span class="fu">log</span>(<span class="fl">10</span>.) <span class="co">#</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>egrid,Π <span class="op">=</span> <span class="fu">tauchen</span>(<span class="fl">5</span>,<span class="fl">0.9</span>,<span class="fl">0.1</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">60</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>income_grid <span class="op">=</span> [μ<span class="op">+</span>egrid[i] for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, t <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>T]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> (;</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    T,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    asset_grid <span class="op">=</span> <span class="fu">LinRange</span>(<span class="fl">0</span>,<span class="fl">100</span>,<span class="fl">100</span>),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    income_grid,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    β <span class="op">=</span> <span class="fl">0.96</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> <span class="fl">0.04</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    Π,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    σ <span class="op">=</span> <span class="fl">2</span>.,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    net_income <span class="op">=</span> no_tax</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>(T = 60, asset_grid = LinRange{Float64}(0.0, 100.0, 100), income_grid = [1.6143378913823603 1.6143378913823603 … 1.6143378913823603 1.6143378913823603; 1.958461492188203 1.958461492188203 … 1.958461492188203 1.958461492188203; … ; 2.6467086937998885 2.6467086937998885 … 2.6467086937998885 2.6467086937998885; 2.9908322946057315 2.9908322946057315 … 2.9908322946057315 2.9908322946057315], β = 0.96, r = 0.04, Π = [0.8490507777857361 0.019473727871012682 … 7.346962855655732e-17 3.459030953951809e-30; 0.15094537665867624 0.8961919626850798 … 7.260018586910001e-7 1.237828285826989e-15; … ; 1.2212453270876722e-15 7.260018586308092e-7 … 0.8961919626850798 0.15094537665867622; 0.0 1.1102230246251565e-16 … 0.019473727871012647 0.8490507777857361], σ = 2.0, net_income = Main.no_tax)</code></pre>
+</div>
+</div>
+<p>How could we insure that the progressive tax is self financing. For a given value of <span class="math inline">\(\tau\)</span>, we can pick <span class="math inline">\(\lambda\)</span> to insure that average allocation is equal to average income.</p>
+<p>The code below solves for the steady state of <span class="math inline">\(\Pi\)</span> and calculates the <span class="math inline">\(\lambda\)</span> that obeys the resource constraint given <span class="math inline">\(\tau\)</span>. Note that this code works under two assumptions: 1. <span class="math inline">\(\mu\)</span> is constant over time <span class="math inline">\(t\)</span>; and 2. The initial draw of <span class="math inline">\(y\)</span> is taken from the stationary distribution of <span class="math inline">\(Pi\)</span>, <span class="math inline">\(\pi^*\)</span>.</p>
+<div id="677ca372" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">solve_steady_state</span>(Π)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> <span class="fu">size</span>(Π,<span class="fl">2</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    vals,<span class="cn">e</span> <span class="op">=</span> <span class="fu">eigen</span>(Π)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cn">e</span>[<span class="op">:</span>,K] <span class="op">./</span> <span class="fu">sum</span>(<span class="cn">e</span>[<span class="op">:</span>,K])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">solve_lambda</span>(τ,ygrid,pi_star)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">dot</span>(pi_star,ygrid) <span class="op">/</span> <span class="fu">dot</span>(pi_star,ygrid<span class="op">.^</span>(<span class="fl">1</span><span class="op">-</span>τ))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># choose progressivity</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>τ <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># solve for the stationary distribution</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>pi_star <span class="op">=</span> <span class="fu">solve_steady_state</span>(p.Π)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># solve for λ</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>λ <span class="op">=</span> <span class="fu">solve_lambda</span>(τ,<span class="fu">exp</span>.(income_grid[<span class="op">:</span>,<span class="fl">1</span>]),pi_star)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>1.609215811830619</code></pre>
+</div>
+</div>
+<p>Now we can try solving the model and comparing values with and without this tax system.</p>
+<div id="90a83795" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p_new <span class="op">=</span> (;p<span class="op">...</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    net_income <span class="op">=</span> <span class="fu">x-&gt;progressive_tax</span>(x,λ,τ))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>model0 <span class="op">=</span> <span class="fu">solve_model</span>(p)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> <span class="fu">solve_model</span>(p_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>(V = [-2.8970433853108877 -2.8719098083581533 … -1.8327225997806071 -1.8262987785529843; -2.577825563879466 -2.562801391635644 … -1.7200666866997452 -1.7144214778974503; … ; -2.0180551867075205 -2.010042681609904 … -1.4666346248250024 -1.4630148506300025; -1.7962629536669037 -1.790046470952043 … -1.3597998404409315 -1.3574971106909983;;; -2.888006117006586 -2.8628725400538517 … -1.8240608141892312 -1.8176445215563826; -2.5688519532970133 -2.553827781053191 … -1.7115904017194379 -1.7059566662324532; … ; -2.009393025257008 -2.0013873649791973 … -1.458617883491992 -1.4549981092969921; -1.7878740818036154 -1.7816646610437874 … -1.351900929632603 -1.3495981998826698;;; -2.878581913746237 -2.8534483367935026 … -1.8150328587185849 -1.808625636917447; -2.5594965260651024 -2.54447235382128 … -1.7027669920559854 -1.6971457042378382; … ; -2.000369643345232 -1.9923708918896357 … -1.4502829467193898 -1.44666317252439; -1.7791391682415267 -1.7729381941502738 … -1.343691904663239 -1.3413891749133058;;; … ;;; -0.3288261716415033 -0.30369259468876897 … -0.03471923351759988 -0.034405975480526194; -0.2524571937436677 -0.23743302149984546 … -0.033645785900546274 -0.03335203868198199; … ; -0.14816459131578882 -0.14264967394746536 … -0.03075235757894875 -0.030507273218147314; -0.11391459114089261 -0.11051722114972218 … -0.028933158407831616 -0.028714589330838626;;; -0.17080763451751002 -0.14567405756477575 … -0.009537940369700832 -0.009446926009143073; -0.1297019464184472 -0.11467777417462498 … -0.009372081459134866 -0.009284190359807362; … ; -0.07478679537685477 -0.06953403981393476 … -0.008899865910518074 -0.008820571062327257; -0.05678898928713759 -0.05370814936881667 … -0.008576406833759978 -0.008502747218256553;;; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0; … ; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0], A = [0.0 0.0 … 95.95959595959596 96.96969696969697; 0.0 0.0 … 96.96969696969697 97.97979797979798; … ; 2.0202020202020203 3.0303030303030303 … 100.0 100.0; 5.05050505050505 6.0606060606060606 … 100.0 100.0;;; 0.0 0.0 … 95.95959595959596 96.96969696969697; 0.0 0.0 … 96.96969696969697 97.97979797979798; … ; 2.0202020202020203 3.0303030303030303 … 100.0 100.0; 5.05050505050505 6.0606060606060606 … 100.0 100.0;;; 0.0 0.0 … 95.95959595959596 96.96969696969697; 0.0 0.0 … 96.96969696969697 97.97979797979798; … ; 2.0202020202020203 3.0303030303030303 … 100.0 100.0; 5.05050505050505 6.0606060606060606 … 100.0 100.0;;; … ;;; 0.0 0.0 … 66.66666666666666 67.67676767676768; 0.0 0.0 … 67.67676767676768 67.67676767676768; … ; 0.0 1.0101010101010102 … 67.67676767676768 67.67676767676768; 1.0101010101010102 1.0101010101010102 … 67.67676767676768 68.68686868686868;;; 0.0 0.0 … 50.505050505050505 50.505050505050505; 0.0 0.0 … 50.505050505050505 50.505050505050505; … ; 0.0 1.0101010101010102 … 50.505050505050505 51.515151515151516; 0.0 1.0101010101010102 … 50.505050505050505 51.515151515151516;;; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0; … ; 0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0])</code></pre>
+</div>
+</div>
+<div id="c40db7a6" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model0.V[<span class="op">:</span>,<span class="fl">1</span>,<span class="fl">1</span>])</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(model1.V[<span class="op">:</span>,<span class="fl">1</span>,<span class="fl">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<!--?xml version="1.0" encoding="utf-8"?-->
+<svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="672" height="480" viewbox="0 0 2688 1920">
+<defs>
+  <clippath id="clip440">
+    <rect x="0" y="0" width="2688" height="1920"></rect>
+  </clippath>
+</defs>
+<path clip-path="url(#clip440)" d="M0 1920 L2688 1920 L2688 -4.26326e-14 L0 -4.26326e-14  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
+<defs>
+  <clippath id="clip441">
+    <rect x="537" y="0" width="1883" height="1883"></rect>
+  </clippath>
+</defs>
+<path clip-path="url(#clip440)" d="M197.302 1800.78 L2640.76 1800.78 L2640.76 47.2441 L197.302 47.2441  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
+<defs>
+  <clippath id="clip442">
+    <rect x="197" y="47" width="2444" height="1755"></rect>
+  </clippath>
+</defs>
+<polyline clip-path="url(#clip442)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="266.456,1800.78 266.456,47.2441 "></polyline>
+<polyline clip-path="url(#clip442)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="842.743,1800.78 842.743,47.2441 "></polyline>
+<polyline clip-path="url(#clip442)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1419.03,1800.78 1419.03,47.2441 "></polyline>
+<polyline clip-path="url(#clip442)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1995.32,1800.78 1995.32,47.2441 "></polyline>
+<polyline clip-path="url(#clip442)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2571.6,1800.78 2571.6,47.2441 "></polyline>
+<polyline clip-path="url(#clip442)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="197.302,1564.92 2640.76,1564.92 "></polyline>
+<polyline clip-path="url(#clip442)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="197.302,1221.39 2640.76,1221.39 "></polyline>
+<polyline clip-path="url(#clip442)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="197.302,877.85 2640.76,877.85 "></polyline>
+<polyline clip-path="url(#clip442)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="197.302,534.314 2640.76,534.314 "></polyline>
+<polyline clip-path="url(#clip442)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="197.302,190.779 2640.76,190.779 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="197.302,1800.78 2640.76,1800.78 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="266.456,1800.78 266.456,1781.88 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="842.743,1800.78 842.743,1781.88 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1419.03,1800.78 1419.03,1781.88 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1995.32,1800.78 1995.32,1781.88 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2571.6,1800.78 2571.6,1781.88 "></polyline>
+<path clip-path="url(#clip440)" d="M256.838 1861.55 L264.477 1861.55 L264.477 1835.18 L256.167 1836.85 L256.167 1832.59 L264.431 1830.92 L269.107 1830.92 L269.107 1861.55 L276.746 1861.55 L276.746 1865.48 L256.838 1865.48 L256.838 1861.55 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M837.396 1861.55 L853.715 1861.55 L853.715 1865.48 L831.771 1865.48 L831.771 1861.55 Q834.433 1858.79 839.016 1854.16 Q843.622 1849.51 844.803 1848.17 Q847.048 1845.65 847.928 1843.91 Q848.831 1842.15 848.831 1840.46 Q848.831 1837.71 846.886 1835.97 Q844.965 1834.23 841.863 1834.23 Q839.664 1834.23 837.21 1835 Q834.78 1835.76 832.002 1837.31 L832.002 1832.59 Q834.826 1831.46 837.28 1830.88 Q839.733 1830.3 841.771 1830.3 Q847.141 1830.3 850.335 1832.98 Q853.53 1835.67 853.53 1840.16 Q853.53 1842.29 852.72 1844.21 Q851.932 1846.11 849.826 1848.7 Q849.247 1849.37 846.145 1852.59 Q843.044 1855.78 837.396 1861.55 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M1423.28 1846.85 Q1426.63 1847.57 1428.51 1849.84 Q1430.41 1852.1 1430.41 1855.44 Q1430.41 1860.55 1426.89 1863.35 Q1423.37 1866.15 1416.89 1866.15 Q1414.71 1866.15 1412.4 1865.71 Q1410.11 1865.3 1407.65 1864.44 L1407.65 1859.93 Q1409.6 1861.06 1411.91 1861.64 Q1414.23 1862.22 1416.75 1862.22 Q1421.15 1862.22 1423.44 1860.48 Q1425.75 1858.75 1425.75 1855.44 Q1425.75 1852.38 1423.6 1850.67 Q1421.47 1848.93 1417.65 1848.93 L1413.62 1848.93 L1413.62 1845.09 L1417.84 1845.09 Q1421.29 1845.09 1423.11 1843.72 Q1424.94 1842.34 1424.94 1839.74 Q1424.94 1837.08 1423.05 1835.67 Q1421.17 1834.23 1417.65 1834.23 Q1415.73 1834.23 1413.53 1834.65 Q1411.33 1835.07 1408.69 1835.95 L1408.69 1831.78 Q1411.36 1831.04 1413.67 1830.67 Q1416.01 1830.3 1418.07 1830.3 Q1423.39 1830.3 1426.49 1832.73 Q1429.6 1835.14 1429.6 1839.26 Q1429.6 1842.13 1427.95 1844.12 Q1426.31 1846.09 1423.28 1846.85 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M1998.32 1835 L1986.52 1853.45 L1998.32 1853.45 L1998.32 1835 M1997.1 1830.92 L2002.98 1830.92 L2002.98 1853.45 L2007.91 1853.45 L2007.91 1857.34 L2002.98 1857.34 L2002.98 1865.48 L1998.32 1865.48 L1998.32 1857.34 L1982.72 1857.34 L1982.72 1852.82 L1997.1 1830.92 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M2561.88 1830.92 L2580.24 1830.92 L2580.24 1834.86 L2566.16 1834.86 L2566.16 1843.33 Q2567.18 1842.98 2568.2 1842.82 Q2569.22 1842.64 2570.24 1842.64 Q2576.02 1842.64 2579.4 1845.81 Q2582.78 1848.98 2582.78 1854.4 Q2582.78 1859.97 2579.31 1863.08 Q2575.84 1866.15 2569.52 1866.15 Q2567.34 1866.15 2565.07 1865.78 Q2562.83 1865.41 2560.42 1864.67 L2560.42 1859.97 Q2562.5 1861.11 2564.73 1861.66 Q2566.95 1862.22 2569.43 1862.22 Q2573.43 1862.22 2575.77 1860.11 Q2578.11 1858.01 2578.11 1854.4 Q2578.11 1850.78 2575.77 1848.68 Q2573.43 1846.57 2569.43 1846.57 Q2567.55 1846.57 2565.68 1846.99 Q2563.82 1847.4 2561.88 1848.28 L2561.88 1830.92 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="197.302,1800.78 197.302,47.2441 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="197.302,1564.92 216.2,1564.92 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="197.302,1221.39 216.2,1221.39 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="197.302,877.85 216.2,877.85 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="197.302,534.314 216.2,534.314 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="197.302,190.779 216.2,190.779 "></polyline>
+<path clip-path="url(#clip440)" d="M50.0382 1565.37 L79.714 1565.37 L79.714 1569.31 L50.0382 1569.31 L50.0382 1565.37 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M103.973 1563.57 Q107.33 1564.28 109.205 1566.55 Q111.103 1568.82 111.103 1572.15 Q111.103 1577.27 107.584 1580.07 Q104.066 1582.87 97.5843 1582.87 Q95.4084 1582.87 93.0936 1582.43 Q90.8019 1582.02 88.3482 1581.16 L88.3482 1576.65 Q90.2926 1577.78 92.6075 1578.36 Q94.9223 1578.94 97.4454 1578.94 Q101.844 1578.94 104.135 1577.2 Q106.45 1575.47 106.45 1572.15 Q106.45 1569.1 104.297 1567.39 Q102.168 1565.65 98.3482 1565.65 L94.3204 1565.65 L94.3204 1561.81 L98.5333 1561.81 Q101.982 1561.81 103.811 1560.44 Q105.64 1559.05 105.64 1556.46 Q105.64 1553.8 103.742 1552.39 Q101.867 1550.95 98.3482 1550.95 Q96.4269 1550.95 94.2278 1551.37 Q92.0288 1551.78 89.3899 1552.66 L89.3899 1548.5 Q92.0519 1547.76 94.3667 1547.39 Q96.7047 1547.02 98.7648 1547.02 Q104.089 1547.02 107.191 1549.45 Q110.293 1551.85 110.293 1555.97 Q110.293 1558.84 108.649 1560.84 Q107.006 1562.8 103.973 1563.57 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M119.968 1576.32 L124.853 1576.32 L124.853 1582.2 L119.968 1582.2 L119.968 1576.32 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M145.038 1550.72 Q141.427 1550.72 139.598 1554.28 Q137.792 1557.83 137.792 1564.96 Q137.792 1572.06 139.598 1575.63 Q141.427 1579.17 145.038 1579.17 Q148.672 1579.17 150.478 1575.63 Q152.306 1572.06 152.306 1564.96 Q152.306 1557.83 150.478 1554.28 Q148.672 1550.72 145.038 1550.72 M145.038 1547.02 Q150.848 1547.02 153.903 1551.62 Q156.982 1556.21 156.982 1564.96 Q156.982 1573.68 153.903 1578.29 Q150.848 1582.87 145.038 1582.87 Q139.228 1582.87 136.149 1578.29 Q133.093 1573.68 133.093 1564.96 Q133.093 1556.21 136.149 1551.62 Q139.228 1547.02 145.038 1547.02 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M50.941 1221.84 L80.6168 1221.84 L80.6168 1225.77 L50.941 1225.77 L50.941 1221.84 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M94.7371 1234.73 L111.056 1234.73 L111.056 1238.67 L89.1121 1238.67 L89.1121 1234.73 Q91.7741 1231.98 96.3574 1227.35 Q100.964 1222.69 102.144 1221.35 Q104.39 1218.83 105.269 1217.09 Q106.172 1215.33 106.172 1213.64 Q106.172 1210.89 104.228 1209.15 Q102.306 1207.42 99.2046 1207.42 Q97.0056 1207.42 94.5519 1208.18 Q92.1213 1208.94 89.3436 1210.49 L89.3436 1205.77 Q92.1676 1204.64 94.6213 1204.06 Q97.075 1203.48 99.112 1203.48 Q104.482 1203.48 107.677 1206.17 Q110.871 1208.85 110.871 1213.34 Q110.871 1215.47 110.061 1217.39 Q109.274 1219.29 107.168 1221.88 Q106.589 1222.55 103.487 1225.77 Q100.385 1228.97 94.7371 1234.73 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M120.871 1232.79 L125.755 1232.79 L125.755 1238.67 L120.871 1238.67 L120.871 1232.79 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M134.76 1204.11 L156.982 1204.11 L156.982 1206.1 L144.436 1238.67 L139.552 1238.67 L151.357 1208.04 L134.76 1208.04 L134.76 1204.11 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M49.5521 878.301 L79.2279 878.301 L79.2279 882.236 L49.5521 882.236 L49.5521 878.301 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M93.3482 891.195 L109.668 891.195 L109.668 895.13 L87.7232 895.13 L87.7232 891.195 Q90.3852 888.44 94.9685 883.811 Q99.575 879.158 100.756 877.815 Q103.001 875.292 103.881 873.556 Q104.783 871.797 104.783 870.107 Q104.783 867.352 102.839 865.616 Q100.918 863.88 97.8158 863.88 Q95.6167 863.88 93.163 864.644 Q90.7325 865.408 87.9547 866.959 L87.9547 862.237 Q90.7788 861.102 93.2324 860.524 Q95.6861 859.945 97.7232 859.945 Q103.094 859.945 106.288 862.63 Q109.482 865.315 109.482 869.806 Q109.482 871.936 108.672 873.857 Q107.885 875.755 105.779 878.348 Q105.2 879.019 102.098 882.236 Q98.9963 885.431 93.3482 891.195 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M119.482 889.25 L124.367 889.25 L124.367 895.13 L119.482 895.13 L119.482 889.25 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M147.399 864.644 L135.593 883.093 L147.399 883.093 L147.399 864.644 M146.172 860.57 L152.052 860.57 L152.052 883.093 L156.982 883.093 L156.982 886.982 L152.052 886.982 L152.052 895.13 L147.399 895.13 L147.399 886.982 L131.797 886.982 L131.797 882.468 L146.172 860.57 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M51.2651 534.766 L80.9408 534.766 L80.9408 538.701 L51.2651 538.701 L51.2651 534.766 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M95.0611 547.659 L111.38 547.659 L111.38 551.594 L89.4362 551.594 L89.4362 547.659 Q92.0982 544.905 96.6815 540.275 Q101.288 535.622 102.469 534.28 Q104.714 531.756 105.593 530.02 Q106.496 528.261 106.496 526.571 Q106.496 523.817 104.552 522.081 Q102.631 520.344 99.5287 520.344 Q97.3296 520.344 94.876 521.108 Q92.4454 521.872 89.6677 523.423 L89.6677 518.701 Q92.4917 517.567 94.9454 516.988 Q97.3991 516.409 99.4361 516.409 Q104.806 516.409 108.001 519.095 Q111.195 521.78 111.195 526.27 Q111.195 528.4 110.385 530.321 Q109.598 532.219 107.492 534.812 Q106.913 535.483 103.811 538.701 Q100.709 541.895 95.0611 547.659 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M121.195 545.715 L126.079 545.715 L126.079 551.594 L121.195 551.594 L121.195 545.715 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M137.075 547.659 L144.714 547.659 L144.714 521.294 L136.404 522.96 L136.404 518.701 L144.667 517.034 L149.343 517.034 L149.343 547.659 L156.982 547.659 L156.982 551.594 L137.075 551.594 L137.075 547.659 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M50.1308 191.23 L79.8066 191.23 L79.8066 195.165 L50.1308 195.165 L50.1308 191.23 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M90.7093 204.124 L98.3482 204.124 L98.3482 177.758 L90.038 179.425 L90.038 175.165 L98.3019 173.499 L102.978 173.499 L102.978 204.124 L110.617 204.124 L110.617 208.059 L90.7093 208.059 L90.7093 204.124 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M120.061 202.179 L124.945 202.179 L124.945 208.059 L120.061 208.059 L120.061 202.179 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M145.13 191.647 Q141.797 191.647 139.876 193.429 Q137.978 195.212 137.978 198.337 Q137.978 201.462 139.876 203.244 Q141.797 205.026 145.13 205.026 Q148.464 205.026 150.385 203.244 Q152.306 201.438 152.306 198.337 Q152.306 195.212 150.385 193.429 Q148.487 191.647 145.13 191.647 M140.454 189.656 Q137.445 188.915 135.755 186.855 Q134.089 184.795 134.089 181.832 Q134.089 177.689 137.029 175.281 Q139.991 172.874 145.13 172.874 Q150.292 172.874 153.232 175.281 Q156.172 177.689 156.172 181.832 Q156.172 184.795 154.482 186.855 Q152.815 188.915 149.829 189.656 Q153.209 190.443 155.084 192.735 Q156.982 195.026 156.982 198.337 Q156.982 203.36 153.903 206.045 Q150.848 208.73 145.13 208.73 Q139.413 208.73 136.334 206.045 Q133.279 203.36 133.279 198.337 Q133.279 195.026 135.177 192.735 Q137.075 190.443 140.454 189.656 M138.741 182.272 Q138.741 184.957 140.408 186.462 Q142.098 187.966 145.13 187.966 Q148.14 187.966 149.829 186.462 Q151.542 184.957 151.542 182.272 Q151.542 179.587 149.829 178.082 Q148.14 176.577 145.13 176.577 Q142.098 176.577 140.408 178.082 Q138.741 179.587 138.741 182.272 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip442)" style="stroke:#009af9; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="266.456,1751.15 842.743,1247.99 1419.03,800.937 1995.32,414.506 2571.6,96.8724 "></polyline>
+<polyline clip-path="url(#clip442)" style="stroke:#e26f46; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="266.456,1447.02 842.743,1081.48 1419.03,742.746 1995.32,440.478 2571.6,186.499 "></polyline>
+<path clip-path="url(#clip440)" d="M278.751 261.215 L575.526 261.215 L575.526 105.695 L278.751 105.695  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
+<polyline clip-path="url(#clip440)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="278.751,261.215 575.526,261.215 575.526,105.695 278.751,105.695 278.751,261.215 "></polyline>
+<polyline clip-path="url(#clip440)" style="stroke:#009af9; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="305.9,157.535 468.797,157.535 "></polyline>
+<path clip-path="url(#clip440)" d="M509.789 177.223 Q507.983 181.852 506.27 183.264 Q504.558 184.676 501.687 184.676 L498.284 184.676 L498.284 181.112 L500.784 181.112 Q502.544 181.112 503.516 180.278 Q504.488 179.445 505.669 176.343 L506.433 174.399 L495.946 148.889 L500.46 148.889 L508.562 169.167 L516.664 148.889 L521.178 148.889 L509.789 177.223 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M528.469 170.88 L536.108 170.88 L536.108 144.515 L527.798 146.181 L527.798 141.922 L536.062 140.255 L540.738 140.255 L540.738 170.88 L548.377 170.88 L548.377 174.815 L528.469 174.815 L528.469 170.88 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip440)" style="stroke:#e26f46; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="305.9,209.375 468.797,209.375 "></polyline>
+<path clip-path="url(#clip440)" d="M509.789 229.063 Q507.983 233.692 506.27 235.104 Q504.558 236.516 501.687 236.516 L498.284 236.516 L498.284 232.952 L500.784 232.952 Q502.544 232.952 503.516 232.118 Q504.488 231.285 505.669 228.183 L506.433 226.239 L495.946 200.729 L500.46 200.729 L508.562 221.007 L516.664 200.729 L521.178 200.729 L509.789 229.063 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip440)" d="M531.687 222.72 L548.006 222.72 L548.006 226.655 L526.062 226.655 L526.062 222.72 Q528.724 219.965 533.307 215.336 Q537.914 210.683 539.094 209.341 Q541.34 206.817 542.219 205.081 Q543.122 203.322 543.122 201.632 Q543.122 198.878 541.178 197.142 Q539.256 195.405 536.155 195.405 Q533.956 195.405 531.502 196.169 Q529.071 196.933 526.294 198.484 L526.294 193.762 Q529.118 192.628 531.571 192.049 Q534.025 191.47 536.062 191.47 Q541.432 191.47 544.627 194.155 Q547.821 196.841 547.821 201.331 Q547.821 203.461 547.011 205.382 Q546.224 207.28 544.117 209.873 Q543.539 210.544 540.437 213.762 Q537.335 216.956 531.687 222.72 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path></svg>
+</div>
+</div>
+</section>
+<section id="welfare-decompositions-in-the-model" class="level1">
+<h1>Welfare decompositions in the model</h1>
+<p>To decompose the average welfare gain into components, let’s first calculate the terms we need:</p>
+<div id="c482fd13" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(;σ,β) <span class="op">=</span> p</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> <span class="fu">dot</span>(pi_star,<span class="fu">exp</span>.(p.income_grid[<span class="op">:</span>,<span class="fl">1</span>]))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>cbar0 <span class="op">=</span> ((<span class="fl">1</span><span class="op">-</span>σ)<span class="fu">*</span>(<span class="fl">1</span><span class="op">-</span>β)<span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>β<span class="op">^</span>T) <span class="op">*</span> model0.V[<span class="op">:</span>,<span class="fl">1</span>,<span class="fl">1</span>])<span class="op">.^</span>(<span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>σ))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>cbar1 <span class="op">=</span> ((<span class="fl">1</span><span class="op">-</span>σ)<span class="fu">*</span>(<span class="fl">1</span><span class="op">-</span>β)<span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>β<span class="op">^</span>T) <span class="op">*</span> model1.V[<span class="op">:</span>,<span class="fl">1</span>,<span class="fl">1</span>])<span class="op">.^</span>(<span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>σ))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>Cbar0 <span class="op">=</span> <span class="fu">dot</span>(pi_star,cbar0)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>Cbar1 <span class="op">=</span> <span class="fu">dot</span>(pi_star,cbar1)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>W0 <span class="op">=</span> <span class="fu">dot</span>(pi_star,model0.V[<span class="op">:</span>,<span class="fl">1</span>,<span class="fl">1</span>])</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>W1 <span class="op">=</span> <span class="fu">dot</span>(pi_star,model1.V[<span class="op">:</span>,<span class="fl">1</span>,<span class="fl">1</span>])</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">V_cert</span>(x) <span class="op">=</span> (<span class="fl">1</span><span class="op">-</span>β<span class="op">^</span>T)<span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>β) <span class="op">*</span> <span class="fu">utility</span>(x,σ)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>ω <span class="op">=</span> (W1<span class="op">/</span>W0)<span class="op">^</span>(<span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>σ)) <span class="op">-</span> <span class="fl">1</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>γ <span class="op">=</span> (<span class="fu">V_cert</span>(Cbar1) <span class="op">/</span> <span class="fu">V_cert</span>(Cbar0))<span class="op">^</span>(<span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>σ)) <span class="op">-</span> <span class="fl">1</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>α <span class="op">=</span> ((W1 <span class="op">/</span> <span class="fu">V_cert</span>(Cbar1)) <span class="op">/</span> (W0 <span class="op">/</span> <span class="fu">V_cert</span>(Cbar0)))<span class="op">^</span>(<span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>σ)) <span class="op">-</span> <span class="fl">1</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>([<span class="fl">1</span><span class="op">+</span>ω <span class="fl">1</span><span class="op">+</span>γ <span class="fl">1</span><span class="op">+</span>α])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>1×3 Matrix{Float64}:
+ 1.02547  1.01879  1.00655</code></pre>
+</div>
+</div>
+<p>Finally, let’s re-calculate this decomposition for a more persistent value of <span class="math inline">\(\rho\)</span> and interpret the results.</p>
+<div id="f9806235" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>egrid,Π <span class="op">=</span> <span class="fu">tauchen</span>(<span class="fl">5</span>,<span class="fl">0.99</span>,<span class="fl">0.1</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>income_grid <span class="op">=</span> [μ<span class="op">+</span>egrid[i] for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, t <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>T]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> (;</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    T,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    asset_grid <span class="op">=</span> <span class="fu">LinRange</span>(<span class="fl">0</span>,<span class="fl">100</span>,<span class="fl">100</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    income_grid,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    β <span class="op">=</span> <span class="fl">0.96</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> <span class="fl">0.04</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    Π,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    σ <span class="op">=</span> <span class="fl">2</span>.,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    net_income <span class="op">=</span> no_tax</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># solve for the stationary distribution</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>pi_star <span class="op">=</span> <span class="fu">solve_steady_state</span>(p.Π)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># solve for λ</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>λ <span class="op">=</span> <span class="fu">solve_lambda</span>(τ,<span class="fu">exp</span>.(income_grid[<span class="op">:</span>,<span class="fl">1</span>]),pi_star)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>p_new <span class="op">=</span> (;p<span class="op">...</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    net_income <span class="op">=</span> <span class="fu">x-&gt;progressive_tax</span>(x,λ,τ))</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>model0 <span class="op">=</span> <span class="fu">solve_model</span>(p)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> <span class="fu">solve_model</span>(p_new)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> <span class="fu">dot</span>(pi_star,<span class="fu">exp</span>.(p.income_grid[<span class="op">:</span>,<span class="fl">1</span>]))</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>cbar0 <span class="op">=</span> ((<span class="fl">1</span><span class="op">-</span>σ)<span class="fu">*</span>(<span class="fl">1</span><span class="op">-</span>β)<span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>β<span class="op">^</span>T) <span class="op">*</span> model0.V[<span class="op">:</span>,<span class="fl">1</span>,<span class="fl">1</span>])<span class="op">.^</span>(<span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>σ))</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>cbar1 <span class="op">=</span> ((<span class="fl">1</span><span class="op">-</span>σ)<span class="fu">*</span>(<span class="fl">1</span><span class="op">-</span>β)<span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>β<span class="op">^</span>T) <span class="op">*</span> model1.V[<span class="op">:</span>,<span class="fl">1</span>,<span class="fl">1</span>])<span class="op">.^</span>(<span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>σ))</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>Cbar0 <span class="op">=</span> <span class="fu">dot</span>(pi_star,cbar0)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>Cbar1 <span class="op">=</span> <span class="fu">dot</span>(pi_star,cbar1)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>W0 <span class="op">=</span> <span class="fu">dot</span>(pi_star,model0.V[<span class="op">:</span>,<span class="fl">1</span>,<span class="fl">1</span>])</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>W1 <span class="op">=</span> <span class="fu">dot</span>(pi_star,model1.V[<span class="op">:</span>,<span class="fl">1</span>,<span class="fl">1</span>])</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="fu">V_cert</span>(x) <span class="op">=</span> (<span class="fl">1</span><span class="op">-</span>β<span class="op">^</span>T)<span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>β) <span class="op">*</span> <span class="fu">utility</span>(x,σ)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>ω <span class="op">=</span> (W1<span class="op">/</span>W0)<span class="op">^</span>(<span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>σ)) <span class="op">-</span> <span class="fl">1</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>γ <span class="op">=</span> (<span class="fu">V_cert</span>(Cbar1) <span class="op">/</span> <span class="fu">V_cert</span>(Cbar0))<span class="op">^</span>(<span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>σ)) <span class="op">-</span> <span class="fl">1</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>α <span class="op">=</span> ((W1 <span class="op">/</span> <span class="fu">V_cert</span>(Cbar1)) <span class="op">/</span> (W0 <span class="op">/</span> <span class="fu">V_cert</span>(Cbar0)))<span class="op">^</span>(<span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>σ)) <span class="op">-</span> <span class="fl">1</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>([<span class="fl">1</span><span class="op">+</span>ω <span class="fl">1</span><span class="op">+</span>γ <span class="fl">1</span><span class="op">+</span>α])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>1×3 Matrix{Float64}:
+ 1.38174  1.0  1.38174</code></pre>
+</div>
+</div>
+<p>Notice that there are quite large welfare gains, but they are entirely coming from redistribution and not from insurance. When we look at the transition matrix <span class="math inline">\(\Pi\)</span>, we see that to numerical precision, the income shocks are essentially permanent:</p>
+<div id="6d69ae0e" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Π</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>5×5 Matrix{Float64}:
+ 1.0         2.93131e-8  1.42843e-57  8.98807e-155  5.01122e-300
+ 1.66323e-7  1.0         5.28594e-8   7.79546e-57   1.49842e-153
+ 0.0         9.42795e-8  1.0          9.42795e-8    4.20661e-56
+ 0.0         0.0         5.28594e-8   1.0           1.66323e-7
+ 0.0         0.0         0.0          2.93131e-8    1.0</code></pre>
+</div>
+</div>
+<p>which explains why the welfare gains derive purely from redistribution.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
