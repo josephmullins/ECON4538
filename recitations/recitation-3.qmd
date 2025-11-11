@@ -10,7 +10,7 @@ using LinearAlgebra, Plots, Distributions, Random
 
 # Extending the welfare decomposition from class
 
-In class we studied a decomposition of the gain in utilitarian welfare from moving to a laissez-faire economy to one with perfect reallocation (i.e. where everybody receives the same allocation).
+In class we studied a decomposition of the gain in utilitarian welfare from moving from a laissez-faire economy to one with perfect insurance (i.e. where everybody receives the same allocation).
 
 Let's now consider a decomposition of the welfare differences between two general policy regimes, where neither necessarily provides perfect insurance. First, some definitions...
 
@@ -25,7 +25,7 @@ where $\{c^{r}_{i,t}\}_{t=0}^{T-1}$ is the sequence of consumption that agent $i
 Let $\bar{c}^{r}_{i}$ be the *certainty equivalent* that solves:
 $$ \sum_{t=0}^{T-1}\beta^{t}u(\bar{c}^{r}_{i}) = V^{r}_{i}$$
 for $r\in\{A,B\}$. We know that:
-$$\sum_{t=0}^{T-1}\beta^{t}u(\bar{c}^{r}_{i}) = \frac{(1-\beta^{T})}{1-\beta}\beta^{t}u(\bar{c}^{r}_{i}) = \mathcal{V}(\bar{c}^{r}_{i})$$
+$$\sum_{t=0}^{T-1}\beta^{t}u(\bar{c}^{r}_{i}) = \frac{(1-\beta^{T})}{1-\beta}u(\bar{c}^{r}_{i}) = \mathcal{V}(\bar{c}^{r}_{i})$$
 Finally, define $C=\int y_{i,t}di = \int c_{i,t}di$ as aggregate or average consumption in the economy. In both regimes we assume that the resource constraint always holds and there is no aggregate uncertainty. Just as in our lecture, we can define the aggregate certainty equivalent as:
 $$ \bar{C}^{r} = \int \bar{c}^{r}_{i}di.$$
 
@@ -37,7 +37,7 @@ $$ W^{r} = \int V^{r}_{i}di = \int \mathcal{V}(\bar{c}^{r}_{i})di $$
 Note that now we can write:
 
 $$ W^{r} = \mathcal{V}(C^{r}) \times \frac{\mathcal{V}(\bar{C}^{r})}{\mathcal{V}(C^{r})} \times \frac{\int \mathcal{V}(\bar{c}^{r}_{i})di}{\mathcal{V}(\bar{C}^{r})}$$
-The first term here is the value obtained if we implemented perfect insurance (everyone gets the same consumption in all periods). The second term is the discount on this perfect insurance when everyone is given the average certainty equivalent, and the third term is the further discount coming from inequality in the allocations of certainty equivalents. You can think of the second and third terms as being "costs" relative to a benchmark. The second term is the cost of imperfect insurance in the model relative to a "perfect insurance" benchmark. The third term is the cost of inequality, stemming from differences in the distribution from the mean certainty equivalent. Welfare is therefore the product of an aggregate component, an insurance component, and a redistribution component.
+The first term here is the value obtained if we implemented perfect insurance (everyone gets the same consumption in all periods). The second term is the discount on this perfect insurance when everyone is given the average certainty equivalent, and the third term is the further discount coming from inequality in the allocations of certainty equivalents. You can think of the second and third terms as being "costs" relative to a benchmark. The second term is the cost of imperfect insurance in the model relative to a "perfect insurance" benchmark. The third term is the cost of inequality, stemming from differences in individual certainty equivalent values. Welfare is therefore the product of an aggregate component, an insurance component, and a redistribution component.
 
 Since aggregate income and consumption are unchanged by the policies we consider, the first term cancels out when we decompose the welfare changes when moving from regime $A$ to regime $B$ as:
 
@@ -53,7 +53,7 @@ $$
 $$
 with $1+\omega = (1+\gamma)(1+\alpha)$ being the *final* decomposition.
 
-The $\gamma$ term here is the welfare effect of changes in insurance, the $\alpha$ is represents changes in the equality (or inequality) of the distribution of certainty equivalents.
+The $\gamma$ term here is the welfare effect of changes in insurance, the $\alpha$ term represents changes in the equality (or inequality) of the distribution of certainty equivalents.
 
 # Adding taxes and transfers to the model
 
