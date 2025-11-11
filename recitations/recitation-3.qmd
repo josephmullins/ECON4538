@@ -25,7 +25,7 @@ where $\{c^{r}_{i,t}\}_{t=0}^{T-1}$ is the sequence of consumption that agent $i
 Let $\bar{c}^{r}_{i}$ be the *certainty equivalent* that solves:
 $$ \sum_{t=0}^{T-1}\beta^{t}u(\bar{c}^{r}_{i}) = V^{r}_{i}$$
 for $r\in\{A,B\}$. We know that:
-$$\sum_{t=0}^{T-1}u(\bar{c}^{r}_{i}) = \frac{(1-\beta^{T})}{1-\beta}\beta^{t}u(\bar{c}^{r}_{i}) = \mathcal{V}(\bar{c}^{r}_{i})$$
+$$\sum_{t=0}^{T-1}\beta^{t}u(\bar{c}^{r}_{i}) = \frac{(1-\beta^{T})}{1-\beta}\beta^{t}u(\bar{c}^{r}_{i}) = \mathcal{V}(\bar{c}^{r}_{i})$$
 Finally, define $C=\int y_{i,t}di = \int c_{i,t}di$ as aggregate or average consumption in the economy. In both regimes we assume that the resource constraint always holds and there is no aggregate uncertainty. Just as in our lecture, we can define the aggregate certainty equivalent as:
 $$ \bar{C}^{r} = \int \bar{c}^{r}_{i}di.$$
 
@@ -53,7 +53,7 @@ $$
 $$
 with $1+\omega = (1+\gamma)(1+\alpha)$ being the *final* decomposition.
 
-The $\gamma$ term here is the welfare effect of changes in insurance, the $\alpha$ is represents changes in inequality in certainty equivalents (e.g. redistribution).
+The $\gamma$ term here is the welfare effect of changes in insurance, the $\alpha$ is represents changes in the equality (or inequality) of the distribution of certainty equivalents.
 
 # Adding taxes and transfers to the model
 
@@ -180,11 +180,12 @@ p = (;
 
 ```
 
-How could we insure that the progressive tax is self financing. For a given value of $\tau$, we can pick $\lambda$ to insure that average allocation is equal to average income.
+How could we insure that the progressive tax is self financing (i.e. obeys the resource constraint)?  For a given value of $\tau$, we can pick $\lambda$ to insure that the average allocation is equal to average income.
 
 The code below solves for the steady state of $\Pi$ and calculates the $\lambda$ that obeys the resource constraint given $\tau$. Note that this code works under two assumptions:
-1. $\mu$ is constant over time $t$; and
-2. The initial draw of $y$ is taken from the stationary distribution of $Pi$, $\pi^*$.
+
+1. $\mu_{t}$ is constant over time $t$; and
+2. The initial draw of $y$ is taken from the stationary distribution of $\Pi$, $\pi^*$.
 
 ```{julia}
 function solve_steady_state(Π)
@@ -218,8 +219,8 @@ model1 = solve_model(p_new)
 ```
 
 ```{julia}
-plot(model0.V[:,1,1])
-plot!(model1.V[:,1,1])
+plot(model0.V[:,1,1],label="no taxes")
+plot!(model1.V[:,1,1],label = "progressive taxes")
 ```
 
 
@@ -239,14 +240,20 @@ W1 = dot(pi_star,model1.V[:,1,1])
 
 V_cert(x) = (1-β^T)/(1-β) * utility(x,σ)
 
+```
+
+And with these in hand we can calculate the decomposition:
+```{julia}
 ω = (W1/W0)^(1/(1-σ)) - 1
 γ = (V_cert(Cbar1) / V_cert(Cbar0))^(1/(1-σ)) - 1
 α = ((W1 / V_cert(Cbar1)) / (W0 / V_cert(Cbar0)))^(1/(1-σ)) - 1
 
 display([1+ω 1+γ 1+α])
-```
 
-Finally, let's re-calculate this decomposition for a more persistent value of $\rho$ and interpret the results.
+```
+Introducing progressive taxation is equivalent to raising consumption by 2.5\% in all periods and states of the world. A decent component (1.8\%) is due to improved insurance against income shocks.
+
+To conclude, let's re-calculate this decomposition for a more persistent value of $\rho$ and interpret the results.
 
 ```{julia}
 egrid,Π = tauchen(5,0.99,0.1)
