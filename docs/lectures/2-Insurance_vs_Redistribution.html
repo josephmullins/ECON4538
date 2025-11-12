@@ -525,37 +525,47 @@ W_{1} - W_{0} &amp;= \Big[u(C^*) - u(\bar{C})\Big] + \Big[u(\bar{C}) - \mathbb{E
 <li class="fragment"><span class="math inline">\(\log(y_{it}) = \mu_{\tau(i)} + \varepsilon_{it}\)</span>,&nbsp;<span class="math inline">\(\varepsilon_{it}\sim{N}(0,\sigma^2)\)</span>, <span class="math inline">\(\mu_{L}&lt;\mu_{H}\)</span></li>
 <li class="fragment">Benchmark: no private insurance markets, <span class="math inline">\(c_{it} = y_{it}\)</span>.</li>
 <li class="fragment"><span class="math inline">\(V_{i} = \mathbb{E}\left[\sum_{t=0}^\infty u(c_{it})\right]\)</span></li>
+<li class="fragment">Assume <span class="math inline">\(u(\cdot) = \log(\cdot)\)</span>.</li>
 </ul>
 </div>
 </section>
 <section id="example-2" class="slide level2">
 <h2>Example 2</h2>
-<p><strong>Exercises</strong>:</p>
 <div>
 <ul>
-<li class="fragment">Derive <span class="math inline">\(V_{\tau}\)</span> for each type in benchmark</li>
-<li class="fragment">Solve planner’s problem</li>
-<li class="fragment">Derive decomposition</li>
-<li class="fragment">Analyze decomposition as <span class="math inline">\(\mu_{L}\rightarrow\mu_{H}\)</span>, <span class="math inline">\(\sigma^2\rightarrow0\)</span></li>
+<li class="fragment">Since <span class="math inline">\(\sum_{t=0}^{\infty}\beta^{t} = 1/(1-\beta)\)</span>, we know that: <span class="math display">\[ V_{\tau} = \mu_{\tau} / (1-\beta) \]</span></li>
+<li class="fragment">If <span class="math inline">\(\log(X)\)</span> is normal with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, we know that <span class="math display">\[\mathbb{E}[X] = \exp(\mu + 0.5\sigma^2)\]</span> hence <span class="math display">\[\mathbb{E}[y_{i,t}] = 0.5\exp(\mu_{L}+0.5\sigma^2) + 0.5\exp(\mu_{H}+0.5\sigma^2)\]</span></li>
+<li class="fragment">This is also what the planner would allocate to everyone. Call this <span class="math inline">\(C^*\)</span>.</li>
 </ul>
 </div>
 </section>
-<section id="example-3" class="slide level2">
-<h2>Example 3</h2>
+<section id="example-2-1" class="slide level2">
+<h2>Example 2</h2>
 <div>
 <ul>
-<li class="fragment">same economy as example (2), <strong>except</strong> assume that individuals can insure against <span class="math inline">\(\varepsilon_{it}\)</span>, i.e.&nbsp;in the benchmark for all <span class="math inline">\(i\)</span>, <span class="math inline">\(t\)</span>: <span class="math display">\[ c_{it} = \exp\left(\mu_{\tau(i)} + \frac{1}{2}\sigma^2\right) \]</span></li>
-<li class="fragment">What does the decomposition look like in this case?</li>
+<li class="fragment">For type <span class="math inline">\(\tau\)</span>, <span class="math inline">\(\bar{c}_{\tau}\)</span> solves: <span class="math display">\[ \sum_{t=0}^{\infty}\beta^{t} \log(\bar{c}_{\tau}) = \mu_{\tau}/(1-\beta) \]</span> and so <span class="math inline">\(\bar{c}_{\tau} = \exp(\mu_{\tau})\)</span></li>
+<li class="fragment">Thus <span class="math inline">\(\bar{C} = 0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})\)</span></li>
 </ul>
 </div>
 </section>
-<section id="example-4" class="slide level2">
-<h2>Example 4</h2>
-<p>A harder exercise for you try.</p>
+<section id="example-2-2" class="slide level2 smaller">
+<h2>Example 2</h2>
 <div>
 <ul>
-<li class="fragment">Assume <span class="math display">\[ y_{it} = \mu + \rho(y_{it-1} - \mu) + \zeta_{it},\ \ \zeta_{it}\sim{N}(0,\sigma^2_{\zeta}) \]</span></li>
-<li class="fragment">No borrowing or saving (consume <span class="math inline">\(y_{it}\)</span>).</li>
+<li class="fragment">Now we decompose: <span class="math display">\[
+\begin{aligned}
+W_{1} - W_{0} &amp;= \frac{\log(C^*) - (0.5\mu_{L} + 0.5\mu_{H})}{(1-\beta)} \\
+&amp;= \frac{\log(C^*) - \log(\bar{C})}{1-\beta} + \frac{\log(\bar{C}) - (0.5\mu_{L} + 0.5\mu_{H})}{1-\beta} \\
+&amp;= \text{insurance} + \text{redistribution}
+\end{aligned}
+\]</span></li>
+<li class="fragment"><span class="math display">\[
+\begin{multline}
+\text{insurance} \propto \log\left(0.5\exp(\mu_{L}+0.5\sigma^2) + 0.5\exp(\mu_{H}+0.5\sigma^2)\right) \\ - \log(0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H}))
+\end{multline}
+\]</span></li>
+<li class="fragment"><span class="math display">\[\text{redistribution} \propto \log(0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})) - (0.5\mu_{L} + 0.5\mu_{H})\]</span></li>
+<li class="fragment">Note what happens as <span class="math inline">\(\mu_{L}\rightarrow\mu_{H}\)</span> and as <span class="math inline">\(\sigma^2\rightarrow 0\)</span>. Intuitive!</li>
 </ul>
 </div>
 </section></section>

@@ -1,0 +1,16 @@
+---
+title: "Practice Exercises"
+bibliography: ../reading_list.bib
+---
+
+
+## Example 3
+
+- same economy as example (2), **except** assume that individuals can insure against $\varepsilon_{it}$, i.e. in the benchmark for all $i$, $t$:
+$$ c_{it} = \exp\left(\mu_{\tau(i)} + \frac{1}{2}\sigma^2\right) $$
+- What does the decomposition look like in this case?
+
+## Example 4 (harder.. could make it easier)
+- Assume
+$$ y_{it} = \mu + \rho(y_{it-1} - \mu) + \zeta_{it},\ \ \zeta_{it}\sim{N}(0,\sigma^2_{\zeta}) $$
+- No borrowing or saving (consume $y_{it}$).

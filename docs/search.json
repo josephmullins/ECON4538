@@ -578,14 +578,14 @@
     "href": "lectures/2-Insurance_vs_Redistribution.html#example-2-a-dynamic-economy",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Example 2: a dynamic economy",
-    "text": "Example 2: a dynamic economy\n\n\nAssume same type structure, \\(\\tau(i)\\in\\{L,H\\}\\) for all agents \\(i\\)\nBut now infinite horizon, \\(t=0,1,2,...,\\infty\\)\n\\(\\log(y_{it}) = \\mu_{\\tau(i)} + \\varepsilon_{it}\\), \\(\\varepsilon_{it}\\sim{N}(0,\\sigma^2)\\), \\(\\mu_{L}&lt;\\mu_{H}\\)\nBenchmark: no private insurance markets, \\(c_{it} = y_{it}\\).\n\\(V_{i} = \\mathbb{E}\\left[\\sum_{t=0}^\\infty u(c_{it})\\right]\\)"
+    "text": "Example 2: a dynamic economy\n\n\nAssume same type structure, \\(\\tau(i)\\in\\{L,H\\}\\) for all agents \\(i\\)\nBut now infinite horizon, \\(t=0,1,2,...,\\infty\\)\n\\(\\log(y_{it}) = \\mu_{\\tau(i)} + \\varepsilon_{it}\\), \\(\\varepsilon_{it}\\sim{N}(0,\\sigma^2)\\), \\(\\mu_{L}&lt;\\mu_{H}\\)\nBenchmark: no private insurance markets, \\(c_{it} = y_{it}\\).\n\\(V_{i} = \\mathbb{E}\\left[\\sum_{t=0}^\\infty u(c_{it})\\right]\\)\nAssume \\(u(\\cdot) = \\log(\\cdot)\\)."
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-2",
     "href": "lectures/2-Insurance_vs_Redistribution.html#example-2",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Example 2",
-    "text": "Example 2\nExercises:\n\n\nDerive \\(V_{\\tau}\\) for each type in benchmark\nSolve planner’s problem\nDerive decomposition\nAnalyze decomposition as \\(\\mu_{L}\\rightarrow\\mu_{H}\\), \\(\\sigma^2\\rightarrow0\\)"
+    "text": "Example 2\n\n\nSince \\(\\sum_{t=0}^{\\infty}\\beta^{t} = 1/(1-\\beta)\\), we know that: \\[ V_{\\tau} = \\mu_{\\tau} / (1-\\beta) \\]\nIf \\(\\log(X)\\) is normal with mean \\(\\mu\\) and variance \\(\\sigma^2\\), we know that \\[\\mathbb{E}[X] = \\exp(\\mu + 0.5\\sigma^2)\\] hence \\[\\mathbb{E}[y_{i,t}] = 0.5\\exp(\\mu_{L}+0.5\\sigma^2) + 0.5\\exp(\\mu_{H}+0.5\\sigma^2)\\]\nThis is also what the planner would allocate to everyone. Call this \\(C^*\\)."
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-3",
@@ -831,5 +831,26 @@
     "title": "Recitation 3",
     "section": "The decomposition",
     "text": "The decomposition\nNote that now we can write:\n\\[ W^{r} = \\mathcal{V}(C^{r}) \\times \\frac{\\mathcal{V}(\\bar{C}^{r})}{\\mathcal{V}(C^{r})} \\times \\frac{\\int \\mathcal{V}(\\bar{c}^{r}_{i})di}{\\mathcal{V}(\\bar{C}^{r})}\\] The first term here is the value obtained if we implemented perfect insurance (everyone gets the same consumption in all periods). The second term is the discount on this perfect insurance when everyone is given the average certainty equivalent, and the third term is the further discount coming from inequality in the allocations of certainty equivalents. You can think of the second and third terms as being “costs” relative to a benchmark. The second term is the cost of imperfect insurance in the model relative to a “perfect insurance” benchmark. The third term is the cost of inequality, stemming from differences in individual certainty equivalent values. Welfare is therefore the product of an aggregate component, an insurance component, and a redistribution component.\nSince aggregate income and consumption are unchanged by the policies we consider, the first term cancels out when we decompose the welfare changes when moving from regime \\(A\\) to regime \\(B\\) as:\n\\[ \\frac{W^{B}}{W^{A}} = \\frac{\\frac{\\mathcal{V}(\\bar{C}^{B})}{\\mathcal{V}(C^{B})}}{\\frac{\\mathcal{V}(\\bar{C}^{A})}{\\mathcal{V}(C^{A})}} \\times \\frac{\\frac{\\int \\mathcal{V}(\\bar{c}^{A}_{i})di}{\\mathcal{V}(\\bar{C}^{A})}}{\\frac{\\int \\mathcal{V}(\\bar{c}^{A}_{i})di}{\\mathcal{V}(\\bar{C}^{A})}}  \\]\nWe can convert these terms into consumption equivalent measures using the formula from recitation 2: \\[\n\\begin{eqnarray}\n1 + \\omega = \\left[\\frac{W^{B}}{W^{A}}\\right]^{1/(1-\\sigma)} \\\\\n1+\\gamma = \\left[\\frac{\\frac{\\mathcal{V}(\\bar{C}^{B})}{\\mathcal{V}(C^{B})}}{\\frac{\\mathcal{V}(\\bar{C}^{A})}{\\mathcal{V}(C^{A})}}\\right]^{1/(1-\\sigma)} \\\\\n1 + \\alpha = \\left[\\frac{\\frac{\\int \\mathcal{V}(\\bar{c}^{A}_{i})di}{\\mathcal{V}(\\bar{C}^{A})}}{\\frac{\\int \\mathcal{V}(\\bar{c}^{A}_{i})di}{\\mathcal{V}(\\bar{C}^{A})}}\\right]^{1/(1-\\sigma)}\n\\end{eqnarray}\n\\] with \\(1+\\omega = (1+\\gamma)(1+\\alpha)\\) being the final decomposition.\nThe \\(\\gamma\\) term here is the welfare effect of changes in insurance, the \\(\\alpha\\) term represents changes in the equality (or inequality) of the distribution of certainty equivalents."
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-2-1",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-2-1",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 2",
+    "text": "Example 2\n\n\nFor type \\(\\tau\\), \\(\\bar{c}_{\\tau}\\) solves: \\[ \\sum_{t=0}^{\\infty}\\beta^{t} \\log(\\bar{c}_{\\tau}) = \\mu_{\\tau}/(1-\\beta) \\] and so \\(\\bar{c}_{\\tau} = \\exp(\\mu_{\\tau})\\)\nThus \\(\\bar{C} = 0.5\\exp(\\mu_{L}) + 0.5\\exp(\\mu_{H})\\)"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-2-2",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-2-2",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 2",
+    "text": "Example 2\n\n\nNow we decompose: \\[\n\\begin{aligned}\nW_{1} - W_{0} &= \\frac{\\log(C^*) - (0.5\\mu_{L} + 0.5\\mu_{H})}{(1-\\beta)} \\\\\n&= \\frac{\\log(C^*) - \\log(\\bar{C})}{1-\\beta} + \\frac{\\log(\\bar{C}) - (0.5\\mu_{L} + 0.5\\mu_{H})}{1-\\beta} \\\\\n&= \\text{insurance} + \\text{redistribution}\n\\end{aligned}\n\\]\n\\[\n\\begin{multline}\n\\text{insurance} \\propto \\log\\left(0.5\\exp(\\mu_{L}+0.5\\sigma^2) + 0.5\\exp(\\mu_{H}+0.5\\sigma^2)\\right) \\\\ - \\log(0.5\\exp(\\mu_{L}) + 0.5\\exp(\\mu_{H}))\n\\end{multline}\n\\]\n\\[\\text{redistribution} \\propto \\log(0.5\\exp(\\mu_{L}) + 0.5\\exp(\\mu_{H})) - (0.5\\mu_{L} + 0.5\\mu_{H})\\]\nNote what happens as \\(\\mu_{L}\\rightarrow\\mu_{H}\\) and as \\(\\sigma^2\\rightarrow 0\\). Intuitive!"
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-2-3",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#example-2-3",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Example 2",
+    "text": "Example 2\nExercises:\n\n\nShow that using\nUse that \\(\\mathbb{E}[y_{i,t}|\\tau] = \\exp(\\mu_{\\tau}+0.5\\sigma^2)\\) to show planner’s allocation: \\[C^* = \\]\nShow that \\(\\bar{c}_{\\tau}\\)\nAnalyze decomposition as \\(\\mu_{L}\\rightarrow\\mu_{H}\\), \\(\\sigma^2\\rightarrow0\\)"
   }
 ]

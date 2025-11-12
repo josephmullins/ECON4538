@@ -409,34 +409,49 @@ plot!(legend=false)
 - $\log(y_{it}) = \mu_{\tau(i)} + \varepsilon_{it}$,\ $\varepsilon_{it}\sim{N}(0,\sigma^2)$, $\mu_{L}<\mu_{H}$ 
 - Benchmark: no private insurance markets, $c_{it} = y_{it}$.
 - $V_{i} = \mathbb{E}\left[\sum_{t=0}^\infty u(c_{it})\right]$
+- Assume $u(\cdot) = \log(\cdot)$.
 :::
 
 ## Example 2
 
-**Exercises**:
-
 :::{.incremental}
-- Derive $V_{\tau}$ for each type in benchmark
-- Solve planner's problem
-- Derive decomposition
-- Analyze decomposition as $\mu_{L}\rightarrow\mu_{H}$, $\sigma^2\rightarrow0$
+- Since $\sum_{t=0}^{\infty}\beta^{t} = 1/(1-\beta)$, we know that:
+$$ V_{\tau} = \mu_{\tau} / (1-\beta) $$
+- If $\log(X)$ is normal with mean $\mu$ and variance $\sigma^2$, we know that
+$$\mathbb{E}[X] = \exp(\mu + 0.5\sigma^2)$$
+hence
+$$\mathbb{E}[y_{i,t}] = 0.5\exp(\mu_{L}+0.5\sigma^2) + 0.5\exp(\mu_{H}+0.5\sigma^2)$$
+- This is also what the planner would allocate to everyone. Call this $C^*$.
 :::
 
-## Example 3
-
+## Example 2
 :::{.incremental}
-- same economy as example (2), **except** assume that individuals can insure against $\varepsilon_{it}$, i.e. in the benchmark for all $i$, $t$:
-$$ c_{it} = \exp\left(\mu_{\tau(i)} + \frac{1}{2}\sigma^2\right) $$
-- What does the decomposition look like in this case?
+- For type $\tau$, $\bar{c}_{\tau}$ solves:
+$$ \sum_{t=0}^{\infty}\beta^{t} \log(\bar{c}_{\tau}) = \mu_{\tau}/(1-\beta) $$
+and so $\bar{c}_{\tau} = \exp(\mu_{\tau})$
+- Thus $\bar{C} = 0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})$
 :::
 
-## Example 4
-A harder exercise for you try.
+## Example 2 {.smaller}
 
 :::{.incremental}
-- Assume
-$$ y_{it} = \mu + \rho(y_{it-1} - \mu) + \zeta_{it},\ \ \zeta_{it}\sim{N}(0,\sigma^2_{\zeta}) $$
-- No borrowing or saving (consume $y_{it}$).
+- Now we decompose:
+$$
+\begin{aligned}
+W_{1} - W_{0} &= \frac{\log(C^*) - (0.5\mu_{L} + 0.5\mu_{H})}{(1-\beta)} \\
+&= \frac{\log(C^*) - \log(\bar{C})}{1-\beta} + \frac{\log(\bar{C}) - (0.5\mu_{L} + 0.5\mu_{H})}{1-\beta} \\
+&= \text{insurance} + \text{redistribution}
+\end{aligned}
+$$
+- 
+$$
+\begin{multline}
+\text{insurance} \propto \log\left(0.5\exp(\mu_{L}+0.5\sigma^2) + 0.5\exp(\mu_{H}+0.5\sigma^2)\right) \\ - \log(0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H}))
+\end{multline}
+$$
+-
+$$\text{redistribution} \propto \log(0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})) - (0.5\mu_{L} + 0.5\mu_{H})$$
+- Note what happens as $\mu_{L}\rightarrow\mu_{H}$ and as $\sigma^2\rightarrow 0$. Intuitive!
 :::
 
 # Application: Storesletten, Telmer & Yaron (2004)
