@@ -852,5 +852,481 @@
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Example 2",
     "text": "Example 2\nExercises:\n\n\nShow that using\nUse that \\(\\mathbb{E}[y_{i,t}|\\tau] = \\exp(\\mu_{\\tau}+0.5\\sigma^2)\\) to show planner’s allocation: \\[C^* = \\]\nShow that \\(\\bar{c}_{\\tau}\\)\nAnalyze decomposition as \\(\\mu_{L}\\rightarrow\\mu_{H}\\), \\(\\sigma^2\\rightarrow0\\)"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#overview",
+    "href": "lectures/3-Income_Processes.html#overview",
+    "title": "Income Processes",
+    "section": "Overview",
+    "text": "Overview\n\n\nIn previous lectures: documented inequality trends and welfare implications\nToday: understand the stochastic process generating earnings\nKey questions:\n\nHow persistent are earnings shocks?\nAre shocks permanent or transitory?\nDoes income risk vary over time and across individuals?\n\nAs we now know, the answer crucially determines how much we value insurance."
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#why-model-income-processes",
+    "href": "lectures/3-Income_Processes.html#why-model-income-processes",
+    "title": "Income Processes",
+    "section": "Why Model Income Processes?",
+    "text": "Why Model Income Processes?\n\n\nConsumption theory: permanent income hypothesis requires understanding persistence\nWelfare analysis: insurance value depends on shock persistence\nPolicy design: safety net programs target different types of risk\nLife-cycle models: calibration requires realistic income processes\nStandard assumption (i.i.d. shocks) likely too restrictive"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#what-we-already-know",
+    "href": "lectures/3-Income_Processes.html#what-we-already-know",
+    "title": "Income Processes",
+    "section": "What We Already Know",
+    "text": "What We Already Know\nFrom Lecture 1, we documented:\n\n\nRising inequality in the variance of log wages\nDifferences by education group\nTime trends: increase through early 1980s, then stabilization\nBut: variance decomposition doesn’t tell us about dynamics\n\n\nQuestion: Is rising inequality due to larger shocks, more persistent shocks, or both?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#a-canonical-decomposition",
+    "href": "lectures/3-Income_Processes.html#a-canonical-decomposition",
+    "title": "Income Processes",
+    "section": "A Canonical Decomposition",
+    "text": "A Canonical Decomposition\nFollowing Meghir and Pistaferri (2004), decompose log earnings \\(y_{it}\\):\n\\[y_{it} = m_t^e + \\beta^e Z_{it} + u_{it}\\]\nwhere:\n\n\n\\(m_t^e\\): calendar year effects (education-specific)\n\\(Z_{it}\\): observables (age, race, region, etc.)\n\\(u_{it}\\): stochastic component (our focus today)"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#decomposing-the-stochastic-component",
+    "href": "lectures/3-Income_Processes.html#decomposing-the-stochastic-component",
+    "title": "Income Processes",
+    "section": "Decomposing the Stochastic Component",
+    "text": "Decomposing the Stochastic Component\nThe residual \\(u_{it}\\) has three parts:\n\\[u_{it} = r_{it} + e_{it} + p_{it}\\]\n\n\n\\(r_{it}\\): i.i.d. measurement error\n\\(e_{it}\\): transitory shock (serially correlated)\n\\(p_{it}\\): permanent component (random walk)"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#the-permanent-component",
+    "href": "lectures/3-Income_Processes.html#the-permanent-component",
+    "title": "Income Processes",
+    "section": "The Permanent Component",
+    "text": "The Permanent Component\nPermanent component follows a random walk:\n\\[p_{it} = p_{it-1} + \\zeta_{it}\\]\n\n\n\\(\\zeta_{it}\\): permanent innovation (martingale difference sequence)\nExamples: job loss, promotion, health shocks, skill depreciation\nKey implication: shocks have permanent effects on earnings level\nContrast with transitory shocks that mean-revert"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#the-transitory-component",
+    "href": "lectures/3-Income_Processes.html#the-transitory-component",
+    "title": "Income Processes",
+    "section": "The Transitory Component",
+    "text": "The Transitory Component\nTransitory shock follows MA(q) process:\n\\[e_{it} = \\varepsilon_{it} - \\theta_1^e \\varepsilon_{it-1} - \\cdots - \\theta_q^e \\varepsilon_{it-q}\\]\n\n\n\\(\\varepsilon_{it}\\): transitory innovation\nExamples: overtime, bonuses, temporary layoffs\nPersistence captured by MA parameters\nOrder \\(q\\) determined empirically"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#first-differences",
+    "href": "lectures/3-Income_Processes.html#first-differences",
+    "title": "Income Processes",
+    "section": "First Differences",
+    "text": "First Differences\nTaking first differences eliminates fixed effects:\n\\[g_{it} = \\Delta y_{it} = \\Delta m_t^e + \\beta^e \\Delta Z_{it} + \\Delta u_{it}\\]\n\\[g_{it} = \\Delta r_{it} + \\Delta e_{it} + \\zeta_{it}\\]\nThis is a composite MA(q+1) process in the innovations."
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#testing-the-income-process-model",
+    "href": "lectures/3-Income_Processes.html#testing-the-income-process-model",
+    "title": "Income Processes",
+    "section": "Testing the Income Process Model",
+    "text": "Testing the Income Process Model\nMeghir and Pistaferri (2004) use autocovariances of earnings growth to:\n\n\nDetermine order \\(q\\) of MA process for transitory shocks\nTest for presence of permanent shocks (is \\(\\text{var}(\\zeta) = 0\\)?)\nEstimate unconditional variances of permanent and transitory components\nModel conditional variance (ARCH effects)"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#key-identification-result",
+    "href": "lectures/3-Income_Processes.html#key-identification-result",
+    "title": "Income Processes",
+    "section": "Key Identification Result",
+    "text": "Key Identification Result\nFor MA(q) transitory shocks, earnings growth satisfies:\n\\[E(g_{it} g_{it-j}) = 0 \\text{ for } j &gt; q+1\\]\n\n\nThis allows testing order of MA process\nAlso provides moment conditions to identify variance of permanent shock\nKey insight: permanent and transitory shocks have different autocorrelation signatures"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#the-identification-challenge",
+    "href": "lectures/3-Income_Processes.html#the-identification-challenge",
+    "title": "Income Processes",
+    "section": "The Identification Challenge",
+    "text": "The Identification Challenge\nThree unknowns, two equations:\n\n\nCannot separately identify: \\(\\text{var}(\\varepsilon)\\), \\(\\text{var}(r)\\), and \\(\\theta\\)\nTwo approaches:\n\nBound the unidentified parameters\nUse external estimate of measurement error variance\n\nMeghir and Pistaferri (2004) do both"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#data-psid-1967-1992",
+    "href": "lectures/3-Income_Processes.html#data-psid-1967-1992",
+    "title": "Income Processes",
+    "section": "Data: PSID 1967-1992",
+    "text": "Data: PSID 1967-1992\nSample:\n\n\nMale heads of household, ages 25-55\nAt least 9 years of earnings data\n2,069 individuals, 31,631 person-years\nSeparate analysis by education"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#finding-1-ma1-transitory-shocks",
+    "href": "lectures/3-Income_Processes.html#finding-1-ma1-transitory-shocks",
+    "title": "Income Processes",
+    "section": "Finding 1: MA(1) Transitory Shocks",
+    "text": "Finding 1: MA(1) Transitory Shocks\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAutocovariances of order 3+ are small and insignificant � MA(1) specification."
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#finding-2-permanent-shocks-are-important",
+    "href": "lectures/3-Income_Processes.html#finding-2-permanent-shocks-are-important",
+    "title": "Income Processes",
+    "section": "Finding 2: Permanent Shocks Are Important",
+    "text": "Finding 2: Permanent Shocks Are Important\nTest: Is \\(\\text{var}(\\zeta_{it}) = 0\\)?\n\n\n\nEducation\nVariance Estimate\np-value\n\n\n\n\nHS Dropout\n0.033\n&lt; 0.01\n\n\nHS Graduate\n0.028\n&lt; 0.01\n\n\nCollege\n0.044\n&lt; 0.01\n\n\n\n\n\nStrong rejection in all groups\nCollege grads face more permanent risk\nConsistent with “higher returns, higher risk”"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#variance-of-permanent-shocks-over-time",
+    "href": "lectures/3-Income_Processes.html#variance-of-permanent-shocks-over-time",
+    "title": "Income Processes",
+    "section": "Variance of Permanent Shocks Over Time",
+    "text": "Variance of Permanent Shocks Over Time\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPattern: increase through early 1980s, decline thereafter."
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#finding-3-arch-effects",
+    "href": "lectures/3-Income_Processes.html#finding-3-arch-effects",
+    "title": "Income Processes",
+    "section": "Finding 3: ARCH Effects",
+    "text": "Finding 3: ARCH Effects\nKey innovation of Meghir and Pistaferri (2004): model conditional variance\n\\[E_{t-1}(\\zeta_{it}^2) = \\phi_t^e + \\varphi^e \\zeta_{it-1}^2 + \\eta_i\\]\n\\[E_{t-1}(\\varepsilon_{it}^2) = \\kappa_t^e + \\gamma^e \\varepsilon_{it-1}^2 + \\lambda_i\\]\n\n\n\\(\\varphi^e, \\gamma^e\\): ARCH coefficients (persistence in variance)\n\\(\\eta_i, \\lambda_i\\): permanent unobserved heterogeneity in risk\nTime effects \\(\\phi_t^e, \\kappa_t^e\\): aggregate volatility"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#arch-estimates-pooled-sample",
+    "href": "lectures/3-Income_Processes.html#arch-estimates-pooled-sample",
+    "title": "Income Processes",
+    "section": "ARCH Estimates: Pooled Sample",
+    "text": "ARCH Estimates: Pooled Sample\n\n\n\nComponent\nARCH Coefficient\nStd Error\np-value\n\n\n\n\nTransitory\n\\(\\gamma = 0.404\\)\n0.096\n&lt; 0.01\n\n\nPermanent\n\\(\\varphi = 0.56\\)\n0.126\n&lt; 0.01\n\n\n\nInterpretation:\n\n\nLarge shocks today predict higher variance tomorrow\nPermanent shocks show more persistence in variance\nStrong evidence against i.i.d. assumption"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#what-generates-arch-effects",
+    "href": "lectures/3-Income_Processes.html#what-generates-arch-effects",
+    "title": "Income Processes",
+    "section": "What Generates ARCH Effects?",
+    "text": "What Generates ARCH Effects?\nPossible mechanisms:\n\n\nJob characteristics: riskier jobs have volatile earnings\nBusiness cycle: recessions increase earnings volatility\nCareer paths: some occupations have boom-bust patterns\nHuman capital: skill depreciation accelerates after shocks\nHealth: health problems create cascading earnings risk\n\n\nPolicy implication: social insurance should respond to changing risk environment."
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#implication-1-income-mobility",
+    "href": "lectures/3-Income_Processes.html#implication-1-income-mobility",
+    "title": "Income Processes",
+    "section": "Implication 1: Income Mobility",
+    "text": "Implication 1: Income Mobility\nWith ARCH effects, mobility patterns differ from i.i.d. case:\n\n\nIndividuals at extremes of distribution (after large shock) have higher variance\nThis increases probability of reverting to mean\nLower persistence at tails, higher persistence in middle\nPoverty persistence reduced by 2-6 percentage points"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#implication-2-precautionary-savings",
+    "href": "lectures/3-Income_Processes.html#implication-2-precautionary-savings",
+    "title": "Income Processes",
+    "section": "Implication 2: Precautionary Savings",
+    "text": "Implication 2: Precautionary Savings\nConsumption growth with CRRA utility (\\(\\rho &lt; 0\\)):\n\\[\\Delta \\log c_{it} \\approx \\frac{1-\\rho}{2} E_{t-1}(\\zeta_{it}^2)\\]\n\n\nWith ARCH: expected variance depends on recent shocks\nCreates time-varying precautionary motive\nCan explain “excess sensitivity” and consumption volatility\nAggregate consumption growth increases by 0.8-1.6% due to ARCH"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#implication-3-welfare-analysis",
+    "href": "lectures/3-Income_Processes.html#implication-3-welfare-analysis",
+    "title": "Income Processes",
+    "section": "Implication 3: Welfare Analysis",
+    "text": "Implication 3: Welfare Analysis\nRecall from Lecture 2: welfare gains from insurance/redistribution\n\n\nWith ARCH: conditional variance matters for welfare\nHigh-risk individuals value insurance more\nTime-varying risk � time-varying optimal policy\nUnobserved heterogeneity in risk � targeting problem\n\n\nQuestion: How should transfer programs respond to past shocks?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#implication-4-structural-estimation",
+    "href": "lectures/3-Income_Processes.html#implication-4-structural-estimation",
+    "title": "Income Processes",
+    "section": "Implication 4: Structural Estimation",
+    "text": "Implication 4: Structural Estimation\nIncome process is input to many structural models:\n\n\nLife-cycle consumption/savings models\nLabor supply and retirement decisions\nHuman capital investment\nPortfolio choice\nCalibration matters: i.i.d. assumption can be very misleading"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#beyond-meghir-pistaferri",
+    "href": "lectures/3-Income_Processes.html#beyond-meghir-pistaferri",
+    "title": "Income Processes",
+    "section": "Beyond Meghir-Pistaferri",
+    "text": "Beyond Meghir-Pistaferri\nRecent extensions:\n\n\nSources of shocks: wages vs. hours vs. employment (Low, Meghir, and Pistaferri 2010)\nNon-Gaussian shocks: skewness, kurtosis, tail risk (Guvenen 2009)\nHeterogeneous profiles: “HIP” vs “RIP” models\nSubjective expectations: survey data on perceived risk (Guiso2002?)\nJoint modeling: earnings and consumption together"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#the-hip-vs-rip-debate",
+    "href": "lectures/3-Income_Processes.html#the-hip-vs-rip-debate",
+    "title": "Income Processes",
+    "section": "The HIP vs RIP Debate",
+    "text": "The HIP vs RIP Debate\nGuvenen (2009): Heterogeneous Income Profiles (HIP)\n\\[y_{it} = \\alpha_i + \\beta_i \\cdot t + u_{it}\\]\nvs. Random Walk (RIP - restricted income profiles):\n\\[y_{it} = y_{it-1} + \\zeta_{it} + e_{it}\\]\n\n\nHIP: inequality grows deterministically due to heterogeneous returns\nRIP: inequality grows due to cumulative shocks\nDifferent welfare implications!"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-testing-hip-vs-rip",
+    "href": "lectures/3-Income_Processes.html#exercise-testing-hip-vs-rip",
+    "title": "Income Processes",
+    "section": "Exercise: Testing HIP vs RIP",
+    "text": "Exercise: Testing HIP vs RIP\nTake first differences: \\(g_{it} = \\Delta y_{it}\\)\nUnder HIP: \\[g_{it} = \\beta_i + \\Delta u_{it}\\]\nUnder RIP (with MA(1) transitory): \\[g_{it} = \\zeta_{it} + \\varepsilon_{it} - \\theta \\varepsilon_{it-1}\\]\nQuestions:\n\nWhat is \\(\\text{cov}(g_{it}, g_{it-j})\\) for large \\(j\\) under each model?\nHow would you distinguish the models empirically?\nWhat do you think is more realistic?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#measurement-issues",
+    "href": "lectures/3-Income_Processes.html#measurement-issues",
+    "title": "Income Processes",
+    "section": "Measurement Issues",
+    "text": "Measurement Issues\nChallenges in estimating income processes:\n\n\nTop-coding: censored data at top of distribution\nImputations: PSID imputes some earnings\nSelection: attrition correlated with earnings instability\nValidation studies: measurement error estimates vary\nAdministrative data: tax records vs. survey data\n\n\nGuvenen et al. (2021) use administrative data � different findings"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#open-questions",
+    "href": "lectures/3-Income_Processes.html#open-questions",
+    "title": "Income Processes",
+    "section": "Open Questions",
+    "text": "Open Questions\nImportant areas for future research:\n\n\nWhat drives time variation in income risk?\nHow much risk is truly uninsurable vs. self-insurance?\nDo ARCH effects reflect true uncertainty or predictable volatility?\nHow do income processes vary across countries?\nWhat are implications for optimal taxation?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-1-autocovariances",
+    "href": "lectures/3-Income_Processes.html#exercise-1-autocovariances",
+    "title": "Income Processes",
+    "section": "Exercise 1: Autocovariances",
+    "text": "Exercise 1: Autocovariances\nConsider the income process:\n\\[g_{it} = \\zeta_{it} + \\varepsilon_{it} - \\theta \\varepsilon_{it-1}\\]\nwith \\(\\zeta_{it} \\sim\\) i.i.d. \\(N(0, \\sigma_\\zeta^2)\\) and \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma_\\varepsilon^2)\\).\nDerive:\n\n\\(\\text{var}(g_{it})\\)\n\\(\\text{cov}(g_{it}, g_{it-1})\\)\n\\(\\text{cov}(g_{it}, g_{it-2})\\)"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-2-identification",
+    "href": "lectures/3-Income_Processes.html#exercise-2-identification",
+    "title": "Income Processes",
+    "section": "Exercise 2: Identification",
+    "text": "Exercise 2: Identification\nUsing the moment conditions from Exercise 1:\n\nShow that \\(\\sigma_\\zeta^2\\) is identified\nExplain why \\(\\sigma_\\varepsilon^2\\) and \\(\\theta\\) are not separately identified\nWhat additional information would allow identification?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-3-policy-application",
+    "href": "lectures/3-Income_Processes.html#exercise-3-policy-application",
+    "title": "Income Processes",
+    "section": "Exercise 3: Policy Application",
+    "text": "Exercise 3: Policy Application\nSuppose the government offers unemployment insurance:\n\nReplaces 50% of previous earnings\nDuration: 6 months\n\nQuestions:\n\nWould this program provide more value with permanent or transitory shocks?\nHow would ARCH effects influence optimal UI design?\nShould benefits depend on past earnings volatility? Why or why not?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-4-computational-optional",
+    "href": "lectures/3-Income_Processes.html#exercise-4-computational-optional",
+    "title": "Income Processes",
+    "section": "Exercise 4: Computational (Optional)",
+    "text": "Exercise 4: Computational (Optional)\nSimulate earnings paths for N=1000 individuals over T=30 years using:\n\\[y_{it} = y_{it-1} + \\zeta_{it} + \\varepsilon_{it} - 0.3\\varepsilon_{it-1}\\]\nwith \\(\\zeta_{it} \\sim N(0, 0.03)\\) and \\(\\varepsilon_{it} \\sim N(0, 0.05)\\).\n\nCompute variance of log earnings over time\nCompute autocovariances of earnings growth\nCompare to what you’d get with i.i.d. shocks"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#key-takeaways",
+    "href": "lectures/3-Income_Processes.html#key-takeaways",
+    "title": "Income Processes",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\n\nIncome has permanent and transitory components\nPermanent shocks important empirically (variance ≈ 0.03)\nTransitory shocks show some persistence (MA(1))\nTime-varying risk: variance depends on recent shocks (ARCH)\nSome people face permanently higher risk\nSimple i.i.d. assumption very misleading for policy"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#for-next-lecture",
+    "href": "lectures/3-Income_Processes.html#for-next-lecture",
+    "title": "Income Processes",
+    "section": "For Next Lecture",
+    "text": "For Next Lecture\nWe’ll study intergenerational mobility:\n\n\nHow persistent is economic status across generations?\nConnection to income processes: do children inherit parents’ risk?\nGeographic variation in mobility (Chetty et al.)\nPolicy implications for education and early childhood\n\n\nReading: Chetty et al. (2014), Mazumder (2005)"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#references",
+    "href": "lectures/3-Income_Processes.html#references",
+    "title": "Income Processes",
+    "section": "References",
+    "text": "References\n\n\nChetty, Raj, Nathaniel Hendren, Patrick Kline, and Emmanuel Saez. 2014. “Where Is the Land of Opportunity? The Geography of Intergenerational Mobility in the United States.” The Quarterly Journal of Economics, no. 4: 1553–623. https://doi.org/10.1093/qje/qju022.\n\n\nGuvenen, Fatih. 2009. “An Empirical Investigation of Labor Income Processes.” Review of Economic Dynamics, no. 1: 58–79. https://doi.org/10.1016/j.red.2008.06.004.\n\n\nGuvenen, Fatih, Fatih Karahan, Serdar Ozkan, and Jae Song. 2021. “WHAT DO DATA ON MILLIONS OF u.s. WORKERS REVEAL ABOUT LIFECYCLE EARNINGS DYNAMICS?” Econometrica, no. 5: 2303–39. https://doi.org/10.3982/ecta14603.\n\n\nMazumder, Bhashkar. 2005. “Fortunate Sons: New Estimates of Intergenerational Mobility in the United States Using Social Security Earnings Data.” The Review of Economics and Statistics 87 (2): 235–55. https://doi.org/10.1162/0034653053970249.\n\n\nMeghir, Costas, and Luigi Pistaferri. 2004. “Income Variance Dynamics and Heterogeneity.” Econometrica, no. 1: 1–32. https://doi.org/10.1111/j.1468-0262.2004.00476.x."
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-1-pure-random-walk",
+    "href": "lectures/3-Income_Processes.html#exercise-1-pure-random-walk",
+    "title": "Income Processes",
+    "section": "Exercise 1: Pure Random Walk",
+    "text": "Exercise 1: Pure Random Walk\nSuppose individual \\(i\\)’s log earnings follow:\n\\[y_{it} = y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma^2)\\).\nQuestions:\n\nWhat is the variance of \\(y_{it}\\) as a function of time?\nIf everyone starts at \\(y_{i0} = 0\\), how does inequality evolve?\nGive examples of shocks that might fit this model"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-2-ar1-process",
+    "href": "lectures/3-Income_Processes.html#exercise-2-ar1-process",
+    "title": "Income Processes",
+    "section": "Exercise 2: AR(1) Process",
+    "text": "Exercise 2: AR(1) Process\nNow suppose:\n\\[y_{it} = \\rho y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(|\\rho| &lt; 1\\) and \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma_{\\varepsilon}^2)\\).\nQuestions:\n\nWhat is the long-run variance of \\(y_{it}\\)?\nHow does inequality evolve compared to the random walk?\nWhat is the half-life of a shock (time for effect to decay by 50%)?\nGive examples of shocks that might fit this model"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-3-ar1-with-fixed-effects",
+    "href": "lectures/3-Income_Processes.html#exercise-3-ar1-with-fixed-effects",
+    "title": "Income Processes",
+    "section": "Exercise 3: AR(1) with Fixed Effects",
+    "text": "Exercise 3: AR(1) with Fixed Effects\nNow add individual-specific fixed effects:\n\\[y_{it} = \\alpha_i + \\zeta_{it} + \\varepsilon_{it} \\]\nwhere \\(\\zeta_{it} = \\rho \\zeta_{it} + \\epsilon_{it}\\) and \\(\\epsilon_{it}\\sim\\text{ i.i.d. }N(0,\\sigma^2_{\\epsilon})\\) Questions:\n\nWhat determines long-run inequality in this model?\nHow would you estimate \\(\\rho\\) from panel data?\nWhat happens if you ignore the fixed effects?\nIs this a realistic model for earnings? Why or why not?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-4-permanent-vs-transitory",
+    "href": "lectures/3-Income_Processes.html#exercise-4-permanent-vs-transitory",
+    "title": "Income Processes",
+    "section": "Exercise 4: Permanent vs Transitory",
+    "text": "Exercise 4: Permanent vs Transitory\nConsider a model with both components:\n\\[y_{it} = p_{it} + e_{it}\\]\nwhere \\(p_{it} = p_{it-1} + \\zeta_{it}\\) and \\(e_{it} = \\theta e_{it-1} + \\varepsilon_{it}\\)\nQuestions:\n\nWhich component determines long-run inequality?\nWhich component affects year-to-year volatility?\nIf \\(\\zeta_{it} \\sim N(0, 0.03)\\) and \\(\\varepsilon_{it} \\sim N(0, 0.05)\\), which matters more after 30 years?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#key-insights-from-exercises",
+    "href": "lectures/3-Income_Processes.html#key-insights-from-exercises",
+    "title": "Income Processes",
+    "section": "Key Insights from Exercises",
+    "text": "Key Insights from Exercises\n\n\nRandom walk: inequality grows without bound, shocks never fade\nAR(1): inequality stabilizes, shocks fade over time\nFixed effects: create permanent inequality, distinct from shocks\nPermanent vs transitory: different implications for:\n\nConsumption smoothing\nWelfare costs of inequality\nPolicy design\n\n\n\nMain lesson: The nature of shocks fundamentally affects policy!"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#what-if-people-have-different-growth-rates",
+    "href": "lectures/3-Income_Processes.html#what-if-people-have-different-growth-rates",
+    "title": "Income Processes",
+    "section": "What if People Have Different Growth Rates?",
+    "text": "What if People Have Different Growth Rates?\nGuvenen (2009) proposes an alternative to random walk:\n\\[y_{it} = \\alpha_i + \\beta_i \\cdot t + u_{it}\\]\n\n\n\\(\\alpha_i\\): individual-specific level\n\\(\\beta_i\\): individual-specific growth rate\n\\(u_{it}\\): transitory deviations (small)\nKey idea: inequality grows because some people have steeper earnings profiles"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#hip-vs-rip-conceptual-differences",
+    "href": "lectures/3-Income_Processes.html#hip-vs-rip-conceptual-differences",
+    "title": "Income Processes",
+    "section": "HIP vs RIP: Conceptual Differences",
+    "text": "HIP vs RIP: Conceptual Differences\n\nHIP (Heterogeneous Profiles)RIP (Random Walk)\n\n\n\nInequality grows deterministically\nDifferent people on different trajectories\nExample: college grads vs high school grads\nInequality is somewhat predictable\n\n\n\n\nInequality grows via cumulative shocks\nEveryone faces similar risk\nExample: job loss, health shocks\nInequality is fundamentally uncertain"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#why-does-hip-vs-rip-matter",
+    "href": "lectures/3-Income_Processes.html#why-does-hip-vs-rip-matter",
+    "title": "Income Processes",
+    "section": "Why Does HIP vs RIP Matter?",
+    "text": "Why Does HIP vs RIP Matter?\nFor policy:\n\n\nHIP: Inequality reflects heterogeneous returns to skill\n\nPolicy focus: education, skill development\nLess scope for insurance (inequality is “chosen”)\n\nRIP: Inequality reflects cumulative bad luck\n\nPolicy focus: social insurance\nLarge welfare gains from redistribution\n\nReality: probably a mix of both!"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#evidence-on-hip-vs-rip",
+    "href": "lectures/3-Income_Processes.html#evidence-on-hip-vs-rip",
+    "title": "Income Processes",
+    "section": "Evidence on HIP vs RIP",
+    "text": "Evidence on HIP vs RIP\nGuvenen (2009) findings:\n\n\nEarnings growth has positive long-run autocovariances\nSuggests some HIP component\nBut also evidence of permanent shocks (RIP)\nDifferent groups may face different processes\n\n\nImplication: Simple random walk probably too stark, but permanent shocks still important"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#a-more-flexible-model",
+    "href": "lectures/3-Income_Processes.html#a-more-flexible-model",
+    "title": "Income Processes",
+    "section": "A More Flexible Model",
+    "text": "A More Flexible Model\nMeghir and Pistaferri (2004) nest several models and let data decide:\n\\[y_{it} = m_t^e + \\beta^e Z_{it} + u_{it}\\] \\[u_{it} = p_{it} + e_{it} + r_{it}\\]\n\n\n\\(p_{it} = p_{it-1} + \\zeta_{it}\\): permanent component (random walk)\n\\(e_{it}\\): transitory component (serially correlated)\n\\(r_{it}\\): measurement error (i.i.d.)\nAllow variance to change over time and across people"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#why-three-components",
+    "href": "lectures/3-Income_Processes.html#why-three-components",
+    "title": "Income Processes",
+    "section": "Why Three Components?",
+    "text": "Why Three Components?\n\n\nPermanent (\\(p_{it}\\)): job loss, promotions, health, career choices\nTransitory (\\(e_{it}\\)): overtime, bonuses, temporary layoffs\nMeasurement error (\\(r_{it}\\)): survey reporting errors, imputation\nEach has different implications for consumption and welfare\nNeed to separate them empirically"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#key-empirical-questions",
+    "href": "lectures/3-Income_Processes.html#key-empirical-questions",
+    "title": "Income Processes",
+    "section": "Key Empirical Questions",
+    "text": "Key Empirical Questions\nMeghir and Pistaferri (2004) ask:\n\n\nAre permanent shocks important? (test \\(\\text{var}(\\zeta) = 0\\))\nHow persistent are transitory shocks?\nDoes variance change over time?\nDo some people face more risk than others?\n\n\nLet’s look at the evidence…"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#finding-1-transitory-shocks-have-some-persistence",
+    "href": "lectures/3-Income_Processes.html#finding-1-transitory-shocks-have-some-persistence",
+    "title": "Income Processes",
+    "section": "Finding 1: Transitory Shocks Have Some Persistence",
+    "text": "Finding 1: Transitory Shocks Have Some Persistence\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInterpretation: transitory shocks follow MA(1) process (one period of persistence)"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#finding-3-variance-changes-over-time",
+    "href": "lectures/3-Income_Processes.html#finding-3-variance-changes-over-time",
+    "title": "Income Processes",
+    "section": "Finding 3: Variance Changes Over Time",
+    "text": "Finding 3: Variance Changes Over Time\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPattern: rising through early 1980s (recessions), then declining"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#finding-4-arch-effects",
+    "href": "lectures/3-Income_Processes.html#finding-4-arch-effects",
+    "title": "Income Processes",
+    "section": "Finding 4: ARCH Effects",
+    "text": "Finding 4: ARCH Effects\nBig innovation: variance depends on recent shocks\n\\[E_{t-1}(\\zeta_{it}^2) = \\bar{\\sigma}^2 + \\varphi \\zeta_{it-1}^2\\]\nEstimates: \\(\\varphi \\approx 0.56\\) (permanent), \\(\\gamma \\approx 0.40\\) (transitory)\nInterpretation:\n\n\nIf you experience large shock today → expect higher variance tomorrow\nRisk is time-varying and persistent\nSome people permanently face more risk"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#what-generates-time-varying-risk",
+    "href": "lectures/3-Income_Processes.html#what-generates-time-varying-risk",
+    "title": "Income Processes",
+    "section": "What Generates Time-Varying Risk?",
+    "text": "What Generates Time-Varying Risk?\nPossible mechanisms:\n\n\nJob characteristics (risky occupations)\nBusiness cycle (recessions)\nHealth problems (cascading effects)\nCareer instability\nSkill depreciation\n\n\nPolicy question: Should social insurance respond to individual risk histories?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#implication-1-consumption-and-savings",
+    "href": "lectures/3-Income_Processes.html#implication-1-consumption-and-savings",
+    "title": "Income Processes",
+    "section": "Implication 1: Consumption and Savings",
+    "text": "Implication 1: Consumption and Savings\nWith permanent shocks:\n\n\nCannot smooth via borrowing/saving\nConsumption tracks permanent component\nNeed precautionary savings for transitory shocks\nARCH effects → time-varying savings motive\n\n\nResult: Can explain high savings rates and “excess sensitivity”"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#implication-2-welfare-costs",
+    "href": "lectures/3-Income_Processes.html#implication-2-welfare-costs",
+    "title": "Income Processes",
+    "section": "Implication 2: Welfare Costs",
+    "text": "Implication 2: Welfare Costs\nRecall certainty equivalent from Lecture 2:\n\n\nPermanent shocks: very costly (cannot insure)\nTransitory shocks: less costly (can smooth)\nARCH effects: magnify costs (risk breeds risk)\nWelfare gains from insurance: 10-20% of consumption!"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#implication-3-income-mobility",
+    "href": "lectures/3-Income_Processes.html#implication-3-income-mobility",
+    "title": "Income Processes",
+    "section": "Implication 3: Income Mobility",
+    "text": "Implication 3: Income Mobility\nWith ARCH:\n\n\nPeople at extremes (large shocks) have higher future variance\nIncreases probability of reverting to mean\nReduces poverty persistence by 2-6 percentage points\nBut also increases chance of falling into poverty\n\n\nImplication: Mobility patterns more complex than simple mean reversion"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#implication-4-policy-design",
+    "href": "lectures/3-Income_Processes.html#implication-4-policy-design",
+    "title": "Income Processes",
+    "section": "Implication 4: Policy Design",
+    "text": "Implication 4: Policy Design\nDifferent shocks → different policies:\n\n\nPermanent shocks: need redistribution (ex-post insurance)\n\nProgressive taxation, disability insurance\n\nTransitory shocks: need liquidity (ex-ante insurance)\n\nUnemployment insurance, EITC, food stamps\n\nARCH effects: may need state-dependent transfers\n\nHigher benefits after large shocks?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#measurement-challenges",
+    "href": "lectures/3-Income_Processes.html#measurement-challenges",
+    "title": "Income Processes",
+    "section": "Measurement Challenges",
+    "text": "Measurement Challenges\n\n\nTop-coding: earnings censored at top\nImputation: some data imputed in surveys\nSelection: who attrites from panel?\nAdministrative data: Guvenen et al. (2021) use tax records\n\nFind larger role for transitory shocks\nLess evidence for RIP model\n\n\n\nTakeaway: Measurement matters for conclusions!"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#other-extensions",
+    "href": "lectures/3-Income_Processes.html#other-extensions",
+    "title": "Income Processes",
+    "section": "Other Extensions",
+    "text": "Other Extensions\nRecent work examines:\n\n\nNon-Gaussian shocks: fat tails, skewness\nWages vs hours: separating margins of adjustment\nLife-cycle patterns: how risk changes with age\nSubjective expectations: what do people think their risk is?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#what-we-still-dont-know",
+    "href": "lectures/3-Income_Processes.html#what-we-still-dont-know",
+    "title": "Income Processes",
+    "section": "What We Still Don’t Know",
+    "text": "What We Still Don’t Know\nImportant open questions:\n\n\nWhat fraction of income risk is truly uninsurable?\nHow much do people self-insure through savings/family?\nDo ARCH effects reflect uncertainty or predictable volatility?\nHow do processes vary across countries/time periods?\nWhat are optimal policy responses to time-varying risk?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#why-this-matters",
+    "href": "lectures/3-Income_Processes.html#why-this-matters",
+    "title": "Income Processes",
+    "section": "Why This Matters",
+    "text": "Why This Matters\n\n\nConsumption theory: explains savings behavior\nWelfare analysis: determines value of insurance\nPolicy design: guides transfer program design\nStructural models: key input for calibration\nInequality: helps explain trends and patterns"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#what-is-a-stochastic-process",
+    "href": "lectures/3-Income_Processes.html#what-is-a-stochastic-process",
+    "title": "Income Processes",
+    "section": "What is a Stochastic Process?",
+    "text": "What is a Stochastic Process?\nA stochastic process describes how a variable evolves randomly over time.\nFor earnings, we might write: \\[y_{it} = f(y_{it-1}, y_{it-2}, \\ldots, \\varepsilon_{it})\\]\n\n\n\\(y_{it}\\): person \\(i\\)’s log earnings at time \\(t\\)\n\\(\\varepsilon_{it}\\): random shock (the “new news” at time \\(t\\))\nDifferent processes = different ways shocks affect future earnings"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#white-noise-i.i.d.-process",
+    "href": "lectures/3-Income_Processes.html#white-noise-i.i.d.-process",
+    "title": "Income Processes",
+    "section": "White Noise (i.i.d. Process)",
+    "text": "White Noise (i.i.d. Process)\nThe simplest process: white noise\n\\[y_{it} = \\varepsilon_{it}\\]\nwhere \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma^2)\\)\n\n\nEach period is independent of the past\nShocks have no persistence\nExample: random measurement error\nNot realistic for earnings (last year’s income predicts this year’s!)"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#random-walk-process",
+    "href": "lectures/3-Income_Processes.html#random-walk-process",
+    "title": "Income Processes",
+    "section": "Random Walk Process",
+    "text": "Random Walk Process\nA random walk accumulates all past shocks:\n\\[y_{it} = y_{it-1} + \\varepsilon_{it}\\]\nExpanding backward: \\(y_{it} = y_{i0} + \\sum_{s=1}^t \\varepsilon_{is}\\)\n\n\nToday’s value = yesterday’s value + new shock\nShocks are permanent (never fade)\nVariance grows over time: \\(\\text{var}(y_{it}) = t\\sigma^2\\)\nExample: stock prices, permanent disability"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#random-walk-simulation",
+    "href": "lectures/3-Income_Processes.html#random-walk-simulation",
+    "title": "Income Processes",
+    "section": "Random Walk: Simulation",
+    "text": "Random Walk: Simulation\n\n\nCode\nusing Random, StatsPlots\nRandom.seed!(123)\n\n# Simulate 5 individuals over 30 years\nT = 30\nN = 5\ny = zeros(T, N)\n\nfor i in 1:N\n    for t in 2:T\n        y[t, i] = y[t-1, i] + randn()  # Random walk\n    end\nend\n\nplot(1:T, y, linewidth=2, xlabel=\"Time\", ylabel=\"Log Earnings\",\n     title=\"Random Walk: Paths Diverge\", legend=false, alpha=0.7)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotice: paths diverge over time!"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#ar1-process",
+    "href": "lectures/3-Income_Processes.html#ar1-process",
+    "title": "Income Processes",
+    "section": "AR(1) Process",
+    "text": "AR(1) Process\nAn autoregressive process with mean reversion:\n\\[y_{it} = \\rho y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(|\\rho| &lt; 1\\) (typically \\(0 &lt; \\rho &lt; 1\\) for earnings)\n\n\nShocks fade over time at rate \\(\\rho\\)\nAfter \\(k\\) periods, effect is \\(\\rho^k\\) of original shock\nLong-run variance: \\(\\text{var}(y_{it}) = \\frac{\\sigma^2}{1-\\rho^2}\\) (converges!)\nExample: temporary illness, bonus, overtime"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#ar1-simulation",
+    "href": "lectures/3-Income_Processes.html#ar1-simulation",
+    "title": "Income Processes",
+    "section": "AR(1): Simulation",
+    "text": "AR(1): Simulation\n\n\nCode\n# Simulate AR(1) with ρ = 0.7\nrho = 0.7\ny_ar = zeros(T, N)\n\nfor i in 1:N\n    for t in 2:T\n        y_ar[t, i] = rho * y_ar[t-1, i] + randn()  # AR(1)\n    end\nend\n\nplot(1:T, y_ar, linewidth=2, xlabel=\"Time\", ylabel=\"Log Earnings\",\n     title=\"AR(1) with ρ=0.7: Paths Stabilize\", legend=false, alpha=0.7)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotice: paths fluctuate but don’t diverge!"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#comparing-random-walk-vs-ar1",
+    "href": "lectures/3-Income_Processes.html#comparing-random-walk-vs-ar1",
+    "title": "Income Processes",
+    "section": "Comparing Random Walk vs AR(1)",
+    "text": "Comparing Random Walk vs AR(1)\n\n\nRandom Walk\n\nShocks permanent\nVariance grows: \\(t\\sigma^2\\)\nNo mean reversion\nPaths diverge\n\n\nAR(1)\n\nShocks fade\nVariance converges\nMean reversion\nPaths stabilize\n\n\nKey question for earnings: Which better describes reality?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#ma1-process",
+    "href": "lectures/3-Income_Processes.html#ma1-process",
+    "title": "Income Processes",
+    "section": "MA(1) Process",
+    "text": "MA(1) Process\nA moving average process uses lagged shocks:\n\\[y_{it} = \\varepsilon_{it} + \\theta \\varepsilon_{it-1}\\]\n\n\nShock affects current period AND next period\nAfter that, completely forgotten\nExample: multi-period bonus, temporary layoff\n\\(\\theta &gt; 0\\): positive shock today → higher earnings next year too\n\\(\\theta &lt; 0\\): positive shock today → lower earnings next year (compensation/smoothing)"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#ma1-vs-ar1-key-difference",
+    "href": "lectures/3-Income_Processes.html#ma1-vs-ar1-key-difference",
+    "title": "Income Processes",
+    "section": "MA(1) vs AR(1): Key Difference",
+    "text": "MA(1) vs AR(1): Key Difference\nAR(1): persistence in the level\n\nHigh earnings today → high earnings tomorrow\nEffect fades gradually\n\nMA(1): persistence in the shock\n\nShock today → affects next period\nThen completely forgotten\n\nFor earnings growth \\(g_{it} = \\Delta y_{it}\\), MA(1) creates correlation between \\(g_{it}\\) and \\(g_{it-1}\\), but \\(g_{it}\\) and \\(g_{it-2}\\) are uncorrelated!"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#why-this-matters-for-earnings",
+    "href": "lectures/3-Income_Processes.html#why-this-matters-for-earnings",
+    "title": "Income Processes",
+    "section": "Why This Matters for Earnings",
+    "text": "Why This Matters for Earnings\nDifferent processes → different implications:\n\n\nRandom walk: job loss permanently lowers earnings\n\nNeed strong safety net\n\nAR(1): earnings shocks fade over time\n\nCan self-insure with savings\n\nMA(1): shocks have short-term persistence\n\nMedium-term smoothing helps\n\n\n\nToday’s goal: Figure out which process(es) best describe earnings data!"
   }
 ]

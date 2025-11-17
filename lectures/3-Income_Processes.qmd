@@ -1,0 +1,634 @@
+---
+title: "Income Processes"
+bibliography: ../reading_list.bib
+format:
+  revealjs:
+    theme: solarized
+    transition: slide
+    chalkboard:
+        theme: whiteboard
+        chalk-effect: 0.0
+        chalk-width: 6
+jupyter: julia-1.11
+execute:
+  cache: true
+  freeze: auto
+---
+
+## Overview
+
+:::{.incremental}
+- In previous lectures: documented inequality trends and welfare implications
+- Today: understand the **stochastic process** generating earnings
+- Key questions:
+  - How persistent are earnings shocks?
+  - Are shocks permanent or transitory?
+  - Does income risk vary over time and across individuals?
+- As we now know, the answer crucially determines how much we value insurance.
+:::
+
+# Primer: Time Series Processes
+
+## What is a Stochastic Process?
+
+A **stochastic process** describes how a variable evolves randomly over time.
+
+For earnings, we might write:
+$$y_{it} = f(y_{it-1}, y_{it-2}, \ldots, \varepsilon_{it})$$
+
+:::{.incremental}
+- $y_{it}$: person $i$'s log earnings at time $t$
+- $\varepsilon_{it}$: random shock (the "new news" at time $t$)
+- Different processes = different ways shocks affect future earnings
+:::
+
+## White Noise (i.i.d. Process)
+
+The simplest process: **white noise**
+
+$$y_{it} = \varepsilon_{it}$$
+
+where $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma^2)$
+
+:::{.incremental}
+- Each period is **independent** of the past
+- Shocks have **no persistence**
+- Example: random measurement error
+- Not realistic for earnings (last year's income predicts this year's!)
+:::
+
+## Random Walk Process
+
+A **random walk** accumulates all past shocks:
+
+$$y_{it} = y_{it-1} + \varepsilon_{it}$$
+
+Expanding backward: $y_{it} = y_{i0} + \sum_{s=1}^t \varepsilon_{is}$
+
+:::{.incremental}
+- Today's value = yesterday's value + new shock
+- Shocks are **permanent** (never fade)
+- Variance grows over time: $\text{var}(y_{it}) = t\sigma^2$
+- Example: stock prices, permanent disability
+:::
+
+## Random Walk: Simulation
+
+```{julia}
+#| echo: true
+#| output: true
+#| code-fold: true
+
+using Random, StatsPlots
+Random.seed!(123)
+
+# Simulate 5 individuals over 30 years
+T = 30
+N = 5
+y = zeros(T, N)
+
+for i in 1:N
+    for t in 2:T
+        y[t, i] = y[t-1, i] + randn()  # Random walk
+    end
+end
+
+plot(1:T, y, linewidth=2, xlabel="Time", ylabel="Log Earnings",
+     title="Random Walk: Paths Diverge", legend=false, alpha=0.7)
+```
+
+Notice: paths **diverge** over time!
+
+## AR(1) Process
+
+An **autoregressive** process with mean reversion:
+
+$$y_{it} = \rho y_{it-1} + \varepsilon_{it}$$
+
+where $|\rho| < 1$ (typically $0 < \rho < 1$ for earnings)
+
+:::{.incremental}
+- Shocks **fade over time** at rate $\rho$
+- After $k$ periods, effect is $\rho^k$ of original shock
+- Long-run variance: $\text{var}(y_{it}) = \frac{\sigma^2}{1-\rho^2}$ (converges!)
+- Example: temporary illness, bonus, overtime
+:::
+
+## AR(1): Simulation
+
+```{julia}
+#| echo: true
+#| output: true
+#| code-fold: true
+
+# Simulate AR(1) with ρ = 0.7
+rho = 0.7
+y_ar = zeros(T, N)
+
+for i in 1:N
+    for t in 2:T
+        y_ar[t, i] = rho * y_ar[t-1, i] + randn()  # AR(1)
+    end
+end
+
+plot(1:T, y_ar, linewidth=2, xlabel="Time", ylabel="Log Earnings",
+     title="AR(1) with ρ=0.7: Paths Stabilize", legend=false, alpha=0.7)
+```
+
+Notice: paths **fluctuate** but don't diverge!
+
+## Comparing Random Walk vs AR(1)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Random Walk**
+
+- Shocks permanent
+- Variance grows: $t\sigma^2$
+- No mean reversion
+- Paths diverge
+:::
+
+::: {.column width="50%"}
+**AR(1)**
+
+- Shocks fade
+- Variance converges
+- Mean reversion
+- Paths stabilize
+:::
+
+::::
+
+**Key question for earnings**: Which better describes reality?
+
+## MA(1) Process
+
+A **moving average** process uses lagged shocks:
+
+$$y_{it} = \varepsilon_{it} + \theta \varepsilon_{it-1}$$
+
+:::{.incremental}
+- Shock affects current period AND next period
+- After that, completely forgotten
+- Example: multi-period bonus, temporary layoff
+- $\theta > 0$: positive shock today → higher earnings next year too
+- $\theta < 0$: positive shock today → lower earnings next year (compensation/smoothing)
+:::
+
+## MA(1) vs AR(1): Key Difference
+
+**AR(1)**: persistence in the **level**
+
+- High earnings today → high earnings tomorrow
+- Effect fades gradually
+
+**MA(1)**: persistence in the **shock**
+
+- Shock today → affects next period
+- Then completely forgotten
+
+For earnings growth $g_{it} = \Delta y_{it}$, MA(1) creates correlation between $g_{it}$ and $g_{it-1}$, but $g_{it}$ and $g_{it-2}$ are uncorrelated!
+
+## Why This Matters for Earnings
+
+Different processes → different implications:
+
+:::{.incremental}
+- **Random walk**: job loss permanently lowers earnings
+  - Need strong safety net
+- **AR(1)**: earnings shocks fade over time
+  - Can self-insure with savings
+- **MA(1)**: shocks have short-term persistence
+  - Medium-term smoothing helps
+:::
+
+**Today's goal**: Figure out which process(es) best describe earnings data! 
+
+# Building Intuition Through Exercises
+
+## Exercise 1: Pure Random Walk
+
+Suppose individual $i$'s log earnings follow:
+
+$$y_{it} = y_{it-1} + \varepsilon_{it}$$
+
+where $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma^2)$.
+
+**Questions**:
+
+a) What is the variance of $y_{it}$ as a function of time?
+b) If everyone starts at $y_{i0} = 0$, how does inequality evolve?
+c) Give examples of shocks that might fit this model
+
+## Exercise 2: AR(1) Process
+
+Now suppose:
+
+$$y_{it} = \rho y_{it-1} + \varepsilon_{it}$$
+
+where $|\rho| < 1$ and $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma_{\varepsilon}^2)$.
+
+**Questions**:
+
+a) What is the long-run variance of $y_{it}$?
+b) How does inequality evolve compared to the random walk?
+c) What is the half-life of a shock (time for effect to decay by 50%)?
+d) Give examples of shocks that might fit this model
+
+## Exercise 3: AR(1) with Fixed Effects
+
+Now add individual-specific fixed effects:
+
+$$y_{it} = \alpha_i + \zeta_{it} + \varepsilon_{it} $$
+
+where $\zeta_{it} = \rho \zeta_{it} + \epsilon_{it}$ and $\epsilon_{it}\sim\text{ i.i.d. }N(0,\sigma^2_{\epsilon})$
+**Questions**:
+
+a) What determines long-run inequality in this model?
+b) How would you estimate $\rho$ from panel data?
+c) What happens if you ignore the fixed effects?
+d) Is this a realistic model for earnings? Why or why not?
+
+## Exercise 4: Permanent vs Transitory
+
+Consider a model with both components:
+
+$$y_{it} = p_{it} + e_{it}$$
+
+where $p_{it} = p_{it-1} + \zeta_{it}$ and $e_{it} = \theta e_{it-1} + \varepsilon_{it}$
+
+**Questions**:
+
+a) Which component determines long-run inequality?
+b) Which component affects year-to-year volatility?
+c) If $\zeta_{it} \sim N(0, 0.03)$ and $\varepsilon_{it} \sim N(0, 0.05)$, which matters more after 30 years?
+
+## Key Insights from Exercises
+
+:::{.incremental}
+- **Random walk**: inequality grows without bound, shocks never fade
+- **AR(1)**: inequality stabilizes, shocks fade over time
+- **Fixed effects**: create permanent inequality, distinct from shocks
+- **Permanent vs transitory**: different implications for:
+  - Consumption smoothing
+  - Welfare costs of inequality
+  - Policy design
+:::
+
+**Main lesson**: The nature of shocks fundamentally affects policy!
+
+# Heterogeneous Income Profiles (HIP)
+
+## What if People Have Different Growth Rates?
+
+@Guvenen2009 proposes an alternative to random walk:
+
+$$y_{it} = \alpha_i + \beta_i \cdot t + u_{it}$$
+
+:::{.incremental}
+- $\alpha_i$: individual-specific level
+- $\beta_i$: individual-specific **growth rate**
+- $u_{it}$: transitory deviations (small)
+- Key idea: inequality grows because some people have steeper earnings profiles
+:::
+
+## HIP vs RIP: Conceptual Differences
+
+::: {.panel-tabset}
+
+### HIP (Heterogeneous Profiles)
+
+- Inequality grows **deterministically**
+- Different people on different trajectories
+- Example: college grads vs high school grads
+- Inequality is somewhat **predictable**
+
+### RIP (Random Walk)
+
+- Inequality grows via **cumulative shocks**
+- Everyone faces similar risk
+- Example: job loss, health shocks
+- Inequality is fundamentally **uncertain**
+
+:::
+
+## Exercise: Testing HIP vs RIP
+
+Take first differences: $g_{it} = \Delta y_{it}$
+
+**Under HIP**:
+$$g_{it} = \beta_i + \Delta u_{it}$$
+
+**Under RIP** (with MA(1) transitory):
+$$g_{it} = \zeta_{it} + \varepsilon_{it} - \theta \varepsilon_{it-1}$$
+
+**Questions**:
+
+a) What is $\text{cov}(g_{it}, g_{it-j})$ for large $j$ under each model?
+b) How would you distinguish the models empirically?
+c) What do you think is more realistic?
+
+## Why Does HIP vs RIP Matter?
+
+**For policy**:
+
+:::{.incremental}
+- **HIP**: Inequality reflects heterogeneous returns to skill
+  - Policy focus: education, skill development
+  - Less scope for insurance (inequality is "chosen")
+- **RIP**: Inequality reflects cumulative bad luck
+  - Policy focus: social insurance
+  - Large welfare gains from redistribution
+- **Reality**: probably a mix of both!
+:::
+
+## Evidence on HIP vs RIP
+
+@Guvenen2009 findings:
+
+:::{.incremental}
+- Earnings growth has positive long-run autocovariances
+- Suggests some HIP component
+- But also evidence of permanent shocks (RIP)
+- Different groups may face different processes
+:::
+
+**Implication**: Simple random walk probably too stark, but permanent shocks still important
+
+# The Meghir-Pistaferri Framework
+
+## A More Flexible Model
+
+@Meghir2004 nest several models and let data decide:
+
+$$y_{it} = m_t^e + \beta^e Z_{it} + u_{it}$$
+$$u_{it} = p_{it} + e_{it} + r_{it}$$
+
+:::{.incremental}
+- $p_{it} = p_{it-1} + \zeta_{it}$: permanent component (random walk)
+- $e_{it}$: transitory component (serially correlated)
+- $r_{it}$: measurement error (i.i.d.)
+- Allow variance to change over time and across people
+:::
+
+## Why Three Components?
+
+:::{.incremental}
+- **Permanent** ($p_{it}$): job loss, promotions, health, career choices
+- **Transitory** ($e_{it}$): overtime, bonuses, temporary layoffs
+- **Measurement error** ($r_{it}$): survey reporting errors, imputation
+- Each has different implications for consumption and welfare
+- Need to separate them empirically
+:::
+
+## Key Empirical Questions
+
+@Meghir2004 ask:
+
+:::{.incremental}
+1. Are permanent shocks important? (test $\text{var}(\zeta) = 0$)
+2. How persistent are transitory shocks?
+3. Does variance change over time?
+4. Do some people face more risk than others?
+:::
+
+Let's look at the evidence...
+
+## Data: PSID 1967-1992
+
+Sample:
+
+:::{.incremental}
+- Male heads of household, ages 25-55
+- At least 9 years of earnings data
+- 2,069 individuals, 31,631 person-years
+- Separate analysis by education
+:::
+
+## Finding 1: Transitory Shocks Have Some Persistence
+
+```{julia}
+#| echo: false
+#| output: true
+
+using DataFrames, StatsPlots
+
+# Autocovariances of earnings growth
+orders = 0:4
+pooled_autocov = [0.109, -0.0303, -0.0079, -0.0024, 0.0007]
+
+plot(orders, pooled_autocov,
+     marker=:circle,
+     linewidth=2,
+     xlabel="Lag",
+     ylabel="Autocovariance",
+     title="Autocovariances of Earnings Growth",
+     legend=false,
+     grid=true)
+hline!([0], linestyle=:dash, color=:black, linewidth=1)
+```
+
+Interpretation: transitory shocks follow **MA(1)** process (one period of persistence)
+
+## Finding 2: Permanent Shocks Are Important
+
+Test: Is $\text{var}(\zeta_{it}) = 0$?
+
+| Education | Variance Estimate | p-value |
+|-----------|------------------|---------|
+| HS Dropout | 0.033 | < 0.01 |
+| HS Graduate | 0.028 | < 0.01 |
+| College | 0.044 | < 0.01 |
+
+:::{.incremental}
+- **Strong rejection** in all groups
+- College grads face **more** permanent risk
+- Consistent with "higher returns, higher risk"
+:::
+
+## Finding 3: Variance Changes Over Time
+
+```{julia}
+#| echo: false
+#| output: true
+
+years = 1969:1991
+var_perm = [0.0280, 0.0242, 0.0136, 0.0223, 0.0124, 0.0165, 0.0332,
+            0.0155, 0.0222, 0.0421, 0.0199, 0.0533, 0.0660, 0.0540,
+            0.0495, 0.0616, 0.0413, 0.0253, 0.0289, 0.0309, 0.0340,
+            0.0293, 0.0438]
+
+plot(years, var_perm,
+     linewidth=3,
+     marker=:circle,
+     xlabel="Year",
+     ylabel="Variance",
+     title="Variance of Permanent Shock Over Time",
+     legend=false,
+     grid=true)
+```
+
+Pattern: rising through early 1980s (recessions), then declining
+
+## Finding 4: ARCH Effects
+
+**Big innovation**: variance depends on recent shocks
+
+$$E_{t-1}(\zeta_{it}^2) = \bar{\sigma}^2 + \varphi \zeta_{it-1}^2$$
+
+Estimates: $\varphi \approx 0.56$ (permanent), $\gamma \approx 0.40$ (transitory)
+
+**Interpretation**:
+
+:::{.incremental}
+- If you experience large shock today → expect higher variance tomorrow
+- Risk is **time-varying** and **persistent**
+- Some people permanently face more risk
+:::
+
+## What Generates Time-Varying Risk?
+
+Possible mechanisms:
+
+:::{.incremental}
+- Job characteristics (risky occupations)
+- Business cycle (recessions)
+- Health problems (cascading effects)
+- Career instability
+- Skill depreciation
+:::
+
+**Policy question**: Should social insurance respond to individual risk histories?
+
+# Implications
+
+## Implication 1: Consumption and Savings
+
+With permanent shocks:
+
+:::{.incremental}
+- Cannot smooth via borrowing/saving
+- Consumption tracks permanent component
+- Need **precautionary savings** for transitory shocks
+- ARCH effects → time-varying savings motive
+:::
+
+**Result**: Can explain high savings rates and "excess sensitivity"
+
+## Implication 2: Welfare Costs
+
+Recall certainty equivalent from Lecture 2:
+
+:::{.incremental}
+- **Permanent shocks**: very costly (cannot insure)
+- **Transitory shocks**: less costly (can smooth)
+- **ARCH effects**: magnify costs (risk breeds risk)
+- Welfare gains from insurance: 10-20% of consumption!
+:::
+
+## Implication 3: Income Mobility
+
+With ARCH:
+
+:::{.incremental}
+- People at extremes (large shocks) have **higher future variance**
+- Increases probability of reverting to mean
+- **Reduces poverty persistence** by 2-6 percentage points
+- But also increases chance of falling into poverty
+:::
+
+**Implication**: Mobility patterns more complex than simple mean reversion
+
+## Implication 4: Policy Design
+
+Different shocks → different policies:
+
+:::{.incremental}
+- **Permanent shocks**: need redistribution (ex-post insurance)
+  - Progressive taxation, disability insurance
+- **Transitory shocks**: need liquidity (ex-ante insurance)
+  - Unemployment insurance, EITC, food stamps
+- **ARCH effects**: may need state-dependent transfers
+  - Higher benefits after large shocks?
+:::
+
+# Open Questions and Extensions
+
+## Measurement Challenges
+
+:::{.incremental}
+- **Top-coding**: earnings censored at top
+- **Imputation**: some data imputed in surveys
+- **Selection**: who attrites from panel?
+- **Administrative data**: @Guvenen2021 use tax records
+  - Find larger role for transitory shocks
+  - Less evidence for RIP model
+:::
+
+**Takeaway**: Measurement matters for conclusions!
+
+## Other Extensions
+
+Recent work examines:
+
+:::{.incremental}
+- **Non-Gaussian shocks**: fat tails, skewness
+- **Wages vs hours**: separating margins of adjustment
+- **Life-cycle patterns**: how risk changes with age
+- **Subjective expectations**: what do people think their risk is?
+:::
+
+## What We Still Don't Know
+
+Important open questions:
+
+:::{.incremental}
+1. What fraction of income risk is truly uninsurable?
+2. How much do people self-insure through savings/family?
+3. Do ARCH effects reflect uncertainty or predictable volatility?
+4. How do processes vary across countries/time periods?
+5. What are optimal policy responses to time-varying risk?
+:::
+
+# Summary
+
+## Key Takeaways
+
+:::{.incremental}
+- Income has **permanent** and **transitory** components
+- Permanent shocks important empirically (variance ≈ 0.03)
+- Transitory shocks show some persistence (MA(1))
+- **Time-varying risk**: variance depends on recent shocks (ARCH)
+- Some people face permanently higher risk
+- Simple i.i.d. assumption very misleading for policy
+:::
+
+## Why This Matters
+
+:::{.incremental}
+- **Consumption theory**: explains savings behavior
+- **Welfare analysis**: determines value of insurance
+- **Policy design**: guides transfer program design
+- **Structural models**: key input for calibration
+- **Inequality**: helps explain trends and patterns
+:::
+
+## For Next Lecture
+
+We'll study **intergenerational mobility**:
+
+:::{.incremental}
+- How persistent is economic status across generations?
+- Connection to income processes: do children inherit parents' risk?
+- Geographic variation in mobility (Chetty et al.)
+- Policy implications for education and early childhood
+:::
+
+**Reading**: @Chetty2014, @mazumder2005
+
+## References {.smaller}
+
+::: {#refs}
+:::
