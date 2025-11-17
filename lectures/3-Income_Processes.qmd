@@ -54,7 +54,7 @@ where $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma^2)$
 - Each period is **independent** of the past
 - Shocks have **no persistence**
 - Example: random measurement error
-- Not realistic for earnings (last year's income predicts this year's!)
+- Not realistic for earnings (last year's income predicts this year's)
 :::
 
 ## Random Walk Process
@@ -197,16 +197,23 @@ Different processes → different implications:
 
 :::{.incremental}
 - **Random walk**: job loss permanently lowers earnings
-  - Need strong safety net
 - **AR(1)**: earnings shocks fade over time
-  - Can self-insure with savings
 - **MA(1)**: shocks have short-term persistence
-  - Medium-term smoothing helps
+- More persistent shocks are harder to self-insure against. Insurance more valuable.
 :::
 
-**Today's goal**: Figure out which process(es) best describe earnings data! 
+. . .
 
-# Building Intuition Through Exercises
+**Key question**: Which process(es) best describe earnings data?
+
+# Empirical content and "identification"
+
+## Key Questions
+
+- How would each of these processes appear differently in **panel data**?
+- When we write down an income process, is it *identified*?
+  - *identified* $\Leftrightarrow$ parameters can be inferred from population moments
+- Replacing population moments with *sample moments* yields estimation strategy
 
 ## Exercise 1: Pure Random Walk
 
@@ -220,7 +227,8 @@ where $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma^2)$.
 
 a) What is the variance of $y_{it}$ as a function of time?
 b) If everyone starts at $y_{i0} = 0$, how does inequality evolve?
-c) Give examples of shocks that might fit this model
+c) What is the covariance at different lags?
+d) How could we estimate this process?
 
 ## Exercise 2: AR(1) Process
 
@@ -234,8 +242,8 @@ where $|\rho| < 1$ and $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma_{\varepsilon}
 
 a) What is the long-run variance of $y_{it}$?
 b) How does inequality evolve compared to the random walk?
-c) What is the half-life of a shock (time for effect to decay by 50%)?
-d) Give examples of shocks that might fit this model
+c) What is the covariance at different lags?
+d) How could we estimate?
 
 ## Exercise 3: AR(1) with Fixed Effects
 
@@ -244,14 +252,24 @@ Now add individual-specific fixed effects:
 $$y_{it} = \alpha_i + \zeta_{it} + \varepsilon_{it} $$
 
 where $\zeta_{it} = \rho \zeta_{it} + \epsilon_{it}$ and $\epsilon_{it}\sim\text{ i.i.d. }N(0,\sigma^2_{\epsilon})$
+
 **Questions**:
 
 a) What determines long-run inequality in this model?
-b) How would you estimate $\rho$ from panel data?
-c) What happens if you ignore the fixed effects?
-d) Is this a realistic model for earnings? Why or why not?
+b) What is the covariance at different lags?
+c) How would you estimate $\rho$ from panel data?
+d) What happens if you ignore the fixed effects?
 
-## Exercise 4: Permanent vs Transitory
+## Exercise 4: Random walk + MA(1)
+
+To think about:
+
+$$y_{it} = p_{it} + \varepsilon_{it} + \theta \varepsilon_{i,t-1}$$
+
+a) What is the covariance in growth rates?
+b) How can we estimate this model?
+
+## Exercise 5 (harder): Permanent vs Transitory
 
 Consider a model with both components:
 
@@ -263,7 +281,9 @@ where $p_{it} = p_{it-1} + \zeta_{it}$ and $e_{it} = \theta e_{it-1} + \varepsil
 
 a) Which component determines long-run inequality?
 b) Which component affects year-to-year volatility?
-c) If $\zeta_{it} \sim N(0, 0.03)$ and $\varepsilon_{it} \sim N(0, 0.05)$, which matters more after 30 years?
+c) What is the covariance in growth rates?
+d) How can we estimate this model?
+
 
 ## Key Insights from Exercises
 

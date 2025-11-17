@@ -265,7 +265,7 @@
 <li class="fragment">Each period is <strong>independent</strong> of the past</li>
 <li class="fragment">Shocks have <strong>no persistence</strong></li>
 <li class="fragment">Example: random measurement error</li>
-<li class="fragment">Not realistic for earnings (last year’s income predicts this year’s!)</li>
+<li class="fragment">Not realistic for earnings (last year’s income predicts this year’s)</li>
 </ul>
 </div>
 </section>
@@ -496,26 +496,31 @@
 <p>Different processes → different implications:</p>
 <div>
 <ul>
-<li class="fragment"><strong>Random walk</strong>: job loss permanently lowers earnings
-<ul>
-<li class="fragment">Need strong safety net</li>
-</ul></li>
-<li class="fragment"><strong>AR(1)</strong>: earnings shocks fade over time
-<ul>
-<li class="fragment">Can self-insure with savings</li>
-</ul></li>
-<li class="fragment"><strong>MA(1)</strong>: shocks have short-term persistence
-<ul>
-<li class="fragment">Medium-term smoothing helps</li>
-</ul></li>
+<li class="fragment"><strong>Random walk</strong>: job loss permanently lowers earnings</li>
+<li class="fragment"><strong>AR(1)</strong>: earnings shocks fade over time</li>
+<li class="fragment"><strong>MA(1)</strong>: shocks have short-term persistence</li>
+<li class="fragment">More persistent shocks are harder to self-insure against. Insurance more valuable.</li>
 </ul>
 </div>
-<p><strong>Today’s goal</strong>: Figure out which process(es) best describe earnings data!</p>
+<div class="fragment">
+<p><strong>Key question</strong>: Which process(es) best describe earnings data?</p>
+</div>
 </section></section>
 <section>
-<section id="building-intuition-through-exercises" class="title-slide slide level1 center">
-<h1>Building Intuition Through Exercises</h1>
+<section id="empirical-content-and-identification" class="title-slide slide level1 center">
+<h1>Empirical content and “identification”</h1>
 
+</section>
+<section id="key-questions" class="slide level2">
+<h2>Key Questions</h2>
+<ul>
+<li>How would each of these processes appear differently in <strong>panel data</strong>?</li>
+<li>When we write down an income process, is it <em>identified</em>?
+<ul>
+<li><em>identified</em> <span class="math inline">\(\Leftrightarrow\)</span> parameters can be inferred from population moments</li>
+</ul></li>
+<li>Replacing population moments with <em>sample moments</em> yields estimation strategy</li>
+</ul>
 </section>
 <section id="exercise-1-pure-random-walk" class="slide level2">
 <h2>Exercise 1: Pure Random Walk</h2>
@@ -526,7 +531,8 @@
 <ol type="a">
 <li>What is the variance of <span class="math inline">\(y_{it}\)</span> as a function of time?</li>
 <li>If everyone starts at <span class="math inline">\(y_{i0} = 0\)</span>, how does inequality evolve?</li>
-<li>Give examples of shocks that might fit this model</li>
+<li>What is the covariance at different lags?</li>
+<li>How could we estimate this process?</li>
 </ol>
 </section>
 <section id="exercise-2-ar1-process" class="slide level2">
@@ -538,24 +544,34 @@
 <ol type="a">
 <li>What is the long-run variance of <span class="math inline">\(y_{it}\)</span>?</li>
 <li>How does inequality evolve compared to the random walk?</li>
-<li>What is the half-life of a shock (time for effect to decay by 50%)?</li>
-<li>Give examples of shocks that might fit this model</li>
+<li>What is the covariance at different lags?</li>
+<li>How could we estimate?</li>
 </ol>
 </section>
 <section id="exercise-3-ar1-with-fixed-effects" class="slide level2">
 <h2>Exercise 3: AR(1) with Fixed Effects</h2>
 <p>Now add individual-specific fixed effects:</p>
 <p><span class="math display">\[y_{it} = \alpha_i + \zeta_{it} + \varepsilon_{it} \]</span></p>
-<p>where <span class="math inline">\(\zeta_{it} = \rho \zeta_{it} + \epsilon_{it}\)</span> and <span class="math inline">\(\epsilon_{it}\sim\text{ i.i.d. }N(0,\sigma^2_{\epsilon})\)</span> <strong>Questions</strong>:</p>
+<p>where <span class="math inline">\(\zeta_{it} = \rho \zeta_{it} + \epsilon_{it}\)</span> and <span class="math inline">\(\epsilon_{it}\sim\text{ i.i.d. }N(0,\sigma^2_{\epsilon})\)</span></p>
+<p><strong>Questions</strong>:</p>
 <ol type="a">
 <li>What determines long-run inequality in this model?</li>
+<li>What is the covariance at different lags?</li>
 <li>How would you estimate <span class="math inline">\(\rho\)</span> from panel data?</li>
 <li>What happens if you ignore the fixed effects?</li>
-<li>Is this a realistic model for earnings? Why or why not?</li>
 </ol>
 </section>
-<section id="exercise-4-permanent-vs-transitory" class="slide level2">
-<h2>Exercise 4: Permanent vs Transitory</h2>
+<section id="exercise-4-random-walk-ma1" class="slide level2">
+<h2>Exercise 4: Random walk + MA(1)</h2>
+<p>To think about:</p>
+<p><span class="math display">\[y_{it} = p_{it} + \varepsilon_{it} + \theta \varepsilon_{i,t-1}\]</span></p>
+<ol type="a">
+<li>What is the covariance in growth rates?</li>
+<li>How can we estimate this model?</li>
+</ol>
+</section>
+<section id="exercise-5-harder-permanent-vs-transitory" class="slide level2">
+<h2>Exercise 5 (harder): Permanent vs Transitory</h2>
 <p>Consider a model with both components:</p>
 <p><span class="math display">\[y_{it} = p_{it} + e_{it}\]</span></p>
 <p>where <span class="math inline">\(p_{it} = p_{it-1} + \zeta_{it}\)</span> and <span class="math inline">\(e_{it} = \theta e_{it-1} + \varepsilon_{it}\)</span></p>
@@ -563,7 +579,8 @@
 <ol type="a">
 <li>Which component determines long-run inequality?</li>
 <li>Which component affects year-to-year volatility?</li>
-<li>If <span class="math inline">\(\zeta_{it} \sim N(0, 0.03)\)</span> and <span class="math inline">\(\varepsilon_{it} \sim N(0, 0.05)\)</span>, which matters more after 30 years?</li>
+<li>What is the covariance in growth rates?</li>
+<li>How can we estimate this model?</li>
 </ol>
 </section>
 <section id="key-insights-from-exercises" class="slide level2">

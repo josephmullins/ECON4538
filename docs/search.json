@@ -1096,28 +1096,28 @@
     "href": "lectures/3-Income_Processes.html#exercise-1-pure-random-walk",
     "title": "Income Processes",
     "section": "Exercise 1: Pure Random Walk",
-    "text": "Exercise 1: Pure Random Walk\nSuppose individual \\(i\\)’s log earnings follow:\n\\[y_{it} = y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma^2)\\).\nQuestions:\n\nWhat is the variance of \\(y_{it}\\) as a function of time?\nIf everyone starts at \\(y_{i0} = 0\\), how does inequality evolve?\nGive examples of shocks that might fit this model"
+    "text": "Exercise 1: Pure Random Walk\nSuppose individual \\(i\\)’s log earnings follow:\n\\[y_{it} = y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma^2)\\).\nQuestions:\n\nWhat is the variance of \\(y_{it}\\) as a function of time?\nIf everyone starts at \\(y_{i0} = 0\\), how does inequality evolve?\nWhat is the covariance at different lags?\nHow could we estimate this process?"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#exercise-2-ar1-process",
     "href": "lectures/3-Income_Processes.html#exercise-2-ar1-process",
     "title": "Income Processes",
     "section": "Exercise 2: AR(1) Process",
-    "text": "Exercise 2: AR(1) Process\nNow suppose:\n\\[y_{it} = \\rho y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(|\\rho| &lt; 1\\) and \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma_{\\varepsilon}^2)\\).\nQuestions:\n\nWhat is the long-run variance of \\(y_{it}\\)?\nHow does inequality evolve compared to the random walk?\nWhat is the half-life of a shock (time for effect to decay by 50%)?\nGive examples of shocks that might fit this model"
+    "text": "Exercise 2: AR(1) Process\nNow suppose:\n\\[y_{it} = \\rho y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(|\\rho| &lt; 1\\) and \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma_{\\varepsilon}^2)\\).\nQuestions:\n\nWhat is the long-run variance of \\(y_{it}\\)?\nHow does inequality evolve compared to the random walk?\nWhat is the covariance at different lags?\nHow could we estimate?"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#exercise-3-ar1-with-fixed-effects",
     "href": "lectures/3-Income_Processes.html#exercise-3-ar1-with-fixed-effects",
     "title": "Income Processes",
     "section": "Exercise 3: AR(1) with Fixed Effects",
-    "text": "Exercise 3: AR(1) with Fixed Effects\nNow add individual-specific fixed effects:\n\\[y_{it} = \\alpha_i + \\zeta_{it} + \\varepsilon_{it} \\]\nwhere \\(\\zeta_{it} = \\rho \\zeta_{it} + \\epsilon_{it}\\) and \\(\\epsilon_{it}\\sim\\text{ i.i.d. }N(0,\\sigma^2_{\\epsilon})\\) Questions:\n\nWhat determines long-run inequality in this model?\nHow would you estimate \\(\\rho\\) from panel data?\nWhat happens if you ignore the fixed effects?\nIs this a realistic model for earnings? Why or why not?"
+    "text": "Exercise 3: AR(1) with Fixed Effects\nNow add individual-specific fixed effects:\n\\[y_{it} = \\alpha_i + \\zeta_{it} + \\varepsilon_{it} \\]\nwhere \\(\\zeta_{it} = \\rho \\zeta_{it} + \\epsilon_{it}\\) and \\(\\epsilon_{it}\\sim\\text{ i.i.d. }N(0,\\sigma^2_{\\epsilon})\\)\nQuestions:\n\nWhat determines long-run inequality in this model?\nWhat is the covariance at different lags?\nHow would you estimate \\(\\rho\\) from panel data?\nWhat happens if you ignore the fixed effects?"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#exercise-4-permanent-vs-transitory",
     "href": "lectures/3-Income_Processes.html#exercise-4-permanent-vs-transitory",
     "title": "Income Processes",
     "section": "Exercise 4: Permanent vs Transitory",
-    "text": "Exercise 4: Permanent vs Transitory\nConsider a model with both components:\n\\[y_{it} = p_{it} + e_{it}\\]\nwhere \\(p_{it} = p_{it-1} + \\zeta_{it}\\) and \\(e_{it} = \\theta e_{it-1} + \\varepsilon_{it}\\)\nQuestions:\n\nWhich component determines long-run inequality?\nWhich component affects year-to-year volatility?\nIf \\(\\zeta_{it} \\sim N(0, 0.03)\\) and \\(\\varepsilon_{it} \\sim N(0, 0.05)\\), which matters more after 30 years?"
+    "text": "Exercise 4: Permanent vs Transitory\nConsider a model with both components:\n\\[y_{it} = p_{it} + e_{it}\\]\nwhere \\(p_{it} = p_{it-1} + \\zeta_{it}\\) and \\(e_{it} = \\theta e_{it-1} + \\varepsilon_{it}\\)\nQuestions:\n\nWhich component determines long-run inequality?\nWhich component affects year-to-year volatility?\nWhat is the covariance in growth rates?\nHow can we estimate this model?"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#key-insights-from-exercises",
@@ -1271,7 +1271,7 @@
     "href": "lectures/3-Income_Processes.html#white-noise-i.i.d.-process",
     "title": "Income Processes",
     "section": "White Noise (i.i.d. Process)",
-    "text": "White Noise (i.i.d. Process)\nThe simplest process: white noise\n\\[y_{it} = \\varepsilon_{it}\\]\nwhere \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma^2)\\)\n\n\nEach period is independent of the past\nShocks have no persistence\nExample: random measurement error\nNot realistic for earnings (last year’s income predicts this year’s!)"
+    "text": "White Noise (i.i.d. Process)\nThe simplest process: white noise\n\\[y_{it} = \\varepsilon_{it}\\]\nwhere \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma^2)\\)\n\n\nEach period is independent of the past\nShocks have no persistence\nExample: random measurement error\nNot realistic for earnings (last year’s income predicts this year’s)"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#random-walk-process",
@@ -1327,6 +1327,34 @@
     "href": "lectures/3-Income_Processes.html#why-this-matters-for-earnings",
     "title": "Income Processes",
     "section": "Why This Matters for Earnings",
-    "text": "Why This Matters for Earnings\nDifferent processes → different implications:\n\n\nRandom walk: job loss permanently lowers earnings\n\nNeed strong safety net\n\nAR(1): earnings shocks fade over time\n\nCan self-insure with savings\n\nMA(1): shocks have short-term persistence\n\nMedium-term smoothing helps\n\n\n\nToday’s goal: Figure out which process(es) best describe earnings data!"
+    "text": "Why This Matters for Earnings\nDifferent processes → different implications:\n\n\nRandom walk: job loss permanently lowers earnings\nAR(1): earnings shocks fade over time\nMA(1): shocks have short-term persistence\nMore persistent shocks are harder to self-insure against. Insurance more valuable.\n\n\n\nKey question: Which process(es) best describe earnings data?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#key-questions",
+    "href": "lectures/3-Income_Processes.html#key-questions",
+    "title": "Income Processes",
+    "section": "Key Questions",
+    "text": "Key Questions\n\nHow would each of these processes appear differently in panel data?\nWhen we write down an income process, is it identified?\n\nidentified \\(\\Leftrightarrow\\) parameters can be inferred from population moments\n\nReplacing population moments with sample moments yields estimation strategy"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-5-random-walk-ma1",
+    "href": "lectures/3-Income_Processes.html#exercise-5-random-walk-ma1",
+    "title": "Income Processes",
+    "section": "Exercise 5: Random walk + MA(1)",
+    "text": "Exercise 5: Random walk + MA(1)\nTo think about:\n\\[y_{it} = p_{it} + \\varepsilon_{it} + \\theta \\varepsilon_{i,t-1}\\]\n\nWhat is the covariance in growth rates?\nHow can we estimate this model?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-4-random-walk-ma1",
+    "href": "lectures/3-Income_Processes.html#exercise-4-random-walk-ma1",
+    "title": "Income Processes",
+    "section": "Exercise 4: Random walk + MA(1)",
+    "text": "Exercise 4: Random walk + MA(1)\nTo think about:\n\\[y_{it} = p_{it} + \\varepsilon_{it} + \\theta \\varepsilon_{i,t-1}\\]\n\nWhat is the covariance in growth rates?\nHow can we estimate this model?"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-5-harder-permanent-vs-transitory",
+    "href": "lectures/3-Income_Processes.html#exercise-5-harder-permanent-vs-transitory",
+    "title": "Income Processes",
+    "section": "Exercise 5 (harder): Permanent vs Transitory",
+    "text": "Exercise 5 (harder): Permanent vs Transitory\nConsider a model with both components:\n\\[y_{it} = p_{it} + e_{it}\\]\nwhere \\(p_{it} = p_{it-1} + \\zeta_{it}\\) and \\(e_{it} = \\theta e_{it-1} + \\varepsilon_{it}\\)\nQuestions:\n\nWhich component determines long-run inequality?\nWhich component affects year-to-year volatility?\nWhat is the covariance in growth rates?\nHow can we estimate this model?"
   }
 ]
