@@ -231,10 +231,9 @@
 <li class="fragment">Key questions:
 <ul>
 <li class="fragment">How persistent are earnings shocks?</li>
-<li class="fragment">Are shocks permanent or transitory?</li>
-<li class="fragment">Does income risk vary over time and across individuals?</li>
+<li class="fragment">How can we separate earnings volatility from earnings risk?</li>
 </ul></li>
-<li class="fragment">As we now know, the answer crucially determines how much we value insurance.</li>
+<li class="fragment">As we now know, the answers crucially determine how much we value insurance.</li>
 </ul>
 </div>
 </section>
@@ -355,7 +354,7 @@
 </svg>
 </div>
 </div>
-<p>Notice: paths <strong>diverge</strong> over time!</p>
+<p>Notice: paths <strong>diverge</strong> over time.</p>
 </section>
 <section id="ar1-process" class="slide level2">
 <h2>AR(1) Process</h2>
@@ -366,7 +365,7 @@
 <ul>
 <li class="fragment">Shocks <strong>fade over time</strong> at rate <span class="math inline">\(\rho\)</span></li>
 <li class="fragment">After <span class="math inline">\(k\)</span> periods, effect is <span class="math inline">\(\rho^k\)</span> of original shock</li>
-<li class="fragment">Long-run variance: <span class="math inline">\(\text{var}(y_{it}) = \frac{\sigma^2}{1-\rho^2}\)</span> (converges!)</li>
+<li class="fragment">Long-run variance: <span class="math inline">\(\text{var}(y_{it}) = \frac{\sigma^2}{1-\rho^2}\)</span></li>
 <li class="fragment">Example: temporary illness, bonus, overtime</li>
 </ul>
 </div>
@@ -439,7 +438,7 @@
 </svg>
 </div>
 </div>
-<p>Notice: paths <strong>fluctuate</strong> but don’t diverge!</p>
+<p>Notice: paths <strong>fluctuate</strong> but don’t diverge.</p>
 </section>
 <section id="comparing-random-walk-vs-ar1" class="slide level2">
 <h2>Comparing Random Walk vs AR(1)</h2>
@@ -531,7 +530,7 @@
 <ol type="a">
 <li>What is the variance of <span class="math inline">\(y_{it}\)</span> as a function of time?</li>
 <li>If everyone starts at <span class="math inline">\(y_{i0} = 0\)</span>, how does inequality evolve?</li>
-<li>What is the covariance at different lags?</li>
+<li>What is the covariance at different lags? What about in growth terms?</li>
 <li>How could we estimate this process?</li>
 </ol>
 </section>
@@ -548,6 +547,19 @@
 <li>How could we estimate?</li>
 </ol>
 </section>
+<section id="exercise-2" class="slide level2">
+<h2>Exercise 2:</h2>
+<p>Steps:</p>
+<div>
+<ol type="1">
+<li class="fragment">Show that <span class="math inline">\(\mathbb{C}(y_{it+1},y_{it}) = \mathbb{C}(\rho y_{it}+\varepsilon_{it+1},y_{it}) = \rho \mathbb{V}[y_{it}]\)</span>.</li>
+<li class="fragment">Similarly show that <span class="math inline">\(\mathbb{C}(y_{it+2},y_{it}) = \rho^{2}\mathbb{V}[y_{it}]\)</span></li>
+<li class="fragment">Therefore <span class="math display">\[ \rho = \frac{\mathbb{C}(y_{it+2},y_{it})}{\mathbb{C}(y_{it+1},y_{it})} \]</span></li>
+<li class="fragment">Estimate by plugging in sample covariances.</li>
+<li class="fragment">Similarly, since <span class="math inline">\(\mathbb{V}[y_{it+1}] = \rho^2\mathbb{V}[y_{it}] + \sigma^2_{\varepsilon}\)</span>, we get: <span class="math display">\[ \sigma^2_{\varepsilon} = \mathbb{V}[y_{it+1}] - \rho^2\mathbb{V}[y_{it}]\]</span></li>
+</ol>
+</div>
+</section>
 <section id="exercise-3-ar1-with-fixed-effects" class="slide level2">
 <h2>Exercise 3: AR(1) with Fixed Effects</h2>
 <p>Now add individual-specific fixed effects:</p>
@@ -558,7 +570,7 @@
 <li>What determines long-run inequality in this model?</li>
 <li>What is the covariance at different lags?</li>
 <li>How would you estimate <span class="math inline">\(\rho\)</span> from panel data?</li>
-<li>What happens if you ignore the fixed effects?</li>
+<li>What could happen if you ignore the fixed effects?</li>
 </ol>
 </section>
 <section id="exercise-4-random-walk-ma1" class="slide level2">
@@ -577,9 +589,7 @@
 <p>where <span class="math inline">\(p_{it} = p_{it-1} + \zeta_{it}\)</span> and <span class="math inline">\(e_{it} = \theta e_{it-1} + \varepsilon_{it}\)</span></p>
 <p><strong>Questions</strong>:</p>
 <ol type="a">
-<li>Which component determines long-run inequality?</li>
-<li>Which component affects year-to-year volatility?</li>
-<li>What is the covariance in growth rates?</li>
+<li>What is the covariance in growth rates and / or levels?</li>
 <li>How can we estimate this model?</li>
 </ol>
 </section>
@@ -598,6 +608,7 @@
 </ul></li>
 </ul>
 </div>
+<p>…</p>
 <p><strong>Main lesson</strong>: The nature of shocks fundamentally affects policy!</p>
 </section></section>
 <section>
@@ -684,7 +695,9 @@
 <li class="fragment">Different groups may face different processes</li>
 </ul>
 </div>
+<div class="fragment">
 <p><strong>Implication</strong>: Simple random walk probably too stark, but permanent shocks still important</p>
+</div>
 </section></section>
 <section>
 <section id="the-meghir-pistaferri-framework" class="title-slide slide level1 center">
@@ -727,7 +740,9 @@
 <li class="fragment">Do some people face more risk than others?</li>
 </ol>
 </div>
+<div class="fragment">
 <p>Let’s look at the evidence…</p>
+</div>
 </section>
 <section id="data-psid-1967-1992" class="slide level2">
 <h2>Data: PSID 1967-1992</h2>
@@ -939,7 +954,9 @@
 <li class="fragment">Skill depreciation</li>
 </ul>
 </div>
+<div class="fragment">
 <p><strong>Policy question</strong>: Should social insurance respond to individual risk histories?</p>
+</div>
 </section></section>
 <section>
 <section id="implications" class="title-slide slide level1 center">
@@ -982,7 +999,9 @@
 <li class="fragment">But also increases chance of falling into poverty</li>
 </ul>
 </div>
+<div class="fragment">
 <p><strong>Implication</strong>: Mobility patterns more complex than simple mean reversion</p>
+</div>
 </section>
 <section id="implication-4-policy-design" class="slide level2">
 <h2>Implication 4: Policy Design</h2>
@@ -1023,7 +1042,9 @@
 </ul></li>
 </ul>
 </div>
+<div class="fragment">
 <p><strong>Takeaway</strong>: Measurement matters for conclusions!</p>
+</div>
 </section>
 <section id="other-extensions" class="slide level2">
 <h2>Other Extensions</h2>

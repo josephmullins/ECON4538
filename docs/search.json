@@ -858,7 +858,7 @@
     "href": "lectures/3-Income_Processes.html#overview",
     "title": "Income Processes",
     "section": "Overview",
-    "text": "Overview\n\n\nIn previous lectures: documented inequality trends and welfare implications\nToday: understand the stochastic process generating earnings\nKey questions:\n\nHow persistent are earnings shocks?\nAre shocks permanent or transitory?\nDoes income risk vary over time and across individuals?\n\nAs we now know, the answer crucially determines how much we value insurance."
+    "text": "Overview\n\n\nIn previous lectures: documented inequality trends and welfare implications\nToday: understand the stochastic process generating earnings\nKey questions:\n\nHow persistent are earnings shocks?\nHow can we separate earnings volatility from earnings risk?\n\nAs we now know, the answers crucially determine how much we value insurance."
   },
   {
     "objectID": "lectures/3-Income_Processes.html#why-model-income-processes",
@@ -1096,7 +1096,7 @@
     "href": "lectures/3-Income_Processes.html#exercise-1-pure-random-walk",
     "title": "Income Processes",
     "section": "Exercise 1: Pure Random Walk",
-    "text": "Exercise 1: Pure Random Walk\nSuppose individual \\(i\\)’s log earnings follow:\n\\[y_{it} = y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma^2)\\).\nQuestions:\n\nWhat is the variance of \\(y_{it}\\) as a function of time?\nIf everyone starts at \\(y_{i0} = 0\\), how does inequality evolve?\nWhat is the covariance at different lags?\nHow could we estimate this process?"
+    "text": "Exercise 1: Pure Random Walk\nSuppose individual \\(i\\)’s log earnings follow:\n\\[y_{it} = y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(\\varepsilon_{it} \\sim\\) i.i.d. \\(N(0, \\sigma^2)\\).\nQuestions:\n\nWhat is the variance of \\(y_{it}\\) as a function of time?\nIf everyone starts at \\(y_{i0} = 0\\), how does inequality evolve?\nWhat is the covariance at different lags? What about in growth terms?\nHow could we estimate this process?"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#exercise-2-ar1-process",
@@ -1110,7 +1110,7 @@
     "href": "lectures/3-Income_Processes.html#exercise-3-ar1-with-fixed-effects",
     "title": "Income Processes",
     "section": "Exercise 3: AR(1) with Fixed Effects",
-    "text": "Exercise 3: AR(1) with Fixed Effects\nNow add individual-specific fixed effects:\n\\[y_{it} = \\alpha_i + \\zeta_{it} + \\varepsilon_{it} \\]\nwhere \\(\\zeta_{it} = \\rho \\zeta_{it} + \\epsilon_{it}\\) and \\(\\epsilon_{it}\\sim\\text{ i.i.d. }N(0,\\sigma^2_{\\epsilon})\\)\nQuestions:\n\nWhat determines long-run inequality in this model?\nWhat is the covariance at different lags?\nHow would you estimate \\(\\rho\\) from panel data?\nWhat happens if you ignore the fixed effects?"
+    "text": "Exercise 3: AR(1) with Fixed Effects\nNow add individual-specific fixed effects:\n\\[y_{it} = \\alpha_i + \\zeta_{it} + \\varepsilon_{it} \\]\nwhere \\(\\zeta_{it} = \\rho \\zeta_{it} + \\epsilon_{it}\\) and \\(\\epsilon_{it}\\sim\\text{ i.i.d. }N(0,\\sigma^2_{\\epsilon})\\)\nQuestions:\n\nWhat determines long-run inequality in this model?\nWhat is the covariance at different lags?\nHow would you estimate \\(\\rho\\) from panel data?\nWhat could happen if you ignore the fixed effects?"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#exercise-4-permanent-vs-transitory",
@@ -1124,7 +1124,7 @@
     "href": "lectures/3-Income_Processes.html#key-insights-from-exercises",
     "title": "Income Processes",
     "section": "Key Insights from Exercises",
-    "text": "Key Insights from Exercises\n\n\nRandom walk: inequality grows without bound, shocks never fade\nAR(1): inequality stabilizes, shocks fade over time\nFixed effects: create permanent inequality, distinct from shocks\nPermanent vs transitory: different implications for:\n\nConsumption smoothing\nWelfare costs of inequality\nPolicy design\n\n\n\nMain lesson: The nature of shocks fundamentally affects policy!"
+    "text": "Key Insights from Exercises\n\n\nRandom walk: inequality grows without bound, shocks never fade\nAR(1): inequality stabilizes, shocks fade over time\nFixed effects: create permanent inequality, distinct from shocks\nPermanent vs transitory: different implications for:\n\nConsumption smoothing\nWelfare costs of inequality\nPolicy design\n\n\n\n…\nMain lesson: The nature of shocks fundamentally affects policy!"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#what-if-people-have-different-growth-rates",
@@ -1152,7 +1152,7 @@
     "href": "lectures/3-Income_Processes.html#evidence-on-hip-vs-rip",
     "title": "Income Processes",
     "section": "Evidence on HIP vs RIP",
-    "text": "Evidence on HIP vs RIP\nGuvenen (2009) findings:\n\n\nEarnings growth has positive long-run autocovariances\nSuggests some HIP component\nBut also evidence of permanent shocks (RIP)\nDifferent groups may face different processes\n\n\nImplication: Simple random walk probably too stark, but permanent shocks still important"
+    "text": "Evidence on HIP vs RIP\nGuvenen (2009) findings:\n\n\nEarnings growth has positive long-run autocovariances\nSuggests some HIP component\nBut also evidence of permanent shocks (RIP)\nDifferent groups may face different processes\n\n\n\nImplication: Simple random walk probably too stark, but permanent shocks still important"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#a-more-flexible-model",
@@ -1173,7 +1173,7 @@
     "href": "lectures/3-Income_Processes.html#key-empirical-questions",
     "title": "Income Processes",
     "section": "Key Empirical Questions",
-    "text": "Key Empirical Questions\nMeghir and Pistaferri (2004) ask:\n\n\nAre permanent shocks important? (test \\(\\text{var}(\\zeta) = 0\\))\nHow persistent are transitory shocks?\nDoes variance change over time?\nDo some people face more risk than others?\n\n\nLet’s look at the evidence…"
+    "text": "Key Empirical Questions\nMeghir and Pistaferri (2004) ask:\n\n\nAre permanent shocks important? (test \\(\\text{var}(\\zeta) = 0\\))\nHow persistent are transitory shocks?\nDoes variance change over time?\nDo some people face more risk than others?\n\n\n\nLet’s look at the evidence…"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#finding-1-transitory-shocks-have-some-persistence",
@@ -1201,7 +1201,7 @@
     "href": "lectures/3-Income_Processes.html#what-generates-time-varying-risk",
     "title": "Income Processes",
     "section": "What Generates Time-Varying Risk?",
-    "text": "What Generates Time-Varying Risk?\nPossible mechanisms:\n\n\nJob characteristics (risky occupations)\nBusiness cycle (recessions)\nHealth problems (cascading effects)\nCareer instability\nSkill depreciation\n\n\nPolicy question: Should social insurance respond to individual risk histories?"
+    "text": "What Generates Time-Varying Risk?\nPossible mechanisms:\n\n\nJob characteristics (risky occupations)\nBusiness cycle (recessions)\nHealth problems (cascading effects)\nCareer instability\nSkill depreciation\n\n\n\nPolicy question: Should social insurance respond to individual risk histories?"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#implication-1-consumption-and-savings",
@@ -1222,7 +1222,7 @@
     "href": "lectures/3-Income_Processes.html#implication-3-income-mobility",
     "title": "Income Processes",
     "section": "Implication 3: Income Mobility",
-    "text": "Implication 3: Income Mobility\nWith ARCH:\n\n\nPeople at extremes (large shocks) have higher future variance\nIncreases probability of reverting to mean\nReduces poverty persistence by 2-6 percentage points\nBut also increases chance of falling into poverty\n\n\nImplication: Mobility patterns more complex than simple mean reversion"
+    "text": "Implication 3: Income Mobility\nWith ARCH:\n\n\nPeople at extremes (large shocks) have higher future variance\nIncreases probability of reverting to mean\nReduces poverty persistence by 2-6 percentage points\nBut also increases chance of falling into poverty\n\n\n\nImplication: Mobility patterns more complex than simple mean reversion"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#implication-4-policy-design",
@@ -1236,7 +1236,7 @@
     "href": "lectures/3-Income_Processes.html#measurement-challenges",
     "title": "Income Processes",
     "section": "Measurement Challenges",
-    "text": "Measurement Challenges\n\n\nTop-coding: earnings censored at top\nImputation: some data imputed in surveys\nSelection: who attrites from panel?\nAdministrative data: Guvenen et al. (2021) use tax records\n\nFind larger role for transitory shocks\nLess evidence for RIP model\n\n\n\nTakeaway: Measurement matters for conclusions!"
+    "text": "Measurement Challenges\n\n\nTop-coding: earnings censored at top\nImputation: some data imputed in surveys\nSelection: who attrites from panel?\nAdministrative data: Guvenen et al. (2021) use tax records\n\nFind larger role for transitory shocks\nLess evidence for RIP model\n\n\n\n\nTakeaway: Measurement matters for conclusions!"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#other-extensions",
@@ -1285,21 +1285,21 @@
     "href": "lectures/3-Income_Processes.html#random-walk-simulation",
     "title": "Income Processes",
     "section": "Random Walk: Simulation",
-    "text": "Random Walk: Simulation\n\n\nCode\nusing Random, StatsPlots\nRandom.seed!(123)\n\n# Simulate 5 individuals over 30 years\nT = 30\nN = 5\ny = zeros(T, N)\n\nfor i in 1:N\n    for t in 2:T\n        y[t, i] = y[t-1, i] + randn()  # Random walk\n    end\nend\n\nplot(1:T, y, linewidth=2, xlabel=\"Time\", ylabel=\"Log Earnings\",\n     title=\"Random Walk: Paths Diverge\", legend=false, alpha=0.7)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotice: paths diverge over time!"
+    "text": "Random Walk: Simulation\n\n\nCode\nusing Random, StatsPlots\nRandom.seed!(123)\n\n# Simulate 5 individuals over 30 years\nT = 30\nN = 5\ny = zeros(T, N)\n\nfor i in 1:N\n    for t in 2:T\n        y[t, i] = y[t-1, i] + randn()  # Random walk\n    end\nend\n\nplot(1:T, y, linewidth=2, xlabel=\"Time\", ylabel=\"Log Earnings\",\n     title=\"Random Walk: Paths Diverge\", legend=false, alpha=0.7)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotice: paths diverge over time."
   },
   {
     "objectID": "lectures/3-Income_Processes.html#ar1-process",
     "href": "lectures/3-Income_Processes.html#ar1-process",
     "title": "Income Processes",
     "section": "AR(1) Process",
-    "text": "AR(1) Process\nAn autoregressive process with mean reversion:\n\\[y_{it} = \\rho y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(|\\rho| &lt; 1\\) (typically \\(0 &lt; \\rho &lt; 1\\) for earnings)\n\n\nShocks fade over time at rate \\(\\rho\\)\nAfter \\(k\\) periods, effect is \\(\\rho^k\\) of original shock\nLong-run variance: \\(\\text{var}(y_{it}) = \\frac{\\sigma^2}{1-\\rho^2}\\) (converges!)\nExample: temporary illness, bonus, overtime"
+    "text": "AR(1) Process\nAn autoregressive process with mean reversion:\n\\[y_{it} = \\rho y_{it-1} + \\varepsilon_{it}\\]\nwhere \\(|\\rho| &lt; 1\\) (typically \\(0 &lt; \\rho &lt; 1\\) for earnings)\n\n\nShocks fade over time at rate \\(\\rho\\)\nAfter \\(k\\) periods, effect is \\(\\rho^k\\) of original shock\nLong-run variance: \\(\\text{var}(y_{it}) = \\frac{\\sigma^2}{1-\\rho^2}\\)\nExample: temporary illness, bonus, overtime"
   },
   {
     "objectID": "lectures/3-Income_Processes.html#ar1-simulation",
     "href": "lectures/3-Income_Processes.html#ar1-simulation",
     "title": "Income Processes",
     "section": "AR(1): Simulation",
-    "text": "AR(1): Simulation\n\n\nCode\n# Simulate AR(1) with ρ = 0.7\nrho = 0.7\ny_ar = zeros(T, N)\n\nfor i in 1:N\n    for t in 2:T\n        y_ar[t, i] = rho * y_ar[t-1, i] + randn()  # AR(1)\n    end\nend\n\nplot(1:T, y_ar, linewidth=2, xlabel=\"Time\", ylabel=\"Log Earnings\",\n     title=\"AR(1) with ρ=0.7: Paths Stabilize\", legend=false, alpha=0.7)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotice: paths fluctuate but don’t diverge!"
+    "text": "AR(1): Simulation\n\n\nCode\n# Simulate AR(1) with ρ = 0.7\nrho = 0.7\ny_ar = zeros(T, N)\n\nfor i in 1:N\n    for t in 2:T\n        y_ar[t, i] = rho * y_ar[t-1, i] + randn()  # AR(1)\n    end\nend\n\nplot(1:T, y_ar, linewidth=2, xlabel=\"Time\", ylabel=\"Log Earnings\",\n     title=\"AR(1) with ρ=0.7: Paths Stabilize\", legend=false, alpha=0.7)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotice: paths fluctuate but don’t diverge."
   },
   {
     "objectID": "lectures/3-Income_Processes.html#comparing-random-walk-vs-ar1",
@@ -1355,6 +1355,363 @@
     "href": "lectures/3-Income_Processes.html#exercise-5-harder-permanent-vs-transitory",
     "title": "Income Processes",
     "section": "Exercise 5 (harder): Permanent vs Transitory",
-    "text": "Exercise 5 (harder): Permanent vs Transitory\nConsider a model with both components:\n\\[y_{it} = p_{it} + e_{it}\\]\nwhere \\(p_{it} = p_{it-1} + \\zeta_{it}\\) and \\(e_{it} = \\theta e_{it-1} + \\varepsilon_{it}\\)\nQuestions:\n\nWhich component determines long-run inequality?\nWhich component affects year-to-year volatility?\nWhat is the covariance in growth rates?\nHow can we estimate this model?"
+    "text": "Exercise 5 (harder): Permanent vs Transitory\nConsider a model with both components:\n\\[y_{it} = p_{it} + e_{it}\\]\nwhere \\(p_{it} = p_{it-1} + \\zeta_{it}\\) and \\(e_{it} = \\theta e_{it-1} + \\varepsilon_{it}\\)\nQuestions:\n\nWhat is the covariance in growth rates and / or levels?\nHow can we estimate this model?"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#overview",
+    "href": "lectures/4-IntergenerationalMobility.html#overview",
+    "title": "Intergenerational Mobility",
+    "section": "Overview",
+    "text": "Overview\n\n\nPrevious lectures: inequality, welfare, and income processes within individuals over time\nToday: how does economic status persist across generations?\nKey questions:\n\nHow strong is the link between parent and child earnings?\nDoes the U.S. have more or less mobility than other countries?\nWhat drives geographic variation in mobility?\n\nAs we’ll see, mobility connects income processes to long-run inequality."
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#the-american-dream",
+    "href": "lectures/4-IntergenerationalMobility.html#the-american-dream",
+    "title": "Intergenerational Mobility",
+    "section": "The American Dream",
+    "text": "The American Dream\nA central tenet of American identity:\n\n“Each generation should do better than the last, regardless of where they start”\n\n\n\nDoes this hold empirically?\nHow much does your parent’s income determine yours?\nIs the U.S. “the land of opportunity”?"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#why-study-intergenerational-mobility",
+    "href": "lectures/4-IntergenerationalMobility.html#why-study-intergenerational-mobility",
+    "title": "Intergenerational Mobility",
+    "section": "Why Study Intergenerational Mobility?",
+    "text": "Why Study Intergenerational Mobility?\n\n\nNormative: Many view high mobility as desirable\n\nEqual opportunity vs equal outcomes\n\nPositive: Understanding persistence of inequality\n\nWill income disparities persist or fade?\n\nPolicy: Identifying effective interventions\n\nEducation? Early childhood? Neighborhoods?\n\nTheory: Testing models of human capital accumulation"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#connection-to-income-processes",
+    "href": "lectures/4-IntergenerationalMobility.html#connection-to-income-processes",
+    "title": "Intergenerational Mobility",
+    "section": "Connection to Income Processes",
+    "text": "Connection to Income Processes\nRecall from Lecture 3:\n\\[y_{it} = \\alpha_i + \\beta_i \\cdot t + p_{it} + e_{it}\\]\n\n\n\\(\\alpha_i\\): permanent individual component\nWhere does \\(\\alpha_i\\) come from?\nOne answer: parental resources, investments\nMobility studies: correlation between parent and child \\(\\alpha\\)’s"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#the-intergenerational-elasticity-ige",
+    "href": "lectures/4-IntergenerationalMobility.html#the-intergenerational-elasticity-ige",
+    "title": "Intergenerational Mobility",
+    "section": "The Intergenerational Elasticity (IGE)",
+    "text": "The Intergenerational Elasticity (IGE)\nMost common measure: regression of child log income on parent log income\n\\[y_{\\text{child}, i} = \\alpha + \\beta \\cdot y_{\\text{parent}, i} + \\varepsilon_i\\]\n\n\n\\(\\beta\\) = intergenerational elasticity (IGE)\n\\(\\beta = 0\\): no relationship (perfect mobility)\n\\(\\beta = 1\\): perfect persistence (no mobility)\nTypical estimates: \\(\\beta \\approx 0.4\\) to 0.6"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#interpreting-the-ige",
+    "href": "lectures/4-IntergenerationalMobility.html#interpreting-the-ige",
+    "title": "Intergenerational Mobility",
+    "section": "Interpreting the IGE",
+    "text": "Interpreting the IGE\nIf \\(\\beta = 0.5\\):\n\n\nChild of parent earning 50% more � expects to earn 25% more\nGap shrinks by 50% each generation\nBut: takes many generations to converge\nExample: $100K vs $50K difference\n\nGeneration 1: $50K gap\nGeneration 2: $25K gap\nGeneration 3: $12.5K gap"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#alternative-measure-rank-rank-slope",
+    "href": "lectures/4-IntergenerationalMobility.html#alternative-measure-rank-rank-slope",
+    "title": "Intergenerational Mobility",
+    "section": "Alternative Measure: Rank-Rank Slope",
+    "text": "Alternative Measure: Rank-Rank Slope\nChetty et al. (2014) popularized rank-based measures:\n\\[\\text{rank}_{\\text{child}, i} = \\alpha + \\beta_r \\cdot \\text{rank}_{\\text{parent}, i} + \\varepsilon_i\\]\n\n\nRanks: 0-100 percentile in income distribution\n\\(\\beta_r\\): how much does parent rank predict child rank?"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#rank-rank-visualization",
+    "href": "lectures/4-IntergenerationalMobility.html#rank-rank-visualization",
+    "title": "Intergenerational Mobility",
+    "section": "Rank-Rank: Visualization",
+    "text": "Rank-Rank: Visualization"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#rank-rank-interpretation",
+    "href": "lectures/4-IntergenerationalMobility.html#rank-rank-interpretation",
+    "title": "Intergenerational Mobility",
+    "section": "Rank-Rank: Interpretation",
+    "text": "Rank-Rank: Interpretation\nIf \\(\\beta_r = 0.3\\):\n\n\nChild of 25th percentile parent � expects to reach 33rd percentile\nChild of 75th percentile parent � expects to reach 58th percentile\nMovement toward middle: mean reversion\nBut substantial persistence remains"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#absolute-vs-relative-mobility",
+    "href": "lectures/4-IntergenerationalMobility.html#absolute-vs-relative-mobility",
+    "title": "Intergenerational Mobility",
+    "section": "Absolute vs Relative Mobility",
+    "text": "Absolute vs Relative Mobility\nTwo distinct concepts:\n\n\nRelative mobility: your rank compared to parents (what we’ve discussed)\nAbsolute mobility: do you earn more than your parents did?\n\n\n\nKey insight: Can have high absolute mobility (everyone richer) with low relative mobility (ranks unchanged)"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#exercise-thinking-about-mobility-measures",
+    "href": "lectures/4-IntergenerationalMobility.html#exercise-thinking-about-mobility-measures",
+    "title": "Intergenerational Mobility",
+    "section": "Exercise: Thinking About Mobility Measures",
+    "text": "Exercise: Thinking About Mobility Measures\nConsider two societies:\n\nSociety A: All children earn exactly $50K, regardless of parents\nSociety B: Child income = parent income � 0.9\n\nQuestions:\n\nWhat is the IGE in each society?\nWhich has more relative mobility?\nWhich has more absolute mobility in the long run?\nWhich society would you prefer to live in? Why?"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#the-solon-zimmerman-estimates",
+    "href": "lectures/4-IntergenerationalMobility.html#the-solon-zimmerman-estimates",
+    "title": "Intergenerational Mobility",
+    "section": "The Solon-Zimmerman Estimates",
+    "text": "The Solon-Zimmerman Estimates\nEarly 1990s: (Solon1992?) and (Zimmerman1992?) used PSID\nKey finding: \\(\\beta \\approx 0.4\\)\n\n\nMuch higher than previous estimates (0.2)\nPrevious work suffered from:\n\nMeasurement error\nLife-cycle bias (measuring parents/children too young)"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#life-cycle-bias",
+    "href": "lectures/4-IntergenerationalMobility.html#life-cycle-bias",
+    "title": "Intergenerational Mobility",
+    "section": "Life-Cycle Bias",
+    "text": "Life-Cycle Bias\nProblem: Income varies systematically over life cycle\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMeasuring parent income at age 30 vs 45 gives different results\nNeed to measure at peak earning years (40-50)"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#measurement-error-attenuation",
+    "href": "lectures/4-IntergenerationalMobility.html#measurement-error-attenuation",
+    "title": "Intergenerational Mobility",
+    "section": "Measurement Error Attenuation",
+    "text": "Measurement Error Attenuation\nClassical measurement error biases IGE toward zero:\n\\[y_{\\text{parent}}^{\\text{observed}} = y_{\\text{parent}}^{\\text{true}} + \\nu\\]\nTrue model: \\(y_{\\text{child}} = \\alpha + \\beta \\cdot y_{\\text{parent}}^{\\text{true}} + \\varepsilon\\)\nBut we estimate: \\(y_{\\text{child}} = \\alpha + \\beta^* \\cdot y_{\\text{parent}}^{\\text{observed}} + \\varepsilon^*\\)\n\n\nResult: \\(\\beta^* &lt; \\beta\\) (attenuation bias)\nSolution: Average parent income over many years\nOr use instrumental variables"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#mazumders-higher-estimates",
+    "href": "lectures/4-IntergenerationalMobility.html#mazumders-higher-estimates",
+    "title": "Intergenerational Mobility",
+    "section": "Mazumder’s Higher Estimates",
+    "text": "Mazumder’s Higher Estimates\nMazumder (2005) used Social Security earnings data:\n\n\nAdministrative data: no survey error\nLong averages: 16 years of parent earnings\nResult: \\(\\beta \\approx 0.6\\) (!!)\nSubstantially less mobility than Solon/Zimmerman\n\n\n\nImplication: U.S. mobility lower than previously thought"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#the-great-gatsby-curve",
+    "href": "lectures/4-IntergenerationalMobility.html#the-great-gatsby-curve",
+    "title": "Intergenerational Mobility",
+    "section": "The Great Gatsby Curve",
+    "text": "The Great Gatsby Curve\nCorak (2013) documented international relationship:\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey finding: More unequal countries have lower mobility"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#what-does-the-great-gatsby-curve-mean",
+    "href": "lectures/4-IntergenerationalMobility.html#what-does-the-great-gatsby-curve-mean",
+    "title": "Intergenerational Mobility",
+    "section": "What Does the Great Gatsby Curve Mean?",
+    "text": "What Does the Great Gatsby Curve Mean?\nPossible interpretations:\n\n\nMechanical: Higher inequality � larger gaps to overcome\nInvestments: Inequality � larger gaps in parental investments\nInstitutions: Same policies affect both inequality and mobility\nReverse causality: Low mobility � persistent inequality\n\n\n\nWhat do you think is most important?"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#chetty-et-al.s-data-revolution",
+    "href": "lectures/4-IntergenerationalMobility.html#chetty-et-al.s-data-revolution",
+    "title": "Intergenerational Mobility",
+    "section": "Chetty et al.’s Data Revolution",
+    "text": "Chetty et al.’s Data Revolution\nChetty et al. (2014) used de-identified tax records:\n\n\n40 million children born 1980-1982\nLinked to parents via tax returns\nIncome measured in 2011-2012 (ages 29-32)\nCoverage: ~95% of population\nGeographic detail: Census tract level\n\n\n\nUnprecedented scale and precision"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#national-findings",
+    "href": "lectures/4-IntergenerationalMobility.html#national-findings",
+    "title": "Intergenerational Mobility",
+    "section": "National Findings",
+    "text": "National Findings\nUsing rank-rank specification:\n\n\nNational average: \\(\\beta_r = 0.344\\)\nInterpretation: child at 25th percentile parent rank � expected rank of 33.6\nAbsolute mobility: 50% earn more than parents (declining over time)\nRemarkably linear relationship across entire distribution"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#geographic-variation-is-huge",
+    "href": "lectures/4-IntergenerationalMobility.html#geographic-variation-is-huge",
+    "title": "Intergenerational Mobility",
+    "section": "Geographic Variation is Huge",
+    "text": "Geographic Variation is Huge\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntergenerational Mobility by Commuting Zone (Chetty et al. 2014)\n\n\n\nSan Jose looks like Denmark. Charlotte looks like developing country."
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#where-is-mobility-highest",
+    "href": "lectures/4-IntergenerationalMobility.html#where-is-mobility-highest",
+    "title": "Intergenerational Mobility",
+    "section": "Where is Mobility Highest?",
+    "text": "Where is Mobility Highest?\nHigh-mobility areas tend to have:\n\n\nLess residential segregation (by income and race)\nBetter K-12 schools (measured by test scores, spending)\nStronger family structure (fewer single parents)\nMore social capital (civic engagement, church attendance)\nLess inequality (smaller Gini coefficient)\n\n\n\nThese are correlations, not necessarily causal."
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#segregation-and-mobility",
+    "href": "lectures/4-IntergenerationalMobility.html#segregation-and-mobility",
+    "title": "Intergenerational Mobility",
+    "section": "Segregation and Mobility",
+    "text": "Segregation and Mobility\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCorrelation: -0.67"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#school-quality-matters",
+    "href": "lectures/4-IntergenerationalMobility.html#school-quality-matters",
+    "title": "Intergenerational Mobility",
+    "section": "School Quality Matters",
+    "text": "School Quality Matters\nTest scores predict mobility even controlling for segregation:\n\n\n1 SD higher test scores � 0.02 higher mobility\nSchool spending shows weaker relationship\nQuality matters more than spending per se\nBut: sorting makes causality difficult\n\n\n\nQuestion: How would you test if this is causal?"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#family-structure",
+    "href": "lectures/4-IntergenerationalMobility.html#family-structure",
+    "title": "Intergenerational Mobility",
+    "section": "Family Structure",
+    "text": "Family Structure\nAreas with more single mothers have lower mobility:\n\n\n1 SD more single mothers � 0.03 lower mobility\nHolds even for children of married parents\nSuggests neighborhood peer effects\nOr: family structure proxies for other factors"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#moving-to-opportunity",
+    "href": "lectures/4-IntergenerationalMobility.html#moving-to-opportunity",
+    "title": "Intergenerational Mobility",
+    "section": "Moving to Opportunity",
+    "text": "Moving to Opportunity\nCan changing neighborhoods improve outcomes?\nMoving to Opportunity (MTO) experiment (Chetty2016?):\n\n\nRandomized housing vouchers to move to lower-poverty areas\nChildren who moved before age 13: large gains\n\n30% increase in earnings\nHigher college attendance\n\nChildren who moved after age 13: no gains\nSuggests critical period for neighborhood effects"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#the-role-of-age",
+    "href": "lectures/4-IntergenerationalMobility.html#the-role-of-age",
+    "title": "Intergenerational Mobility",
+    "section": "The Role of Age",
+    "text": "The Role of Age\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImplication: Early interventions may be more effective"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#race-and-mobility",
+    "href": "lectures/4-IntergenerationalMobility.html#race-and-mobility",
+    "title": "Intergenerational Mobility",
+    "section": "Race and Mobility",
+    "text": "Race and Mobility\nLarge racial disparities:\n\n\nBlack children from high-income families have lower upward mobility\nBlack children from low-income families have similar or lower upward mobility\nDisparities largest for men\nPersist even within same neighborhoods\nSuggests factors beyond neighborhood matter (discrimination, networks)"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#the-puzzle-of-declining-mobility",
+    "href": "lectures/4-IntergenerationalMobility.html#the-puzzle-of-declining-mobility",
+    "title": "Intergenerational Mobility",
+    "section": "The Puzzle of Declining Mobility",
+    "text": "The Puzzle of Declining Mobility\nIs mobility declining over time?\n\n\nRelative mobility (rank-rank): roughly constant since 1980s\nAbsolute mobility: sharply declining\n\n90% of 1940 cohort earned more than parents\nOnly 50% of 1980 cohort earned more than parents\n\nDue to: slower GDP growth + rising inequality"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#exercise-thinking-about-causes",
+    "href": "lectures/4-IntergenerationalMobility.html#exercise-thinking-about-causes",
+    "title": "Intergenerational Mobility",
+    "section": "Exercise: Thinking About Causes",
+    "text": "Exercise: Thinking About Causes\nConsider the five correlates:\n\nSegregation\nSchools\nFamily structure\nSocial capital\nInequality\n\nQuestions:\n\nWhich do you think is most important causally?\nHow would you test your hypothesis?\nWhat policy interventions would you propose?\nAre these factors related to each other?"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#linking-to-becker-tomes-model",
+    "href": "lectures/4-IntergenerationalMobility.html#linking-to-becker-tomes-model",
+    "title": "Intergenerational Mobility",
+    "section": "Linking to Becker-Tomes Model",
+    "text": "Linking to Becker-Tomes Model\nSimple framework (Becker and Tomes 1979):\n\\[y_{\\text{child}} = h(I_{\\text{parent}}, \\theta, \\varepsilon)\\]\n\n\n\\(I\\): parental investments (money, time)\n\\(\\theta\\): child ability/endowment\n\\(\\varepsilon\\): luck/environment\nParents choose \\(I\\) to maximize child outcomes\nPredicts: IGE depends on returns to investment"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#what-determines-the-ige",
+    "href": "lectures/4-IntergenerationalMobility.html#what-determines-the-ige",
+    "title": "Intergenerational Mobility",
+    "section": "What Determines the IGE?",
+    "text": "What Determines the IGE?\nIn Becker-Tomes framework:\n\\[\\beta = \\frac{\\text{var}(I) \\cdot \\left(\\frac{\\partial y}{\\partial I}\\right)^2 + \\text{cov}(\\theta, y_{\\text{parent}})}{\\text{var}(y_{\\text{parent}})}\\]\n\n\nHigher return to investment \\(\\rightarrow\\) higher IGE\nMore inequality in investments \\(\\rightarrow\\) higher IGE\nMore inequality in endowments \\(\\rightarrow\\) potentially lower IGE\nConnection to income processes: investments affect \\(\\alpha_i\\)"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#credit-constraints",
+    "href": "lectures/4-IntergenerationalMobility.html#credit-constraints",
+    "title": "Intergenerational Mobility",
+    "section": "Credit Constraints",
+    "text": "Credit Constraints\nIf poor families are credit constrained:\n\n\nCannot invest optimally in children\nCreates persistence: poor � low investment � poor\nRich families invest more efficiently\nImplication: IGE could be lowered by:\n\nEducation subsidies\nEarly childhood programs\nReducing borrowing constraints\n\n\n\n\nWe’ll explore these policies in later lectures."
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#the-role-of-heritability",
+    "href": "lectures/4-IntergenerationalMobility.html#the-role-of-heritability",
+    "title": "Intergenerational Mobility",
+    "section": "The Role of Heritability",
+    "text": "The Role of Heritability\nGenetic vs environmental transmission:\n\n\nGenetic: ability, personality traits\nEnvironmental: investments, culture, neighborhoods\nEvidence: adoption studies show both matter\nBut: gene-environment interactions complicate story\nPolicy can’t change genes, but can change returns to ability"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#connecting-to-income-processes",
+    "href": "lectures/4-IntergenerationalMobility.html#connecting-to-income-processes",
+    "title": "Intergenerational Mobility",
+    "section": "Connecting to Income Processes",
+    "text": "Connecting to Income Processes\nRecall from Lecture 3:\n\\[y_{it} = \\alpha_i + \\beta_i \\cdot t + p_{it} + e_{it}\\]\nIntergenerational transmission:\n\n\nChild’s \\(\\alpha_i\\) correlated with parent’s \\(\\alpha_i\\)\nChild’s \\(\\beta_i\\) (growth rate) also correlated with parent income\nPermanent shocks \\(p_{it}\\) may be correlated across generations\nMobility studies: focus on \\(\\alpha\\) correlation"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#what-policies-can-increase-mobility",
+    "href": "lectures/4-IntergenerationalMobility.html#what-policies-can-increase-mobility",
+    "title": "Intergenerational Mobility",
+    "section": "What Policies Can Increase Mobility?",
+    "text": "What Policies Can Increase Mobility?\nBased on evidence:\n\n\nEarly childhood education (critical period effects)\nSchool quality improvements (test scores matter)\nDesegregation policies (exposure effects)\nHousing vouchers (MTO results)\nIncome support (reduce credit constraints)\n\n\n\nBut: need causal evidence on each!"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#the-equity-efficiency-tradeoff",
+    "href": "lectures/4-IntergenerationalMobility.html#the-equity-efficiency-tradeoff",
+    "title": "Intergenerational Mobility",
+    "section": "The Equity-Efficiency Tradeoff?",
+    "text": "The Equity-Efficiency Tradeoff?\nTraditional view: redistribution reduces efficiency\nBut: if mobility is low due to market failures:\n\n\nCredit constraints � underinvestment in poor children\nThis is inefficient (high-return investments not made)\nPolicies that increase mobility may increase efficiency\nDepends on whether low mobility reflects optimal responses or constraints"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#the-role-of-place-based-policies",
+    "href": "lectures/4-IntergenerationalMobility.html#the-role-of-place-based-policies",
+    "title": "Intergenerational Mobility",
+    "section": "The Role of Place-Based Policies",
+    "text": "The Role of Place-Based Policies\nEvidence suggests where you grow up matters:\n\n\nMove to better neighborhood � better outcomes\nBut: neighborhood characteristics are endogenous\nPlace-based policies:\n\nPromise zones, empowerment zones\nSchool improvements\nInfrastructure investments\n\nKey question: cheaper to move people or improve places?"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#universal-vs-targeted-programs",
+    "href": "lectures/4-IntergenerationalMobility.html#universal-vs-targeted-programs",
+    "title": "Intergenerational Mobility",
+    "section": "Universal vs Targeted Programs",
+    "text": "Universal vs Targeted Programs\nTwo approaches:\n\n\nUniversal: benefits for all children (e.g., public schools)\n\nPros: less stigma, political support\nCons: expensive, some waste\n\nTargeted: focus on disadvantaged (e.g., Head Start)\n\nPros: cost-effective, high returns\nCons: potential stigma, targeting challenges\n\n\n\n\nWhat do you think is better?"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#the-age-30-problem",
+    "href": "lectures/4-IntergenerationalMobility.html#the-age-30-problem",
+    "title": "Intergenerational Mobility",
+    "section": "The Age-30 Problem",
+    "text": "The Age-30 Problem\nChetty et al. measure children at ages 29-32:\n\n\nProblem: haven’t reached peak earnings yet\nMay understate mobility if poor children have steeper profiles\nBut: measuring later means waiting longer!\nMazumder (2018) suggests IGE keeps rising when measured at older ages"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#selection-and-migration",
+    "href": "lectures/4-IntergenerationalMobility.html#selection-and-migration",
+    "title": "Intergenerational Mobility",
+    "section": "Selection and Migration",
+    "text": "Selection and Migration\nWho stays in their birth location?\n\n\nSuccessful children may leave low-mobility areas\nMakes area look worse than it is\nUnsuccessful children may return to low-cost areas\nChetty et al. can track movers\nBut: more complex to interpret"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#recent-extensions",
+    "href": "lectures/4-IntergenerationalMobility.html#recent-extensions",
+    "title": "Intergenerational Mobility",
+    "section": "Recent Extensions",
+    "text": "Recent Extensions\n(Chetty2020?) study racial disparities:\n\n\nBlack-white gaps persist even for same-income families\nGaps larger for men than women\nNeighborhood-level variation in gaps\nIntergenerational wealth matters beyond income"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#data-limitations",
+    "href": "lectures/4-IntergenerationalMobility.html#data-limitations",
+    "title": "Intergenerational Mobility",
+    "section": "Data Limitations",
+    "text": "Data Limitations\nEven with tax data:\n\n\nCannot observe: wealth, consumption, life satisfaction\nTop-coding issues at very high incomes\nInformal sector earnings not captured\nIntergenerational wealth transmission understudied"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#key-takeaways",
+    "href": "lectures/4-IntergenerationalMobility.html#key-takeaways",
+    "title": "Intergenerational Mobility",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\n\nU.S. has lower mobility than many developed countries (\\(\\beta \\approx 0.4-0.6\\))\nMobility varies dramatically by geography\nStrong correlates: segregation, schools, family structure, inequality"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#why-this-matters",
+    "href": "lectures/4-IntergenerationalMobility.html#why-this-matters",
+    "title": "Intergenerational Mobility",
+    "section": "Why This Matters",
+    "text": "Why This Matters\n\n\nNormative: Equal opportunity is stated social goal\nPositive: Low mobility � persistent inequality\nPolicy: Identifies high-return interventions\nConnection: Links income processes (Lecture 3) to skills (Lecture 5)"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#open-questions",
+    "href": "lectures/4-IntergenerationalMobility.html#open-questions",
+    "title": "Intergenerational Mobility",
+    "section": "Open Questions",
+    "text": "Open Questions\nImportant areas for future research:\n\n\nWhat are the causal mechanisms behind geographic variation?\nWhy has absolute mobility declined so much?\nWhat explains persistent racial disparities in mobility?\nHow does wealth (not just income) transmit across generations?\nWhat are optimal policies given mobility patterns?\nHow do different margins (education, occupation, marriage) contribute?"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#for-next-lecture",
+    "href": "lectures/4-IntergenerationalMobility.html#for-next-lecture",
+    "title": "Intergenerational Mobility",
+    "section": "For Next Lecture",
+    "text": "For Next Lecture\nWe’ll study skills and inequality:\n\n\nWhat are “skills” and how do we measure them?\nTechnology of skill formation (Cunha & Heckman)\nDynamic complementarity and critical periods\nConnection to mobility: skills as the mechanism\nWhy early investments have highest returns\n\n\nReading: Heckman, Stixrud, and Urzua (2006), Cunha and Heckman (2008)"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#references",
+    "href": "lectures/4-IntergenerationalMobility.html#references",
+    "title": "Intergenerational Mobility",
+    "section": "References",
+    "text": "References\n\n\nBecker, Gary S., and Nigel Tomes. 1979. “An Equilibrium Theory of the Distribution of Income and Intergenerational Mobility.” The Journal of Political Economy, no. 6: 1153–89. https://doi.org/10.1086/260831.\n\n\nChetty, Raj, Nathaniel Hendren, Patrick Kline, and Emmanuel Saez. 2014. “Where Is the Land of Opportunity? The Geography of Intergenerational Mobility in the United States.” The Quarterly Journal of Economics, no. 4: 1553–623. https://doi.org/10.1093/qje/qju022.\n\n\nCorak, Miles. 2013. “Income Inequality, Equality of Opportunity, and Intergenerational Mobility.” Journal of Economic Perspectives 27 (3): 79–102.\n\n\nCunha, Flavio, and James Heckman. 2008. “A New Framework for the Analysis of Inequality.” Macroeconomic Dynamics, no. S2: 315–54. https://doi.org/10.1017/S136510050807034X.\n\n\nHeckman, James J., Jora Stixrud, and Sergio Urzua. 2006. “The Effects of Cognitive and Noncognitive Abilities on Labor Market Outcomes and Social Behavior.” Journal of Labor Economics, no. 3: 411–82. https://doi.org/10.1086/504455.\n\n\nMazumder, Bhashkar. 2005. “Fortunate Sons: New Estimates of Intergenerational Mobility in the United States Using Social Security Earnings Data.” The Review of Economics and Statistics 87 (2): 235–55. https://doi.org/10.1162/0034653053970249.\n\n\n———. 2018. “Intergenerational Mobility in the United States: What We Have Learned from the PSID.” The Annals of the American Academy of Political and Social Science 680 (1): 213–34."
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#empirical-evidence-u.s.-data",
+    "href": "lectures/4-IntergenerationalMobility.html#empirical-evidence-u.s.-data",
+    "title": "Intergenerational Mobility",
+    "section": "Empirical Evidence: U.S. Data",
+    "text": "Empirical Evidence: U.S. Data\n\nRank-Rank Relationship in U.S. Tax Records (Chetty et al. 2014)National average slope: \\(\\beta_r = 0.341\\) — remarkably linear across the distribution"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#mobility-in-the-50-largest-cities",
+    "href": "lectures/4-IntergenerationalMobility.html#mobility-in-the-50-largest-cities",
+    "title": "Intergenerational Mobility",
+    "section": "Mobility in the 50 Largest Cities",
+    "text": "Mobility in the 50 Largest Cities\n\nIntergenerational Mobility Rankings (Chetty et al. 2014)"
+  },
+  {
+    "objectID": "lectures/4-IntergenerationalMobility.html#correlates-of-upward-mobility",
+    "href": "lectures/4-IntergenerationalMobility.html#correlates-of-upward-mobility",
+    "title": "Intergenerational Mobility",
+    "section": "Correlates of Upward Mobility",
+    "text": "Correlates of Upward Mobility\n\nKey Predictors of Intergenerational Mobility (Chetty et al. 2014)"
+  },
+  {
+    "objectID": "lectures/3-Income_Processes.html#exercise-2",
+    "href": "lectures/3-Income_Processes.html#exercise-2",
+    "title": "Income Processes",
+    "section": "Exercise 2:",
+    "text": "Exercise 2:\nSteps:\n\n\nShow that \\(\\mathbb{C}(y_{it+1},y_{it}) = \\mathbb{C}(\\rho y_{it}+\\varepsilon_{it+1},y_{it}) = \\rho \\mathbb{V}[y_{it}]\\).\nSimilarly show that \\(\\mathbb{C}(y_{it+2},y_{it}) = \\rho^{2}\\mathbb{V}[y_{it}]\\)\nTherefore \\[ \\rho = \\frac{\\mathbb{C}(y_{it+2},y_{it})}{\\mathbb{C}(y_{it+1},y_{it})} \\]\nEstimate by plugging in sample covariances.\nSimilarly, since \\(\\mathbb{V}[y_{it+1}] = \\rho^2\\mathbb{V}[y_{it}] + \\sigma^2_{\\varepsilon}\\), we get: \\[ \\sigma^2_{\\varepsilon} = \\mathbb{V}[y_{it+1}] - \\rho^2\\mathbb{V}[y_{it}]\\]"
   }
 ]

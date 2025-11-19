@@ -41,4 +41,7 @@ b) How can we estimate this model?
 
 We can re-write the exercises above by changing the initial conditions (going from stationary to non-stationary)
 
+## intergen mobility
+- describe some processes and ask to make claims about absolute and relative mobility
+
 

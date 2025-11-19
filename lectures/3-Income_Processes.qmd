@@ -22,9 +22,8 @@ execute:
 - Today: understand the **stochastic process** generating earnings
 - Key questions:
   - How persistent are earnings shocks?
-  - Are shocks permanent or transitory?
-  - Does income risk vary over time and across individuals?
-- As we now know, the answer crucially determines how much we value insurance.
+  - How can we separate earnings volatility from earnings risk?
+- As we now know, the answers crucially determine how much we value insurance.
 :::
 
 # Primer: Time Series Processes
@@ -97,7 +96,7 @@ plot(1:T, y, linewidth=2, xlabel="Time", ylabel="Log Earnings",
      title="Random Walk: Paths Diverge", legend=false, alpha=0.7)
 ```
 
-Notice: paths **diverge** over time!
+Notice: paths **diverge** over time.
 
 ## AR(1) Process
 
@@ -110,7 +109,7 @@ where $|\rho| < 1$ (typically $0 < \rho < 1$ for earnings)
 :::{.incremental}
 - Shocks **fade over time** at rate $\rho$
 - After $k$ periods, effect is $\rho^k$ of original shock
-- Long-run variance: $\text{var}(y_{it}) = \frac{\sigma^2}{1-\rho^2}$ (converges!)
+- Long-run variance: $\text{var}(y_{it}) = \frac{\sigma^2}{1-\rho^2}$ 
 - Example: temporary illness, bonus, overtime
 :::
 
@@ -135,7 +134,7 @@ plot(1:T, y_ar, linewidth=2, xlabel="Time", ylabel="Log Earnings",
      title="AR(1) with ρ=0.7: Paths Stabilize", legend=false, alpha=0.7)
 ```
 
-Notice: paths **fluctuate** but don't diverge!
+Notice: paths **fluctuate** but don't diverge.
 
 ## Comparing Random Walk vs AR(1)
 
@@ -227,7 +226,7 @@ where $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma^2)$.
 
 a) What is the variance of $y_{it}$ as a function of time?
 b) If everyone starts at $y_{i0} = 0$, how does inequality evolve?
-c) What is the covariance at different lags?
+c) What is the covariance at different lags? What about in growth terms?
 d) How could we estimate this process?
 
 ## Exercise 2: AR(1) Process
@@ -245,6 +244,21 @@ b) How does inequality evolve compared to the random walk?
 c) What is the covariance at different lags?
 d) How could we estimate?
 
+## Exercise 2:
+
+Steps:
+
+:::{.incremental}
+1. Show that $\mathbb{C}(y_{it+1},y_{it}) = \mathbb{C}(\rho y_{it}+\varepsilon_{it+1},y_{it}) = \rho \mathbb{V}[y_{it}]$.
+2. Similarly show that $\mathbb{C}(y_{it+2},y_{it}) = \rho^{2}\mathbb{V}[y_{it}]$
+3. Therefore
+$$ \rho = \frac{\mathbb{C}(y_{it+2},y_{it})}{\mathbb{C}(y_{it+1},y_{it})} $$
+4. Estimate by plugging in sample covariances.
+5. Similarly, since $\mathbb{V}[y_{it+1}] = \rho^2\mathbb{V}[y_{it}] + \sigma^2_{\varepsilon}$, we get: 
+$$ \sigma^2_{\varepsilon} = \mathbb{V}[y_{it+1}] - \rho^2\mathbb{V}[y_{it}]$$
+:::
+
+
 ## Exercise 3: AR(1) with Fixed Effects
 
 Now add individual-specific fixed effects:
@@ -258,7 +272,7 @@ where $\zeta_{it} = \rho \zeta_{it} + \epsilon_{it}$ and $\epsilon_{it}\sim\text
 a) What determines long-run inequality in this model?
 b) What is the covariance at different lags?
 c) How would you estimate $\rho$ from panel data?
-d) What happens if you ignore the fixed effects?
+d) What could happen if you ignore the fixed effects?
 
 ## Exercise 4: Random walk + MA(1)
 
@@ -279,10 +293,8 @@ where $p_{it} = p_{it-1} + \zeta_{it}$ and $e_{it} = \theta e_{it-1} + \varepsil
 
 **Questions**:
 
-a) Which component determines long-run inequality?
-b) Which component affects year-to-year volatility?
-c) What is the covariance in growth rates?
-d) How can we estimate this model?
+a) What is the covariance in growth rates and / or levels?
+b) How can we estimate this model?
 
 
 ## Key Insights from Exercises
@@ -296,6 +308,8 @@ d) How can we estimate this model?
   - Welfare costs of inequality
   - Policy design
 :::
+
+...
 
 **Main lesson**: The nature of shocks fundamentally affects policy!
 
@@ -375,6 +389,8 @@ c) What do you think is more realistic?
 - Different groups may face different processes
 :::
 
+. . .
+
 **Implication**: Simple random walk probably too stark, but permanent shocks still important
 
 # The Meghir-Pistaferri Framework
@@ -413,6 +429,8 @@ $$u_{it} = p_{it} + e_{it} + r_{it}$$
 3. Does variance change over time?
 4. Do some people face more risk than others?
 :::
+
+. . .
 
 Let's look at the evidence...
 
@@ -520,6 +538,8 @@ Possible mechanisms:
 - Skill depreciation
 :::
 
+. . .
+
 **Policy question**: Should social insurance respond to individual risk histories?
 
 # Implications
@@ -559,6 +579,8 @@ With ARCH:
 - But also increases chance of falling into poverty
 :::
 
+. . .
+
 **Implication**: Mobility patterns more complex than simple mean reversion
 
 ## Implication 4: Policy Design
@@ -586,6 +608,8 @@ Different shocks → different policies:
   - Find larger role for transitory shocks
   - Less evidence for RIP model
 :::
+
+. . .
 
 **Takeaway**: Measurement matters for conclusions!
 
