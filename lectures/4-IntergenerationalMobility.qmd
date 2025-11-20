@@ -24,46 +24,7 @@ execute:
   - How strong is the link between parent and child earnings?
   - Does the U.S. have more or less mobility than other countries?
   - What drives geographic variation in mobility?
-- As we'll see, mobility connects income processes to long-run inequality.
-:::
-
-# Motivation
-
-## The American Dream
-
-A central tenet of American identity:
-
-> "Each generation should do better than the last, regardless of where they start"
-
-:::{.incremental}
-- Does this hold empirically?
-- How much does your parent's income determine yours?
-- Is the U.S. "the land of opportunity"?
-:::
-
-## Why Study Intergenerational Mobility?
-
-:::{.incremental}
-1. **Normative**: Many view high mobility as desirable
-   - Equal opportunity vs equal outcomes
-2. **Positive**: Understanding persistence of inequality
-   - Will income disparities persist or fade?
-3. **Policy**: Identifying effective interventions
-   - Education? Early childhood? Neighborhoods?
-4. **Theory**: Testing models of human capital accumulation
-:::
-
-## Connection to Income Processes
-
-Recall from Lecture 3:
-
-$$y_{it} = \alpha_i + \beta_i \cdot t + p_{it} + e_{it}$$
-
-:::{.incremental}
-- $\alpha_i$: permanent individual component
-- Where does $\alpha_i$ come from?
-- **One answer**: parental resources, investments
-- Mobility studies: correlation between parent and child $\alpha$'s
+- Building up to a theory of **intergenerational inequality**
 :::
 
 # Measuring Intergenerational Mobility
@@ -92,24 +53,6 @@ $$\text{rank}_{\text{child}, i} = \alpha + \beta_r \cdot \text{rank}_{\text{pare
 - $\beta_r$: how much does parent rank predict child rank?
 :::
 
-
-## Empirical Evidence: U.S. Data
-
-![Rank-Rank Relationship in U.S. Tax Records [@Chetty2014]](../papers/figures/chetty_fig2.png){width=85%}
-
-National average slope: $\beta_r = 0.341$ — remarkably linear across the distribution
-
-## Rank-Rank: Interpretation
-
-If $\beta_r = 0.3$:
-
-:::{.incremental}
-- Child of 25th percentile parent expects to reach 33rd percentile
-- Child of 75th percentile parent expects to reach 58th percentile
-- Movement toward middle: **mean reversion**
-- But substantial persistence remains
-:::
-
 ## Absolute vs Relative Mobility
 
 Two distinct concepts:
@@ -136,6 +79,7 @@ Early 1990s: @Solon1992 and @Zimmerman1992 used PSID
 - Previous work suffered from:
   - Measurement error
   - Life-cycle bias (measuring parents/children too young)
+- **Think**: what does our work on income processes tell us about income over the life-cycle?
 :::
 
 ## Measurement Error Attenuation
@@ -193,29 +137,30 @@ Using rank-rank specification:
 
 :::{.incremental}
 - National average: $\beta_r = 0.344$
-- Interpretation: child at 25th percentile parent rank � expected rank of 33.6
 - Absolute mobility: 50% earn more than parents (declining over time)
 - Remarkably linear relationship across entire distribution
 :::
 
-## Mobility in the 50 Largest Cities {.smaller}
+## National Findings
 
-![Intergenerational Mobility Rankings [@Chetty2014]](../papers/figures/chetty_table3.png){width=90%}
+![Rank-Rank Relationship in U.S. Tax Records [@Chetty2014]](../papers/figures/chetty_fig2.png){width=85%}
+
+National average slope: $\beta_r = 0.341$ — remarkably linear across the distribution
+
+
 
 ## Geographic Variation is Huge
 
-:::: {.columns}
-::: {.column width="50%"}
 ```{julia}
 #| echo: false
 #| output: true
-
-# Stylized data based on Chetty et al. findings
-# Showing rank-rank slopes by selected metros
+using Plots, Random
+# Data from Chetty et al. (2014) Table III
+# Rank-rank slopes for selected metros (actual values)
 
 metros = ["San Jose", "Salt Lake", "Boston", "Seattle", "Pittsburgh",
           "New York", "Chicago", "Atlanta", "Charlotte", "Milwaukee"]
-rank_rank = [0.20, 0.23, 0.25, 0.26, 0.29, 0.35, 0.37, 0.40, 0.43, 0.44]
+rank_rank = [0.235, 0.264, 0.322, 0.273, 0.359, 0.330, 0.393, 0.366, 0.397, 0.424]
 
 plot(1:length(metros), rank_rank,
      seriestype=:bar,
@@ -225,17 +170,19 @@ plot(1:length(metros), rank_rank,
      legend=false,
      xticks=(1:length(metros), metros),
      xrotation=45,
-     grid=true)
-hline!([0.344], linestyle=:dash, linewidth=2, color=:red, label="National average")
+     grid=true,
+     left_margin=5Plots.mm,
+     bottom_margin=10Plots.mm,
+     top_margin=3Plots.mm)
+hline!([0.341], linestyle=:dash, linewidth=2, color=:red, label="National average")
 ```
-:::
-
-::: {.column width="50%"}
-![Intergenerational Mobility by Commuting Zone [@Chetty2014]](../papers/figures/chetty_fig6.png){width=100%}
-:::
-::::
 
 San Jose looks like Denmark. Charlotte looks like developing country.
+
+## Picturing Geographic Variation
+
+![Intergenerational Mobility by Commuting Zone [@Chetty2014]](../papers/figures/chetty_fig6.png){width=100%}
+
 
 ## Where is Mobility Highest?
 
@@ -253,336 +200,6 @@ San Jose looks like Denmark. Charlotte looks like developing country.
 
 These are **correlations**, not necessarily causal.
 
-## Correlates of Upward Mobility {.smaller}
-
-![Key Predictors of Intergenerational Mobility [@Chetty2014]](../papers/figures/chetty_fig8_p53.png){width=85%}
-
-## Segregation and Mobility
-
-```{julia}
-#| echo: false
-#| output: true
-
-# Stylized relationship between segregation and mobility
-Random.seed!(456)
-n_cities = 50
-segregation = rand(n_cities) .* 0.5 .+ 0.2
-mobility = 0.55 .- 0.8 .* segregation .+ randn(n_cities) .* 0.03
-
-scatter(segregation, mobility,
-        markersize=6,
-        alpha=0.6,
-        xlabel="Residential Segregation Index",
-        ylabel="Rank-Rank Slope",
-        title="Segregation and Mobility Are Strongly Negatively Correlated",
-        legend=false,
-        grid=true)
-
-# Add trend
-x_line = [0.2, 0.7]
-y_line = [0.39, 0.15]
-plot!(x_line, y_line,
-      linewidth=3,
-      color=:red,
-      linestyle=:dash)
-
-annotate!(0.35, 0.5, text("More segregation �\nLess mobility", 10, :left))
-```
-
-Correlation: -0.67
-
-## School Quality Matters
-
-Test scores predict mobility even controlling for segregation:
-
-:::{.incremental}
-- 1 SD higher test scores � 0.02 higher mobility
-- School spending shows weaker relationship
-- Quality matters more than spending per se
-- But: sorting makes causality difficult
-:::
-
-. . .
-
-**Question**: How would you test if this is causal?
-
-## Family Structure
-
-Areas with more single mothers have lower mobility:
-
-:::{.incremental}
-- 1 SD more single mothers � 0.03 lower mobility
-- Holds even for children of married parents
-- Suggests **neighborhood peer effects**
-- Or: family structure proxies for other factors
-:::
-
-## Moving to Opportunity
-
-Can changing neighborhoods improve outcomes?
-
-**Moving to Opportunity (MTO) experiment** [@Chetty2016]:
-
-:::{.incremental}
-- Randomized housing vouchers to move to lower-poverty areas
-- Children who moved **before age 13**: large gains
-  - 30% increase in earnings
-  - Higher college attendance
-- Children who moved **after age 13**: no gains
-- Suggests **critical period** for neighborhood effects
-:::
-
-## The Role of Age
-
-```{julia}
-#| echo: false
-#| output: true
-
-# Stylized age-at-move effects from Chetty MTO reanalysis
-ages = 0:18
-# Effect declines linearly from age 0 to 13, then flat
-effects = max.(0, 1 .- (ages ./ 13))
-
-plot(ages, effects .* 30,
-     linewidth=3,
-     xlabel="Age at Move to Better Neighborhood",
-     ylabel="Effect on Later Earnings (%)",
-     title="Childhood Exposure Effects (MTO)",
-     legend=false,
-     grid=true,
-     marker=:circle,
-     markersize=4)
-annotate!(15, 15, text("Critical period:\nages 0-13", 10, :left))
-```
-
-**Implication**: Early interventions may be more effective
-
-## Race and Mobility
-
-Large racial disparities:
-
-:::{.incremental}
-- Black children from high-income families have **lower upward mobility**
-- Black children from low-income families have **similar or lower upward mobility**
-- Disparities largest for men
-- Persist even within same neighborhoods
-- Suggests factors beyond neighborhood matter (discrimination, networks)
-:::
-
-## The Puzzle of Declining Mobility
-
-Is mobility declining over time?
-
-:::{.incremental}
-- **Relative mobility** (rank-rank): roughly constant since 1980s
-- **Absolute mobility**: sharply declining
-  - 90% of 1940 cohort earned more than parents
-  - Only 50% of 1980 cohort earned more than parents
-- Due to: slower GDP growth + rising inequality
-:::
-
-## Exercise: Thinking About Causes
-
-Consider the five correlates:
-
-1. Segregation
-2. Schools
-3. Family structure
-4. Social capital
-5. Inequality
-
-**Questions**:
-
-a) Which do you think is most important causally?
-b) How would you test your hypothesis?
-c) What policy interventions would you propose?
-d) Are these factors related to each other?
-
-# Connections to Theory
-
-## Linking to Becker-Tomes Model
-
-Simple framework [@Becker1979]:
-
-$$y_{\text{child}} = h(I_{\text{parent}}, \theta, \varepsilon)$$
-
-:::{.incremental}
-- $I$: parental investments (money, time)
-- $\theta$: child ability/endowment
-- $\varepsilon$: luck/environment
-- Parents choose $I$ to maximize child outcomes
-- Predicts: IGE depends on returns to investment
-:::
-
-## What Determines the IGE?
-
-In Becker-Tomes framework:
-
-$$\beta = \frac{\text{var}(I) \cdot \left(\frac{\partial y}{\partial I}\right)^2 + \text{cov}(\theta, y_{\text{parent}})}{\text{var}(y_{\text{parent}})}$$
-
-:::{.incremental}
-- Higher return to investment $\rightarrow$ higher IGE
-- More inequality in investments $\rightarrow$ higher IGE
-- More inequality in endowments $\rightarrow$ potentially lower IGE
-- Connection to income processes: investments affect $\alpha_i$
-:::
-
-## Credit Constraints
-
-If poor families are **credit constrained**:
-
-:::{.incremental}
-- Cannot invest optimally in children
-- Creates persistence: poor � low investment � poor
-- Rich families invest more efficiently
-- **Implication**: IGE could be lowered by:
-  - Education subsidies
-  - Early childhood programs
-  - Reducing borrowing constraints
-:::
-
-. . .
-
-We'll explore these policies in later lectures.
-
-## The Role of Heritability
-
-Genetic vs environmental transmission:
-
-:::{.incremental}
-- **Genetic**: ability, personality traits
-- **Environmental**: investments, culture, neighborhoods
-- **Evidence**: adoption studies show both matter
-- But: gene-environment interactions complicate story
-- Policy can't change genes, but can change returns to ability
-:::
-
-## Connecting to Income Processes
-
-Recall from Lecture 3:
-
-$$y_{it} = \alpha_i + \beta_i \cdot t + p_{it} + e_{it}$$
-
-Intergenerational transmission:
-
-:::{.incremental}
-- Child's $\alpha_i$ correlated with parent's $\alpha_i$
-- Child's $\beta_i$ (growth rate) also correlated with parent income
-- Permanent shocks $p_{it}$ may be correlated across generations
-- Mobility studies: focus on $\alpha$ correlation
-:::
-
-# Policy Implications
-
-## What Policies Can Increase Mobility?
-
-Based on evidence:
-
-:::{.incremental}
-1. **Early childhood education** (critical period effects)
-2. **School quality improvements** (test scores matter)
-3. **Desegregation policies** (exposure effects)
-4. **Housing vouchers** (MTO results)
-5. **Income support** (reduce credit constraints)
-:::
-
-. . .
-
-**But**: need causal evidence on each!
-
-## The Equity-Efficiency Tradeoff?
-
-Traditional view: redistribution reduces efficiency
-
-**But**: if mobility is low due to market failures:
-
-:::{.incremental}
-- Credit constraints � underinvestment in poor children
-- This is **inefficient** (high-return investments not made)
-- Policies that increase mobility may **increase efficiency**
-- Depends on whether low mobility reflects optimal responses or constraints
-:::
-
-## The Role of Place-Based Policies
-
-Evidence suggests **where you grow up matters**:
-
-:::{.incremental}
-- Move to better neighborhood � better outcomes
-- But: neighborhood characteristics are endogenous
-- **Place-based policies**:
-  - Promise zones, empowerment zones
-  - School improvements
-  - Infrastructure investments
-- Key question: cheaper to move people or improve places?
-:::
-
-## Universal vs Targeted Programs
-
-Two approaches:
-
-:::{.incremental}
-1. **Universal**: benefits for all children (e.g., public schools)
-   - Pros: less stigma, political support
-   - Cons: expensive, some waste
-2. **Targeted**: focus on disadvantaged (e.g., Head Start)
-   - Pros: cost-effective, high returns
-   - Cons: potential stigma, targeting challenges
-:::
-
-. . .
-
-**What do you think is better?**
-
-# Measurement and Data Challenges
-
-## The Age-30 Problem
-
-Chetty et al. measure children at ages 29-32:
-
-:::{.incremental}
-- Problem: haven't reached peak earnings yet
-- May understate mobility if poor children have steeper profiles
-- But: measuring later means waiting longer!
-- @mazumder2018 suggests IGE keeps rising when measured at older ages
-:::
-
-## Selection and Migration
-
-Who stays in their birth location?
-
-:::{.incremental}
-- Successful children may **leave** low-mobility areas
-- Makes area look worse than it is
-- Unsuccessful children may **return** to low-cost areas
-- Chetty et al. can track movers
-- But: more complex to interpret
-:::
-
-## Recent Extensions
-
-@Chetty2020 study racial disparities:
-
-:::{.incremental}
-- Black-white gaps persist even for same-income families
-- Gaps larger for men than women
-- Neighborhood-level variation in gaps
-- Intergenerational wealth matters beyond income
-:::
-
-## Data Limitations
-
-Even with tax data:
-
-:::{.incremental}
-- Cannot observe: wealth, consumption, life satisfaction
-- Top-coding issues at very high incomes
-- Informal sector earnings not captured
-- Intergenerational wealth transmission understudied
-:::
-
-# Summary
-
 ## Key Takeaways
 
 :::{.incremental}
@@ -591,41 +208,13 @@ Even with tax data:
 3. Strong correlates: segregation, schools, family structure, inequality
 :::
 
-## Why This Matters
+. . .
 
-:::{.incremental}
-- **Normative**: Equal opportunity is stated social goal
-- **Positive**: Low mobility � persistent inequality
-- **Policy**: Identifies high-return interventions
-- **Connection**: Links income processes (Lecture 3) to skills (Lecture 5)
-:::
+For policy: 
 
-## Open Questions
-
-Important areas for future research:
-
-:::{.incremental}
-1. What are the **causal mechanisms** behind geographic variation?
-2. Why has **absolute mobility** declined so much?
-3. What explains persistent **racial disparities** in mobility?
-4. How does **wealth** (not just income) transmit across generations?
-5. What are optimal policies given mobility patterns?
-6. How do **different margins** (education, occupation, marriage) contribute?
-:::
-
-## For Next Lecture
-
-We'll study **skills and inequality**:
-
-:::{.incremental}
-- What are "skills" and how do we measure them?
-- Technology of skill formation (Cunha & Heckman)
-- Dynamic complementarity and critical periods
-- Connection to mobility: skills as the mechanism
-- Why early investments have highest returns
-:::
-
-**Reading**: @Heckman2006, @Cunha2008a
+- **What determines intergenerational mobility**? 
+- What policies can level the playing field and are they desirable? 
+- More theory and data to come.
 
 ## References {.smaller}
 

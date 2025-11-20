@@ -1,0 +1,780 @@
+---
+title: "The Becker-Tomes Model"
+bibliography: ../reading_list.bib
+format:
+  revealjs:
+    theme: solarized
+    transition: slide
+    chalkboard:
+        theme: whiteboard
+        chalk-effect: 0.0
+        chalk-width: 6
+jupyter: julia-1.11
+execute:
+  cache: true
+  freeze: auto
+---
+
+## Overview
+
+:::{.incremental}
+- Previous lecture: geographic variation in mobility
+- Today: **theory** of intergenerational transmission
+- The Becker-Tomes model [@Becker1979; @Becker1986]
+- Key questions:
+  - Why do earnings regress to the mean?
+  - How do parents affect children's outcomes?
+  - What determines the speed of mobility?
+- Building a **unified framework** for inequality and mobility
+:::
+
+# The Basic Framework
+
+## Three Channels of Transmission
+
+Parents affect children through:
+
+:::{.incremental}
+1. **Endowments** (genes and culture): $E_t$
+   - IQ, personality, work ethic, cultural capital
+2. **Human capital investments**: $x_t$
+   - Education, training, health, early childhood
+3. **Financial transfers**: bequests and gifts
+   - Assets, property, cash transfers
+:::
+
+. . .
+
+Each channel has different properties for transmission across generations.
+
+## Endowment Transmission
+
+Endowments follow a **Markov process**:
+
+$$E_t = \alpha + h E_{t-1} + v_t$$
+
+:::{.incremental}
+- $h$ = **inheritability** parameter (how much is passed on)
+- $0 < h < 1$: endowments regress to the mean
+- $\alpha$ = social endowment (common to all)
+- $v_t$ = random luck in endowment transmission
+:::
+
+. . .
+
+**Think**: What does $h < 1$ imply for children of high-ability parents?
+
+## Why Does h < 1?
+
+:::{.incremental}
+- **Genetics**: Mendel's laws → regression to the mean
+  - Child gets random draw from parents' genes
+  - Extreme traits don't fully transmit
+- **Culture**: imperfect transmission of values/habits
+  - Peer effects, media, broader environment matter
+- **Empirical evidence**: $h \approx 0.3$ to $0.6$ for earnings-relevant traits
+:::
+
+. . .
+
+This **automatic regression** is key to understanding mobility.
+
+## Earnings Generation
+
+Adult earnings depend on human capital and luck:
+
+$$Y_t = H_t + \varepsilon_t$$
+
+where human capital is produced by:
+
+$$H_t = \psi(x_{t-1}, s_{t-1}, E_t)$$
+
+:::{.incremental}
+- $x_{t-1}$ = parental investments
+- $s_{t-1}$ = public investments (schools, etc.)
+- $E_t$ = endowments
+- $\psi$ is increasing in all three inputs
+:::
+
+## Complementarity
+
+**Key assumption**: endowments and investments are **complements**
+
+$$\frac{\partial^2 H_t}{\partial x_{t-1} \partial E_t} > 0$$
+
+:::{.incremental}
+- Higher ability → higher return to education
+- Better endowed children get more from investments
+- Reinforces initial advantages
+- Creates skewness in earnings distribution
+:::
+
+. . .
+
+**Question**: Does this match your intuition about returns to education?
+
+# Perfect Capital Markets
+
+## The Wealth-Maximizing Case
+
+Suppose parents can **borrow freely** against children's future earnings.
+
+Then they solve:
+$$\max_{x_{t-1}} \quad H_t(x_{t-1}, E_t) - (1+r) x_{t-1}$$
+
+First-order condition:
+$$\frac{\partial H_t}{\partial x_{t-1}} = 1 + r$$
+
+. . .
+
+**Implication**: Marginal return on human capital = interest rate for ALL families.
+
+## Investment with Perfect Markets
+
+```{julia}
+#| echo: false
+#| output: true
+
+using Plots
+
+# Marginal product curves for different endowments
+x = 0:0.1:10
+mp_low(x) = 10 * exp(-0.3 * x)     # Low endowment
+mp_high(x) = 15 * exp(-0.25 * x)   # High endowment
+
+r = 3.0  # Interest rate
+
+plot(x, mp_low.(x),
+     label="MP(x | E = low)",
+     xlabel="Investment in child (x)",
+     ylabel="Marginal product",
+     title="Optimal Investment with Perfect Capital Markets",
+     linewidth=2,
+     legend=:topright,
+     grid=true,
+     left_margin=5Plots.mm,
+     bottom_margin=5Plots.mm)
+plot!(x, mp_high.(x), label="MP(x | E = high)", linewidth=2)
+hline!([r], label="Interest rate (r)", linestyle=:dash, linewidth=2, color=:red)
+```
+
+Higher endowment → higher optimal investment (even at same r).
+
+## Earnings with Perfect Markets
+
+Substitute optimal $x^*$ into earnings:
+
+$$Y_t = H_t(x^*(E_t), E_t) + \varepsilon_t = \phi(E_t, r) + \varepsilon_t$$
+
+Replace $E_t$ using the Markov process:
+
+$$Y_t = c_t + h \cdot Y_{t-1} + \text{error terms}$$
+
+:::{.incremental}
+- **Key result**: earnings regress at rate $1-h$
+- Speed of regression = inheritability of endowments
+- No direct effect of parents' income (perfect credit markets!)
+:::
+
+## Consumption and Bequests
+
+With perfect markets, parents choose bequests to satisfy:
+
+$$u'(Z_t) = \delta (1+r) u'(Z_{t+1})$$
+
+:::{.incremental}
+- If $\delta(1+r) = 1$: consumption growth = 0
+- Consumption does **not** regress to mean!
+- Parents use bequests to offset earnings regression
+- Rich parents leave large bequests to maintain consumption
+:::
+
+. . .
+
+**Surprising**: Perfect mobility in earnings, but dynasties persist in consumption.
+
+# Capital Market Constraints
+
+## The Realistic Case
+
+Most families **cannot** borrow against children's future earnings.
+
+:::{.incremental}
+- Human capital is poor collateral
+- Moral hazard: children can shirk
+- Legal restrictions: can't obligate children for parents' debt
+:::
+
+. . .
+
+**Implication**: Parents must self-finance investments in children.
+
+Now parents' **income matters** for investments!
+
+## Constrained Optimization
+
+Parents without assets must trade off:
+
+- Own consumption $Z_t$
+- Investment in children $x_{t-1}$
+
+This means:
+$$\frac{\partial H_t}{\partial x_{t-1}} > 1 + r$$
+
+. . .
+
+Marginal return on human capital **exceeds** interest rate for poor families.
+
+**Why?** Reducing $x$ raises marginal utility of parents' consumption.
+
+## Investment with Capital Constraints
+
+```{julia}
+#| echo: false
+#| output: true
+
+using Plots
+
+x = 0:0.1:10
+mp(x) = 12 * exp(-0.3 * x)
+
+# Supply curves for different income levels
+r = 3.0
+mc_poor(x) = 3 + 0.8 * x      # Steep: high shadow cost of funds
+mc_middle(x) = 3 + 0.3 * x    # Moderate
+mc_rich(x) = fill(r, length(x))  # Flat at r
+
+plot(x, mp.(x),
+     label="Marginal product",
+     xlabel="Investment in child (x)",
+     ylabel="Marginal return / cost",
+     title="Investment Under Capital Constraints",
+     linewidth=2.5,
+     legend=:right,
+     grid=true,
+     left_margin=5Plots.mm,
+     bottom_margin=5Plots.mm,
+     ylim=(0, 15))
+plot!(x, mc_poor.(x), label="MC (poor family)", linewidth=2, linestyle=:dash)
+plot!(x, mc_middle.(x), label="MC (middle family)", linewidth=2, linestyle=:dash)
+plot!(x, mc_rich.(x), label="MC (rich family)", linewidth=2, linestyle=:dash)
+
+# Mark equilibria
+x_poor = 3.5
+x_middle = 6.0
+x_rich = 8.5
+scatter!([x_poor], [mp(x_poor)], label="", markersize=6, color=:blue)
+scatter!([x_middle], [mp(x_middle)], label="", markersize=6, color=:orange)
+scatter!([x_rich], [mp(x_rich)], label="", markersize=6, color=:green)
+```
+
+Poorer families invest less due to higher marginal cost of funds.
+
+## Earnings Regression with Constraints
+
+Now earnings depend on both endowments AND parents' income:
+
+$$Y_t = \phi(E_t, Y_{t-1}, s_{t-1})$$
+
+:::{.incremental}
+- $\frac{\partial Y_t}{\partial Y_{t-1}} = \beta^* > 0$ (income effect)
+- Richer parents invest more in children
+- Creates **additional persistence** beyond $h$
+- Two-generation regression equation:
+:::
+
+$$Y_t \approx c_t + (\beta^* + h) Y_{t-1} - \beta^* h \cdot Y_{t-2} + \text{errors}$$
+
+## Three-Generation Test
+
+The model predicts:
+
+- **Positive** coefficient on parents' earnings: $\beta^* + h$
+- **Negative** coefficient on grandparents' earnings: $-\beta^* h$
+
+:::{.incremental}
+- Grandparents matter through their effect on parents
+- But holding parents' earnings fixed, rich grandparents ↔ rich parents ↔ **lower** investments needed
+- This negative coefficient is **testable**!
+- Evidence (limited): Wahl (1985) finds negative coefficient
+:::
+
+## Efficiency Loss from Constraints
+
+Capital constraints cause **inefficiency**:
+
+:::{.incremental}
+- Marginal return is **higher** in poor families
+- But they invest **less**
+- Redistributing investment from rich → poor would raise total output
+- **Equity and efficiency** both favor helping poor families
+- Justifies subsidies to education for disadvantaged children
+:::
+
+. . .
+
+**Policy implication**: Progressive education funding can be efficiency-enhancing.
+
+# Extensions and Implications
+
+## Public Investments
+
+How do public expenditures $s_t$ affect the system?
+
+:::{.incremental}
+- If perfect substitutes for $x_t$: partial crowd-out
+  - Rich families reduce $x_t$ dollar-for-dollar
+  - Poor families reduce less (still constrained)
+- If complements (e.g., subsidize tuition → raises return to parental time):
+  - Can increase total investment
+  - Substitution effect works against redistribution effect
+:::
+
+. . .
+
+**Evidence**: Many programs show weak effects due to family offsetting behavior.
+
+## Fertility
+
+Allow number of children $n_t$ to vary:
+
+$$U_t = u(Z_t) + \alpha(n_t) n_t U_{t+1}$$
+
+with $\alpha'(n_t) < 0$ (diminishing marginal utility of children).
+
+:::{.incremental}
+- Richer families have more children
+- This **dilutes** bequests per child
+- Induces regression in wealth per child
+- Helps explain why dynasties don't persist forever
+:::
+
+## Marriage
+
+**Assortative mating**: tendency to marry someone similar.
+
+:::{.incremental}
+- Positive correlation in spouses' endowments
+- But **imperfect**: $\text{corr}(E_{\text{mother}}, E_{\text{father}}) < 1$
+- Child's endowment = average of parents
+- Marriage causes additional regression to mean
+- **Empirically**: education correlation ≈ 0.6, earnings ≈ 0.3
+:::
+
+. . .
+
+**Combined effect**: fertility + marriage ensure consumption/wealth regress over time.
+
+## Discrimination
+
+Discrimination affects both the intercept and returns:
+
+$$Y_t = \phi(E_t, Y_{t-1}) - D_t$$
+
+:::{.incremental}
+- $D_t$ = earnings loss from discrimination
+- Lower earnings → tighter capital constraints
+- **Prediction**: faster upward mobility among discriminated groups
+  - Their marginal returns are higher
+  - When discrimination reduces, they catch up faster
+- **Evidence**: Black families show faster regression (maybe)
+:::
+
+# Empirical Implications
+
+## Predicted Regression Coefficients
+
+The model predicts:
+
+| Variable | Coefficient | Typical value |
+|----------|-------------|---------------|
+| Father → son earnings | $\beta^* + h$ | 0.2 - 0.4 |
+| Father → son (rich families) | $h$ | 0.3 - 0.5 |
+| Grandfather → grandson | $-\beta^* h$ | Negative, small |
+| Father → son wealth | Higher (0.5 - 0.7) | |
+
+:::{.incremental}
+- Earnings regress faster than wealth
+- Most advantages disappear in 3 generations
+- But family background still matters significantly
+:::
+
+## The "Shirtsleeves to Shirtsleeves" Result
+
+"From shirtsleeves to shirtsleeves in three generations."
+
+:::{.incremental}
+- If $b = 0.4$: parent earning 2× mean → child earns 1.4× → grandchild earns 1.16×
+- After 3 generations: essentially at the mean
+- **Rapid** intergenerational mobility in earnings
+- But this is **conditional** on no discrimination, equal opportunity
+:::
+
+. . .
+
+**Key insight**: Even modest regression rates wipe out advantages quickly.
+
+## Consumption vs. Earnings Mobility
+
+The model distinguishes:
+
+- **Earnings**: regress due to endowments ($h < 1$) and capital constraints
+- **Consumption**: buffered by bequests in rich families
+
+:::{.incremental}
+- Perfect markets → consumption doesn't regress (dynasties)
+- Imperfect markets → consumption regresses faster in poor families
+- Fertility/marriage → consumption regresses even in rich families
+- **Empirically**: wealth regresses slower than earnings
+:::
+
+## Policy Implications
+
+From the Becker-Tomes framework:
+
+:::{.incremental}
+1. **Education subsidies**: Address capital constraints, raise efficiency
+2. **Progressive taxation**: May increase OR decrease long-run inequality
+   - Reduces bequests → more regression
+   - But also reduces investment incentives
+3. **Early childhood programs**: High returns if:
+   - Target capital-constrained families
+   - Truly complement (not substitute) family investments
+4. **Meritocracy** requires more than talent
+   - Need to overcome capital constraints
+   - Otherwise ability doesn't determine outcomes
+:::
+
+## Limitations and Extensions
+
+What the basic model misses:
+
+:::{.incremental}
+- **Multiple skills**: cognitive, non-cognitive, health
+- **Life-cycle dynamics**: when do investments matter most?
+- **Neighborhoods and peers**: external effects on children
+- **Uncertainty**: parents don't know child's future fully
+- **Credit constraints**: can vary over time/development
+:::
+
+. . .
+
+Modern research extends the model in these directions.
+
+# Critiques of the Basic Model
+
+## The Goldberger Critique
+
+@Goldberger1989 raised a fundamental question:
+
+:::{.incremental}
+- Are Becker-Tomes predictions **distinct** from simple Galton model?
+- Galton: $Y_t = \alpha + h Y_{t-1} + \varepsilon_t$ (just genetics)
+- Becker-Tomes adds: investments, capital markets, bequests
+- **Question**: Do these additions generate unique testable predictions?
+- Or do we just get the same regression-to-mean result?
+:::
+
+. . .
+
+This motivated systematic testing of unique Becker-Tomes implications.
+
+## Mulligan's Empirical Tests
+
+@Mulligan1999 tests **9 unique implications** of Becker-Tomes vs. Galton:
+
+:::{.incremental}
+- Uses multiple datasets: PSID, NLS, SCF
+- Examines earnings, consumption, and wealth
+- Distinguishes families by transfer behavior
+- **Result**: Several key predictions fail empirically
+:::
+
+. . .
+
+Let's examine the most important failures.
+
+## Failed Prediction 1: Consumption Mobility
+
+**Becker-Tomes prediction**: With perfect credit markets, consumption should **not** regress to mean among transfer-making families.
+
+- Rich parents use bequests to offset earnings regression
+- Dynasty persists in consumption even as earnings regress
+
+:::{.incremental}
+- **Evidence** (@Mulligan1999, Table 3): Consumption **does** regress!
+- Among families making transfers: $\beta_{\text{consumption}} \approx 0.3$
+- Similar to earnings regression
+- Suggests credit markets are NOT perfect even for rich families
+:::
+
+## Failed Prediction 2: Earnings Inequality
+
+**Becker-Tomes prediction**: Families making transfers (unconstrained) should have **more equal** children's earnings than constrained families.
+
+- Why? Unconstrained families equate marginal returns
+- Only endowment variation matters, not income variation
+- Constrained families: both endowments AND income matter
+
+:::{.incremental}
+- **Evidence** (@Mulligan1999, Table 6): **Opposite** pattern!
+- Children of transfer-making families have **more** earnings inequality
+- Suggests complementarity between parental resources and outcomes
+- Basic two-period model misses something important
+:::
+
+## Failed Prediction 3: The Grandparent Effect
+
+**Becker-Tomes prediction**: Controlling for parents' income, grandparents' income should have **negative** effect.
+
+$$Y_t \approx c_t + (\beta^* + h) Y_{t-1} - \beta^* h \cdot Y_{t-2} + \varepsilon_t$$
+
+:::{.incremental}
+- Intuition: Rich grandparents → rich parents → less investment needed
+- **Evidence** (@Mulligan1999): Coefficient on $Y_{t-2}$ is **positive** or zero
+- Not the predicted negative relationship
+- Suggests longer-run dynamics than two-generation model
+:::
+
+## What's Missing?
+
+The failures point to important omissions:
+
+:::{.incremental}
+1. **Multi-period structure**: Investments span childhood, not one shot
+2. **Multiple skills**: Cognitive and non-cognitive abilities matter
+3. **Dynamic complementarity**: Early investments affect returns to later ones
+4. **Self-productivity**: Skills today enhance skill formation tomorrow
+5. **Life-cycle timing**: When investments occur matters
+:::
+
+. . .
+
+**Solution**: Extend to multi-period framework with richer technology.
+
+# The Multi-Period Framework
+
+## Cunha-Heckman Technology
+
+@Cunha2007 develop a **multi-stage** model of skill formation:
+
+$$\theta_{t+1} = f_t(h, \theta_t, I_t)$$
+
+:::{.incremental}
+- $\theta_t$ = vector of skills at age $t$ (cognitive, non-cognitive)
+- $I_t$ = vector of investments at age $t$ (parental, public)
+- $h$ = child's genetic endowment
+- $f_t$ = age-specific production function
+:::
+
+. . .
+
+**Key**: Production function changes over development stages.
+
+## Two Key Properties
+
+### 1. Self-Productivity
+
+$$\frac{\partial \theta_{t+1}}{\partial \theta_t} > 0$$
+
+Skills acquired in one period **boost** skill formation in the next period.
+
+:::{.incremental}
+- Learning-to-learn
+- Higher ability children accumulate skills faster
+- Creates compounding advantages
+- Explains why early gaps widen over time
+:::
+
+## Two Key Properties (continued)
+
+### 2. Dynamic Complementarity
+
+$$\frac{\partial^2 \theta_{t+1}}{\partial I_t \partial \theta_t} > 0$$
+
+Higher skill stocks **raise the productivity** of subsequent investments.
+
+:::{.incremental}
+- Investment is more productive for already-skilled children
+- Early investments raise returns to later investments
+- Creates path dependence
+- **Different** from static complementarity in basic model
+:::
+
+## A Simple Two-Period Example
+
+Suppose skills evolve over two childhood periods:
+
+$$\theta_1 = f_0(h, I_0)$$
+$$\theta_2 = f_1(h, \theta_1, I_1)$$
+
+Adult earnings: $Y = H(\theta_2) + \varepsilon$
+
+:::{.incremental}
+- Early investment $I_0$ affects $\theta_1$ directly
+- But also affects productivity of $I_1$ (dynamic complementarity)
+- And $\theta_1$ affects $\theta_2$ directly (self-productivity)
+- Total effect of $I_0$ includes **three channels**
+:::
+
+## Visualizing Dynamic Complementarity
+
+```{julia}
+#| echo: false
+#| output: true
+
+using Plots
+
+# Marginal product of late investment for different early investment levels
+I1 = 0:0.1:10
+
+# Returns to late investment depend on early investment
+mp_low_I0(I1) = 5 * exp(-0.4 * I1)      # Low early investment
+mp_medium_I0(I1) = 8 * exp(-0.35 * I1)  # Medium early investment
+mp_high_I0(I1) = 12 * exp(-0.3 * I1)    # High early investment
+
+plot(I1, mp_low_I0.(I1),
+     label="MP(I₁ | I₀ = low)",
+     xlabel="Late investment (I₁)",
+     ylabel="Marginal product",
+     title="Dynamic Complementarity: Early Investment Raises Returns to Late Investment",
+     linewidth=2.5,
+     legend=:topright,
+     grid=true,
+     left_margin=5Plots.mm,
+     bottom_margin=5Plots.mm,
+     size=(700, 400))
+plot!(I1, mp_medium_I0.(I1), label="MP(I₁ | I₀ = medium)", linewidth=2.5)
+plot!(I1, mp_high_I0.(I1), label="MP(I₁ | I₀ = high)", linewidth=2.5)
+```
+
+Higher early investment shifts up the entire late investment return curve.
+
+## CES Specification
+
+@Cunha2007 use a CES production function:
+
+$$\theta_{t+1} = \left[\gamma_1 \theta_t^\phi + \gamma_2 I_t^\phi\right]^{1/\phi}$$
+
+:::{.incremental}
+- $\phi$ determines elasticity of substitution: $\sigma = 1/(1-\phi)$
+- $\phi < 1$: Skills and investment are complements
+- $\gamma_1, \gamma_2$: relative importance of self-productivity vs. investment
+- Can estimate separately for different ages and skill types
+:::
+
+. . .
+
+**Empirical finding**: $\phi < 0$ for early childhood (strong complementarity).
+
+## Critical and Sensitive Periods
+
+The multi-period framework allows for:
+
+:::{.incremental}
+- **Critical periods**: Times when $\partial f_t / \partial I_t$ is especially high
+  - Investment has large direct effect
+  - Example: Language acquisition 0-3 years
+- **Sensitive periods**: Times when complementarity is strongest
+  - Investment affects returns to all future investments
+  - Example: Executive function development 3-5 years
+- **Empirical evidence**: Early childhood is both critical and sensitive
+:::
+
+## Rationalizing the Evidence
+
+The multi-period model addresses Mulligan's critiques:
+
+:::{.incremental}
+1. **Consumption mobility**: Multiple constraints over child's development
+   - Can't borrow against future at each stage
+   - Even rich families face some constraints
+2. **Earnings inequality**: Dynamic complementarity reinforces advantages
+   - Rich parents invest more at ALL stages
+   - Complementarities amplify initial differences
+3. **Grandparent effects**: Longer transmission chain
+   - $Y_{t-2}$ affects multiple periods of $Y_{t-1}$'s development
+   - Positive persistence through multiple channels
+:::
+
+## Policy Implications from Multi-Period Model
+
+The timing of intervention matters:
+
+:::{.incremental}
+1. **Early investments have high returns**
+   - Affect all subsequent stages through complementarity
+   - Self-productivity multiplies initial effects
+   - Equity and efficiency align for early programs
+2. **Late remediation is costly**
+   - Must overcome accumulated deficits
+   - Low complementarity with missing early skills
+   - Equity-efficiency tradeoff emerges
+3. **Targeting matters**
+   - Complementarity → target disadvantaged children early
+   - Universal programs may have low returns if constraints don't bind
+:::
+
+## Quantitative Evidence
+
+@Cunha2007 estimate the model using CNLSY data:
+
+:::{.incremental}
+- Cognitive and non-cognitive skills from test scores
+- Investments from time use and expenditures
+- **Key findings**:
+  - Strong complementarity in early childhood ($\phi < 0$)
+  - Self-productivity dominates investment by adolescence
+  - Optimal investment front-loaded to early ages
+  - Explains fadeout of programs that don't continue investing
+:::
+
+. . .
+
+**Conclusion**: Multi-stage technology rationalizes patterns that puzzle basic Becker-Tomes.
+
+# Takeaways
+
+## Summary
+
+The Becker-Tomes model provides a unified framework:
+
+:::{.incremental}
+1. **Endowment regression** ($h < 1$) drives mobility
+2. **Capital constraints** slow mobility for poor families
+3. **Bequests** buffer consumption regression for rich families
+4. **Fertility and marriage** ensure long-run regression
+5. Parents affect children through **multiple channels**
+6. **Policy** can address market failures efficiently
+:::
+
+## Key Equations
+
+For reference:
+
+- Endowment transmission: $E_t = \alpha + h E_{t-1} + v_t$
+- Human capital production: $H_t = \psi(x_{t-1}, E_t, s_{t-1})$
+- Earnings (no constraints): $Y_t \approx \alpha + h \cdot Y_{t-1} + \varepsilon_t$
+- Earnings (with constraints): $Y_t \approx \alpha + (\beta^* + h) Y_{t-1} - \beta^* h \cdot Y_{t-2} + \varepsilon_t$
+
+Understanding these relationships is key to analyzing mobility policy.
+
+## Looking Ahead
+
+Next lectures:
+
+:::{.incremental}
+- **Quantitative models** of intergenerational mobility (Lee-Seshadri, Caucutt-Lochner)
+- **Causal evidence** on early childhood programs
+- **Skill formation** and dynamic complementarities
+- **Parenting** investments and time use
+:::
+
+. . .
+
+The Becker-Tomes model is the **foundation** for modern research on inequality and mobility.
+
+## References {.smaller}
+
+::: {#refs}
+:::

@@ -1,0 +1,533 @@
+---
+title: "Recitation 4"
+bibliography: ../reading_list.bib
+---
+
+```{julia}
+using DataFrames, DataFramesMeta, CSV, StatsPlots, LinearAlgebra, Distributions, StatsBase
+```
+
+# Calibrating Income Processes from Data
+
+In [recitation 3](../recitations/recitation-3.qmd) we studied the welfare implications of tax and transfer programs using a stylized income process. Today we'll calibrate a more realistic income process using data from @ABB_2018, and then evaluate the welfare effects of progressive taxation under this calibrated process.
+
+## Loading and Exploring the Data
+
+The data come from the PSID and contain information on income over the life cycle. Let's start by loading the data and examining some basic patterns.
+
+```{julia}
+d = CSV.read("../data/abb_aea_data.csv", DataFrame)
+d[!,:logy] = log.(d.y);
+
+```
+
+First, let's look at how the variance of log income evolves with age:
+
+```{julia}
+var_by_age = @chain d begin
+    @subset .!ismissing.(:y)
+    groupby(:age)
+    @combine begin
+        :var_logy = var(log.(:y))
+        :mean_logy = mean(log.(:y))
+        :n = length(:y)
+    end
+    @subset :n .> 100
+end
+
+@df var_by_age plot(:age, :var_logy,
+    xlabel="Age",
+    ylabel="Variance of log income",
+    title="Life-Cycle Profile of Income Variance",
+    legend=false,
+    linewidth=2)
+```
+
+The variance of log income increases substantially over the life cycle. This is consistent with income shocks being persistent: the variance accumulates as people age.
+
+## Calculating Autocovariances
+
+To understand the persistence of income shocks, we need to calculate the covariance of income at different lags. The code below constructs forward lags and calculates covariances.
+
+```{julia}
+# construct forward-lags
+function forward_lag(d, l, var)
+    d_lag = @chain d begin
+        @select :person :year $var
+        @transform :year = :year .- l
+        @rename $(Symbol(var,"_",l)) = $var
+    end
+    d = leftjoin(d, d_lag, on=[:person,:year])
+    return d
+end
+
+d = forward_lag(d, 2, :logy);
+d = forward_lag(d, 4, :logy);
+d = forward_lag(d, 6, :logy);
+```
+
+Now let's calculate the covariances at different lags:
+
+```{julia}
+# Covariance of log income with itself at different lags
+cov_data = pairwise(cov, eachcol(d[!,[:logy,:logy_2,:logy_4,:logy_6]]),
+                    skipmissing = :pairwise)
+
+# Extract covariances with current log income
+lag = [0, 2, 4, 6]
+cov_lag = cov_data[:,1]
+
+display(DataFrame(lag = lag, covariance = cov_lag))
+
+# Plot the covariance function
+plot(lag, cov_lag,
+    xlabel="Lag (years)",
+    ylabel="Cov(log yₜ, log yₜ₊ₛ)",
+    title="Autocovariance Function of Log Income",
+    marker=:circle,
+    markersize=6,
+    linewidth=2,
+    legend=false)
+```
+
+## Covariances of Income Growth
+
+We can also look at the covariances of income growth over different periods:
+
+```{julia}
+d_growth = @chain d begin
+    @transform begin
+        :Dlogy_2 = :logy_2 .- :logy
+        :Dlogy_4 = :logy_4 .- :logy_2
+        :Dlogy_6 = :logy_6 .- :logy_4
+    end
+    @select :Dlogy_2 :Dlogy_4 :Dlogy_6
+end
+
+cov_growth = pairwise(cov, eachcol(d_growth), skipmissing = :pairwise)
+
+println("Covariance matrix of income growth:")
+display(cov_growth)
+```
+
+The diagonal elements show the variance of 2-year income changes. The off-diagonal elements show how correlated income changes are across different periods.
+
+## Calibrating an AR(1) Process
+
+Now suppose that income in the model follows an AR(1) process:
+
+$$ y_{it} = \mu_{t} + \varepsilon_{it} $$
+
+where:
+
+$$ \varepsilon_{t+1} = \rho \varepsilon_t + \zeta_{t+1}, \quad \zeta_{t+1} \sim N(0, \sigma^2_\zeta) $$
+
+We can construct the residuals $\varepsilon$ by first de-meaning by age. We take lags as well:
+
+```{julia}
+d = @chain d begin
+    groupby(:age)
+    @transform :eps = :logy .- mean(:logy)
+end
+
+d = forward_lag(d, 2, :eps);
+d = forward_lag(d, 4, :eps);
+d = forward_lag(d, 6, :eps);
+
+
+```
+
+Recall that:
+
+$$ \text{Cov}(\varepsilon_t, \varepsilon_{t+s}) = \rho^{s}\text{Var}(\varepsilon_{t}).$$
+
+This means that there are a multiple ways to estimate the persistence parameter $\rho$, using different orders of lags.
+
+There are also multiple ways to estimate $\sigma^2_{\zeta}$. The simplest way is to assume that $\varepsilon$ is in its stationary distribution which gives:
+
+
+$$ \text{Var}(\varepsilon_{it}) = \sigma^2_{\zeta} / (1 - \rho^2) .$$
+
+
+Below is code to calculate the covariance at different lags and estimate $\rho$ as the mean of three alternative estimators.
+
+
+
+```{julia}
+cov_lag = pairwise(cov, eachcol(d[!,[:eps,:eps_2,:eps_4,:eps_6]]),
+                    skipmissing = :pairwise)[:,1]
+
+
+# Estimate ρ from the ratio of covariances at different lags
+ρ_est_1 = sqrt(cov_lag[2] / cov_lag[1])  # (Cov(t,t+2) / Var(t))^(1/2)
+ρ_est_2 = (cov_lag[3] / cov_lag[1])^(1/4)  # (Cov(t,t+4) / Var(t))^(1/4)
+ρ_est_3 = (cov_lag[4] / cov_lag[1])^(1/6)  # (Cov(t,t+6) / Var(t))^(1/6)
+
+ρ = mean([ρ_est_1, ρ_est_2, ρ_est_3])
+
+println("Estimated persistence: ρ = ", round(ρ, digits=3))
+
+# Given ρ, we can back out the innovation variance
+σ_ε = sqrt(cov_lag[1])  # Unconditional SD
+σ_ζ = σ_ε * sqrt(1 - ρ^2)  # Innovation SD
+
+println("Unconditional SD: σ_ε = ", round(σ_ε, digits=3))
+println("Innovation SD: σ_ζ = ", round(σ_ζ, digits=3))
+```
+
+
+Let's check how well our calibrated AR(1) matches the empirical covariances:
+
+```{julia}
+# Predicted covariances from AR(1)
+σ2_ε = σ_ε^2
+cov_predicted = [ρ^s * σ2_ε for s in lag]
+
+# Plot comparison
+plot(lag, cov_lag,
+    label="Data",
+    marker=:circle,
+    markersize=6,
+    linewidth=2,
+    xlabel="Lag (years)",
+    ylabel="Covariance",
+    title="AR(1) Fit to Autocovariance Function")
+plot!(lag, cov_predicted,
+    label="AR(1) model",
+    marker=:square,
+    markersize=6,
+    linewidth=2,
+    linestyle=:dash)
+```
+
+**Notice**: the autovariance does not decay as quickly in the data as in the model. Could individual fixed effects explain this pattern?
+
+## Age Profile of Mean Income
+
+The data also show that mean income varies systematically with age. Let's extract this profile:
+
+```{julia}
+@df var_by_age plot(:age, :mean_logy,
+    xlabel="Age",
+    ylabel="Mean log income",
+    title="Life-Cycle Profile of Mean Log Income",
+    legend=false,
+    linewidth=2,
+    marker=:circle)
+```
+
+For the model, we want mean of log wages between 25 and 65.
+
+```{julia}
+μ_t = @chain var_by_age begin
+    @subset :age.>=25 :age.<65
+    @orderby :age
+    _[!,:mean_logy]
+end
+```
+
+# Welfare Analysis with Calibrated Income Process
+
+Now we'll use the calibrated income process to evaluate the welfare effects of progressive taxation. We'll use the same model structure as in recitation 3.
+
+## Model Setup
+
+```{julia}
+# utility
+utility(c, σ) = c^(1 - σ) / (1 - σ)
+
+# tauchen method
+function tauchen(N, ρ, σ)
+    # Unconditional standard deviation of the process
+    σ_y = σ / sqrt(1 - ρ^2)
+
+    # Create the grid
+    y_max = 3. * σ_y
+    y_min = - 3. * σ_y
+    grid = range(y_min, y_max, length=N)
+
+    # Step size
+    step = (y_max - y_min) / (N - 1)
+
+    # Initialize transition matrix
+    Π = zeros(N, N)
+
+    # Standard normal distribution
+    d = Normal(0, 1)
+
+    # Fill in the transition matrix
+    for i in 1:N
+        for j in 1:N
+            if j == 1
+                # Probability of transitioning to the lowest state
+                Π[j, i] = cdf(d, (grid[j] - ρ * grid[i] + step/2) / σ)
+            elseif j == N
+                # Probability of transitioning to the highest state
+                Π[j, i] = 1 - cdf(d, (grid[j] - ρ * grid[i] - step/2) / σ)
+            else
+                # Probability of transitioning to intermediate states
+                Π[j, i] = cdf(d, (grid[j] - ρ * grid[i] + step/2) / σ) -
+                         cdf(d, (grid[j] - ρ * grid[i] - step/2) / σ)
+            end
+        end
+    end
+    return collect(grid), Π
+end
+
+# solve the model
+function solve_model(p)
+    (;T, Π, asset_grid) = p
+    K_a = length(asset_grid)
+    K_y = size(Π, 1)
+    V = zeros(K_y, K_a, T+1)
+    A = zeros(K_y, K_a, T)
+    for t in reverse(1:T)
+        iterate_value_function!(p, V, A, t)
+    end
+    return (;V, A)
+end
+
+function iterate_value_function!(p, V, A, t)
+    for ai in axes(V, 2), yi in axes(V, 1)
+        v, a_next = solve_value(ai, yi, V, p, t)
+        V[yi, ai, t] = v
+        A[yi, ai, t] = a_next
+    end
+end
+
+function solve_value(ai, yi, V, p, t)
+    (;σ, β, Π, r, asset_grid, income_grid, net_income) = p
+    a = asset_grid[ai]
+    y = exp(income_grid[yi, t])
+    y_net = net_income(y)
+    vmax = -Inf
+    amax = 0
+    for ai_next in eachindex(asset_grid)
+        a_next = asset_grid[ai_next]
+        c = y_net + a - a_next/(1+r)
+        if c > 0
+            @views v = utility(c, σ) + β * dot(Π[:, yi], V[:, ai_next, t+1])
+            if v > vmax
+                vmax = v
+                amax = a_next
+            end
+        end
+    end
+    return vmax, amax
+end
+```
+
+## Tax Functions
+
+```{julia}
+no_tax(x) = x
+
+progressive_tax(x, λ, τ) = λ * x^(1-τ)
+```
+
+## Setting Up the Calibrated Model
+
+Now we use the calibrated parameters from the data:
+
+```{julia}
+# Use calibrated parameters
+N_states = 7
+egrid, Π = tauchen(N_states, ρ, σ_ζ)
+
+# Model periods: assume working life from age 25 to 65
+T = 40
+age_start = 25
+
+# Create income grid with age-varying mean
+income_grid = zeros(N_states, T)
+for t in 1:T
+    age = age_start + t - 1
+    for i in 1:N_states
+        income_grid[i, t] = μ_t[t] + egrid[i]
+    end
+end
+
+# Plot the income grid to visualize
+plot(age_start:(age_start+T-1), exp.(income_grid[1, :]),
+    label="Lowest state",
+    xlabel="Age",
+    ylabel="Income (thousands)",
+    title="Income Paths by Shock State",
+    linewidth=2)
+plot!(age_start:(age_start+T-1), exp.(income_grid[4, :]),
+    label="Middle state",
+    linewidth=2)
+plot!(age_start:(age_start+T-1), exp.(income_grid[N_states, :]),
+    label="Highest state",
+    linewidth=2)
+```
+
+## Model Parameters
+
+```{julia}
+p = (;
+    T,
+    asset_grid = LinRange(0, 200, 100),
+    income_grid,
+    β = 0.96,
+    r = 0.04,
+    Π,
+    σ = 2.,
+    net_income = no_tax
+)
+```
+
+## Calibrating Progressive Taxation
+
+We need to choose $\lambda$ to ensure budget balance:
+
+```{julia}
+function solve_steady_state(Π)
+    K = size(Π, 2)
+    vals, e = eigen(Π)
+    return e[:, K] ./ sum(e[:, K])
+end
+
+function solve_lambda(τ, ygrid, pi_star)
+    return dot(pi_star, ygrid) / dot(pi_star, ygrid.^(1-τ))
+end
+
+# Solve for stationary distribution
+pi_star = solve_steady_state(p.Π)
+
+# Choose progressivity
+τ = 0.2
+
+# Solve for λ using income in first period
+λ = solve_lambda(τ, exp.(income_grid[:, 1]), pi_star)
+
+println("Tax progressivity parameter: τ = ", τ)
+println("Tax scale parameter: λ = ", round(λ, digits=3))
+```
+
+## Solving Both Models
+
+```{julia}
+println("Solving model without taxes...")
+model0 = solve_model(p)
+
+p_tax = (;p..., net_income = x -> progressive_tax(x, λ, τ))
+
+println("Solving model with progressive taxes...")
+model1 = solve_model(p_tax)
+
+println("Done!")
+```
+
+## Welfare Comparison
+
+Let's compare the value functions:
+
+```{julia}
+plot(model0.V[:, 1, 1],
+    label="No taxes",
+    xlabel="Income shock state",
+    ylabel="Value",
+    title="Value Function at Period 1, Zero Assets",
+    marker=:circle,
+    linewidth=2,
+    legend=:bottomright)
+plot!(model1.V[:, 1, 1],
+    label="Progressive taxes (τ=$τ)",
+    marker=:square,
+    linewidth=2)
+```
+
+## Welfare Decomposition
+
+Following recitation 3, we decompose the welfare gain into insurance and redistribution components:
+
+```{julia}
+(;σ, β) = p
+
+# Calculate average income at period 1
+C = dot(pi_star, exp.(p.income_grid[:, 1]))
+
+# Certainty equivalents by state
+cbar0 = ((1-σ) * (1-β) / (1-β^T) * model0.V[:, 1, 1]).^(1/(1-σ))
+cbar1 = ((1-σ) * (1-β) / (1-β^T) * model1.V[:, 1, 1]).^(1/(1-σ))
+
+# Average certainty equivalents
+Cbar0 = dot(pi_star, cbar0)
+Cbar1 = dot(pi_star, cbar1)
+
+# Aggregate welfare
+W0 = dot(pi_star, model0.V[:, 1, 1])
+W1 = dot(pi_star, model1.V[:, 1, 1])
+
+# Value under perfect insurance
+V_cert(x) = (1-β^T) / (1-β) * utility(x, σ)
+
+# Decomposition
+ω = (W1/W0)^(1/(1-σ)) - 1
+γ = (V_cert(Cbar1) / V_cert(Cbar0))^(1/(1-σ)) - 1
+α = ((W1 / V_cert(Cbar1)) / (W0 / V_cert(Cbar0)))^(1/(1-σ)) - 1
+
+println("\nWelfare Decomposition:")
+println("=" ^ 50)
+println("Total welfare gain:        ", round((1+ω-1)*100, digits=2), "%")
+println("Insurance component:       ", round((1+γ-1)*100, digits=2), "%")
+println("Redistribution component:  ", round((1+α-1)*100, digits=2), "%")
+println("\nVerification: (1+γ)(1+α) = ", round((1+γ)*(1+α), digits=4), " ≈ ", round(1+ω, digits=4))
+
+# Display as table
+results = DataFrame(
+    Component = ["Total (1+ω)", "Insurance (1+γ)", "Redistribution (1+α)"],
+    Value = [1+ω, 1+γ, 1+α],
+    Percentage = [ω*100, γ*100, α*100]
+)
+display(results)
+```
+
+
+## Additional Exercise
+
+Try varying the tax progressivity parameter τ. How do the insurance and redistribution components change as τ increases from 0 to 0.4?
+
+```{julia}
+# Exercise: Welfare gains for different tax progressivity levels
+τ_values = 0.0:0.05:0.4
+welfare_results = zeros(length(τ_values), 3)
+
+for (i, τ_val) in enumerate(τ_values)
+    if τ_val == 0
+        welfare_results[i, :] .= [0.0, 0.0, 0.0]
+        continue
+    end
+
+    λ_val = solve_lambda(τ_val, exp.(income_grid[:, 1]), pi_star)
+    p_temp = (;p..., net_income = x -> progressive_tax(x, λ_val, τ_val))
+    model_temp = solve_model(p_temp)
+
+    W_temp = dot(pi_star, model_temp.V[:, 1, 1])
+    cbar_temp = ((1-σ) * (1-β) / (1-β^T) * model_temp.V[:, 1, 1]).^(1/(1-σ))
+    Cbar_temp = dot(pi_star, cbar_temp)
+
+    ω_temp = (W_temp/W0)^(1/(1-σ)) - 1
+    γ_temp = (V_cert(Cbar_temp) / V_cert(Cbar0))^(1/(1-σ)) - 1
+    α_temp = ((W_temp / V_cert(Cbar_temp)) / (W0 / V_cert(Cbar0)))^(1/(1-σ)) - 1
+
+    welfare_results[i, :] = [ω_temp*100, γ_temp*100, α_temp*100]
+end
+
+plot(τ_values, welfare_results[:, 1],
+    label="Total welfare gain",
+    xlabel="Tax progressivity (τ)",
+    ylabel="Welfare gain (%)",
+    title="Welfare Effects of Tax Progressivity",
+    linewidth=2.5,
+    legend=:topleft)
+plot!(τ_values, welfare_results[:, 2],
+    label="Insurance component",
+    linewidth=2,
+    linestyle=:dash)
+plot!(τ_values, welfare_results[:, 3],
+    label="Redistribution component",
+    linewidth=2,
+    linestyle=:dot)
+```

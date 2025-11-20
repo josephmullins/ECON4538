@@ -97,7 +97,6 @@ We review and replicate facts about labor market inequality in the United States
 - Welfare implications of income inequality [@Storesletten2004]
     - Redistribution vs Insurance
 - The Intergenerational Elasticity of Earnings [@corak2013; @mazumder2005; @mazumder2018]
-- Skills and Inequality [@Heckman2006; @Cunha2008a; @Cunha2009]
 
 ### Theories of Human Capital and Inequality
 
@@ -106,6 +105,7 @@ We introduce textbook theories of human capital formation and examine their empi
 - The Becker-Tomes model of intergenerational inequality via human capital investment [@Becker1979; @Becker1986]
     - Policy implications of the model (efficiency and redistribution)
 - Debates on the empirical and conceptual merits of the Becker-Tomes model [@Goldberger1989; @Mulligan1999; @Cunha2006; @Cunha2007]
+- Skills and Inequality [@Heckman2006; @Cunha2008a; @Cunha2009]
 - Quantitative and theoretical extensions of the baseline model [@Lee2019; @Caucutt2020]
 
 ### Connecting Human Capital Theory with Evidence
