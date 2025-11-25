@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignments – ECON4538</title>
+<title>claude – ECON4538</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Recitation Materials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./assignments.html" aria-current="page"> 
+    <a class="nav-link" href="./assignments.html"> 
 <span class="menu-text">Assignments</span></a>
   </li>  
 </ul>
@@ -115,56 +115,97 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#econ4538---labor-economics" id="toc-econ4538---labor-economics" class="nav-link active" data-scroll-target="#econ4538---labor-economics">ECON4538 - Labor Economics</a>
+  <ul class="collapse">
+  <li><a href="#quarto-slide-format" id="toc-quarto-slide-format" class="nav-link" data-scroll-target="#quarto-slide-format">Quarto Slide Format</a>
+  <ul class="collapse">
+  <li><a href="#slide-structure" id="toc-slide-structure" class="nav-link" data-scroll-target="#slide-structure">Slide Structure</a></li>
+  <li><a href="#code-blocks" id="toc-code-blocks" class="nav-link" data-scroll-target="#code-blocks">Code Blocks</a></li>
+  <li><a href="#julia-style" id="toc-julia-style" class="nav-link" data-scroll-target="#julia-style">Julia Style</a></li>
+  <li><a href="#figures-layout" id="toc-figures-layout" class="nav-link" data-scroll-target="#figures-layout">Figures &amp; Layout</a></li>
+  </ul></li>
+  <li><a href="#pedagogy" id="toc-pedagogy" class="nav-link" data-scroll-target="#pedagogy">Pedagogy</a></li>
+  <li><a href="#topic-guidelines" id="toc-topic-guidelines" class="nav-link" data-scroll-target="#topic-guidelines">Topic Guidelines</a></li>
+  <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course Outline</a></li>
+  <li><a href="#data-resources" id="toc-data-resources" class="nav-link" data-scroll-target="#data-resources">Data &amp; Resources</a></li>
+  <li><a href="#style" id="toc-style" class="nav-link" data-scroll-target="#style">Style</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Assignments</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
+<section id="econ4538---labor-economics" class="level1">
+<h1>ECON4538 - Labor Economics</h1>
+<p>Advanced undergraduate course on inequality, human capital, and welfare analysis using quantitative methods.</p>
+<section id="quarto-slide-format" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-slide-format">Quarto Slide Format</h2>
+<p>Standard YAML header (RevealJS, solarized theme, julia-1.11, cache enabled, freeze auto). Citations use <code>../reading_list.bib</code> with format <code>[@AuthorYear]</code>.</p>
+<section id="slide-structure" class="level3">
+<h3 class="anchored" data-anchor-id="slide-structure">Slide Structure</h3>
+<ul>
+<li>Start with Overview slide using <code>:::{.incremental}</code> for bullet points</li>
+<li>Use incremental reveals extensively for theory and key points</li>
+<li>Mark exercises explicitly (“Exercise:” or “Exercises:”)</li>
+<li>Use <code>#</code> for major section headers</li>
+<li>Apply <code>.smaller</code> class for dense content, <code>.scrollable</code> for long code</li>
+</ul>
+</section>
+<section id="code-blocks" class="level3">
+<h3 class="anchored" data-anchor-id="code-blocks">Code Blocks</h3>
+<p>Standard options: <code>#| echo: true</code>, <code>#| code-fold: true</code>, <code>#| output: false</code>, <code>#| code-line-numbers: "2|3-4|5"</code></p>
+</section>
+<section id="julia-style" class="level3">
+<h3 class="anchored" data-anchor-id="julia-style">Julia Style</h3>
+<p>Packages: <code>DataFrames</code>, <code>DataFramesMeta</code>, <code>StatsPlots</code>, <code>StatsBase</code> - Use <code>@chain</code> for data pipelines - Apply weights with <code>weights(:ASECWT)</code> - Naming: <code>m_wage</code>, <code>var_lw</code>, etc. - Plot with <code>@df</code> macro</p>
+</section>
+<section id="figures-layout" class="level3">
+<h3 class="anchored" data-anchor-id="figures-layout">Figures &amp; Layout</h3>
+<ul>
+<li>Save figures to <code>../papers/figures/</code></li>
+<li>Use <code>:::: {.columns}</code> / <code>::: {.column width="50%"}</code> for multi-panel</li>
+<li>Use <code>::: {.panel-tabset}</code> for comparisons</li>
+</ul>
+</section>
+</section>
+<section id="pedagogy" class="level2">
+<h2 class="anchored" data-anchor-id="pedagogy">Pedagogy</h2>
+<p><strong>Flow</strong>: Theory → Data → Application - Start with intuition, build to formal models - Ground concepts in empirical examples - Use LaTeX for equations, build incrementally - Show real data analysis, replicate findings - Mix board and computational exercises - Engage with “What do you think…?” prompts</p>
+</section>
+<section id="topic-guidelines" class="level2">
+<h2 class="anchored" data-anchor-id="topic-guidelines">Topic Guidelines</h2>
+<p><strong>Inequality</strong>: Variance of log wages, percentile gaps (p90-p10, p75-p25), trends over time/lifecycle, demographics</p>
+<p><strong>Welfare</strong>: Distinguish insurance vs redistribution, certainty equivalent decompositions</p>
+<p><strong>Dynamic Models</strong>: Simple to complex (2-period → infinite horizon), show recursive formulations</p>
+<p><strong>Human Capital</strong>: Link to IGE, Becker-Tomes framework, technology of skill formation</p>
+</section>
+<section id="course-outline" class="level2">
+<h2 class="anchored" data-anchor-id="course-outline">Course Outline</h2>
+<p>Core papers in <code>../papers/</code>. See reading_list.bib for citations.</p>
+<p><strong>Part 1: Inequality &amp; Welfare</strong> 1. Documenting Inequality (<span class="citation" data-cites="Heathcote2023">@Heathcote2023</span>, <span class="citation" data-cites="moffitt2011">@moffitt2011</span>, <span class="citation" data-cites="Guvenen2021">@Guvenen2021</span>) 2. Insurance vs Redistribution (<span class="citation" data-cites="Storesletten2004">@Storesletten2004</span>) 3. Income Processes (<span class="citation" data-cites="Meghir2004">@Meghir2004</span>, <span class="citation" data-cites="Guvenen2009">@Guvenen2009</span>, <span class="citation" data-cites="Low2010">@Low2010</span>) 4. Intergenerational Mobility (<span class="citation" data-cites="corak2013">@corak2013</span>, <span class="citation" data-cites="mazumder2005">@mazumder2005</span>, <span class="citation" data-cites="Chetty2014">@Chetty2014</span>)</p>
+<p><strong>Part 2: Human Capital</strong> 5. Becker-Tomes Model (<span class="citation" data-cites="Becker1979">@Becker1979</span>, <span class="citation" data-cites="Becker1986">@Becker1986</span>, <span class="citation" data-cites="Goldberger1989">@Goldberger1989</span>, <span class="citation" data-cites="Mulligan1999">@Mulligan1999</span>, <span class="citation" data-cites="Cunha2006">@Cunha2006</span>, <span class="citation" data-cites="Cunha2007">@Cunha2007</span>) 6. Skills, Inequality, and the Technology of Skill Formation (<span class="citation" data-cites="Heckman2006">@Heckman2006</span>, <span class="citation" data-cites="Cunha2008a">@Cunha2008a</span>, <span class="citation" data-cites="Cunha2007">@Cunha2007</span>, <span class="citation" data-cites="Cunha2008b">@Cunha2008b</span>) 7. Quantitative Mobility Models (<span class="citation" data-cites="Lee2019">@Lee2019</span>, <span class="citation" data-cites="Caucutt2020">@Caucutt2020</span>)</p>
+<p><strong>Part 3: Policy</strong> (Planned) 8. Causal Inference, 9. ECE (<span class="citation" data-cites="heckman2010">@heckman2010</span>, <span class="citation" data-cites="Garcia2020">@Garcia2020</span>), 10. Safety Net (<span class="citation" data-cites="Dahl2012">@Dahl2012</span>, <span class="citation" data-cites="bailey2024">@bailey2024</span>), 11. Parenting (<span class="citation" data-cites="ATTANASIO2020">@ATTANASIO2020</span>), 12. Skill Formation (<span class="citation" data-cites="Cunha2007">@Cunha2007</span>, <span class="citation" data-cites="Cunha2008b">@Cunha2008b</span>)</p>
+</section>
+<section id="data-resources" class="level2">
+<h2 class="anchored" data-anchor-id="data-resources">Data &amp; Resources</h2>
+<p><strong>Datasets</strong>: CPS (IPUMS), PSID, CEX, SCF <strong>References</strong>: QuantEcon julia course, Ljungqvist &amp; Sargent textbook</p>
+</section>
+<section id="style" class="level2">
+<h2 class="anchored" data-anchor-id="style">Style</h2>
+<p>Clear language for advanced undergrads, balance rigor with intuition, define jargon, concrete before abstract, consistent notation, no emojis.</p>
 
 
-</header>
-
-
-<p>All submissions should be made on Canvas in <code>pdf</code> or <code>html</code> format using a <code>quarto</code> or <code>jupyter</code> notebook that shows all code and output. Due dates are also provided on Canvas.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Assignment</th>
-<th>Notebook</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Assignment 1</td>
-<td><a href="./assignments/assignment-1.html">link</a></td>
-</tr>
-<tr class="even">
-<td>Assignment 2</td>
-<td><a href="./assignments/assignment-2.html">link</a></td>
-</tr>
-<tr class="odd">
-<td>Assignment 3</td>
-<td><a href="./assignments/assignment-3.html">link</a></td>
-</tr>
-</tbody>
-</table>
-
-
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

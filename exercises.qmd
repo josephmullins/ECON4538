@@ -1,6 +1,6 @@
 ---
 title: "Practice Exercises"
-bibliography: ../reading_list.bib
+bibliography: reading_list.bib
 ---
 
 

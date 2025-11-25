@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignments – ECON4538</title>
+<title>Assignment 3 – ECON4538</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +101,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">ECON4538</span>
     </a>
   </div>
@@ -89,19 +152,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./lectures.html"> 
+    <a class="nav-link" href="../lectures.html"> 
 <span class="menu-text">Lecture Slides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./recitations.html"> 
+    <a class="nav-link" href="../recitations.html"> 
 <span class="menu-text">Recitation Materials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./assignments.html" aria-current="page"> 
+    <a class="nav-link" href="../assignments.html"> 
 <span class="menu-text">Assignments</span></a>
   </li>  
 </ul>
@@ -123,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignments</h1>
+<h1 class="title">Assignment 3</h1>
 </div>
 
 
@@ -140,29 +203,43 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>All submissions should be made on Canvas in <code>pdf</code> or <code>html</code> format using a <code>quarto</code> or <code>jupyter</code> notebook that shows all code and output. Due dates are also provided on Canvas.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Assignment</th>
-<th>Notebook</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Assignment 1</td>
-<td><a href="./assignments/assignment-1.html">link</a></td>
-</tr>
-<tr class="even">
-<td>Assignment 2</td>
-<td><a href="./assignments/assignment-2.html">link</a></td>
-</tr>
-<tr class="odd">
-<td>Assignment 3</td>
-<td><a href="./assignments/assignment-3.html">link</a></td>
-</tr>
-</tbody>
-</table>
+<p>Consider the life-cycle model we have used in <a href="../assignments/assignment-2.html">Assignment 2</a> and <a href="../recitations/recitation-4.html">Recitation 4</a>. Assume that the income process is as follows:</p>
+<p><span class="math display">\[ y_{it} = \mu_{t} + \alpha_{i} + \zeta_{it} + \epsilon_{it} \]</span></p>
+<p>where</p>
+<p><span class="math display">\[ \zeta_{it} = \rho \zeta_{it-1} + \eta_{it} \]</span></p>
+<p>and <span class="math inline">\(\alpha_{i}\)</span>, <span class="math inline">\(\epsilon_{it}\)</span>, and <span class="math inline">\(\eta_{it}\)</span> are iid, with <span class="math inline">\(\epsilon_{it}\sim N(0,\sigma_{\epsilon}^2)\)</span>, <span class="math inline">\(\eta_{it}\sim N(0,\sigma^2_{\eta})\)</span>. Let <span class="math inline">\(\sigma^2_{\alpha} = \mathbb{V}[y_{it}]\)</span> and let <span class="math inline">\(\mathbb{E}[\alpha_{i}]=0\)</span> such that <span class="math inline">\(\mathbb{E}[y_{it}] = \mu_{t}\)</span>.</p>
+<p>You are going to estimate the parameters of this income process using the <a href="https://github.com/josephmullins/ECON4538/blob/main/data/abb_aea_data.csv">psid data</a> from <a href="../recitations/recitation-4.html">Recitation 4</a> and repeat the welfare analysis from that session.</p>
+<ol type="1">
+<li><p>Repeating the analysis from class, show that the following relationships hold under the assumptions above: <span class="math display">\[ \begin{align}
+\mathbb{V}[y_{it}] = \sigma^2_{\alpha} + \mathbb{V}[\zeta_{it}] + \sigma^2_{\epsilon} \\
+\mathbb{C}(y_{it},y_{it+s}) = \sigma^2_{\alpha} + \rho^{s}\mathbb{V}[\zeta_{it}]
+\end{align}
+\]</span> (<strong>this question requires only math</strong>)</p></li>
+<li><p>Use these relationships above to express the parameters <span class="math inline">\((\rho,\sigma^2_{\epsilon},\sigma^2_{\eta},\sigma^2_{\alpha})\)</span> in terms of variances and lagged covariances. A hint: start by showing something like: <span class="math display">\[
+\rho = \frac{\mathbb{C}(y_{it},y_{it+3}) - \mathbb{C}(y_{it},y_{it+2})}{\mathbb{C}(y_{it},y_{it+2}) - \mathbb{C}(y_{it},y_{it+1})}.
+\]</span> Then you can assume you know <span class="math inline">\(\rho\)</span>, use this to get <span class="math inline">\(\mathbb{V}[\zeta_{it}]\)</span>, then <span class="math inline">\(\sigma^2_{\alpha}\)</span>, then finally <span class="math inline">\(\sigma^2_{\epsilon}\)</span>. (<strong>this question requires only math</strong>)</p></li>
+<li><p>Following the steps in Recitation 4, use your answers to question 2 to construct estimates of the parameters of the income process, <span class="math inline">\((\mu,\rho,\sigma^2_{\epsilon},\sigma^2_{\eta},\sigma^2_{\alpha})\)</span>. <strong>Note</strong>: you will need to adjust the strategy above to account for the fact that the PSID only has data every two years. How does the estimate of <span class="math inline">\(\rho\)</span> compare to the estimate (<strong>this question requires code</strong>)</p></li>
+<li><p>How does the estimate of <span class="math inline">\(\rho\)</span> compare to the estimate from Recitation 4? Please provide some intuition for why.</p></li>
+<li><p>(<strong>extra credit, 3%</strong>) Repeat the analysis of <a href="../recitations/recitation-4.html">Recitation 4</a> (where we introduced a progressive tax) with this new income process and comment on differences you find in overall welfare impacts and differences in the insurance vs redistribution decomposition. You should use the function below, which uses our previous function <code>tauchen.jl</code> to construct a transition matrix <span class="math inline">\(\Pi\)</span> to approximate the income process above, assuming that <span class="math inline">\(\alpha_{i}\)</span> can take one of three evenly spaced grid points with equal probability, and assuming that <span class="math inline">\(\epsilon_{it}\)</span> is <em>measurement error</em> (i.e.&nbsp;does not reflect real changes in income).</p></li>
+</ol>
+<div id="d23c82a4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">approx_income_process</span>(N, ρ, σ, σ_α)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># use tauchen method to approximate the AR(1) component</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    egrid, Π <span class="op">=</span> <span class="fu">tauchen</span>(N, ρ, σ)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    agrid <span class="op">=</span> [<span class="fu">sqrt</span>(<span class="fl">3</span><span class="op">/</span><span class="fl">2</span>)<span class="op">*</span>σ_α, <span class="fl">0</span>., <span class="fu">sqrt</span>(<span class="fl">3</span><span class="op">/</span><span class="fl">2</span>)<span class="op">*</span>σ_α]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># construct a larger grid of α .+ egrid for each α</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> [α <span class="op">+</span> <span class="cn">e</span> for α <span class="kw">in</span> agrid for <span class="cn">e</span> <span class="kw">in</span> egrid]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create a larger transition matrix where the</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># probability of moving from α to any other α' is zero</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    Π <span class="op">=</span> <span class="fu">kron</span>(<span class="fu">I</span>(<span class="fl">3</span>),Π)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid, Π</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>approx_income_process (generic function with 1 method)</code></pre>
+</div>
+</div>
 
 
 

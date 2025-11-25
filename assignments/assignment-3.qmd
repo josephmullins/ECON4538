@@ -1,0 +1,52 @@
+---
+title: "Assignment 3"
+---
+
+Consider the life-cycle model we have used in [Assignment 2](assignment-2.qmd) and [Recitation 4](../recitations/recitation-4.qmd). Assume that the income process is as follows:
+
+$$ y_{it} = \mu_{t} + \alpha_{i} + \zeta_{it} + \epsilon_{it} $$
+
+where
+
+$$ \zeta_{it} = \rho \zeta_{it-1} + \eta_{it} $$
+
+and $\alpha_{i}$, $\epsilon_{it}$, and $\eta_{it}$ are iid, with $\epsilon_{it}\sim N(0,\sigma_{\epsilon}^2)$, $\eta_{it}\sim N(0,\sigma^2_{\eta})$. Let $\sigma^2_{\alpha} = \mathbb{V}[y_{it}]$ and let $\mathbb{E}[\alpha_{i}]=0$ such that $\mathbb{E}[y_{it}] = \mu_{t}$.
+
+You are going to estimate the parameters of this income process using the [psid data](https://github.com/josephmullins/ECON4538/blob/main/data/abb_aea_data.csv) from [Recitation 4](../recitations/recitation-4.qmd) and repeat the welfare analysis from that session.
+
+
+1. Repeating the analysis from class, show that the following relationships hold under the assumptions above:
+$$ \begin{align}
+\mathbb{V}[y_{it}] = \sigma^2_{\alpha} + \mathbb{V}[\zeta_{it}] + \sigma^2_{\epsilon} \\
+\mathbb{C}(y_{it},y_{it+s}) = \sigma^2_{\alpha} + \rho^{s}\mathbb{V}[\zeta_{it}] 
+\end{align}
+$$
+(**this question requires only math**)
+2. Use these relationships above to express the parameters $(\rho,\sigma^2_{\epsilon},\sigma^2_{\eta},\sigma^2_{\alpha})$ in terms of variances and lagged covariances. A hint: start by showing something like:
+$$ 
+\rho = \frac{\mathbb{C}(y_{it},y_{it+3}) - \mathbb{C}(y_{it},y_{it+2})}{\mathbb{C}(y_{it},y_{it+2}) - \mathbb{C}(y_{it},y_{it+1})}.
+$$
+Then you can assume you know $\rho$, use this to get $\mathbb{V}[\zeta_{it}]$, then $\sigma^2_{\alpha}$, then finally $\sigma^2_{\epsilon}$.
+(**this question requires only math**)
+
+3. Following the steps in Recitation 4, use your answers to question 2 to construct estimates of the parameters of the income process, $(\mu,\rho,\sigma^2_{\epsilon},\sigma^2_{\eta},\sigma^2_{\alpha})$. **Note**: you will need to adjust the strategy above to account for the fact that the PSID only has data every two years. How does the estimate of $\rho$ compare to the estimate
+(**this question requires code**)
+
+4. How does the estimate of $\rho$ compare to the estimate from Recitation 4? Please provide some intuition for why.
+
+5. (**extra credit, 3%**) Repeat the analysis of [Recitation 4](../recitations/recitation-4.qmd) (where we introduced a progressive tax) with this new income process and comment on differences you find in overall welfare impacts and differences in the insurance vs redistribution decomposition. You should use the function below, which uses our previous function `tauchen.jl` to construct a transition matrix $\Pi$ to approximate the income process above, assuming that $\alpha_{i}$ can take one of three evenly spaced grid points with equal probability, and assuming that $\epsilon_{it}$ is *measurement error* (i.e. does not reflect real changes in income).
+```{julia}
+using LinearAlgebra
+
+function approx_income_process(N, ρ, σ, σ_α)
+    # use tauchen method to approximate the AR(1) component
+    egrid, Π = tauchen(N, ρ, σ)
+    agrid = [sqrt(3/2)*σ_α, 0., sqrt(3/2)*σ_α]
+    # construct a larger grid of α .+ egrid for each α
+    grid = [α + e for α in agrid for e in egrid]
+    # create a larger transition matrix where the
+    # probability of moving from α to any other α' is zero
+    Π = kron(I(3),Π)
+    return grid, Π
+end
+```

@@ -8,3 +8,4 @@ All submissions should be made on Canvas in `pdf` or `html` format using a `quar
 | ----- | -------- |
 | Assignment 1 | [link](assignments/assignment-1.qmd) | 
 | Assignment 2 | [link](assignments/assignment-2.qmd) | 
+| Assignment 3 | [link](assignments/assignment-3.qmd) | 

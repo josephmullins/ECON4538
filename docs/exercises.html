@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignments – ECON4538</title>
+<title>Practice Exercises – ECON4538</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -101,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Recitation Materials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./assignments.html" aria-current="page"> 
+    <a class="nav-link" href="./assignments.html"> 
 <span class="menu-text">Assignments</span></a>
   </li>  
 </ul>
@@ -115,15 +144,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#example-3" id="toc-example-3" class="nav-link active" data-scroll-target="#example-3">Example 3</a></li>
+  <li><a href="#example-4-harder..-could-make-it-easier" id="toc-example-4-harder..-could-make-it-easier" class="nav-link" data-scroll-target="#example-4-harder..-could-make-it-easier">Example 4 (harder.. could make it easier)</a></li>
+  <li><a href="#exercise-4-permanent-vs-transitory" id="toc-exercise-4-permanent-vs-transitory" class="nav-link" data-scroll-target="#exercise-4-permanent-vs-transitory">Exercise 4: Permanent vs Transitory</a></li>
+  <li><a href="#exercise-5-random-walk-ma1" id="toc-exercise-5-random-walk-ma1" class="nav-link" data-scroll-target="#exercise-5-random-walk-ma1">Exercise 5: Random walk + MA(1)</a></li>
+  <li><a href="#note" id="toc-note" class="nav-link" data-scroll-target="#note">Note:</a></li>
+  <li><a href="#intergen-mobility" id="toc-intergen-mobility" class="nav-link" data-scroll-target="#intergen-mobility">intergen mobility</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignments</h1>
+<h1 class="title">Practice Exercises</h1>
 </div>
 
 
@@ -140,31 +180,53 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>All submissions should be made on Canvas in <code>pdf</code> or <code>html</code> format using a <code>quarto</code> or <code>jupyter</code> notebook that shows all code and output. Due dates are also provided on Canvas.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Assignment</th>
-<th>Notebook</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Assignment 1</td>
-<td><a href="./assignments/assignment-1.html">link</a></td>
-</tr>
-<tr class="even">
-<td>Assignment 2</td>
-<td><a href="./assignments/assignment-2.html">link</a></td>
-</tr>
-<tr class="odd">
-<td>Assignment 3</td>
-<td><a href="./assignments/assignment-3.html">link</a></td>
-</tr>
-</tbody>
-</table>
+<section id="example-3" class="level2">
+<h2 class="anchored" data-anchor-id="example-3">Example 3</h2>
+<ul>
+<li>same economy as example (2), <strong>except</strong> assume that individuals can insure against <span class="math inline">\(\varepsilon_{it}\)</span>, i.e.&nbsp;in the benchmark for all <span class="math inline">\(i\)</span>, <span class="math inline">\(t\)</span>: <span class="math display">\[ c_{it} = \exp\left(\mu_{\tau(i)} + \frac{1}{2}\sigma^2\right) \]</span></li>
+<li>What does the decomposition look like in this case?</li>
+</ul>
+</section>
+<section id="example-4-harder..-could-make-it-easier" class="level2">
+<h2 class="anchored" data-anchor-id="example-4-harder..-could-make-it-easier">Example 4 (harder.. could make it easier)</h2>
+<ul>
+<li>Assume <span class="math display">\[ y_{it} = \mu + \rho(y_{it-1} - \mu) + \zeta_{it},\ \ \zeta_{it}\sim{N}(0,\sigma^2_{\zeta}) \]</span></li>
+<li>No borrowing or saving (consume <span class="math inline">\(y_{it}\)</span>).</li>
+</ul>
+</section>
+<section id="exercise-4-permanent-vs-transitory" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-permanent-vs-transitory">Exercise 4: Permanent vs Transitory</h2>
+<p>Consider a model with both components:</p>
+<p><span class="math display">\[y_{it} = p_{it} + e_{it}\]</span></p>
+<p>where <span class="math inline">\(p_{it} = p_{it-1} + \zeta_{it}\)</span> and <span class="math inline">\(e_{it} = \theta e_{it-1} + \varepsilon_{it}\)</span></p>
+<p><strong>Questions</strong>:</p>
+<ol type="a">
+<li>Which component determines long-run inequality?</li>
+<li>Which component affects year-to-year volatility?</li>
+<li>What is the covariance in growth rates?</li>
+<li>How can we estimate this model</li>
+</ol>
+</section>
+<section id="exercise-5-random-walk-ma1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5-random-walk-ma1">Exercise 5: Random walk + MA(1)</h2>
+<p><span class="math display">\[y_{it} = p_{it} + \varepsilon_{it} + \theta \varepsilon_{i,t-1}\]</span></p>
+<ol type="a">
+<li>What is the covariance in growth rates?</li>
+<li>How can we estimate this model?</li>
+</ol>
+</section>
+<section id="note" class="level2">
+<h2 class="anchored" data-anchor-id="note">Note:</h2>
+<p>We can re-write the exercises above by changing the initial conditions (going from stationary to non-stationary)</p>
+</section>
+<section id="intergen-mobility" class="level2">
+<h2 class="anchored" data-anchor-id="intergen-mobility">intergen mobility</h2>
+<ul>
+<li>describe some processes and ask to make claims about absolute and relative mobility</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
