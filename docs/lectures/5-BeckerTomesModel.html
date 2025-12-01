@@ -180,7 +180,7 @@
 <h1>The Becker-Tomes Framework</h1>
 
 </section>
-<section id="basic-setup" class="slide level2">
+<section id="basic-setup" class="slide level2 smaller">
 <h2>Basic Setup</h2>
 <p>There are 5 basic ingredients in the model:</p>
 <div>
@@ -197,7 +197,7 @@
 </ol>
 </div>
 </section>
-<section id="a-simple-version" class="slide level2">
+<section id="a-simple-version" class="slide level2 smaller">
 <h2>A Simple Version</h2>
 <p>Here is a simple version that captures important forces:</p>
 <div>
@@ -211,14 +211,14 @@
 <section id="a-recursive-formulation" class="slide level2">
 <h2>A recursive formulation</h2>
 <p>Let <span class="math inline">\(\Omega_{t} = A_{t} + wH_{t}\)</span> be total wealth in period <span class="math inline">\(t\)</span>:</p>
-<p><span class="math display">\[ V(\Omega_{t},z_{t}) = \max_{X_{t},Z_{t}}\left\{ u(C_{t}) + \beta \mathbb{E}[V(\Omega_{t+1},z_{t+1})] \right\} \]</span></p>
+<p><span class="math display">\[ V(\Omega_{t},z_{t}) = \max_{C_{t},X_{t},A_{t+1}}\left\{ u(C_{t}) + \beta \mathbb{E}[V(\Omega_{t+1},z_{t+1})] \right\} \]</span></p>
 <p>subject to:</p>
 <p><span class="math display">\[
 \begin{eqnarray}
 C_{t} + \psi X_{t} + \frac{A_{t+1}}{1+r} \leq \Omega_{t} \\
 \Omega_{t+1} = A_{t+1} + wH_{t+1} \\
 z_{t+1} = \rho z_{t} + \eta_{t+1} \\
-H_{t+1} = z_{t}X_{t}^{\delta}
+H_{t+1} = \exp(\mu+z_{t})X_{t}^{\delta}
 \end{eqnarray}
 \]</span></p>
 <div class="fragment">

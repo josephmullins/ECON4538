@@ -31,7 +31,7 @@ execute:
 
 # The Becker-Tomes Framework
 
-## Basic Setup
+## Basic Setup {.smaller}
 
 There are 5 basic ingredients in the model:
 
@@ -46,7 +46,7 @@ There are 5 basic ingredients in the model:
 5. An ability endowment, $z_{t}$, evolves exogenously.
 :::
 
-## A Simple Version
+## A Simple Version {.smaller}
 
 Here is a simple version that captures important forces:
 
@@ -64,7 +64,7 @@ $$ C_{t} + \frac{A_{t+1}}{1+r} + \psi X_{t} \leq A_{t} + wH_{t} $$
 
 Let $\Omega_{t} = A_{t} + wH_{t}$ be total wealth in period $t$:
 
-$$ V(\Omega_{t},z_{t}) = \max_{X_{t},Z_{t}}\left\{ u(C_{t}) + \beta \mathbb{E}[V(\Omega_{t+1},z_{t+1})] \right\} $$
+$$ V(\Omega_{t},z_{t}) = \max_{C_{t},X_{t},A_{t+1}}\left\{ u(C_{t}) + \beta \mathbb{E}[V(\Omega_{t+1},z_{t+1})] \right\} $$
 
 subject to:
 
@@ -73,7 +73,7 @@ $$
 C_{t} + \psi X_{t} + \frac{A_{t+1}}{1+r} \leq \Omega_{t} \\
 \Omega_{t+1} = A_{t+1} + wH_{t+1} \\
 z_{t+1} = \rho z_{t} + \eta_{t+1} \\
-H_{t+1} = z_{t}X_{t}^{\delta}
+H_{t+1} = \exp(\mu+z_{t})X_{t}^{\delta}
 \end{eqnarray}
 $$
 

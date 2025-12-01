@@ -10,7 +10,7 @@ where
 
 $$ \zeta_{it} = \rho \zeta_{it-1} + \eta_{it} $$
 
-and $\alpha_{i}$, $\epsilon_{it}$, and $\eta_{it}$ are iid, with $\epsilon_{it}\sim N(0,\sigma_{\epsilon}^2)$, $\eta_{it}\sim N(0,\sigma^2_{\eta})$. Let $\sigma^2_{\alpha} = \mathbb{V}[y_{it}]$ and let $\mathbb{E}[\alpha_{i}]=0$ such that $\mathbb{E}[y_{it}] = \mu_{t}$.
+and $\alpha_{i}$, $\epsilon_{it}$, and $\eta_{it}$ are iid, with $\epsilon_{it}\sim N(0,\sigma_{\epsilon}^2)$, $\eta_{it}\sim N(0,\sigma^2_{\eta})$. Let $\sigma^2_{\alpha} = \mathbb{V}[\alpha_{i}]$ and let $\mathbb{E}[\alpha_{i}]=0$ such that $\mathbb{E}[y_{it}] = \mu_{t}$.
 
 You are going to estimate the parameters of this income process using the [psid data](https://github.com/josephmullins/ECON4538/blob/main/data/abb_aea_data.csv) from [Recitation 4](../recitations/recitation-4.qmd) and repeat the welfare analysis from that session.
 
