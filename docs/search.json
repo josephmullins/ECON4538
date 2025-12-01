@@ -284,7 +284,7 @@
     "href": "lectures.html",
     "title": "Lecture Slides",
     "section": "",
-    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nSyllabus\nSlides\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\nSlides\n\n\nEstimating Income Processes\nSlides\n\n\nIntergenerational Mobility\nSlides\n\n\nTheories of Human Capital\n\n\n\nEvidence"
+    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nSyllabus\nSlides\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\nSlides\n\n\nEstimating Income Processes\nSlides\n\n\nIntergenerational Mobility\nSlides\n\n\nThe Becker-Tomes Model\nSlides\n\n\nEvidence"
   },
   {
     "objectID": "lectures/Syllabus.html#facts-about-inequality",
@@ -1943,7 +1943,7 @@
     "href": "lectures/5-BeckerTomesModel.html#overview",
     "title": "The Becker-Tomes Model",
     "section": "Overview",
-    "text": "Overview\n\n\nPrevious lecture: geographic variation in mobility\nToday: theory of intergenerational transmission\nThe Becker-Tomes model (Becker and Tomes 1979, 1986)\nKey questions:\n\nWhy do earnings regress to the mean?\nHow do parents affect children’s outcomes?\nWhat determines the speed of mobility?\n\nBuilding a unified framework for inequality and mobility"
+    "text": "Overview\n\n\nWe have learned that income inequality tends to persist across generations\nToday: theory of intergenerational transmission\nThe Becker-Tomes model (Becker and Tomes 1979, 1986) is a workhorse framework\nWe’ll study some stylized versions\nKey questions:\n\nWhy do earnings regress to the mean?\nHow do parents affect children’s outcomes?\nWhat determines the speed of mobility?\n\nBuilding a unified framework for inequality and mobility"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#three-channels-of-transmission",
@@ -2104,7 +2104,7 @@
     "href": "lectures/5-BeckerTomesModel.html#policy-implications",
     "title": "The Becker-Tomes Model",
     "section": "Policy Implications",
-    "text": "Policy Implications\nFrom the Becker-Tomes framework:\n\n\nEducation subsidies: Address capital constraints, raise efficiency\nProgressive taxation: May increase OR decrease long-run inequality\n\nReduces bequests → more regression\nBut also reduces investment incentives\n\nEarly childhood programs: High returns if:\n\nTarget capital-constrained families\nTruly complement (not substitute) family investments\n\nMeritocracy requires more than talent\n\nNeed to overcome capital constraints\nOtherwise ability doesn’t determine outcomes"
+    "text": "Policy Implications\n\n\nNote that we would like to target transfers based on \\(z\\)\nBut \\(z\\) is unobservable\nAn alternative is income-targeted transfers\n\ne.g. progressive taxation\n\nCan also try direct public investment (e.g. education, early childhood programs)\nThe gains to society depend on the joint distribution of \\((\\Omega,z)\\)\nWhat does the evidence say?"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#limitations-and-extensions",
@@ -2483,5 +2483,593 @@
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "",
     "text": "We documented that inequality is increasing in the US\nWe don’t yet have a model to think about policy implications\nA natural policy to consider is taxes and transfers\nLook at planner’s problem\nDistinguish between insurance vs redistribution effects\nLook at a research application: Storesletten, Telmer, and Yaron (2004)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#basic-setup",
+    "href": "lectures/5-BeckerTomesModel.html#basic-setup",
+    "title": "The Becker-Tomes Model",
+    "section": "Basic Setup",
+    "text": "Basic Setup\nThere are 5 basic ingredients in the model:\n\n\nIn each period \\(t\\), one generation of adults raises the next generation for \\(t+1\\) (an “OLG” framework)\nCare only about consumption, with an altruistic weight \\(\\beta\\) on future generations\nCan transfer wealth through:\n\nFinancial assets \\(A_{t}\\), with rate of return \\(r\\); or\nHuman capital, \\(H_{t}\\), with price \\(w\\) (the wage)\n\nA production function converts investments \\(X_{t}\\) into human capital \\(H_{t+1}\\)\nAn ability endowment, \\(z_{t}\\), evolves exogenously."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#a-recursive-formulation-of-the-model",
+    "href": "lectures/5-BeckerTomesModel.html#a-recursive-formulation-of-the-model",
+    "title": "The Becker-Tomes Model",
+    "section": "A recursive formulation of the model",
+    "text": "A recursive formulation of the model\nLet \\(\\Omega_{t} = A_{t} + wH_{t}\\) be total wealth in period \\(t\\):\n\\[ V(\\Omega_{t},z_{t}) = \\max_{X_{t},Z_{t}}\\left\\{ u(C_{t}) + \\beta \\mathbb{E}[V(\\Omega_{t+1},z_{t+1})] \\right\\} \\]\nsubject to:\n\\[\n\\begin{eqnarray}\nC_{t} + \\psi X_{t} + \\frac{A_{t+1}}{1+r} \\leq \\Omega_{t} \\\\\n\\Omega_{t+1} = A_{t+1} + wH_{t+1} \\\\\nz_{t+1} = \\rho z_{t} + \\eta_{t+1} \\\\\nH_{t+1} = z_{t}X_{t}^{\\delta}\n\\end{eqnarray}\n\\]"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#reading",
+    "href": "lectures/5-BeckerTomesModel.html#reading",
+    "title": "The Becker-Tomes Model",
+    "section": "Reading",
+    "text": "Reading\n\n\n\n\nBecker, Gary S., and Nigel Tomes. 1979. “An Equilibrium Theory of the Distribution of Income and Intergenerational Mobility.” The Journal of Political Economy, no. 6: 1153–89. https://doi.org/10.1086/260831.\n\n\n———. 1986. “Human Capital and the Rise and Fall of Families.” Journal of Labor Economics, no. 3: S1–39. https://doi.org/10.1086/298118."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#a-simple-version",
+    "href": "lectures/5-BeckerTomesModel.html#a-simple-version",
+    "title": "The Becker-Tomes Model",
+    "section": "A Simple Version",
+    "text": "A Simple Version\nHere is a simple version that captures important forces:\n\n\nAbility is mean-reverting: \\[ z_{t+1} = \\rho z_{t} + \\eta_{t+1},\\ \\rho \\in(0,1) \\]\nHuman capital production: \\[ H_{t+1} = \\exp(\\mu + z_{t})X_{t}^{\\delta} \\] where \\(X_{t}\\) has price \\(\\psi\\)\nBudget constraint: \\[ C_{t} + \\frac{A_{t+1}}{1+r} + \\psi X_{t} \\leq A_{t} + wH_{t} \\]"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#a-recursive-formulation",
+    "href": "lectures/5-BeckerTomesModel.html#a-recursive-formulation",
+    "title": "The Becker-Tomes Model",
+    "section": "A recursive formulation",
+    "text": "A recursive formulation\nLet \\(\\Omega_{t} = A_{t} + wH_{t}\\) be total wealth in period \\(t\\):\n\\[ V(\\Omega_{t},z_{t}) = \\max_{X_{t},Z_{t}}\\left\\{ u(C_{t}) + \\beta \\mathbb{E}[V(\\Omega_{t+1},z_{t+1})] \\right\\} \\]\nsubject to:\n\\[\n\\begin{eqnarray}\nC_{t} + \\psi X_{t} + \\frac{A_{t+1}}{1+r} \\leq \\Omega_{t} \\\\\n\\Omega_{t+1} = A_{t+1} + wH_{t+1} \\\\\nz_{t+1} = \\rho z_{t} + \\eta_{t+1} \\\\\nH_{t+1} = z_{t}X_{t}^{\\delta}\n\\end{eqnarray}\n\\]\n\nNote: no constraints on borrowing (for now)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#model-solution",
+    "href": "lectures/5-BeckerTomesModel.html#model-solution",
+    "title": "The Becker-Tomes Model",
+    "section": "Model Solution",
+    "text": "Model Solution\n\n\nThis is quite a simple model, but we can learn some interesting and useful things from it\nWe’ll show that investment does not depend on wealth or income\nWe’ll derive the IGE in terms of model primitives\nWe’ll look at the effect of innovations in \\(z_{t}\\) in the long-run"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#result-1-investment-does-not-depend-on-income",
+    "href": "lectures/5-BeckerTomesModel.html#result-1-investment-does-not-depend-on-income",
+    "title": "The Becker-Tomes Model",
+    "section": "Result 1: Investment does not depend on Income",
+    "text": "Result 1: Investment does not depend on Income\nSteps:\n\nTake FOC wrt \\(X_{t}\\) and \\(A_{t+1}\\)\nShow that: \\[ X_{t} = \\left(\\frac{\\delta w \\exp(\\mu+z_{t})}{(1+r)\\psi}\\right)^{1/(1-\\delta)} \\]\nAnalyze. Notice no direct effect of income."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#result-2-the-ige",
+    "href": "lectures/5-BeckerTomesModel.html#result-2-the-ige",
+    "title": "The Becker-Tomes Model",
+    "section": "Result 2: The IGE",
+    "text": "Result 2: The IGE\nSteps:\n\nShow that \\[\\log(H_{t}) = c + \\frac{1}{1-\\delta}z_{t-1}\\] where \\(c\\) is a constant.\nShow that \\[ \\log(H_{t+1}) = \\rho\\log(H_{t}) + \\frac{1}{1-\\delta}\\eta_{t} + b \\] where \\(b\\) is a constant.\nShow that the IGE is equal to \\(\\rho\\)."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#result-3-the-long-run-effects-of-good-fortune",
+    "href": "lectures/5-BeckerTomesModel.html#result-3-the-long-run-effects-of-good-fortune",
+    "title": "The Becker-Tomes Model",
+    "section": "Result 3: The Long-Run Effects of Good Fortune",
+    "text": "Result 3: The Long-Run Effects of Good Fortune\nWhat is the long-run effect of an increase in \\(z\\)?\n\n\nTo do this, let’s assume that \\(\\beta(1+r) = 1\\) for simplicity\nWe’ll take a derivative around the deterministic steady state\nAssume \\(u(\\cdot) = \\log(\\cdot)\\)."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#result-3-the-long-run-effects-of-good-fortune-1",
+    "href": "lectures/5-BeckerTomesModel.html#result-3-the-long-run-effects-of-good-fortune-1",
+    "title": "The Becker-Tomes Model",
+    "section": "Result 3: The Long-Run Effects of Good Fortune",
+    "text": "Result 3: The Long-Run Effects of Good Fortune\n\n\nShow that in general: \\[ u'(C_{t}) = \\beta(1+r)\\mathbb{E}u'(C_{t+1}) \\]\nUnder our assumptions at steady state: \\[C_{t}=C_{t+1}=\\bar{C}\\]\nIterate the budget constraint: \\[ \\sum_{t=0}^\\infty \\frac{1}{(1+r)^{t}} \\bar{C} = A_{0} + \\sum_{t=0}\\frac{1}{(1+r)^t} w H_{t} \\]\nShow that \\[ \\frac{\\partial\\log(H_{t})}{\\partial z_{-1}} = \\rho^{t}\\times\\frac{1}{1-\\delta} \\Rightarrow \\frac{\\partial \\log(\\bar{C})}{\\partial z_{0}} \\approx \\frac{1}{1-\\delta}\\frac{r}{1+r-\\rho} \\]\nInterpret!!"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#equity---efficiency-trade-off",
+    "href": "lectures/5-BeckerTomesModel.html#equity---efficiency-trade-off",
+    "title": "The Becker-Tomes Model",
+    "section": "Equity - Efficiency Trade-off",
+    "text": "Equity - Efficiency Trade-off\n\nShow that this outcome is the same as planner’s solution for some weights"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#takeaways-so-far",
+    "href": "lectures/5-BeckerTomesModel.html#takeaways-so-far",
+    "title": "The Becker-Tomes Model",
+    "section": "Takeaways so far",
+    "text": "Takeaways so far\n\n\nInvestment does not depend on income (when borrowing is unconstrained)\nHuman capital differences fade away, but consumption effects last forever\nRich households use wealth bequests to maintain dynasties as human capital fades away\nIGE determined by ability persistence (\\(\\rho\\)) and human capital production (\\(\\delta\\))\nBut is this realistic? What about credit constraints?"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#connecting-to-ige-estimation",
+    "href": "lectures/5-BeckerTomesModel.html#connecting-to-ige-estimation",
+    "title": "The Becker-Tomes Model",
+    "section": "Connecting to IGE Estimation",
+    "text": "Connecting to IGE Estimation\nRecall from last lecture we estimated:\n\\[y_{\\text{child}} = \\alpha + \\beta \\cdot y_{\\text{parent}} + \\varepsilon\\]\n\n\nIn this model: \\(\\beta = \\rho\\) (ability persistence)\nIndependent of technology parameter \\(\\delta\\)\nIndependent of prices \\(w\\), \\(\\psi\\), \\(r\\)\nPolicy invariant: transfers don’t change IGE\n\n\n\nThink: Is this consistent with geographic variation in mobility we saw?"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#why-start-with-two-periods",
+    "href": "lectures/5-BeckerTomesModel.html#why-start-with-two-periods",
+    "title": "The Becker-Tomes Model",
+    "section": "Why Start with Two Periods?",
+    "text": "Why Start with Two Periods?\n\n\nSimplify exposition of some key points\nTwo-period version captures key forces\nLessons generalize"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#two-period-setup",
+    "href": "lectures/5-BeckerTomesModel.html#two-period-setup",
+    "title": "The Becker-Tomes Model",
+    "section": "Two-Period Setup",
+    "text": "Two-Period Setup\nParent’s problem in period 1:\n\\[\\max_{C_1, C_2, X} u(C_1) + \\beta u(C_2)\\]\nsubject to:\n\\[\n\\begin{eqnarray}\nC_1 + \\psi X + \\frac{A'}{1+r} &\\leq& \\Omega \\\\\nC_2 &=& A' + w z X^{\\delta}\n\\end{eqnarray}\n\\]\n\n\n\\(\\Omega = wH + A\\): total lifetime wealth\n\\(A'\\): bequests (can be negative = borrowing)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#combining-budget-constraints",
+    "href": "lectures/5-BeckerTomesModel.html#combining-budget-constraints",
+    "title": "The Becker-Tomes Model",
+    "section": "Combining Budget Constraints",
+    "text": "Combining Budget Constraints\nCombining the two constraints:\n\\[C_1 + \\frac{1}{1+r} C_2 \\leq \\Omega + \\frac{w z X^{\\delta}}{1+r} - \\psi X\\]\n\n\nLeft side: present value of consumption\nRight side: wealth plus net human capital investment\nNet investment: returns \\(\\frac{w z X^{\\delta}}{1+r}\\) but costs \\(\\psi X\\)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#first-order-conditions",
+    "href": "lectures/5-BeckerTomesModel.html#first-order-conditions",
+    "title": "The Becker-Tomes Model",
+    "section": "First-Order Conditions",
+    "text": "First-Order Conditions\nEuler equation:\n\\[u'(C_1) = \\beta(1+r) u'(C_2)\\]\n\nFOC with respect to \\(X\\):\n\\[\\psi = \\frac{\\delta w z X^{\\delta-1}}{1+r}\\]\n\n\nSame result as before on optimal \\(X\\)."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#investment-does-not-depend-on-income",
+    "href": "lectures/5-BeckerTomesModel.html#investment-does-not-depend-on-income",
+    "title": "The Becker-Tomes Model",
+    "section": "Investment Does Not Depend on Income",
+    "text": "Investment Does Not Depend on Income\nFrom the FOCs, we can derive:\n\\[X^* = \\left( \\frac{\\delta w z}{\\psi(1+r)} \\right)^{\\frac{1}{1-\\delta}}\\]\n\n\nNotice: \\(X^*\\) depends on \\(z\\), \\(w\\), \\(\\psi\\), \\(r\\), \\(\\delta\\)\nBut not on \\(\\Omega\\) (lifetime wealth)!\nThis is the key “income independence” result\nHolds because parents can borrow/lend at rate \\(r\\)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#with-log-utility",
+    "href": "lectures/5-BeckerTomesModel.html#with-log-utility",
+    "title": "The Becker-Tomes Model",
+    "section": "With Log Utility",
+    "text": "With Log Utility\nIf \\(u(C) = \\log(C)\\), we can solve explicitly:\nFrom Euler equation: \\[\\frac{C_2}{C_1} = \\beta(1+r)\\]\nTherefore: \\[(1+\\beta)C_1 = \\Omega + \\frac{w z X^{*\\delta}}{1+r} - \\psi X^{*}\\]\nWhere \\[X^* = \\left( \\frac{\\delta w z}{\\psi(1+r)} \\right)^{\\frac{1}{1-\\delta}}\\]"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#interpretation",
+    "href": "lectures/5-BeckerTomesModel.html#interpretation",
+    "title": "The Becker-Tomes Model",
+    "section": "Interpretation",
+    "text": "Interpretation\nWhat does this mean economically?\n\n\nParents optimize to equate marginal returns across uses\nRich and poor parents with same \\(z\\) invest the same in children\nDifferences in income absorbed by \\(C_1\\), \\(C_2\\), and \\(A\\)\nCrucial assumption: can borrow against future returns to H.C. investment\n\n\n\nQuestion: Is this realistic? What if parents can’t borrow?"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#is-the-market-outcome-efficient",
+    "href": "lectures/5-BeckerTomesModel.html#is-the-market-outcome-efficient",
+    "title": "The Becker-Tomes Model",
+    "section": "Is the Market Outcome Efficient?",
+    "text": "Is the Market Outcome Efficient?\nConsider a social planner who maximizes weighted welfare:\n\\[\\max_{\\{C_{i1}, C_{i2}, X_i\\}_{i\\in[0,1]}} \\int \\left(\\mu_{i1} u(C_{i1}) + \\mu_{i2} u(C_{i2})\\right)di\\]\nsubject to resource constraint:\n\\[\\int C_{i1} di + \\frac{1}{1+r} \\int C_{i2} di \\leq \\int \\Omega_i di + \\frac{w}{1+r} \\int z_i X_i^{\\delta} di - \\psi \\int X_i di\\]\n\nKey question: Does the planner’s solution coincide with the market?"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#planners-first-order-conditions",
+    "href": "lectures/5-BeckerTomesModel.html#planners-first-order-conditions",
+    "title": "The Becker-Tomes Model",
+    "section": "Planner’s First-Order Conditions",
+    "text": "Planner’s First-Order Conditions\nThe planner’s FOCs are:\n\\[\\frac{u'(C_{i1})}{u'(C_{i2})} = \\frac{\\mu_{i2}}{\\mu_{i1}}, \\quad \\frac{\\delta w z_i X_i^{\\delta-1}}{1+r} = \\psi\\]\nCompare to market FOCs:\n\\[\\frac{u'(C_{i1})}{u'(C_{i2})} = \\beta(1+r), \\quad \\frac{\\delta w z_{i} X_{i}^{\\delta-1}}{1+r} = \\psi\\]\n\n\nInvestment is identical: \\(X_i^* = X_i^{planner}\\)\nOnly difference: consumption allocation via weights \\(\\mu_{i1}, \\mu_{i2}\\)\nMarket outcome is efficient for some choice of weights"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#efficiency-interpretation",
+    "href": "lectures/5-BeckerTomesModel.html#efficiency-interpretation",
+    "title": "The Becker-Tomes Model",
+    "section": "Efficiency Interpretation",
+    "text": "Efficiency Interpretation\nWhat does this mean?\n\n\nThe market outcome is Pareto efficient\n“can’t make anyone better off without making someone worse off”\nRelative to Laissez-Faire economy, Planner can redistribute but that’s it\n\n\n\nBut: This relies critically on perfect credit markets!"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#what-if-parents-cant-borrow",
+    "href": "lectures/5-BeckerTomesModel.html#what-if-parents-cant-borrow",
+    "title": "The Becker-Tomes Model",
+    "section": "What If Parents Can’t Borrow?",
+    "text": "What If Parents Can’t Borrow?\nNow impose borrowing constraint:\n\\[A \\geq 0\\]\nThis means:\n\\[C_2 = A + w z X^{\\delta} \\geq w z X^{\\delta}\\]\n\n\nBequests must be non-negative\nParents cannot borrow against child’s future earnings\nThis creates a fundamental change in the model"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#the-binding-constraint-case",
+    "href": "lectures/5-BeckerTomesModel.html#the-binding-constraint-case",
+    "title": "The Becker-Tomes Model",
+    "section": "The Binding Constraint Case",
+    "text": "The Binding Constraint Case\nWhen \\(A = 0\\) binds, the problem becomes:\n\\[\\max_{C_1, X} u(C_1) + \\beta u(w z X^{\\delta})\\] \\[\\text{s.t. } C_1 + \\psi X \\leq \\Omega\\]\nFOC with respect to \\(X\\):\n\\[u'(C_1) = \\beta u'(C_2) \\cdot \\delta w z X^{\\delta-1}\\]\nWith log utility: \\[\\frac{C_1}{X} = \\frac{1}{\\psi} - \\frac{\\beta \\delta w z}{\\psi} \\frac{1}{1 + \\beta \\delta w z}\\]\n\nKey difference: Now \\(X\\) depends on \\(\\Omega\\)!"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#when-do-constraints-bind",
+    "href": "lectures/5-BeckerTomesModel.html#when-do-constraints-bind",
+    "title": "The Becker-Tomes Model",
+    "section": "When do constraints bind?",
+    "text": "When do constraints bind?\n\n\nSolve for \\(X^*\\) when \\(A=0\\): \\[ \\max_{X} u(\\Omega - \\psi X) + \\beta u(wzX^{\\delta}) \\]\nWith log utility: \\[ X^* = \\frac{1}{\\psi}\\frac{\\beta\\delta w z}{1+\\beta\\delta w z} \\Omega \\]\nNote that \\(X^{*}\\) now depends on \\(\\Omega\\)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#investment-and-income-two-regimes",
+    "href": "lectures/5-BeckerTomesModel.html#investment-and-income-two-regimes",
+    "title": "The Becker-Tomes Model",
+    "section": "Investment and Income: Two Regimes",
+    "text": "Investment and Income: Two Regimes\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote: High-\\(z\\) children benefit more from relaxing constraints (steeper slope when binding)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#policy-options",
+    "href": "lectures/5-BeckerTomesModel.html#policy-options",
+    "title": "The Becker-Tomes Model",
+    "section": "Policy Options",
+    "text": "Policy Options\nGiven that \\(z\\) is unobservable, what can policy do?\n\n\nIncome-targeted transfers: Help poor families (some high-\\(z\\) children)\nProgressive taxation: Redistribute from unconstrained to constrained\nPublic investment: Direct provision of education/childcare\nTrade-off: Gains from relaxing constraints vs. distortions from taxation"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#what-does-the-evidence-say",
+    "href": "lectures/5-BeckerTomesModel.html#what-does-the-evidence-say",
+    "title": "The Becker-Tomes Model",
+    "section": "What Does the Evidence Say?",
+    "text": "What Does the Evidence Say?\nIn coming lectures we’ll see:\n\n\nEvidence suggests borrowing constraints do bind for many families\nReturns to college are high, but many don’t attend\nEducational interventions (especially early childhood) show high returns\nSuggests scope for welfare-improving policy"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#exercise-1-deriving-investment",
+    "href": "lectures/5-BeckerTomesModel.html#exercise-1-deriving-investment",
+    "title": "The Becker-Tomes Model",
+    "section": "Exercise 1: Deriving Investment",
+    "text": "Exercise 1: Deriving Investment\nUsing the two-period model with log utility and no borrowing constraints:\n\nWrite down the Lagrangian\nDerive the first-order conditions for \\(C_1\\), \\(C_2\\), and \\(X\\)\nShow that \\(X^* = \\left( \\frac{\\delta w z}{\\psi(1+r)} \\right)^{\\frac{1}{1-\\delta}}\\)\nVerify that \\(X^*\\) does not depend on \\(\\Omega\\)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#exercise-2-when-constraints-bind",
+    "href": "lectures/5-BeckerTomesModel.html#exercise-2-when-constraints-bind",
+    "title": "The Becker-Tomes Model",
+    "section": "Exercise 2: When Constraints Bind",
+    "text": "Exercise 2: When Constraints Bind\nConsider the constrained problem with \\(A \\geq 0\\).\n\nSolve for optimal \\(X\\) when \\(A = 0\\) binds\nFind the threshold level of \\(\\Omega\\) where constraint just binds\nHow does this threshold change with \\(z\\)?\nWhat does this tell us about who is constrained?"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#exercise-3-policy-analysis",
+    "href": "lectures/5-BeckerTomesModel.html#exercise-3-policy-analysis",
+    "title": "The Becker-Tomes Model",
+    "section": "Exercise 3: Policy Analysis",
+    "text": "Exercise 3: Policy Analysis\nSuppose government provides education subsidy \\(s\\) per unit of \\(X\\).\n\nHow does this change the FOC for investment?\nWhat is the new optimal \\(X^*\\) (unconstrained case)?\nDoes the subsidy help constrained or unconstrained families more?\nWhat if subsidy is means-tested (only for \\(\\Omega &lt; \\bar{\\Omega}\\))?"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#key-insights-from-becker-tomes",
+    "href": "lectures/5-BeckerTomesModel.html#key-insights-from-becker-tomes",
+    "title": "The Becker-Tomes Model",
+    "section": "Key Insights from Becker-Tomes",
+    "text": "Key Insights from Becker-Tomes\n\n\nPerfect markets: Investment independent of income\nMarket efficiency: Competitive equilibrium is Pareto optimal\nBorrowing constraints: Create link between income and investment\nPolicy scope: Constraints create role for redistribution and public investment\nObservable vs unobservable: Can’t perfectly target high-\\(z\\) families\n\n\n\nNext: Technology of skill formation and quantitative implications"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#investment-does-not-depend-on-income-again",
+    "href": "lectures/5-BeckerTomesModel.html#investment-does-not-depend-on-income-again",
+    "title": "The Becker-Tomes Model",
+    "section": "Investment Does Not Depend on Income (again)",
+    "text": "Investment Does Not Depend on Income (again)\nJust as before, we get: \\[X^* = \\left( \\frac{\\delta w z}{\\psi(1+r)} \\right)^{\\frac{1}{1-\\delta}}\\]"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#can-parents-borrow",
+    "href": "lectures/5-BeckerTomesModel.html#can-parents-borrow",
+    "title": "The Becker-Tomes Model",
+    "section": "Can Parents Borrow?",
+    "text": "Can Parents Borrow?\n\n\nIs it really plausible that parents can borrow against returns on their investment in children?\n\nAnd make the children pay for it?\n\nNo!!\nAll kinds of moral hazard problems + legal issues\nAlso implied no role for income in shaping human capital"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#a-more-realistic-setup",
+    "href": "lectures/5-BeckerTomesModel.html#a-more-realistic-setup",
+    "title": "The Becker-Tomes Model",
+    "section": "A more realistic setup",
+    "text": "A more realistic setup\n\\[\\max_{C_1, C_2, X} u(C_1) + \\beta u(C_2)\\]\nsubject to:\n\\[\n\\begin{eqnarray}\nC_1 + \\psi X + \\frac{A'}{1+r} &\\leq& \\Omega \\\\\nC_2 &=& A' + w z X^{\\delta} \\\\\nA' &\\geq& 0\n\\end{eqnarray}\n\\]\n\nPositive bequests only!"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#inefficient-investment",
+    "href": "lectures/5-BeckerTomesModel.html#inefficient-investment",
+    "title": "The Becker-Tomes Model",
+    "section": "Inefficient investment",
+    "text": "Inefficient investment\n\n\nThis now implies: \\[ \\frac{\\delta w z X^{\\delta - 1}}{1+r} \\geq \\psi \\] with equality iff \\(A'\\geq 0\\) and strict inequality if \\(A=0\\).\nEquilibriums is inefficient.\nIntroduces a role for policy to improve market outcomes\nMake everyone better off (Pareto improvement)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html#when-do-constraints-bind-1",
+    "href": "lectures/5-BeckerTomesModel.html#when-do-constraints-bind-1",
+    "title": "The Becker-Tomes Model",
+    "section": "When Do Constraints Bind?",
+    "text": "When Do Constraints Bind?\nThe borrowing constraint binds if:\n\\[\\frac{1}{\\psi}\\frac{\\beta \\delta w z}{1 + \\beta \\delta w z} \\Omega \\leq \\left( \\frac{\\delta w z}{\\psi(1+r)} \\right)^{\\frac{1}{1-\\delta}}\\]\n\n\nMore likely to bind when \\(\\Omega\\) is low (poor families)\nMore likely to bind when \\(z\\) is high (high returns to investment)\nCreates a region where investment increases with income"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html",
+    "href": "lectures/5-BeckerTomesModel_alt.html",
+    "title": "The Becker-Tomes Model",
+    "section": "",
+    "text": "Previous lecture: geographic variation in mobility\nToday: theory of intergenerational transmission\nThe Becker-Tomes model (Becker and Tomes 1979, 1986)\nKey questions:\n\nWhy do earnings regress to the mean?\nHow do parents affect children’s outcomes?\nWhat determines the speed of mobility?\n\nBuilding a unified framework for inequality and mobility"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#overview",
+    "href": "lectures/5-BeckerTomesModel_alt.html#overview",
+    "title": "The Becker-Tomes Model",
+    "section": "",
+    "text": "Previous lecture: geographic variation in mobility\nToday: theory of intergenerational transmission\nThe Becker-Tomes model (Becker and Tomes 1979, 1986)\nKey questions:\n\nWhy do earnings regress to the mean?\nHow do parents affect children’s outcomes?\nWhat determines the speed of mobility?\n\nBuilding a unified framework for inequality and mobility"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#three-channels-of-transmission",
+    "href": "lectures/5-BeckerTomesModel_alt.html#three-channels-of-transmission",
+    "title": "The Becker-Tomes Model",
+    "section": "Three Channels of Transmission",
+    "text": "Three Channels of Transmission\nParents affect children through:\n\n\nEndowments (genes and culture): \\(E_t\\)\n\nIQ, personality, work ethic, cultural capital\n\nHuman capital investments: \\(x_t\\)\n\nEducation, training, health, early childhood\n\nFinancial transfers: bequests and gifts\n\nAssets, property, cash transfers\n\n\n\n. . .\nEach channel has different properties for transmission across generations."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#endowment-transmission",
+    "href": "lectures/5-BeckerTomesModel_alt.html#endowment-transmission",
+    "title": "The Becker-Tomes Model",
+    "section": "Endowment Transmission",
+    "text": "Endowment Transmission\nEndowments follow a Markov process:\n\\[E_t = \\alpha + h E_{t-1} + v_t\\]\n\n\n\\(h\\) = inheritability parameter (how much is passed on)\n\\(0 &lt; h &lt; 1\\): endowments regress to the mean\n\\(\\alpha\\) = social endowment (common to all)\n\\(v_t\\) = random luck in endowment transmission\n\n\n. . .\nThink: What does \\(h &lt; 1\\) imply for children of high-ability parents?"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#why-does-h-1",
+    "href": "lectures/5-BeckerTomesModel_alt.html#why-does-h-1",
+    "title": "The Becker-Tomes Model",
+    "section": "Why Does h < 1?",
+    "text": "Why Does h &lt; 1?\n\n\nGenetics: Mendel’s laws → regression to the mean\n\nChild gets random draw from parents’ genes\nExtreme traits don’t fully transmit\n\nCulture: imperfect transmission of values/habits\n\nPeer effects, media, broader environment matter\n\nEmpirical evidence: \\(h \\approx 0.3\\) to \\(0.6\\) for earnings-relevant traits\n\n\n. . .\nThis automatic regression is key to understanding mobility."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#earnings-generation",
+    "href": "lectures/5-BeckerTomesModel_alt.html#earnings-generation",
+    "title": "The Becker-Tomes Model",
+    "section": "Earnings Generation",
+    "text": "Earnings Generation\nAdult earnings depend on human capital and luck:\n\\[Y_t = H_t + \\varepsilon_t\\]\nwhere human capital is produced by:\n\\[H_t = \\psi(x_{t-1}, s_{t-1}, E_t)\\]\n\n\n\\(x_{t-1}\\) = parental investments\n\\(s_{t-1}\\) = public investments (schools, etc.)\n\\(E_t\\) = endowments\n\\(\\psi\\) is increasing in all three inputs"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#complementarity",
+    "href": "lectures/5-BeckerTomesModel_alt.html#complementarity",
+    "title": "The Becker-Tomes Model",
+    "section": "Complementarity",
+    "text": "Complementarity\nKey assumption: endowments and investments are complements\n\\[\\frac{\\partial^2 H_t}{\\partial x_{t-1} \\partial E_t} &gt; 0\\]\n\n\nHigher ability → higher return to education\nBetter endowed children get more from investments\nReinforces initial advantages\nCreates skewness in earnings distribution\n\n\n. . .\nQuestion: Does this match your intuition about returns to education?"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#the-wealth-maximizing-case",
+    "href": "lectures/5-BeckerTomesModel_alt.html#the-wealth-maximizing-case",
+    "title": "The Becker-Tomes Model",
+    "section": "The Wealth-Maximizing Case",
+    "text": "The Wealth-Maximizing Case\nSuppose parents can borrow freely against children’s future earnings.\nThen they solve: \\[\\max_{x_{t-1}} \\quad H_t(x_{t-1}, E_t) - (1+r) x_{t-1}\\]\nFirst-order condition: \\[\\frac{\\partial H_t}{\\partial x_{t-1}} = 1 + r\\]\n. . .\nImplication: Marginal return on human capital = interest rate for ALL families."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#investment-with-perfect-markets",
+    "href": "lectures/5-BeckerTomesModel_alt.html#investment-with-perfect-markets",
+    "title": "The Becker-Tomes Model",
+    "section": "Investment with Perfect Markets",
+    "text": "Investment with Perfect Markets\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHigher endowment → higher optimal investment (even at same r)."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#earnings-with-perfect-markets",
+    "href": "lectures/5-BeckerTomesModel_alt.html#earnings-with-perfect-markets",
+    "title": "The Becker-Tomes Model",
+    "section": "Earnings with Perfect Markets",
+    "text": "Earnings with Perfect Markets\nSubstitute optimal \\(x^*\\) into earnings:\n\\[Y_t = H_t(x^*(E_t), E_t) + \\varepsilon_t = \\phi(E_t, r) + \\varepsilon_t\\]\nReplace \\(E_t\\) using the Markov process:\n\\[Y_t = c_t + h \\cdot Y_{t-1} + \\text{error terms}\\]\n\n\nKey result: earnings regress at rate \\(1-h\\)\nSpeed of regression = inheritability of endowments\nNo direct effect of parents’ income (perfect credit markets!)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#consumption-and-bequests",
+    "href": "lectures/5-BeckerTomesModel_alt.html#consumption-and-bequests",
+    "title": "The Becker-Tomes Model",
+    "section": "Consumption and Bequests",
+    "text": "Consumption and Bequests\nWith perfect markets, parents choose bequests to satisfy:\n\\[u'(Z_t) = \\delta (1+r) u'(Z_{t+1})\\]\n\n\nIf \\(\\delta(1+r) = 1\\): consumption growth = 0\nConsumption does not regress to mean!\nParents use bequests to offset earnings regression\nRich parents leave large bequests to maintain consumption\n\n\n. . .\nSurprising: Perfect mobility in earnings, but dynasties persist in consumption."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#the-realistic-case",
+    "href": "lectures/5-BeckerTomesModel_alt.html#the-realistic-case",
+    "title": "The Becker-Tomes Model",
+    "section": "The Realistic Case",
+    "text": "The Realistic Case\nMost families cannot borrow against children’s future earnings.\n\n\nHuman capital is poor collateral\nMoral hazard: children can shirk\nLegal restrictions: can’t obligate children for parents’ debt\n\n\n. . .\nImplication: Parents must self-finance investments in children.\nNow parents’ income matters for investments!"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#constrained-optimization",
+    "href": "lectures/5-BeckerTomesModel_alt.html#constrained-optimization",
+    "title": "The Becker-Tomes Model",
+    "section": "Constrained Optimization",
+    "text": "Constrained Optimization\nParents without assets must trade off:\n\nOwn consumption \\(Z_t\\)\nInvestment in children \\(x_{t-1}\\)\n\nThis means: \\[\\frac{\\partial H_t}{\\partial x_{t-1}} &gt; 1 + r\\]\n. . .\nMarginal return on human capital exceeds interest rate for poor families.\nWhy? Reducing \\(x\\) raises marginal utility of parents’ consumption."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#investment-with-capital-constraints",
+    "href": "lectures/5-BeckerTomesModel_alt.html#investment-with-capital-constraints",
+    "title": "The Becker-Tomes Model",
+    "section": "Investment with Capital Constraints",
+    "text": "Investment with Capital Constraints\n\n\n\n\n\nPoorer families invest less due to higher marginal cost of funds."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#earnings-regression-with-constraints",
+    "href": "lectures/5-BeckerTomesModel_alt.html#earnings-regression-with-constraints",
+    "title": "The Becker-Tomes Model",
+    "section": "Earnings Regression with Constraints",
+    "text": "Earnings Regression with Constraints\nNow earnings depend on both endowments AND parents’ income:\n\\[Y_t = \\phi(E_t, Y_{t-1}, s_{t-1})\\]\n\n\n\\(\\frac{\\partial Y_t}{\\partial Y_{t-1}} = \\beta^* &gt; 0\\) (income effect)\nRicher parents invest more in children\nCreates additional persistence beyond \\(h\\)\nTwo-generation regression equation:\n\n\n\\[Y_t \\approx c_t + (\\beta^* + h) Y_{t-1} - \\beta^* h \\cdot Y_{t-2} + \\text{errors}\\]"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#three-generation-test",
+    "href": "lectures/5-BeckerTomesModel_alt.html#three-generation-test",
+    "title": "The Becker-Tomes Model",
+    "section": "Three-Generation Test",
+    "text": "Three-Generation Test\nThe model predicts:\n\nPositive coefficient on parents’ earnings: \\(\\beta^* + h\\)\nNegative coefficient on grandparents’ earnings: \\(-\\beta^* h\\)\n\n\n\nGrandparents matter through their effect on parents\nBut holding parents’ earnings fixed, rich grandparents ↔︎ rich parents ↔︎ lower investments needed\nThis negative coefficient is testable!\nEvidence (limited): Wahl (1985) finds negative coefficient"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#efficiency-loss-from-constraints",
+    "href": "lectures/5-BeckerTomesModel_alt.html#efficiency-loss-from-constraints",
+    "title": "The Becker-Tomes Model",
+    "section": "Efficiency Loss from Constraints",
+    "text": "Efficiency Loss from Constraints\nCapital constraints cause inefficiency:\n\n\nMarginal return is higher in poor families\nBut they invest less\nRedistributing investment from rich → poor would raise total output\nEquity and efficiency both favor helping poor families\nJustifies subsidies to education for disadvantaged children\n\n\n. . .\nPolicy implication: Progressive education funding can be efficiency-enhancing."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#public-investments",
+    "href": "lectures/5-BeckerTomesModel_alt.html#public-investments",
+    "title": "The Becker-Tomes Model",
+    "section": "Public Investments",
+    "text": "Public Investments\nHow do public expenditures \\(s_t\\) affect the system?\n\n\nIf perfect substitutes for \\(x_t\\): partial crowd-out\n\nRich families reduce \\(x_t\\) dollar-for-dollar\nPoor families reduce less (still constrained)\n\nIf complements (e.g., subsidize tuition → raises return to parental time):\n\nCan increase total investment\nSubstitution effect works against redistribution effect\n\n\n\n. . .\nEvidence: Many programs show weak effects due to family offsetting behavior."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#fertility",
+    "href": "lectures/5-BeckerTomesModel_alt.html#fertility",
+    "title": "The Becker-Tomes Model",
+    "section": "Fertility",
+    "text": "Fertility\nAllow number of children \\(n_t\\) to vary:\n\\[U_t = u(Z_t) + \\alpha(n_t) n_t U_{t+1}\\]\nwith \\(\\alpha'(n_t) &lt; 0\\) (diminishing marginal utility of children).\n\n\nRicher families have more children\nThis dilutes bequests per child\nInduces regression in wealth per child\nHelps explain why dynasties don’t persist forever"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#marriage",
+    "href": "lectures/5-BeckerTomesModel_alt.html#marriage",
+    "title": "The Becker-Tomes Model",
+    "section": "Marriage",
+    "text": "Marriage\nAssortative mating: tendency to marry someone similar.\n\n\nPositive correlation in spouses’ endowments\nBut imperfect: \\(\\text{corr}(E_{\\text{mother}}, E_{\\text{father}}) &lt; 1\\)\nChild’s endowment = average of parents\nMarriage causes additional regression to mean\nEmpirically: education correlation ≈ 0.6, earnings ≈ 0.3\n\n\n. . .\nCombined effect: fertility + marriage ensure consumption/wealth regress over time."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#discrimination",
+    "href": "lectures/5-BeckerTomesModel_alt.html#discrimination",
+    "title": "The Becker-Tomes Model",
+    "section": "Discrimination",
+    "text": "Discrimination\nDiscrimination affects both the intercept and returns:\n\\[Y_t = \\phi(E_t, Y_{t-1}) - D_t\\]\n\n\n\\(D_t\\) = earnings loss from discrimination\nLower earnings → tighter capital constraints\nPrediction: faster upward mobility among discriminated groups\n\nTheir marginal returns are higher\nWhen discrimination reduces, they catch up faster\n\nEvidence: Black families show faster regression (maybe)"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#predicted-regression-coefficients",
+    "href": "lectures/5-BeckerTomesModel_alt.html#predicted-regression-coefficients",
+    "title": "The Becker-Tomes Model",
+    "section": "Predicted Regression Coefficients",
+    "text": "Predicted Regression Coefficients\nThe model predicts:\n\n\n\nVariable\nCoefficient\nTypical value\n\n\n\n\nFather → son earnings\n\\(\\beta^* + h\\)\n0.2 - 0.4\n\n\nFather → son (rich families)\n\\(h\\)\n0.3 - 0.5\n\n\nGrandfather → grandson\n\\(-\\beta^* h\\)\nNegative, small\n\n\nFather → son wealth\nHigher (0.5 - 0.7)\n\n\n\n\n\n\nEarnings regress faster than wealth\nMost advantages disappear in 3 generations\nBut family background still matters significantly"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#the-shirtsleeves-to-shirtsleeves-result",
+    "href": "lectures/5-BeckerTomesModel_alt.html#the-shirtsleeves-to-shirtsleeves-result",
+    "title": "The Becker-Tomes Model",
+    "section": "The “Shirtsleeves to Shirtsleeves” Result",
+    "text": "The “Shirtsleeves to Shirtsleeves” Result\n“From shirtsleeves to shirtsleeves in three generations.”\n\n\nIf \\(b = 0.4\\): parent earning 2× mean → child earns 1.4× → grandchild earns 1.16×\nAfter 3 generations: essentially at the mean\nRapid intergenerational mobility in earnings\nBut this is conditional on no discrimination, equal opportunity\n\n\n. . .\nKey insight: Even modest regression rates wipe out advantages quickly."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#consumption-vs.-earnings-mobility",
+    "href": "lectures/5-BeckerTomesModel_alt.html#consumption-vs.-earnings-mobility",
+    "title": "The Becker-Tomes Model",
+    "section": "Consumption vs. Earnings Mobility",
+    "text": "Consumption vs. Earnings Mobility\nThe model distinguishes:\n\nEarnings: regress due to endowments (\\(h &lt; 1\\)) and capital constraints\nConsumption: buffered by bequests in rich families\n\n\n\nPerfect markets → consumption doesn’t regress (dynasties)\nImperfect markets → consumption regresses faster in poor families\nFertility/marriage → consumption regresses even in rich families\nEmpirically: wealth regresses slower than earnings"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#policy-implications",
+    "href": "lectures/5-BeckerTomesModel_alt.html#policy-implications",
+    "title": "The Becker-Tomes Model",
+    "section": "Policy Implications",
+    "text": "Policy Implications\nFrom the Becker-Tomes framework:\n\n\nEducation subsidies: Address capital constraints, raise efficiency\nProgressive taxation: May increase OR decrease long-run inequality\n\nReduces bequests → more regression\nBut also reduces investment incentives\n\nEarly childhood programs: High returns if:\n\nTarget capital-constrained families\nTruly complement (not substitute) family investments\n\nMeritocracy requires more than talent\n\nNeed to overcome capital constraints\nOtherwise ability doesn’t determine outcomes"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#limitations-and-extensions",
+    "href": "lectures/5-BeckerTomesModel_alt.html#limitations-and-extensions",
+    "title": "The Becker-Tomes Model",
+    "section": "Limitations and Extensions",
+    "text": "Limitations and Extensions\nWhat the basic model misses:\n\n\nMultiple skills: cognitive, non-cognitive, health\nLife-cycle dynamics: when do investments matter most?\nNeighborhoods and peers: external effects on children\nUncertainty: parents don’t know child’s future fully\nCredit constraints: can vary over time/development\n\n\n. . .\nModern research extends the model in these directions."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#the-goldberger-critique",
+    "href": "lectures/5-BeckerTomesModel_alt.html#the-goldberger-critique",
+    "title": "The Becker-Tomes Model",
+    "section": "The Goldberger Critique",
+    "text": "The Goldberger Critique\nGoldberger (1989) raised a fundamental question:\n\n\nAre Becker-Tomes predictions distinct from simple Galton model?\nGalton: \\(Y_t = \\alpha + h Y_{t-1} + \\varepsilon_t\\) (just genetics)\nBecker-Tomes adds: investments, capital markets, bequests\nQuestion: Do these additions generate unique testable predictions?\nOr do we just get the same regression-to-mean result?\n\n\n. . .\nThis motivated systematic testing of unique Becker-Tomes implications."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#mulligans-empirical-tests",
+    "href": "lectures/5-BeckerTomesModel_alt.html#mulligans-empirical-tests",
+    "title": "The Becker-Tomes Model",
+    "section": "Mulligan’s Empirical Tests",
+    "text": "Mulligan’s Empirical Tests\nMulligan (1999) tests 9 unique implications of Becker-Tomes vs. Galton:\n\n\nUses multiple datasets: PSID, NLS, SCF\nExamines earnings, consumption, and wealth\nDistinguishes families by transfer behavior\nResult: Several key predictions fail empirically\n\n\n. . .\nLet’s examine the most important failures."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#failed-prediction-1-consumption-mobility",
+    "href": "lectures/5-BeckerTomesModel_alt.html#failed-prediction-1-consumption-mobility",
+    "title": "The Becker-Tomes Model",
+    "section": "Failed Prediction 1: Consumption Mobility",
+    "text": "Failed Prediction 1: Consumption Mobility\nBecker-Tomes prediction: With perfect credit markets, consumption should not regress to mean among transfer-making families.\n\nRich parents use bequests to offset earnings regression\nDynasty persists in consumption even as earnings regress\n\n\n\nEvidence (Mulligan (1999), Table 3): Consumption does regress!\nAmong families making transfers: \\(\\beta_{\\text{consumption}} \\approx 0.3\\)\nSimilar to earnings regression\nSuggests credit markets are NOT perfect even for rich families"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#failed-prediction-2-earnings-inequality",
+    "href": "lectures/5-BeckerTomesModel_alt.html#failed-prediction-2-earnings-inequality",
+    "title": "The Becker-Tomes Model",
+    "section": "Failed Prediction 2: Earnings Inequality",
+    "text": "Failed Prediction 2: Earnings Inequality\nBecker-Tomes prediction: Families making transfers (unconstrained) should have more equal children’s earnings than constrained families.\n\nWhy? Unconstrained families equate marginal returns\nOnly endowment variation matters, not income variation\nConstrained families: both endowments AND income matter\n\n\n\nEvidence (Mulligan (1999), Table 6): Opposite pattern!\nChildren of transfer-making families have more earnings inequality\nSuggests complementarity between parental resources and outcomes\nBasic two-period model misses something important"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#failed-prediction-3-the-grandparent-effect",
+    "href": "lectures/5-BeckerTomesModel_alt.html#failed-prediction-3-the-grandparent-effect",
+    "title": "The Becker-Tomes Model",
+    "section": "Failed Prediction 3: The Grandparent Effect",
+    "text": "Failed Prediction 3: The Grandparent Effect\nBecker-Tomes prediction: Controlling for parents’ income, grandparents’ income should have negative effect.\n\\[Y_t \\approx c_t + (\\beta^* + h) Y_{t-1} - \\beta^* h \\cdot Y_{t-2} + \\varepsilon_t\\]\n\n\nIntuition: Rich grandparents → rich parents → less investment needed\nEvidence (Mulligan (1999)): Coefficient on \\(Y_{t-2}\\) is positive or zero\nNot the predicted negative relationship\nSuggests longer-run dynamics than two-generation model"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#whats-missing",
+    "href": "lectures/5-BeckerTomesModel_alt.html#whats-missing",
+    "title": "The Becker-Tomes Model",
+    "section": "What’s Missing?",
+    "text": "What’s Missing?\nThe failures point to important omissions:\n\n\nMulti-period structure: Investments span childhood, not one shot\nMultiple skills: Cognitive and non-cognitive abilities matter\nDynamic complementarity: Early investments affect returns to later ones\nSelf-productivity: Skills today enhance skill formation tomorrow\nLife-cycle timing: When investments occur matters\n\n\n. . .\nSolution: Extend to multi-period framework with richer technology."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#cunha-heckman-technology",
+    "href": "lectures/5-BeckerTomesModel_alt.html#cunha-heckman-technology",
+    "title": "The Becker-Tomes Model",
+    "section": "Cunha-Heckman Technology",
+    "text": "Cunha-Heckman Technology\nCunha and Heckman (2007) develop a multi-stage model of skill formation:\n\\[\\theta_{t+1} = f_t(h, \\theta_t, I_t)\\]\n\n\n\\(\\theta_t\\) = vector of skills at age \\(t\\) (cognitive, non-cognitive)\n\\(I_t\\) = vector of investments at age \\(t\\) (parental, public)\n\\(h\\) = child’s genetic endowment\n\\(f_t\\) = age-specific production function\n\n\n. . .\nKey: Production function changes over development stages."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#two-key-properties",
+    "href": "lectures/5-BeckerTomesModel_alt.html#two-key-properties",
+    "title": "The Becker-Tomes Model",
+    "section": "Two Key Properties",
+    "text": "Two Key Properties\n\n1. Self-Productivity\n\\[\\frac{\\partial \\theta_{t+1}}{\\partial \\theta_t} &gt; 0\\]\nSkills acquired in one period boost skill formation in the next period.\n\n\nLearning-to-learn\nHigher ability children accumulate skills faster\nCreates compounding advantages\nExplains why early gaps widen over time"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#two-key-properties-continued",
+    "href": "lectures/5-BeckerTomesModel_alt.html#two-key-properties-continued",
+    "title": "The Becker-Tomes Model",
+    "section": "Two Key Properties (continued)",
+    "text": "Two Key Properties (continued)\n\n2. Dynamic Complementarity\n\\[\\frac{\\partial^2 \\theta_{t+1}}{\\partial I_t \\partial \\theta_t} &gt; 0\\]\nHigher skill stocks raise the productivity of subsequent investments.\n\n\nInvestment is more productive for already-skilled children\nEarly investments raise returns to later investments\nCreates path dependence\nDifferent from static complementarity in basic model"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#a-simple-two-period-example",
+    "href": "lectures/5-BeckerTomesModel_alt.html#a-simple-two-period-example",
+    "title": "The Becker-Tomes Model",
+    "section": "A Simple Two-Period Example",
+    "text": "A Simple Two-Period Example\nSuppose skills evolve over two childhood periods:\n\\[\\theta_1 = f_0(h, I_0)\\] \\[\\theta_2 = f_1(h, \\theta_1, I_1)\\]\nAdult earnings: \\(Y = H(\\theta_2) + \\varepsilon\\)\n\n\nEarly investment \\(I_0\\) affects \\(\\theta_1\\) directly\nBut also affects productivity of \\(I_1\\) (dynamic complementarity)\nAnd \\(\\theta_1\\) affects \\(\\theta_2\\) directly (self-productivity)\nTotal effect of \\(I_0\\) includes three channels"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#visualizing-dynamic-complementarity",
+    "href": "lectures/5-BeckerTomesModel_alt.html#visualizing-dynamic-complementarity",
+    "title": "The Becker-Tomes Model",
+    "section": "Visualizing Dynamic Complementarity",
+    "text": "Visualizing Dynamic Complementarity\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHigher early investment shifts up the entire late investment return curve."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#ces-specification",
+    "href": "lectures/5-BeckerTomesModel_alt.html#ces-specification",
+    "title": "The Becker-Tomes Model",
+    "section": "CES Specification",
+    "text": "CES Specification\nCunha and Heckman (2007) use a CES production function:\n\\[\\theta_{t+1} = \\left[\\gamma_1 \\theta_t^\\phi + \\gamma_2 I_t^\\phi\\right]^{1/\\phi}\\]\n\n\n\\(\\phi\\) determines elasticity of substitution: \\(\\sigma = 1/(1-\\phi)\\)\n\\(\\phi &lt; 1\\): Skills and investment are complements\n\\(\\gamma_1, \\gamma_2\\): relative importance of self-productivity vs. investment\nCan estimate separately for different ages and skill types\n\n\n. . .\nEmpirical finding: \\(\\phi &lt; 0\\) for early childhood (strong complementarity)."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#critical-and-sensitive-periods",
+    "href": "lectures/5-BeckerTomesModel_alt.html#critical-and-sensitive-periods",
+    "title": "The Becker-Tomes Model",
+    "section": "Critical and Sensitive Periods",
+    "text": "Critical and Sensitive Periods\nThe multi-period framework allows for:\n\n\nCritical periods: Times when \\(\\partial f_t / \\partial I_t\\) is especially high\n\nInvestment has large direct effect\nExample: Language acquisition 0-3 years\n\nSensitive periods: Times when complementarity is strongest\n\nInvestment affects returns to all future investments\nExample: Executive function development 3-5 years\n\nEmpirical evidence: Early childhood is both critical and sensitive"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#rationalizing-the-evidence",
+    "href": "lectures/5-BeckerTomesModel_alt.html#rationalizing-the-evidence",
+    "title": "The Becker-Tomes Model",
+    "section": "Rationalizing the Evidence",
+    "text": "Rationalizing the Evidence\nThe multi-period model addresses Mulligan’s critiques:\n\n\nConsumption mobility: Multiple constraints over child’s development\n\nCan’t borrow against future at each stage\nEven rich families face some constraints\n\nEarnings inequality: Dynamic complementarity reinforces advantages\n\nRich parents invest more at ALL stages\nComplementarities amplify initial differences\n\nGrandparent effects: Longer transmission chain\n\n\\(Y_{t-2}\\) affects multiple periods of \\(Y_{t-1}\\)’s development\nPositive persistence through multiple channels"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#policy-implications-from-multi-period-model",
+    "href": "lectures/5-BeckerTomesModel_alt.html#policy-implications-from-multi-period-model",
+    "title": "The Becker-Tomes Model",
+    "section": "Policy Implications from Multi-Period Model",
+    "text": "Policy Implications from Multi-Period Model\nThe timing of intervention matters:\n\n\nEarly investments have high returns\n\nAffect all subsequent stages through complementarity\nSelf-productivity multiplies initial effects\nEquity and efficiency align for early programs\n\nLate remediation is costly\n\nMust overcome accumulated deficits\nLow complementarity with missing early skills\nEquity-efficiency tradeoff emerges\n\nTargeting matters\n\nComplementarity → target disadvantaged children early\nUniversal programs may have low returns if constraints don’t bind"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#quantitative-evidence",
+    "href": "lectures/5-BeckerTomesModel_alt.html#quantitative-evidence",
+    "title": "The Becker-Tomes Model",
+    "section": "Quantitative Evidence",
+    "text": "Quantitative Evidence\nCunha and Heckman (2007) estimate the model using CNLSY data:\n\n\nCognitive and non-cognitive skills from test scores\nInvestments from time use and expenditures\nKey findings:\n\nStrong complementarity in early childhood (\\(\\phi &lt; 0\\))\nSelf-productivity dominates investment by adolescence\nOptimal investment front-loaded to early ages\nExplains fadeout of programs that don’t continue investing\n\n\n\n. . .\nConclusion: Multi-stage technology rationalizes patterns that puzzle basic Becker-Tomes."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#summary",
+    "href": "lectures/5-BeckerTomesModel_alt.html#summary",
+    "title": "The Becker-Tomes Model",
+    "section": "Summary",
+    "text": "Summary\nThe Becker-Tomes model provides a unified framework:\n\n\nEndowment regression (\\(h &lt; 1\\)) drives mobility\nCapital constraints slow mobility for poor families\nBequests buffer consumption regression for rich families\nFertility and marriage ensure long-run regression\nParents affect children through multiple channels\nPolicy can address market failures efficiently"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#key-equations",
+    "href": "lectures/5-BeckerTomesModel_alt.html#key-equations",
+    "title": "The Becker-Tomes Model",
+    "section": "Key Equations",
+    "text": "Key Equations\nFor reference:\n\nEndowment transmission: \\(E_t = \\alpha + h E_{t-1} + v_t\\)\nHuman capital production: \\(H_t = \\psi(x_{t-1}, E_t, s_{t-1})\\)\nEarnings (no constraints): \\(Y_t \\approx \\alpha + h \\cdot Y_{t-1} + \\varepsilon_t\\)\nEarnings (with constraints): \\(Y_t \\approx \\alpha + (\\beta^* + h) Y_{t-1} - \\beta^* h \\cdot Y_{t-2} + \\varepsilon_t\\)\n\nUnderstanding these relationships is key to analyzing mobility policy."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#looking-ahead",
+    "href": "lectures/5-BeckerTomesModel_alt.html#looking-ahead",
+    "title": "The Becker-Tomes Model",
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\nNext lectures:\n\n\nQuantitative models of intergenerational mobility (Lee-Seshadri, Caucutt-Lochner)\nCausal evidence on early childhood programs\nSkill formation and dynamic complementarities\nParenting investments and time use\n\n\n. . .\nThe Becker-Tomes model is the foundation for modern research on inequality and mobility."
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel_alt.html#references",
+    "href": "lectures/5-BeckerTomesModel_alt.html#references",
+    "title": "The Becker-Tomes Model",
+    "section": "References",
+    "text": "References\n\n\nBecker, Gary S., and Nigel Tomes. 1979. “An Equilibrium Theory of the Distribution of Income and Intergenerational Mobility.” The Journal of Political Economy, no. 6: 1153–89. https://doi.org/10.1086/260831.\n\n\n———. 1986. “Human Capital and the Rise and Fall of Families.” Journal of Labor Economics, no. 3: S1–39. https://doi.org/10.1086/298118.\n\n\nCunha, Flavio, and James Heckman. 2007. “The Technology of Skill Formation.” The American Economic Review, no. 2: 31–47. https://doi.org/10.1257/aer.97.2.31.\n\n\nGoldberger, Arthur S. 1989. “Economic and Mechanical Models of Intergenerational Transmi.” The American Economic Review, no. 3: 504.\n\n\nMulligan, Casey B. 1999. “Galton Versus the Human Capital Approach to Inheritance.” The Journal of Political Economy, no. S6: S184–224. https://doi.org/10.1086/250108."
   }
 ]
