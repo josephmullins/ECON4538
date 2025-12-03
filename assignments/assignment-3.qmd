@@ -29,7 +29,7 @@ $$
 Then you can assume you know $\rho$, use this to get $\mathbb{V}[\zeta_{it}]$, then $\sigma^2_{\alpha}$, then finally $\sigma^2_{\epsilon}$.
 (**this question requires only math**)
 
-3. Following the steps in Recitation 4, use your answers to question 2 to construct estimates of the parameters of the income process, $(\mu,\rho,\sigma^2_{\epsilon},\sigma^2_{\eta},\sigma^2_{\alpha})$. **Note**: you will need to adjust the strategy above to account for the fact that the PSID only has data every two years. How does the estimate of $\rho$ compare to the estimate
+3. Following the steps in Recitation 4, use your answers to question 2 to construct estimates of the parameters of the income process, $(\mu,\rho,\sigma^2_{\epsilon},\sigma^2_{\eta},\sigma^2_{\alpha})$. **Note**: you will need to adjust the strategy above to account for the fact that the PSID only has data every two years. 
 (**this question requires code**)
 
 4. How does the estimate of $\rho$ compare to the estimate from Recitation 4? Please provide some intuition for why.

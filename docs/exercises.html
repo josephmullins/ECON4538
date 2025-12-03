@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -149,12 +183,43 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#example-3" id="toc-example-3" class="nav-link active" data-scroll-target="#example-3">Example 3</a></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link active" data-scroll-target="#practice-problems">Practice Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-income-process-identification" id="toc-problem-1-income-process-identification" class="nav-link" data-scroll-target="#problem-1-income-process-identification">Problem 1: Income Process Identification</a></li>
+  <li><a href="#problem-2-estimating-variance-from-data" id="toc-problem-2-estimating-variance-from-data" class="nav-link" data-scroll-target="#problem-2-estimating-variance-from-data">Problem 2: Estimating Variance from Data</a></li>
+  <li><a href="#problem-3-one-period-model-with-lognormal-income" id="toc-problem-3-one-period-model-with-lognormal-income" class="nav-link" data-scroll-target="#problem-3-one-period-model-with-lognormal-income">Problem 3: One-Period Model with Lognormal Income</a>
+  <ul class="collapse">
+  <li><a href="#part-a" id="toc-part-a" class="nav-link" data-scroll-target="#part-a">Part (a)</a></li>
+  <li><a href="#part-b" id="toc-part-b" class="nav-link" data-scroll-target="#part-b">Part (b)</a></li>
+  <li><a href="#part-c" id="toc-part-c" class="nav-link" data-scroll-target="#part-c">Part (c)</a></li>
+  <li><a href="#part-d" id="toc-part-d" class="nav-link" data-scroll-target="#part-d">Part (d)</a></li>
+  <li><a href="#part-e" id="toc-part-e" class="nav-link" data-scroll-target="#part-e">Part (e)</a></li>
+  <li><a href="#part-f" id="toc-part-f" class="nav-link" data-scroll-target="#part-f">Part (f)</a></li>
+  <li><a href="#part-g" id="toc-part-g" class="nav-link" data-scroll-target="#part-g">Part (g)</a></li>
+  </ul></li>
+  <li><a href="#problem-4-two-period-becker-tomes-model" id="toc-problem-4-two-period-becker-tomes-model" class="nav-link" data-scroll-target="#problem-4-two-period-becker-tomes-model">Problem 4: Two-Period Becker-Tomes Model</a>
+  <ul class="collapse">
+  <li><a href="#part-a-1" id="toc-part-a-1" class="nav-link" data-scroll-target="#part-a-1">Part (a)</a></li>
+  <li><a href="#part-b-1" id="toc-part-b-1" class="nav-link" data-scroll-target="#part-b-1">Part (b)</a></li>
+  <li><a href="#part-c-1" id="toc-part-c-1" class="nav-link" data-scroll-target="#part-c-1">Part (c)</a></li>
+  <li><a href="#part-d-1" id="toc-part-d-1" class="nav-link" data-scroll-target="#part-d-1">Part (d)</a></li>
+  </ul></li>
+  <li><a href="#problem-5-two-period-model-with-progressive-taxation" id="toc-problem-5-two-period-model-with-progressive-taxation" class="nav-link" data-scroll-target="#problem-5-two-period-model-with-progressive-taxation">Problem 5: Two-Period Model with Progressive Taxation</a>
+  <ul class="collapse">
+  <li><a href="#part-a-2" id="toc-part-a-2" class="nav-link" data-scroll-target="#part-a-2">Part (a)</a></li>
+  <li><a href="#part-b-2" id="toc-part-b-2" class="nav-link" data-scroll-target="#part-b-2">Part (b)</a></li>
+  <li><a href="#part-c-2" id="toc-part-c-2" class="nav-link" data-scroll-target="#part-c-2">Part (c)</a></li>
+  <li><a href="#part-d-2" id="toc-part-d-2" class="nav-link" data-scroll-target="#part-d-2">Part (d)</a></li>
+  </ul></li>
+  <li><a href="#additional-notes" id="toc-additional-notes" class="nav-link" data-scroll-target="#additional-notes">Additional Notes</a>
+  <ul class="collapse">
+  <li><a href="#example-3" id="toc-example-3" class="nav-link" data-scroll-target="#example-3">Example 3</a></li>
   <li><a href="#example-4-harder..-could-make-it-easier" id="toc-example-4-harder..-could-make-it-easier" class="nav-link" data-scroll-target="#example-4-harder..-could-make-it-easier">Example 4 (harder.. could make it easier)</a></li>
   <li><a href="#exercise-4-permanent-vs-transitory" id="toc-exercise-4-permanent-vs-transitory" class="nav-link" data-scroll-target="#exercise-4-permanent-vs-transitory">Exercise 4: Permanent vs Transitory</a></li>
   <li><a href="#exercise-5-random-walk-ma1" id="toc-exercise-5-random-walk-ma1" class="nav-link" data-scroll-target="#exercise-5-random-walk-ma1">Exercise 5: Random walk + MA(1)</a></li>
   <li><a href="#note" id="toc-note" class="nav-link" data-scroll-target="#note">Note:</a></li>
-  <li><a href="#intergen-mobility" id="toc-intergen-mobility" class="nav-link" data-scroll-target="#intergen-mobility">intergen mobility</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -180,22 +245,440 @@ window.Quarto = {
 </header>
 
 
-<section id="example-3" class="level2">
-<h2 class="anchored" data-anchor-id="example-3">Example 3</h2>
+<section id="practice-problems" class="level1">
+<h1>Practice Problems</h1>
+<section id="problem-1-income-process-identification" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1-income-process-identification">Problem 1: Income Process Identification</h2>
+<p>Consider the income process:</p>
+<p><span class="math display">\[y_{it} = \alpha_i + \xi_{it} + \varepsilon_{it}\]</span></p>
+<p>where <span class="math inline">\(\xi_{it} = \rho \xi_{it-1} + \eta_{it-1}\)</span> and</p>
+<p><span class="math inline">\(\eta_{it}, \varepsilon_{it}\)</span> are iid with <span class="math inline">\(\mathbb{V}[\alpha_i] = \sigma_\alpha^2\)</span>, <span class="math inline">\(\mathbb{V}[\eta_{it}] = \sigma_\eta^2\)</span>, <span class="math inline">\(\mathbb{V}[\varepsilon_{it}] = \sigma_{\varepsilon,t}^2\)</span>.</p>
+<p>Use population moments to argue that the parameters <span class="math inline">\(\sigma_\alpha^2, \rho, \sigma_\eta^2, \sigma_{\varepsilon,t}^2\)</span> can be identified with panel data.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Variance of income:</strong></p>
+<p><span class="math display">\[\mathbb{V}[y_{it}] = \sigma_\alpha^2 + \mathbb{V}(\xi_{it}) + \sigma_{\varepsilon,t}^2\]</span></p>
+<p><span class="math display">\[\mathbb{V}[y_{it+1}] = \sigma_\alpha^2 + \rho^2 \mathbb{V}(\xi_{it}) + \sigma_\eta^2 + \sigma_{\varepsilon,t}^2\]</span></p>
+<p><strong>Covariances:</strong></p>
+<p><span class="math display">\[\mathcal{C}(y_{it}, y_{it+1}) = \sigma_\alpha^2 + \rho \mathbb{V}(\xi_{it})\]</span></p>
+<p><span class="math display">\[\mathcal{C}(y_{it}, y_{it+2}) = \sigma_\alpha^2 + \rho^2 \mathbb{V}(\xi_{it})\]</span></p>
+<p><span class="math display">\[\mathcal{C}(y_{it}, y_{it+3}) = \sigma_\alpha^2 + \rho^3 \mathbb{V}(\xi_{it})\]</span></p>
+<p><strong>Identification:</strong></p>
+<p><span class="math display">\[\rho = \frac{\mathcal{C}(y_{it}, y_{it+3}) - \mathcal{C}(y_{it}, y_{it+2})}{\mathcal{C}(y_{it}, y_{it+2}) - \mathcal{C}(y_{it}, y_{it+1})} = \frac{(\rho^3 - \rho^2) \mathbb{V}(\xi_{it})}{(\rho^2 - \rho) \mathbb{V}(\xi_{it})}\]</span></p>
+<p><span class="math display">\[\mathbb{V}(\xi_{it}) = \frac{\mathcal{C}(y_{it}, y_{it+2}) - \mathcal{C}(y_{it}, y_{it+1})}{\rho^2 - \rho}\]</span></p>
+<p><span class="math display">\[\sigma_\alpha^2 = \mathcal{C}(y_{it}, y_{it+1}) - \rho \mathbb{V}(\xi_{it})\]</span></p>
+<p><span class="math display">\[\sigma_{\varepsilon,t}^2 = \mathbb{V}[y_{it}] - \sigma_\alpha^2 - \mathbb{V}(\xi_{it}) \quad \text{for each } t\]</span></p>
+<p><span class="math display">\[\sigma_\eta^2 = \mathbb{V}[y_{it+1}] - \sigma_\alpha^2 - \rho^2 \mathbb{V}(\xi_{it}) - \sigma_{\varepsilon,t}^2\]</span></p>
+<p>Done.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-2-estimating-variance-from-data" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2-estimating-variance-from-data">Problem 2: Estimating Variance from Data</h2>
+<p>Now suppose you are using the above identification arguments to get estimates of the income process from Question 1. As part of this you would like to estimate <span class="math inline">\(\mathbb{V}[y_{it}]\)</span> for each age <span class="math inline">\(t\)</span> in the data (variable name <code>AGE</code>). Write the missing line of code below.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>var_ests <span class="op">&lt;-</span> data <span class="op">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># missing line!</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(vary_t <span class="op">=</span> <span class="fu">var</span>(log_income))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">groupby</span>(AGE).</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-3-one-period-model-with-lognormal-income" class="level2">
+<h2 class="anchored" data-anchor-id="problem-3-one-period-model-with-lognormal-income">Problem 3: One-Period Model with Lognormal Income</h2>
+<p>Consider the following one period model:</p>
+<p><span class="math display">\[C_i = Y_i - \exp(\alpha_i + \mathcal{E}_i)\]</span></p>
+<p>where <span class="math inline">\(\mathcal{E}_i \sim \mathcal{N}(0, \sigma_{\mathcal{E}}^2)\)</span>, <span class="math inline">\(\alpha_i \sim \mathcal{N}(\mu, \sigma_\alpha^2)\)</span>. Suppose that <span class="math inline">\(\alpha_i\)</span> is known to each individual and <span class="math inline">\(\mathcal{E}_i\)</span> is income risk. Assume log utility s.t. <span class="math inline">\(V(\alpha_i) = \mathbb{E}[\log(C_i) | \alpha_i]\)</span>.</p>
+<section id="part-a" class="level3">
+<h3 class="anchored" data-anchor-id="part-a">Part (a)</h3>
+<p>Show that <span class="math inline">\(V(\alpha_i) = \alpha_i\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[V(\alpha_i) = \mathbb{E}[\log(C_i) | \alpha_i] = \mathbb{E}[\alpha_i + \mathcal{E}_i | \alpha_i] = \alpha_i\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-b" class="level3">
+<h3 class="anchored" data-anchor-id="part-b">Part (b)</h3>
+<p>Suppose a planner solves:</p>
+<p><span class="math display">\[\max_{\{C_i\}} \int \log(C_i) di \quad \text{s.t.} \quad \int C_i di = \int \exp(\alpha_i + \mathcal{E}_i)di\]</span></p>
+<p>Show that the solution is</p>
+<p><span class="math display">\[C_i^* = C^* = \exp(\mu + \frac{1}{2}(\sigma_{\mathcal{E}}^2 + \sigma_\alpha^2))\]</span></p>
+<p>Hint: if <span class="math inline">\(Z \sim \mathcal{N}(\mu, \sigma_z^2)\)</span>, <span class="math inline">\(\mathbb{E}[\exp[Z]] = \exp(\mu + \frac{1}{2}\sigma^2)\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since <span class="math inline">\(\alpha_i + \mathcal{E}_i \sim \mathcal{N}(\mu, \sigma_\alpha^2 + \sigma_{\mathcal{E}}^2)\)</span>,</p>
+<p>Planner’s FOC: <span class="math inline">\(\frac{1}{C_i} = \lambda \quad \forall \, i\)</span></p>
+<p>where <span class="math inline">\(\lambda\)</span> is multiplier on resource constraint. Hence <span class="math inline">\(C_i = C^* \quad \forall \, i\)</span>.</p>
+<p>Plugging into resource constraint gives</p>
+<p><span class="math display">\[C^* = \exp(\mu + \frac{1}{2}(\sigma_{\mathcal{E}}^2 + \sigma_\alpha^2))\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-c" class="level3">
+<h3 class="anchored" data-anchor-id="part-c">Part (c)</h3>
+<p>Show that the certainty equivalent <span class="math inline">\(\overline{C}(\alpha_i)\)</span> that delivers <span class="math inline">\(V(\alpha_i)\)</span> is <span class="math inline">\(\overline{C}(\alpha_i) = \exp(\alpha_i)\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\overline{C}(\alpha_i)\)</span> solves</p>
+<p><span class="math display">\[\log(\overline{C}(\alpha_i)) = V(\alpha_i) = \alpha_i\]</span></p>
+<p><span class="math display">\[\Rightarrow \overline{C}(\alpha_i) = \exp(\alpha_i)\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-d" class="level3">
+<h3 class="anchored" data-anchor-id="part-d">Part (d)</h3>
+<p>Since <span class="math inline">\(\alpha_i \sim \mathcal{N}(\mu, \sigma_\alpha^2)\)</span>,</p>
+<p><span class="math display">\[\overline{C} = \int \overline{C}(\alpha_i) di = \exp(\mu + \frac{1}{2}\sigma_\alpha^2)\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Baseline: <span class="math inline">\(W = \int \log(C_i) = \int \log(\exp(\alpha_i + \mathcal{E}_i)) di = \mathbb{E}[\alpha_i + \mathcal{E}_i] = \mu\)</span></p>
+<p><span class="math display">\[W^* = \log(C^*) = \mu + \frac{1}{2}(\sigma_{\mathcal{E}}^2 + \sigma_\alpha^2)\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-e" class="level3">
+<h3 class="anchored" data-anchor-id="part-e">Part (e)</h3>
+<p>Show that the planner’s objective is <span class="math inline">\(\mu\)</span> in the baseline and <span class="math inline">\(\mu + \frac{1}{2}(\sigma_{\mathcal{E}}^2 + \sigma_\alpha^2)\)</span> at the optimum.</p>
+<p><em>(Solution included in part d above)</em></p>
+</section>
+<section id="part-f" class="level3">
+<h3 class="anchored" data-anchor-id="part-f">Part (f)</h3>
+<p>Decompose <span class="math inline">\(W^* - W\)</span> into two components:</p>
+<ol type="1">
+<li><span class="math inline">\(W^* - \log(\overline{C})\)</span></li>
+<li><span class="math inline">\(\log(\overline{C}) - W\)</span></li>
+</ol>
+<p>What is (1)? What is (2)? Which term represents the gains from insurance?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(W^* - \log(\overline{C}) = \frac{1}{2}\sigma_{\mathcal{E}}^2 \leftarrow\)</span> <strong>Insurance</strong></p></li>
+<li><p><span class="math inline">\(\log(\overline{C}) - W = \frac{1}{2}\sigma_\alpha^2 \leftarrow\)</span> <strong>Redistribution</strong></p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="part-g" class="level3">
+<h3 class="anchored" data-anchor-id="part-g">Part (g)</h3>
+<p>Make sense! <span class="math inline">\(\sigma_{\mathcal{E}}^2\)</span> is variance component in <span class="math inline">\(y_{it}\)</span> coming from risk, <span class="math inline">\(\sigma_\alpha^2\)</span> is the component coming from ex-ante inequality.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interpretation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\sigma_{\mathcal{E}}^2\)</span> measures the variance in income coming from idiosyncratic risk that individuals face. Insurance eliminates this uncertainty.</p>
+<p><span class="math inline">\(\sigma_\alpha^2\)</span> measures the variance in income coming from permanent differences across individuals (ex-ante inequality). Redistribution addresses this component.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="problem-4-two-period-becker-tomes-model" class="level2">
+<h2 class="anchored" data-anchor-id="problem-4-two-period-becker-tomes-model">Problem 4: Two-Period Becker-Tomes Model</h2>
+<p>Consider the 2-period Becker-Tomes model:</p>
+<p><span class="math display">\[\max_{C_1, C_2, X, A} U(C_1) + \beta U(C_2)\]</span></p>
+<p><span class="math display">\[\text{s.t.} \quad C_1 + \gamma X + A / (1+r) \leq \Omega + T / (1+r)\]</span></p>
+<p><span class="math display">\[C_2 = A + wz X^S - T, \quad A \geq 0\]</span></p>
+<p>where <span class="math inline">\(T\)</span> is a lump-sum tax paid by generation 2 to generation 1.</p>
+<section id="part-a-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-1">Part (a)</h3>
+<p>Show that if a household is not constrained, the value of <span class="math inline">\(T\)</span> does not affect any allocations of <span class="math inline">\(C_1, C_2, X\)</span> at the optimum. (Hint: try combining budget constraints).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(A &gt; 0\)</span> at the optimum, can combine to get:</p>
+<p><span class="math display">\[C_1 + C_2/(1+r) \leq \Omega + wz X^S/(1+r) \quad (*)\]</span></p>
+<p>s.t. household solves:</p>
+<p><span class="math display">\[\max_{C_1, C_2} U(C_1) + \beta U(C_2) \quad \text{s.t.} \quad (*)\]</span></p>
+<p>Hence <span class="math inline">\(T\)</span> does not feature.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-b-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-1">Part (b)</h3>
+<p>Show that for constrained households:</p>
+<p><span class="math display">\[U'(C_1) = \frac{Swz X^{S-1}}{(1+r)} U'(C_2) \quad \text{and} \quad (1+r) \leq \frac{Swz X^{S-1}}{\gamma}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>When <span class="math inline">\(A = 0\)</span>, solve:</p>
+<p><span class="math display">\[\max_{C_1, C_2} U(\Omega + T/(1+r) - \gamma X) + \beta U(wz X^S - T)\]</span></p>
+<p>get</p>
+<p><span class="math display">\[U'(\Omega + T/(1+r) - \gamma X) = \beta Swz X^{S-1} U'(wz X^S - T)\]</span></p>
+<p><span class="math display">\[\Leftrightarrow U'(C_1) \gamma = \beta Swz^{S-1} U'(wz X^S - T)\]</span></p>
+<p>Note that the marginal return (in assets) is</p>
+<p><span class="math display">\[-\frac{1}{1+r} U'(C_1) + \beta U'(C_2) \leq 0 \quad \Leftrightarrow (1+r) \leq \frac{Swz X^{S-1}}{\gamma}\]</span></p>
+<p>(if <span class="math inline">\(&gt; 0\)</span>, then household should optimally increase <span class="math inline">\(A\)</span> above 0).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-c-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-1">Part (c)</h3>
+<p>Consider a marginal increase in <span class="math inline">\(T\)</span>. What happens to the welfare of constrained vs unconstrained households?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(T \nearrow\)</span> marginally, change in welfare is</p>
+<p><span class="math display">\[u'(C_1) \frac{1}{(1+r)} - \beta u'(C_2) &gt; 0\]</span></p>
+<p>for constrained households, where inequality follows from (b).</p>
+<p>Since allocations of constrained households are unaffected by <span class="math inline">\(T\)</span> <span class="math inline">\(\Rightarrow\)</span> no welfare effect.</p>
+<p>Note: not clear if welfare of children <span class="math inline">\(\nearrow\)</span> in this intervention.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-d-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-d-1">Part (d)</h3>
+<p>Interpret.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interpretation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>(Answers will vary based on interpretation)</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="problem-5-two-period-model-with-progressive-taxation" class="level2">
+<h2 class="anchored" data-anchor-id="problem-5-two-period-model-with-progressive-taxation">Problem 5: Two-Period Model with Progressive Taxation</h2>
+<p>For same 2-period model, suppose budget constraints are now:</p>
+<p><span class="math display">\[C_1 + A/(1+r) + \gamma X \leq \lambda \Omega^{1-\tau}\]</span></p>
+<p><span class="math display">\[C_2 = A + \lambda_2 (wz X^S)^{1-\tau}, \quad A \geq 0\]</span></p>
+<p>where <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> are chosen to balance budget in each period.</p>
+<section id="part-a-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-2">Part (a)</h3>
+<p>Write the FOC for unconstrained households.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For unconstrained:</p>
+<p><span class="math display">\[(1+r) = \frac{\lambda_2 (1-\tau) \delta(w z) X^{S(1-\tau)-1}}{\gamma}\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-b-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-2">Part (b)</h3>
+<p>Recall that the planner sets <span class="math inline">\((1+r) = \frac{wz X^{S-1}}{\gamma}\)</span> in each household <span class="math inline">\(i\)</span>. Can the equilibrium with taxation be efficient?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Comparing to the condition <span class="math inline">\((1+r) = \frac{Swz X^{S-1}}{\gamma}\)</span>,</p>
+<p>taxation distorts the optimal allocation of financials <span class="math inline">\(\Rightarrow\)</span> human capital <span class="math inline">\(\Rightarrow\)</span> not efficient.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-c-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-2">Part (c)</h3>
+<p>Explain, in words, the efficiency cost of progressive taxation in this model. (Hint: compare the household’s FOC to the planner’s).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Redistribution reduces the incentives for parents to invest. <span class="math inline">\(\Rightarrow\)</span> An equity-efficiency tradeoff.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-d-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-d-2">Part (d)</h3>
+<p>Assuming log utility, solve for <span class="math inline">\(X\)</span> when households are constrained. Comment on solution relative to Baseline.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\max_X \log(\lambda_1 \Omega^{1-\tau} - \gamma X) + \beta \log(\lambda_2 wz X^S)^{1-\tau}\]</span></p>
+<p><span class="math display">\[\Rightarrow \frac{\gamma}{\lambda_1 \Omega^{1-\tau} - \gamma X} = \frac{\beta (1-\tau) S}{\chi}\]</span></p>
+<p><span class="math display">\[\Leftrightarrow X = \frac{1}{\gamma} \times \frac{\beta (1-\tau) S}{1 + \beta(1-\tau) S} \lambda_1 \Omega^{1-\tau}\]</span></p>
+<p><span class="math display">\[\Rightarrow \text{compared to } X = \frac{1}{\gamma} \frac{\beta S}{1+\beta S} \Omega\]</span></p>
+<p>So taxation also distorts investment in unconstrained. This could offset distortion from incomplete markets, but depends on parameters <span class="math inline">\((\lambda_1, \lambda_2, \tau)\)</span>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="additional-notes" class="level2">
+<h2 class="anchored" data-anchor-id="additional-notes">Additional Notes</h2>
+<section id="example-3" class="level3">
+<h3 class="anchored" data-anchor-id="example-3">Example 3</h3>
 <ul>
 <li>same economy as example (2), <strong>except</strong> assume that individuals can insure against <span class="math inline">\(\varepsilon_{it}\)</span>, i.e.&nbsp;in the benchmark for all <span class="math inline">\(i\)</span>, <span class="math inline">\(t\)</span>: <span class="math display">\[ c_{it} = \exp\left(\mu_{\tau(i)} + \frac{1}{2}\sigma^2\right) \]</span></li>
 <li>What does the decomposition look like in this case?</li>
 </ul>
 </section>
-<section id="example-4-harder..-could-make-it-easier" class="level2">
-<h2 class="anchored" data-anchor-id="example-4-harder..-could-make-it-easier">Example 4 (harder.. could make it easier)</h2>
+<section id="example-4-harder..-could-make-it-easier" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-harder..-could-make-it-easier">Example 4 (harder.. could make it easier)</h3>
 <ul>
 <li>Assume <span class="math display">\[ y_{it} = \mu + \rho(y_{it-1} - \mu) + \zeta_{it},\ \ \zeta_{it}\sim{N}(0,\sigma^2_{\zeta}) \]</span></li>
 <li>No borrowing or saving (consume <span class="math inline">\(y_{it}\)</span>).</li>
 </ul>
 </section>
-<section id="exercise-4-permanent-vs-transitory" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-4-permanent-vs-transitory">Exercise 4: Permanent vs Transitory</h2>
+<section id="exercise-4-permanent-vs-transitory" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-permanent-vs-transitory">Exercise 4: Permanent vs Transitory</h3>
 <p>Consider a model with both components:</p>
 <p><span class="math display">\[y_{it} = p_{it} + e_{it}\]</span></p>
 <p>where <span class="math inline">\(p_{it} = p_{it-1} + \zeta_{it}\)</span> and <span class="math inline">\(e_{it} = \theta e_{it-1} + \varepsilon_{it}\)</span></p>
@@ -207,25 +690,21 @@ window.Quarto = {
 <li>How can we estimate this model</li>
 </ol>
 </section>
-<section id="exercise-5-random-walk-ma1" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-5-random-walk-ma1">Exercise 5: Random walk + MA(1)</h2>
+<section id="exercise-5-random-walk-ma1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5-random-walk-ma1">Exercise 5: Random walk + MA(1)</h3>
 <p><span class="math display">\[y_{it} = p_{it} + \varepsilon_{it} + \theta \varepsilon_{i,t-1}\]</span></p>
 <ol type="a">
 <li>What is the covariance in growth rates?</li>
 <li>How can we estimate this model?</li>
 </ol>
 </section>
-<section id="note" class="level2">
-<h2 class="anchored" data-anchor-id="note">Note:</h2>
+<section id="note" class="level3">
+<h3 class="anchored" data-anchor-id="note">Note:</h3>
 <p>We can re-write the exercises above by changing the initial conditions (going from stationary to non-stationary)</p>
+
+
 </section>
-<section id="intergen-mobility" class="level2">
-<h2 class="anchored" data-anchor-id="intergen-mobility">intergen mobility</h2>
-<ul>
-<li>describe some processes and ask to make claims about absolute and relative mobility</li>
-</ul>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->
