@@ -41,7 +41,7 @@ using LinearAlgebra
 function approx_income_process(N, ρ, σ, σ_α)
     # use tauchen method to approximate the AR(1) component
     egrid, Π = tauchen(N, ρ, σ)
-    agrid = [sqrt(3/2)*σ_α, 0., sqrt(3/2)*σ_α]
+    agrid = [-sqrt(3/2)*σ_α, 0., sqrt(3/2)*σ_α]
     # construct a larger grid of α .+ egrid for each α
     grid = [α + e for α in agrid for e in egrid]
     # create a larger transition matrix where the

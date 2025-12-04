@@ -3,19 +3,15 @@ title: "Practice Exercises"
 bibliography: reading_list.bib
 ---
 
-# Practice Problems
-
 ## Problem 1: Income Process Identification
 
 Consider the income process:
 
 $$y_{it} = \alpha_i + \xi_{it} + \varepsilon_{it}$$
 
-where $\xi_{it} = \rho \xi_{it-1} + \eta_{it-1}$ and
+where $\xi_{it} = \rho \xi_{it-1} + \eta_{it}$ and $\eta_{it}, \varepsilon_{it}$ are iid with $\mathbb{V}[\alpha_i] = \sigma_\alpha^2$, $\mathbb{V}[\eta_{it}] = \sigma_\eta^2$, $\mathbb{V}[\varepsilon_{it}] = \sigma_{\varepsilon,t}^2$.
 
-$\eta_{it}, \varepsilon_{it}$ are iid with $\mathbb{V}[\alpha_i] = \sigma_\alpha^2$, $\mathbb{V}[\eta_{it}] = \sigma_\eta^2$, $\mathbb{V}[\varepsilon_{it}] = \sigma_{\varepsilon,t}^2$.
-
-Use population moments to argue that the parameters $\sigma_\alpha^2, \rho, \sigma_\eta^2, \sigma_{\varepsilon,t}^2$ can be identified with panel data.
+Use population moments to argue that the parameters $\sigma_\alpha^2, \rho, \sigma_\eta^2, \sigma_{\varepsilon,t}^2$ can be identified with panel data. Note that $\sigma^2_{\varepsilon,t}$ is specific to the age $t$.
 
 ::: {.callout-note collapse="true"}
 ## Solution
@@ -56,9 +52,10 @@ Done.
 Now suppose you are using the above identification arguments to get estimates of the income process from Question 1. As part of this you would like to estimate $\mathbb{V}[y_{it}]$ for each age $t$ in the data (variable name `AGE`). Write the missing line of code below.
 
 ```julia
-var_ests <- data %>%
+var_ests = @chain data begin
     # missing line!
-    summarize(vary_t = var(log_income))
+    @combine :vary_t = var(:log_income)
+end
 ```
 
 ::: {.callout-note collapse="true"}
@@ -71,13 +68,53 @@ groupby(AGE).
 
 ---
 
-## Problem 3: One-Period Model with Lognormal Income
+## Problem 3: Income Process Identification
+
+Consider the income process:
+
+$$y_{it} = \alpha_i + \xi_{it} + \varepsilon_{it} + \theta \varepsilon_{i,t-1}$$
+
+where $\xi_{it} = \rho \xi_{it-1} + \eta_{it}$, and $(\eta_{it}, \varepsilon_{it})$ are iid with $\mathbb{V}[\alpha_i] = \sigma_\alpha^2$, $\mathbb{V}[\varepsilon_{it}] = \sigma_{\varepsilon}^2$, $\mathbb{V}[\eta_{it}] = \sigma_\eta^2$.
+
+Use population moments to identify the parameters of the income process.
+
+::: {.callout-note collapse="true"}
+## Solution
+
+**Variance of income:**
+
+$$\mathbb{V}[y_{it}] = \sigma_\alpha^2 + \mathbb{V}(\xi_{it}) + (1+\theta^2) \sigma_{\varepsilon}^2$$
+
+$$\mathcal{C}(y_{it}, y_{it+1}) = C_1 = \sigma_\alpha^2 + \rho \mathbb{V}(\xi_{it}) + \theta \sigma_{\varepsilon}^2$$
+
+$$\mathcal{C}(y_{it}, y_{it+2}) = C_2 = \sigma_\alpha^2 + \rho^2 \mathbb{V}(\xi_{it})$$
+
+$$\mathcal{C}(y_{it}, y_{it+s}) = C_s = \sigma_\alpha^2 + \rho^s \mathbb{V}(\xi_{it}) \quad \forall \, s > 1$$
+
+**Identification:**
+
+$$\rho = \frac{C_4 - C_3}{C_3 - C_2} = \frac{\rho^4 - \rho^3}{\rho^3 - \rho^2}$$
+
+$$\mathbb{V}(\xi_{it}) = \frac{C_3 - C_2}{\rho^3 - \rho^2}, \quad \sigma_\alpha^2 = C_2 - \rho^2 \mathbb{V}(\xi_{it})$$
+
+$$\frac{(1+\theta^2)}{\theta} = \frac{\mathbb{V}(y_{it}) - \sigma_\alpha^2 - \mathbb{V}(\xi_{it})}{C_1 - \sigma_\alpha^2 - \rho \mathbb{V}(\xi_{it})}$$
+
+$\Rightarrow$ $\theta$ is solution to quadratic.
+
+$$\Rightarrow \sigma_{\varepsilon}^2 = \frac{\mathbb{V}(y_{it}) - \sigma_\alpha^2 - \mathbb{V}(\xi_{it})}{(1+\theta^2)}$$
+
+Done.
+:::
+
+---
+
+## Problem 4: One-Period Model with Lognormal Income
 
 Consider the following one period model:
 
-$$C_i = Y_i - \exp(\alpha_i + \mathcal{E}_i)$$
+$$C_i = Y_i = \exp(\alpha_i + \varepsilon_i)$$
 
-where $\mathcal{E}_i \sim \mathcal{N}(0, \sigma_{\mathcal{E}}^2)$, $\alpha_i \sim \mathcal{N}(\mu, \sigma_\alpha^2)$. Suppose that $\alpha_i$ is known to each individual and $\mathcal{E}_i$ is income risk. Assume log utility s.t. $V(\alpha_i) = \mathbb{E}[\log(C_i) | \alpha_i]$.
+where $\varepsilon_i \sim \mathcal{N}(0, \sigma_{\varepsilon}^2)$, $\alpha_i \sim \mathcal{N}(\mu, \sigma_\alpha^2)$. Suppose that $\alpha_i$ is known to each individual and $\varepsilon_i$ is income risk. Assume log utility s.t. $V(\alpha_i) = \mathbb{E}[\log(C_i) | \alpha_i]$.
 
 ### Part (a)
 Show that $V(\alpha_i) = \alpha_i$.
@@ -85,24 +122,24 @@ Show that $V(\alpha_i) = \alpha_i$.
 ::: {.callout-note collapse="true"}
 ## Solution
 
-$$V(\alpha_i) = \mathbb{E}[\log(C_i) | \alpha_i] = \mathbb{E}[\alpha_i + \mathcal{E}_i | \alpha_i] = \alpha_i$$
+$$V(\alpha_i) = \mathbb{E}[\log(C_i) | \alpha_i] = \mathbb{E}[\alpha_i + \varepsilon_i | \alpha_i] = \alpha_i$$
 :::
 
 ### Part (b)
 Suppose a planner solves:
 
-$$\max_{\{C_i\}} \int \log(C_i) di \quad \text{s.t.} \quad \int C_i di = \int \exp(\alpha_i + \mathcal{E}_i)di$$
+$$\max_{\{C_i\}_{i\in[0,1]}} \int \log(C_i) di \quad \text{s.t.} \quad \int C_i di = \int \exp(\alpha_i + \varepsilon_i)di$$
 
 Show that the solution is
 
-$$C_i^* = C^* = \exp(\mu + \frac{1}{2}(\sigma_{\mathcal{E}}^2 + \sigma_\alpha^2))$$
+$$C_i^* = C^* = \exp(\mu + \frac{1}{2}(\sigma_{\varepsilon}^2 + \sigma_\alpha^2))$$
 
-Hint: if $Z \sim \mathcal{N}(\mu, \sigma_z^2)$, $\mathbb{E}[\exp[Z]] = \exp(\mu + \frac{1}{2}\sigma^2)$.
+Hint: if $Z \sim \mathcal{N}(\mu, \sigma^2)$, $\mathbb{E}[\exp(Z)] = \exp(\mu + \frac{1}{2}\sigma^2)$.
 
 ::: {.callout-note collapse="true"}
 ## Solution
 
-Since $\alpha_i + \mathcal{E}_i \sim \mathcal{N}(\mu, \sigma_\alpha^2 + \sigma_{\mathcal{E}}^2)$,
+Since $\alpha_i + \varepsilon_i \sim \mathcal{N}(\mu, \sigma_\alpha^2 + \sigma_{\varepsilon}^2)$, $\int\exp(\alpha_{i}+\varepsilon_{i})di = \exp(\mu + \frac{1}{2}(\sigma_{\varepsilon}^2 + \sigma_\alpha^2))$.
 
 Planner's FOC: $\frac{1}{C_i} = \lambda \quad \forall \, i$
 
@@ -110,7 +147,7 @@ where $\lambda$ is multiplier on resource constraint. Hence $C_i = C^* \quad \fo
 
 Plugging into resource constraint gives
 
-$$C^* = \exp(\mu + \frac{1}{2}(\sigma_{\mathcal{E}}^2 + \sigma_\alpha^2))$$
+$$C^* = \exp(\mu + \frac{1}{2}(\sigma_{\varepsilon}^2 + \sigma_\alpha^2))$$
 :::
 
 ### Part (c)
@@ -127,22 +164,26 @@ $$\Rightarrow \overline{C}(\alpha_i) = \exp(\alpha_i)$$
 :::
 
 ### Part (d)
+
+Show that $\overline{C} = \int \overline{C}(\alpha_{i})di = \exp(\mu + \frac{1}{2}\sigma^2_{\alpha})$
+
+::: {.callout-note collapse="true"}
 Since $\alpha_i \sim \mathcal{N}(\mu, \sigma_\alpha^2)$,
 
 $$\overline{C} = \int \overline{C}(\alpha_i) di = \exp(\mu + \frac{1}{2}\sigma_\alpha^2)$$
+:::
+
+
+### Part (e)
+Show that the planner's objective is $\mu$ in the baseline and $\mu + \frac{1}{2}(\sigma_{\varepsilon}^2 + \sigma_\alpha^2)$ at the optimum.
 
 ::: {.callout-note collapse="true"}
 ## Solution
 
-Baseline: $W = \int \log(C_i) = \int \log(\exp(\alpha_i + \mathcal{E}_i)) di = \mathbb{E}[\alpha_i + \mathcal{E}_i] = \mu$
+Baseline: $W = \int \log(C_i) = \int \log(\exp(\alpha_i + \varepsilon_i)) di = \mathbb{E}[\alpha_i + \varepsilon_i] = \mu$
 
-$$W^* = \log(C^*) = \mu + \frac{1}{2}(\sigma_{\mathcal{E}}^2 + \sigma_\alpha^2)$$
+$$W^* = \log(C^*) = \mu + \frac{1}{2}(\sigma_{\varepsilon}^2 + \sigma_\alpha^2)$$
 :::
-
-### Part (e)
-Show that the planner's objective is $\mu$ in the baseline and $\mu + \frac{1}{2}(\sigma_{\mathcal{E}}^2 + \sigma_\alpha^2)$ at the optimum.
-
-*(Solution included in part d above)*
 
 ### Part (f)
 Decompose $W^* - W$ into two components:
@@ -155,33 +196,33 @@ What is (1)? What is (2)? Which term represents the gains from insurance?
 ::: {.callout-note collapse="true"}
 ## Solution
 
-(1) $W^* - \log(\overline{C}) = \frac{1}{2}\sigma_{\mathcal{E}}^2 \leftarrow$ **Insurance**
+(1) $W^* - \log(\overline{C}) = \frac{1}{2}\sigma_{\varepsilon}^2 \leftarrow$ **Insurance**
 
 (2) $\log(\overline{C}) - W = \frac{1}{2}\sigma_\alpha^2 \leftarrow$ **Redistribution**
 :::
 
 ### Part (g)
-Make sense! $\sigma_{\mathcal{E}}^2$ is variance component in $y_{it}$ coming from risk, $\sigma_\alpha^2$ is the component coming from ex-ante inequality.
+Make sense! $\sigma_{\varepsilon}^2$ is variance component in $y_{it}$ coming from risk, $\sigma_\alpha^2$ is the component coming from ex-ante inequality.
 
 ::: {.callout-note collapse="true"}
 ## Interpretation
 
-$\sigma_{\mathcal{E}}^2$ measures the variance in income coming from idiosyncratic risk that individuals face. Insurance eliminates this uncertainty.
+$\sigma_{\varepsilon}^2$ measures the variance in income coming from idiosyncratic risk that individuals face. Insurance eliminates this uncertainty.
 
 $\sigma_\alpha^2$ measures the variance in income coming from permanent differences across individuals (ex-ante inequality). Redistribution addresses this component.
 :::
 
 ---
 
-## Problem 4: Two-Period Becker-Tomes Model
+## Problem 5: Two-Period Becker-Tomes Model
 
 Consider the 2-period Becker-Tomes model:
 
 $$\max_{C_1, C_2, X, A} U(C_1) + \beta U(C_2)$$
 
-$$\text{s.t.} \quad C_1 + \gamma X + A / (1+r) \leq \Omega + T / (1+r)$$
+$$\text{s.t.} \quad C_1 + \psi X + A / (1+r) \leq \Omega + T / (1+r)$$
 
-$$C_2 = A + wz X^S - T, \quad A \geq 0$$
+$$C_2 = A + wz X^\delta - T, \quad A \geq 0$$
 
 where $T$ is a lump-sum tax paid by generation 2 to generation 1.
 
@@ -193,7 +234,7 @@ Show that if a household is not constrained, the value of $T$ does not affect an
 
 If $A > 0$ at the optimum, can combine to get:
 
-$$C_1 + C_2/(1+r) \leq \Omega + wz X^S/(1+r) \quad (*)$$
+$$C_1 + C_2/(1+r) \leq \Omega + wz X^\delta/(1+r) \quad (*)$$
 
 s.t. household solves:
 
@@ -205,24 +246,24 @@ Hence $T$ does not feature.
 ### Part (b)
 Show that for constrained households:
 
-$$U'(C_1) = \frac{Swz X^{S-1}}{(1+r)} U'(C_2) \quad \text{and} \quad (1+r) \leq \frac{Swz X^{S-1}}{\gamma}$$
+$$U'(C_1) = \frac{\delta wz X^{\delta-1}}{(1+r)} U'(C_2) \quad \text{and} \quad (1+r) \leq \frac{\delta wz X^{\delta-1}}{\psi}$$
 
 ::: {.callout-note collapse="true"}
 ## Solution
 
 When $A = 0$, solve:
 
-$$\max_{C_1, C_2} U(\Omega + T/(1+r) - \gamma X) + \beta U(wz X^S - T)$$
+$$\max_{C_1, C_2} U(\Omega + T/(1+r) - \psi X) + \beta U(wz X^\delta - T)$$
 
 get
 
-$$U'(\Omega + T/(1+r) - \gamma X) = \beta Swz X^{S-1} U'(wz X^S - T)$$
+$$U'(\Omega + T/(1+r) - \psi X) = \beta \delta wz X^{\delta-1} U'(wz X^\delta - T)$$
 
-$$\Leftrightarrow U'(C_1) \gamma = \beta Swz^{S-1} U'(wz X^S - T)$$
+$$\Leftrightarrow U'(C_1) \psi = \beta \delta wz^{\delta-1} U'(wz X^\delta - T)$$
 
 Note that the marginal return (in assets) is
 
-$$-\frac{1}{1+r} U'(C_1) + \beta U'(C_2) \leq 0 \quad \Leftrightarrow (1+r) \leq \frac{Swz X^{S-1}}{\gamma}$$
+$$-\frac{1}{1+r} U'(C_1) + \beta U'(C_2) \leq 0 \quad \Leftrightarrow (1+r) \leq \frac{\delta wz X^{\delta-1}}{\psi}$$
 
 (if $> 0$, then household should optimally increase $A$ above 0).
 :::
@@ -244,24 +285,15 @@ Since allocations of constrained households are unaffected by $T$ $\Rightarrow$ 
 Note: not clear if welfare of children $\nearrow$ in this intervention.
 :::
 
-### Part (d)
-Interpret.
-
-::: {.callout-note collapse="true"}
-## Interpretation
-
-(Answers will vary based on interpretation)
-:::
-
 ---
 
-## Problem 5: Two-Period Model with Progressive Taxation
+## Problem 6: Two-Period Model with Progressive Taxation
 
-For same 2-period model, suppose budget constraints are now:
+For the same 2-period model, suppose budget constraints are now:
 
-$$C_1 + A/(1+r) + \gamma X \leq \lambda \Omega^{1-\tau}$$
+$$C_1 + A/(1+r) + \psi X \leq \lambda_{1} \Omega^{1-\tau}$$
 
-$$C_2 = A + \lambda_2 (wz X^S)^{1-\tau}, \quad A \geq 0$$
+$$C_2 = A + \lambda_2 (wz X^\delta)^{1-\tau}, \quad A \geq 0$$
 
 where $\lambda_1$ and $\lambda_2$ are chosen to balance budget in each period.
 
@@ -273,16 +305,16 @@ Write the FOC for unconstrained households.
 
 For unconstrained:
 
-$$(1+r) = \frac{\lambda_2 (1-\tau) \delta(w z) X^{S(1-\tau)-1}}{\gamma}$$
+$$(1+r) = \frac{\lambda_2 (1-\tau) \delta(w z) X^{\delta(1-\tau)-1}}{\psi}$$
 :::
 
 ### Part (b)
-Recall that the planner sets $(1+r) = \frac{wz X^{S-1}}{\gamma}$ in each household $i$. Can the equilibrium with taxation be efficient?
+Recall that the planner would set, if possible, $(1+r) = \frac{wz X^{\delta-1}}{\psi}$ in each household $i$. Can the equilibrium with taxation be efficient?
 
 ::: {.callout-note collapse="true"}
 ## Solution
 
-Comparing to the condition $(1+r) = \frac{Swz X^{S-1}}{\gamma}$,
+Comparing to the condition $(1+r) = \frac{\delta wz X^{\delta-1}}{\psi}$,
 
 taxation distorts the optimal allocation of financials $\Rightarrow$ human capital $\Rightarrow$ not efficient.
 :::
@@ -302,57 +334,13 @@ Assuming log utility, solve for $X$ when households are constrained. Comment on 
 ::: {.callout-note collapse="true"}
 ## Solution
 
-$$\max_X \log(\lambda_1 \Omega^{1-\tau} - \gamma X) + \beta \log(\lambda_2 wz X^S)^{1-\tau}$$
+$$\max_X \log(\lambda_1 \Omega^{1-\tau} - \psi X) + \beta \log(\lambda_2 wz X^\delta)^{1-\tau}$$
 
-$$\Rightarrow \frac{\gamma}{\lambda_1 \Omega^{1-\tau} - \gamma X} = \frac{\beta (1-\tau) S}{\chi}$$
+$$\Rightarrow \frac{\psi}{\lambda_1 \Omega^{1-\tau} - \psi X} = \frac{\beta (1-\tau) \delta}{\chi}$$
 
-$$\Leftrightarrow X = \frac{1}{\gamma} \times \frac{\beta (1-\tau) S}{1 + \beta(1-\tau) S} \lambda_1 \Omega^{1-\tau}$$
+$$\Leftrightarrow X = \frac{1}{\psi} \times \frac{\beta (1-\tau) \delta}{1 + \beta(1-\tau) \delta} \lambda_1 \Omega^{1-\tau}$$
 
-$$\Rightarrow \text{compared to } X = \frac{1}{\gamma} \frac{\beta S}{1+\beta S} \Omega$$
+$$\Rightarrow \text{compared to } X = \frac{1}{\psi} \frac{\beta \delta}{1+\beta \delta} \Omega$$
 
 So taxation also distorts investment in unconstrained. This could offset distortion from incomplete markets, but depends on parameters $(\lambda_1, \lambda_2, \tau)$.
 :::
-
----
-
-## Additional Notes
-
-### Example 3
-
-- same economy as example (2), **except** assume that individuals can insure against $\varepsilon_{it}$, i.e. in the benchmark for all $i$, $t$:
-$$ c_{it} = \exp\left(\mu_{\tau(i)} + \frac{1}{2}\sigma^2\right) $$
-- What does the decomposition look like in this case?
-
-### Example 4 (harder.. could make it easier)
-- Assume
-$$ y_{it} = \mu + \rho(y_{it-1} - \mu) + \zeta_{it},\ \ \zeta_{it}\sim{N}(0,\sigma^2_{\zeta}) $$
-- No borrowing or saving (consume $y_{it}$).
-
-### Exercise 4: Permanent vs Transitory
-
-Consider a model with both components:
-
-$$y_{it} = p_{it} + e_{it}$$
-
-where $p_{it} = p_{it-1} + \zeta_{it}$ and $e_{it} = \theta e_{it-1} + \varepsilon_{it}$
-
-**Questions**:
-
-a) Which component determines long-run inequality?
-b) Which component affects year-to-year volatility?
-c) What is the covariance in growth rates?
-d) How can we estimate this model
-
-### Exercise 5: Random walk + MA(1)
-
-$$y_{it} = p_{it} + \varepsilon_{it} + \theta \varepsilon_{i,t-1}$$
-
-a) What is the covariance in growth rates?
-b) How can we estimate this model?
-
-### Note:
-
-We can re-write the exercises above by changing the initial conditions (going from stationary to non-stationary)
-
-
-

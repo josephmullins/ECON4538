@@ -11,6 +11,7 @@ website:
       - lectures.qmd
       - recitations.qmd
       - assignments.qmd
+      - exercises.qmd
 
 format:
   html:

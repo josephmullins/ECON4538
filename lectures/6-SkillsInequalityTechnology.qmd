@@ -1,0 +1,444 @@
+---
+title: "Skills, Inequality, and the Technology of Skill Formation"
+bibliography: ../reading_list.bib
+format:
+  revealjs:
+    theme: solarized
+    transition: slide
+    chalkboard:
+        theme: whiteboard
+        chalk-effect: 0.0
+        chalk-width: 6
+jupyter: julia-1.11
+execute:
+  cache: true
+  freeze: auto
+---
+
+## Overview
+
+:::{.incremental}
+- Last time: The Becker-Tomes model showed how ability transmits across generations
+- Today: **What are the skills that drive inequality?**
+- Three main points:
+  1. Measurable cognitive and noncognitive skills explain life-cycle differences
+  2. We can estimate the technology of skill formation (and skills are malleable early in life)
+  3. Latent factor models are essential tools for dealing with measurement error
+- Key papers: @Heckman2006, @Cunha2007, @Cunha2008b
+:::
+
+# Skills and Life-Cycle Inequality
+
+## The Importance of Skills
+
+:::{.incremental}
+- Standard human capital theory: education → wages
+- But **which skills** drive labor market outcomes?
+- Two broad categories emerge:
+  - **Cognitive skills**: IQ, achievement tests, reasoning
+  - **Noncognitive skills**: personality, motivation, self-control
+- Question: Do both types matter for economic outcomes?
+:::
+
+## What Do We Mean by Noncognitive Skills?
+
+Examples from psychology literature:
+
+:::{.incremental}
+- **Locus of control**: belief about control over life outcomes
+- **Self-esteem**: confidence in one's abilities
+- **Time preference**: ability to delay gratification
+- **Conscientiousness**: persistence, organization
+- **Emotional stability**: managing stress and emotions
+:::
+
+. . .
+
+These are often **harder to measure** than cognitive ability, but may be equally important.
+
+## Evidence from Heckman, Stixrud, and Urzua (2006)
+
+Key empirical findings using NLSY79 data:
+
+:::{.incremental}
+- Both cognitive and noncognitive factors significantly affect:
+  - **Wages** (obvious)
+  - **Schooling attainment** (medium)
+  - **Risky behaviors**: smoking, crime, teen pregnancy (large!)
+- For many outcomes, **noncognitive skills matter more** than cognitive
+- The effects persist over the entire life cycle
+:::
+
+## Measuring Skills: The Challenge
+
+How do we measure cognitive and noncognitive ability?
+
+:::{.incremental}
+- **Cognitive**: ASVAB battery (Armed Services Vocational Aptitude Battery)
+  - Arithmetic reasoning, word knowledge, paragraph comprehension, etc.
+- **Noncognitive**: Psychological scales
+  - Rotter Locus of Control Scale
+  - Rosenberg Self-Esteem Scale
+- Problem: **Measurement error!**
+  - Tests are noisy proxies for true underlying ability
+  - Cannot simply use test scores as if they were true ability
+:::
+
+## Wages by Schooling and Cognitive Factor
+
+From @Heckman2006:
+
+:::{.incremental}
+- Higher cognitive ability → higher wages **at all schooling levels**
+- But the **gradient is steeper** for college graduates
+- This suggests **complementarity** between skills and education
+- Cognitive skills have bigger payoffs with more schooling
+:::
+
+. . .
+
+*[Figure would show wage distributions by cognitive factor quintiles and schooling level]*
+
+## Wages by Schooling and Noncognitive Factor
+
+From @Heckman2006:
+
+:::{.incremental}
+- Noncognitive skills **also** predict wages
+- The pattern is similar: higher noncognitive ability → higher wages
+- Effects are **large and persistent**
+- For some outcomes (e.g., crime), noncognitive effects **dominate** cognitive
+:::
+
+. . .
+
+*[Figure would show wage distributions by noncognitive factor quintiles and schooling level]*
+
+## Educational Attainment and Skills
+
+:::{.incremental}
+- Both cognitive and noncognitive skills predict years of schooling
+- **Noncognitive skills are particularly important** for college completion
+  - Requires persistence, motivation, delayed gratification
+- This helps explain the Becker-Tomes "psychic costs"
+  - Not just ability to do the work
+  - Also willingness to persist, study habits, etc.
+:::
+
+# The Technology of Skill Formation
+
+## Skills Are Produced
+
+From the Becker-Tomes model, we had:
+$$ H_{t+1} = f(I_t, \theta_t) $$
+
+:::{.incremental}
+- But what is the **technology** $f(\cdot)$?
+- How do cognitive and noncognitive skills interact?
+- Are there **critical periods** for investment?
+- Can we compensate for early disadvantage with late investment?
+:::
+
+## The CES Technology of Skill Formation
+
+From @Cunha2007, the technology takes the form:
+
+$$
+\theta_{k,t+1} = \left[\gamma_{1k}I_{k,t}^{\phi_k} + \gamma_{2k}\theta_{k,t}^{\phi_k}\right]^{1/\phi_k}
+$$
+
+where:
+
+:::{.incremental}
+- $\theta_{k,t}$ is skill $k$ (cognitive or noncognitive) at age $t$
+- $I_{k,t}$ is investment in skill $k$ at age $t$
+- $\phi_k$ governs **substitutability** between early and late investments
+- This is a **self-productive** technology: skills today produce skills tomorrow
+:::
+
+## Key Parameters: Elasticity of Substitution
+
+The **elasticity of substitution** is:
+$$ \sigma_k = \frac{1}{1-\phi_k} $$
+
+:::{.incremental}
+- If $\sigma_k$ is **high**: early and late investments are **substitutes**
+  - Can compensate for poor early environment with later remediation
+- If $\sigma_k$ is **low**: early and late investments are **complements**
+  - Early investment is crucial; hard to compensate later
+- Empirical question: What are $\sigma_{\text{cog}}$ and $\sigma_{\text{noncog}}$?
+:::
+
+## Self-Productivity and Dynamic Complementarity
+
+Two key properties:
+
+:::{.incremental}
+1. **Self-productivity**: $\frac{\partial \theta_{k,t+1}}{\partial \theta_{k,t}} > 0$
+   - Skills beget skills
+   - Early advantage compounds over time
+2. **Dynamic complementarity**: $\frac{\partial^2 \theta_{k,t+1}}{\partial I_{k,t} \partial \theta_{k,t}} > 0$
+   - Early skills make later investments more productive
+   - This creates **multiplier effects**
+:::
+
+. . .
+
+These properties have profound implications for policy timing.
+
+## Critical and Sensitive Periods
+
+From @Cunha2007:
+
+:::{.incremental}
+- **Critical period**: A time when $\sigma_k \approx 0$ (pure complements)
+  - Investment **must** happen then; cannot compensate later
+- **Sensitive period**: A time when $\sigma_k$ is low but not zero
+  - Investment is especially productive, but some later compensation possible
+- Evidence: **Early childhood is a sensitive period** for both skill types
+- But noncognitive skills remain more malleable into adolescence
+:::
+
+## The Importance of Early Investment
+
+Key finding from @Cunha2007:
+
+:::{.incremental}
+- For cognitive skills: $\sigma_{\text{cog}}$ is **low** in early childhood
+  - Early investments are crucial
+  - Difficult to compensate for early deprivation
+- For noncognitive skills: $\sigma_{\text{noncog}}$ is somewhat **higher**
+  - More room for remediation in adolescence
+  - But still important to invest early
+:::
+
+. . .
+
+**Policy implication**: Early childhood interventions may have the highest returns.
+
+## Cross-Productivity of Skills
+
+Another important feature from @Cunha2008b:
+
+$$
+\frac{\partial \theta_{C,t+1}}{\partial \theta_{N,t}} > 0, \quad \frac{\partial \theta_{N,t+1}}{\partial \theta_{C,t}} > 0
+$$
+
+:::{.incremental}
+- Cognitive skills help produce noncognitive skills (and vice versa)
+- This creates **synergies** across skill dimensions
+- Holistic interventions may be more effective than targeted ones
+:::
+
+# Latent Factor Models and Measurement Error
+
+## The Measurement Problem
+
+Fundamental challenge:
+
+:::{.incremental}
+- We want to study the effect of **true skills** $\theta$ on outcomes $Y$
+- But we only observe **noisy measures** $M$ of skills
+- If we use $M$ instead of $\theta$:
+  - **Attenuation bias**: underestimate true effects
+  - **Omitted variable bias**: if measures are imperfect proxies
+- Classical measurement error: $M = \theta + \varepsilon$
+  - Bias toward zero: $\text{plim}\,\hat{\beta} = \beta \frac{\text{Var}(\theta)}{\text{Var}(\theta) + \text{Var}(\varepsilon)}$
+:::
+
+## The Latent Factor Approach
+
+Key idea from @Heckman2006:
+
+:::{.incremental}
+1. Assume there are $K$ latent factors $\theta = (\theta_1, \ldots, \theta_K)$
+2. We observe $J$ measurements $M = (M_1, \ldots, M_J)$
+3. Each measurement loads on the factors:
+   $$ M_j = \mu_j + \sum_{k=1}^K \alpha_{jk}\theta_k + \varepsilon_j $$
+4. Use **multiple measures** to identify the factors
+5. Correct for measurement error in estimating effects on outcomes
+:::
+
+## Factor Model Structure {.smaller}
+
+The system has three components:
+
+**Measurement equations**:
+$$ M_j = \mu_j + \alpha_{j1}\theta_1 + \alpha_{j2}\theta_2 + \varepsilon_j, \quad j = 1, \ldots, J $$
+
+**Outcome equations**:
+$$ Y = X\beta + \gamma_1\theta_1 + \gamma_2\theta_2 + u $$
+
+**Choice equations**:
+$$ S = \mathbb{1}[Z\delta + \lambda_1\theta_1 + \lambda_2\theta_2 + v > 0] $$
+
+where $\theta_1, \theta_2$ are latent factors (e.g., cognitive and noncognitive ability).
+
+## Identification Strategy
+
+How do we identify this model?
+
+:::{.incremental}
+1. **Normalizations**: Set scale of factors
+   - E.g., $\alpha_{11} = 1$, $\alpha_{22} = 1$
+2. **Exclusion restrictions**: Some measurements don't load on all factors
+   - Cognitive tests only load on $\theta_1$
+   - Personality scales only load on $\theta_2$
+3. **Multiple measurements**: Need $J \geq 2K + 1$ typically
+4. **Covariance structure**: Factor model implies testable restrictions
+:::
+
+## What the Factor Model Buys Us
+
+:::{.incremental}
+1. **Correct inference** about effects of skills on outcomes
+   - No attenuation bias from measurement error
+2. **Decomposition** of outcomes into skill components
+   - How much is due to cognitive vs. noncognitive?
+3. **Predicted factors** for each individual
+   - Can use in subsequent analysis
+4. **Tests of model assumptions**
+   - Overidentification restrictions
+:::
+
+## Example: NLSY79 Data
+
+@Heckman2006 use:
+
+**Cognitive measurements**:
+- ASVAB: Arithmetic reasoning, word knowledge, paragraph comprehension, math knowledge, coding speed
+
+**Noncognitive measurements**:
+- Rotter Locus of Control Scale
+- Rosenberg Self-Esteem Scale
+
+. . .
+
+With two factors and multiple measures, the model is **overidentified** and can be tested.
+
+## Estimating the Factor Distribution
+
+Key methodological point from @Cunha2007:
+
+:::{.incremental}
+- Traditional factor analysis assumes **normal** factors
+- But factors may be **non-normal** in reality
+- Solution: Use **mixture of normals**
+  $$ f(\theta_k) = \sum_{j=1}^{J_k} p_{kj} \phi(\theta_k | \mu_{kj}, \sigma_{kj}^2) $$
+- This is flexible and nests normality as a special case
+- Allows for skewness, multimodality, etc.
+:::
+
+## Separating Heterogeneity from Uncertainty
+
+Another key use of factor models (from the @Cunha2007 paper):
+
+:::{.incremental}
+- Observed wage variance has two sources:
+  1. **Heterogeneity**: differences in $\theta$ known to agent at age 17
+  2. **Uncertainty**: shocks $\varepsilon$ unknown at age 17
+- Factor model + choice data lets us **separate these**
+- How? If $\theta \in I$ (agent's info set), it affects **choices**
+- If $\varepsilon \notin I$, it doesn't affect choices
+- By using choice data, we learn what agents knew when
+:::
+
+## Findings on Predictability
+
+From @Cunha2007:
+
+:::{.incremental}
+- About **80% of lifetime earnings variance** is predictable at age 17
+- Only **20%** is due to genuine uncertainty ("luck")
+- Most inequality is due to **heterogeneity** in skills
+- This heterogeneity is **measurable** using factor methods
+:::
+
+. . .
+
+**Implication**: Early interventions can have large effects because most variance is in place early.
+
+# Synthesis and Policy Implications
+
+## Bringing It Together
+
+What have we learned?
+
+:::{.incremental}
+1. **Both** cognitive and noncognitive skills matter enormously
+2. Noncognitive skills are often **more important** than we thought
+3. Skills have a **production technology** with:
+   - Self-productivity
+   - Dynamic complementarity
+   - Low substitutability early in life
+4. **Measurement error** is severe; factor models are essential
+5. Most earnings inequality is **heterogeneity** (not luck)
+:::
+
+## Policy Implications {.smaller}
+
+:::{.incremental}
+1. **Invest early**: Critical and sensitive periods suggest high returns to early childhood
+2. **Holistic interventions**: Target both cognitive and noncognitive skills
+3. **Compensatory programs**: May need to be **very early** due to low substitutability
+4. **Measurement matters**:
+   - Policy evaluations need to account for measurement error
+   - Standard approaches may severely understate program effects
+5. **Targeting**: Focus on children from disadvantaged backgrounds
+   - They face both low $\theta$ and low $I$
+   - Dynamic complementarity means early intervention is most effective for them
+:::
+
+## The Perry Preschool Program
+
+A famous example: @heckman2010
+
+:::{.incremental}
+- High-quality preschool for disadvantaged 3-4 year olds
+- **Large, persistent effects** on:
+  - Educational attainment
+  - Earnings
+  - Crime reduction
+- Effects work through **both cognitive and noncognitive** channels
+- But **noncognitive effects persist** while cognitive fade
+- Illustrates importance of early, comprehensive intervention
+:::
+
+## Remaining Questions
+
+:::{.incremental}
+- **Which** noncognitive skills are most malleable?
+- **How** do parental investments respond to child skills?
+  - Reinforcing or compensating?
+- **Can** we remediate in adolescence?
+  - Evidence suggests yes for noncognitive, harder for cognitive
+- **What policies** are most cost-effective?
+- How do skills interact with **institutions** (schools, labor markets)?
+:::
+
+## Next Steps
+
+:::{.incremental}
+- Next lectures will explore:
+  - Quantitative models of intergenerational mobility
+  - Parenting and investments
+  - Policy evaluation: ECE, safety net, etc.
+- We'll use the framework developed today as a foundation
+- Recurring theme: **Dynamic complementarity** makes timing crucial
+:::
+
+## Key Takeaways
+
+:::{.incremental}
+1. Skills are **multidimensional**: cognitive and noncognitive both matter
+2. Skills are **produced** according to a technology with important properties
+3. **Early life** is a critical period due to low substitutability
+4. **Measurement error** is a first-order problem; factor models solve it
+5. Most inequality is **heterogeneity**, not luck
+6. **Policy**: Invest early, invest holistically, target disadvantaged
+:::
+
+## References
+
+::: {#refs}
+:::
