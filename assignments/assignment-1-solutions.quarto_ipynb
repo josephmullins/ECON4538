@@ -1,0 +1,245 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Assignment 1 - Solutions\"\n",
+        "bibliography: ../reading_list.bib\n",
+        "---\n",
+        "\n",
+        "\n",
+        "1. Following [Recitation 1](../recitations/recitation-1.qmd), load the [CPS-ASEC data](https://github.com/josephmullins/ECON4538/tree/main/data) and perform the same steps to deflate nominal \\$ values to 2017 dollars.\n",
+        "\n",
+        "This is just a matter of copy-pasting code:\n"
+      ],
+      "id": "6929260e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "using DataFrames, CSV, StatsPlots, DataFramesMeta, StatsBase\n",
+        "pce = CSV.read(\"../data/PCE_index.csv\",DataFrame)\n",
+        "\n",
+        "data = @chain CSV.read(\"../data/asec_1970_2019.csv\",DataFrame) begin\n",
+        "  innerjoin(pce,on=:YEAR)\n",
+        "  @transform begin \n",
+        "    # fill in some missing values and deflat\n",
+        "    :EITC = 100 * coalesce.(:EITCRED,0.) ./ :PCE\n",
+        "    :CTC = 100 * coalesce.(:ACTCCRD,0.) ./ :PCE\n",
+        "    :SSI = 100 * coalesce.(:INCSSI,0.) ./ :PCE\n",
+        "    :WELF = 100 * :INCWELFR ./ :PCE\n",
+        "    :SS = 100 * :INCSS ./ :PCE\n",
+        "    # create the income measures\n",
+        "    :EARN = 100 * (:INCWAGE .+ :INCBUS) ./ :PCE #<- deflate earnings (2017 base)\n",
+        "    :LABINC = 100 * :INCWAGE ./ :PCE #<- just labor income\n",
+        "    end\n",
+        "    @transform :GOV = :EITC .+ :CTC .+ :SSI .+ :WELF .+ :SS\n",
+        "end"
+      ],
+      "id": "783a5ce4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "2. In @Heathcote2023, the *Household Pooling index* $HP_{t}$ is defined as\n",
+        "$$ HP_{t} = \\frac{var(y_{it}) - var(\\bar{y}_{it})}{var(y_{it})}$$\n",
+        "where $\\bar{y}_{it}$ is per-person income for household $i$ at time $t$. Calculate this index when $y$ is defined solely as labor market earnings (i.e. wage earnings) and when $y$ is defined as labor market + business income. Plot both lines to compare them and comment on any differences.\n",
+        "\n",
+        "The code block below calculates equivalized income and calculates the pooling measure for each measure of income:\n"
+      ],
+      "id": "068c87b0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "pooling = @chain data begin\n",
+        "    @subset .!ismissing.(:CPSID) #<- drop all obs where this variable is missing (all of 1970)\n",
+        "    @select :CPSID :CPSIDP :YEAR :EARN :INCWAGE\n",
+        "    stack(Not([:CPSID,:CPSIDP,:YEAR]))\n",
+        "    groupby([:YEAR,:CPSID,:variable])\n",
+        "    @transform :value_equiv = mean(:value)\n",
+        "    @groupby([:YEAR,:variable])\n",
+        "    @combine :pooling = (var(:value) - var(:value_equiv)) / var(:value)\n",
+        "    #unstack([:YEAR,:CPSID],:variable,:value)\n",
+        "end\n",
+        "\n",
+        "@df pooling plot(:YEAR,:pooling,group=:variable)"
+      ],
+      "id": "3d84feb0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This way of making the calculation is a particular weighting scheme that weights each pooled value $\\bar{y}_{it}$ according to the number of individuals in the household. An alternative would be the unweighted version, which looks like this:\n"
+      ],
+      "id": "07be5041"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "var_pooled = @chain data begin\n",
+        "    @subset .!ismissing.(:CPSID) #<- drop all obs where this variable is missing (all of 1970)\n",
+        "    @select :CPSID :CPSIDP :YEAR :EARN :INCWAGE\n",
+        "    stack(Not([:CPSID,:CPSIDP,:YEAR]))\n",
+        "    groupby([:YEAR,:CPSID,:variable])\n",
+        "    @combine :value_equiv = mean(:value)\n",
+        "    @groupby([:YEAR,:variable])\n",
+        "    @combine :var_pooled = var(:value_equiv)\n",
+        "end\n",
+        "\n",
+        "pooling_alt = @chain data begin\n",
+        "    @subset .!ismissing.(:CPSID) #<- drop all obs where this variable is missing (all of 1970)\n",
+        "    @select :CPSID :CPSIDP :YEAR :EARN :INCWAGE\n",
+        "    stack(Not([:CPSID,:CPSIDP,:YEAR]))\n",
+        "    groupby([:YEAR,:variable])\n",
+        "    @combine :var = var(:value)\n",
+        "    innerjoin(_,var_pooled,on=[:YEAR,:variable])\n",
+        "    @transform :pooling = (:var .- :var_pooled) ./ :var\n",
+        "end\n",
+        "\n",
+        "@df pooling_alt plot(:YEAR,:pooling,group=:variable)\n"
+      ],
+      "id": "c8f00831",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Points for either way (even though I think the first method is most sensible).\n",
+        "\n",
+        "\n",
+        "3. Calculate and plot an equivalent index for government transfers where now $y_{it}$ is per-person household earnings (business + wage income) and $\\bar{y}_{it}$ is per-person household income + government transfers. You can follow the variable for transfers we constructed in Recitation 1. Name at least one way that this measure differs from the measure used to construct the Government redistribution index in Figure 19 of @Heathcote2023.\n"
+      ],
+      "id": "de2adaae"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "gov_pooling = @chain data begin\n",
+        "    @subset .!ismissing.(:CPSID) #<- drop all obs where this variable is missing (all of 1970)\n",
+        "    @transform :INCPOST = :EARN .+ :GOV\n",
+        "    @select :YEAR :CPSID :CPSIDP :INCPOST :EARN\n",
+        "    stack(Not([:CPSID,:CPSIDP,:YEAR]))\n",
+        "    groupby([:YEAR,:CPSID,:variable])\n",
+        "    @transform :value = mean(:value) #<- could use @combine here for different weighting\n",
+        "    @groupby([:YEAR,:variable])\n",
+        "    @combine :var = var(:value)\n",
+        "    #@combine :pooling = (var(:value) - var(:value_equiv)) / var(:value)\n",
+        "    unstack(:YEAR,:variable,:var)\n",
+        "    @transform :pooling = (:EARN .- :INCPOST) ./ :EARN\n",
+        "end\n",
+        "\n",
+        "@df gov_pooling plot(:YEAR,:pooling)\n"
+      ],
+      "id": "10df39fa",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Consulting the appendix in the paper, we see that there are several sources of government transfers used in the paper that we do not use here. Further, we do calculate taxes using TAXSIM as in the paper.\n",
+        "\n",
+        "4. Re-compute this index for government transfers for households below the 20th percentile of per-person income in each year. Comment on any differences with the previous figure.\n"
+      ],
+      "id": "7290c9be"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "gov_pooling = @chain data begin\n",
+        "    @subset .!ismissing.(:CPSID) #<- drop all obs where this variable is missing (all of 1970)\n",
+        "    @transform :INCPOST = :EARN .+ :GOV\n",
+        "    @select :YEAR :CPSID :CPSIDP :INCPOST :EARN\n",
+        "    groupby([:YEAR,:CPSID])\n",
+        "    @combine :EARN = mean(:EARN) :INCPOST = mean(:INCPOST) #<- could use @transform here for different weighting,\n",
+        "    @groupby(:YEAR)\n",
+        "    @transform :q20 = quantile(:EARN,0.2) #<- keep bottom 20% in each year\n",
+        "    @subset :EARN .< :q20\n",
+        "    @groupby(:YEAR)\n",
+        "    @combine :pooling = (var(:EARN) .- var(:INCPOST)) ./ var(:EARN)\n",
+        "end\n",
+        "\n",
+        "@df gov_pooling plot(:YEAR,:pooling)\n"
+      ],
+      "id": "9a6287cc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "5. In Recitation 1, we plotted the share of total transfers coming from each of five programs. Re-calculate this share for only the poorest 20% of households (as measured by per-person earnings) and comment on any differences you see compared to the original figure (**extra credit**)\n"
+      ],
+      "id": "aeaa5cff"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "house = @chain data begin\n",
+        "    @subset .!ismissing.(:CPSID) #<- drop all obs where this variable is missing (all of 1970)\n",
+        "    @select :CPSID :CPSIDP :YEAR :EARN :GOV :SS :SSI :WELF :CTC :EITC\n",
+        "    stack(Not([:CPSID,:CPSIDP,:YEAR]))\n",
+        "    groupby([:YEAR,:CPSID,:variable])\n",
+        "    @combine :value = mean(:value)\n",
+        "    unstack([:YEAR,:CPSID],:variable,:value)\n",
+        "end\n",
+        "\n",
+        "@chain house begin\n",
+        "    groupby(:YEAR)\n",
+        "    @transform :q20 = quantile(:EARN,0.2) #<- keep bottom 20% in each year\n",
+        "    @subset :EARN .< :q20\n",
+        "    groupby(:YEAR)\n",
+        "    @combine  begin \n",
+        "        :eitc = mean(:EITC)  / mean(:GOV)\n",
+        "        :ssi = mean(:SSI)  / mean(:GOV)\n",
+        "        :welf = mean(:WELF)  / mean(:GOV)\n",
+        "        :ctc = mean(:CTC)  / mean(:GOV)\n",
+        "        :ss = mean(:SS)  / mean(:GOV)\n",
+        "    end\n",
+        "    stack(Not(:YEAR))\n",
+        "    @df _ plot(:YEAR,:value,group = :variable,linewidth = 3.)\n",
+        "end"
+      ],
+      "id": "5be7022f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Transfers from the child tax credit make up a much smaller portion of total transfers, reflecting the fact that these credits are effectively targeted to higher earning households. "
+      ],
+      "id": "4e28d7b5"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "julia-1.11",
+      "language": "julia",
+      "display_name": "Julia 1.11.3",
+      "path": "/Users/mullinsj/Library/Jupyter/kernels/julia-1.11"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

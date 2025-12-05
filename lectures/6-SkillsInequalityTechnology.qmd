@@ -23,7 +23,7 @@ execute:
 - Three main points:
   1. Measurable cognitive and noncognitive skills explain life-cycle differences
   2. We can estimate the technology of skill formation (and skills are malleable early in life)
-  3. Latent factor models are essential tools for dealing with measurement error
+  3. *Latent factor models* are essential tools for dealing with measurement error
 - Key papers: @Heckman2006, @Cunha2007, @Cunha2008b
 :::
 
@@ -62,8 +62,8 @@ Key empirical findings using NLSY79 data:
 
 :::{.incremental}
 - Both cognitive and noncognitive factors significantly affect:
-  - **Wages** (obvious)
-  - **Schooling attainment** (medium)
+  - **Wages** 
+  - **Schooling attainment** 
   - **Risky behaviors**: smoking, crime, teen pregnancy (large!)
 - For many outcomes, **noncognitive skills matter more** than cognitive
 - The effects persist over the entire life cycle
@@ -84,7 +84,21 @@ How do we measure cognitive and noncognitive ability?
   - Cannot simply use test scores as if they were true ability
 :::
 
-## Wages by Schooling and Cognitive Factor
+## Wages and Skills
+
+## Men's Wage Profiles
+
+![](../papers/figures/hsu_wages_men.png)
+
+Source: @Heckman2006
+
+## Women's Wage Profiles
+
+![](../papers/figures/hsu_wages_women.png)
+
+Source: @Heckman2006
+
+## Complementarity with Schooling
 
 From @Heckman2006:
 
@@ -95,13 +109,21 @@ From @Heckman2006:
 - Cognitive skills have bigger payoffs with more schooling
 :::
 
-. . .
+## Wage Profiles: High School Dropouts
 
-*[Figure would show wage distributions by cognitive factor quintiles and schooling level]*
+![](../papers/figures/hsu_wages_dropouts.png)
 
-## Wages by Schooling and Noncognitive Factor
+## Wage Profiles: Some College
 
-From @Heckman2006:
+![](../papers/figures/hsu_wages_2college.png)
+
+
+## Wage Profiles: 4-Year College Graduates
+
+![](../papers/figures/hsu_wages_4college.png)
+
+
+## Noncognitive Skills are Important
 
 :::{.incremental}
 - Noncognitive skills **also** predict wages
@@ -110,9 +132,6 @@ From @Heckman2006:
 - For some outcomes (e.g., crime), noncognitive effects **dominate** cognitive
 :::
 
-. . .
-
-*[Figure would show wage distributions by noncognitive factor quintiles and schooling level]*
 
 ## Educational Attainment and Skills
 
@@ -120,7 +139,6 @@ From @Heckman2006:
 - Both cognitive and noncognitive skills predict years of schooling
 - **Noncognitive skills are particularly important** for college completion
   - Requires persistence, motivation, delayed gratification
-- This helps explain the Becker-Tomes "psychic costs"
   - Not just ability to do the work
   - Also willingness to persist, study habits, etc.
 :::
@@ -157,16 +175,25 @@ where:
 :::
 
 ## Key Parameters: Elasticity of Substitution
-
 The **elasticity of substitution** is:
 $$ \sigma_k = \frac{1}{1-\phi_k} $$
 
 :::{.incremental}
-- If $\sigma_k$ is **high**: early and late investments are **substitutes**
+- If $\sigma_k\in(0,1]$: early and late investments are **substitutes**
   - Can compensate for poor early environment with later remediation
-- If $\sigma_k$ is **low**: early and late investments are **complements**
+- If $\sigma_k\in(\infty,1]$: early and late investments are **complements**
   - Early investment is crucial; hard to compensate later
 - Empirical question: What are $\sigma_{\text{cog}}$ and $\sigma_{\text{noncog}}$?
+:::
+
+## Exercise
+
+:::{.incremental}
+- Take the derivatives of the CES with respect to $I$
+- Solve the problem:
+$$ \min p_{1}I_{1} + p_{2}I_{2} s.t. f(I_{1},I_{2}) \geq 1 $$
+where $f$ is a CES production function and $I_{t}$ is investment in period $t$
+- What happens when investment is more costly in period 1?
 :::
 
 ## Self-Productivity and Dynamic Complementarity
@@ -191,7 +218,7 @@ These properties have profound implications for policy timing.
 From @Cunha2007:
 
 :::{.incremental}
-- **Critical period**: A time when $\sigma_k \approx 0$ (pure complements)
+- **Critical period**: A time when $\sigma_k \leq 0$ (pure complements)
   - Investment **must** happen then; cannot compensate later
 - **Sensitive period**: A time when $\sigma_k$ is low but not zero
   - Investment is especially productive, but some later compensation possible
@@ -201,7 +228,7 @@ From @Cunha2007:
 
 ## The Importance of Early Investment
 
-Key finding from @Cunha2007:
+A review of evidence in @Cunha2007:
 
 :::{.incremental}
 - For cognitive skills: $\sigma_{\text{cog}}$ is **low** in early childhood
@@ -248,7 +275,7 @@ Fundamental challenge:
 
 ## The Latent Factor Approach
 
-Key idea from @Heckman2006:
+Example from @Heckman2006:
 
 :::{.incremental}
 1. Assume there are $K$ latent factors $\theta = (\theta_1, \ldots, \theta_K)$
@@ -305,33 +332,18 @@ How do we identify this model?
 
 @Heckman2006 use:
 
-**Cognitive measurements**:
-- ASVAB: Arithmetic reasoning, word knowledge, paragraph comprehension, math knowledge, coding speed
-
-**Noncognitive measurements**:
-- Rotter Locus of Control Scale
-- Rosenberg Self-Esteem Scale
+- **Cognitive measurements**:
+  - ASVAB: Arithmetic reasoning, word knowledge, paragraph comprehension, math knowledge, coding speed
+- **Noncognitive measurements**:
+  - Rotter Locus of Control Scale, Rosenberg Self-Esteem Scale
 
 . . .
 
 With two factors and multiple measures, the model is **overidentified** and can be tested.
 
-## Estimating the Factor Distribution
-
-Key methodological point from @Cunha2007:
-
-:::{.incremental}
-- Traditional factor analysis assumes **normal** factors
-- But factors may be **non-normal** in reality
-- Solution: Use **mixture of normals**
-  $$ f(\theta_k) = \sum_{j=1}^{J_k} p_{kj} \phi(\theta_k | \mu_{kj}, \sigma_{kj}^2) $$
-- This is flexible and nests normality as a special case
-- Allows for skewness, multimodality, etc.
-:::
-
 ## Separating Heterogeneity from Uncertainty
 
-Another key use of factor models (from the @Cunha2007 paper):
+Another interesting use of factor models (from the @Cunha2007):
 
 :::{.incremental}
 - Observed wage variance has two sources:
@@ -387,6 +399,7 @@ What have we learned?
 5. **Targeting**: Focus on children from disadvantaged backgrounds
    - They face both low $\theta$ and low $I$
    - Dynamic complementarity means early intervention is most effective for them
+   - No equity-efficiency trade-off
 :::
 
 ## The Perry Preschool Program
@@ -404,28 +417,6 @@ A famous example: @heckman2010
 - Illustrates importance of early, comprehensive intervention
 :::
 
-## Remaining Questions
-
-:::{.incremental}
-- **Which** noncognitive skills are most malleable?
-- **How** do parental investments respond to child skills?
-  - Reinforcing or compensating?
-- **Can** we remediate in adolescence?
-  - Evidence suggests yes for noncognitive, harder for cognitive
-- **What policies** are most cost-effective?
-- How do skills interact with **institutions** (schools, labor markets)?
-:::
-
-## Next Steps
-
-:::{.incremental}
-- Next lectures will explore:
-  - Quantitative models of intergenerational mobility
-  - Parenting and investments
-  - Policy evaluation: ECE, safety net, etc.
-- We'll use the framework developed today as a foundation
-- Recurring theme: **Dynamic complementarity** makes timing crucial
-:::
 
 ## Key Takeaways
 

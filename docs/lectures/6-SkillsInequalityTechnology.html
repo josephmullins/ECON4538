@@ -164,7 +164,7 @@
 <ol type="1">
 <li class="fragment">Measurable cognitive and noncognitive skills explain life-cycle differences</li>
 <li class="fragment">We can estimate the technology of skill formation (and skills are malleable early in life)</li>
-<li class="fragment">Latent factor models are essential tools for dealing with measurement error</li>
+<li class="fragment"><em>Latent factor models</em> are essential tools for dealing with measurement error</li>
 </ol></li>
 <li class="fragment">Key papers: <span class="citation" data-cites="Heckman2006">J. Heckman, Stixrud, and Urzua (<a href="#/references" role="doc-biblioref" onclick="">2006</a>)</span>, <span class="citation" data-cites="Cunha2007">Cunha and Heckman (<a href="#/references" role="doc-biblioref" onclick="">2007</a>)</span>, <span class="citation" data-cites="Cunha2008b">Cunha and Heckman (<a href="#/references" role="doc-biblioref" onclick="">2008</a>)</span></li>
 </ul>
@@ -213,8 +213,8 @@
 <ul>
 <li class="fragment">Both cognitive and noncognitive factors significantly affect:
 <ul>
-<li class="fragment"><strong>Wages</strong> (obvious)</li>
-<li class="fragment"><strong>Schooling attainment</strong> (medium)</li>
+<li class="fragment"><strong>Wages</strong></li>
+<li class="fragment"><strong>Schooling attainment</strong></li>
 <li class="fragment"><strong>Risky behaviors</strong>: smoking, crime, teen pregnancy (large!)</li>
 </ul></li>
 <li class="fragment">For many outcomes, <strong>noncognitive skills matter more</strong> than cognitive</li>
@@ -244,8 +244,21 @@
 </ul>
 </div>
 </section>
-<section id="wages-by-schooling-and-cognitive-factor" class="slide level2">
-<h2>Wages by Schooling and Cognitive Factor</h2>
+<section id="wages-and-skills" class="slide level2">
+<h2>Wages and Skills</h2>
+</section>
+<section id="mens-wage-profiles" class="slide level2">
+<h2>Men’s Wage Profiles</h2>
+
+<img data-src="../papers/figures/hsu_wages_men.png" class="r-stretch"><p>Source: <span class="citation" data-cites="Heckman2006">J. Heckman, Stixrud, and Urzua (<a href="#/references" role="doc-biblioref" onclick="">2006</a>)</span></p>
+</section>
+<section id="womens-wage-profiles" class="slide level2">
+<h2>Women’s Wage Profiles</h2>
+
+<img data-src="../papers/figures/hsu_wages_women.png" class="r-stretch"><p>Source: <span class="citation" data-cites="Heckman2006">J. Heckman, Stixrud, and Urzua (<a href="#/references" role="doc-biblioref" onclick="">2006</a>)</span></p>
+</section>
+<section id="complementarity-with-schooling" class="slide level2">
+<h2>Complementarity with Schooling</h2>
 <p>From <span class="citation" data-cites="Heckman2006">J. Heckman, Stixrud, and Urzua (<a href="#/references" role="doc-biblioref" onclick="">2006</a>)</span>:</p>
 <div>
 <ul>
@@ -255,13 +268,21 @@
 <li class="fragment">Cognitive skills have bigger payoffs with more schooling</li>
 </ul>
 </div>
-<div class="fragment">
-<p><em>[Figure would show wage distributions by cognitive factor quintiles and schooling level]</em></p>
-</div>
 </section>
-<section id="wages-by-schooling-and-noncognitive-factor" class="slide level2">
-<h2>Wages by Schooling and Noncognitive Factor</h2>
-<p>From <span class="citation" data-cites="Heckman2006">J. Heckman, Stixrud, and Urzua (<a href="#/references" role="doc-biblioref" onclick="">2006</a>)</span>:</p>
+<section id="wage-profiles-high-school-dropouts" class="slide level2">
+<h2>Wage Profiles: High School Dropouts</h2>
+
+<img data-src="../papers/figures/hsu_wages_dropouts.png" class="r-stretch"></section>
+<section id="wage-profiles-some-college" class="slide level2">
+<h2>Wage Profiles: Some College</h2>
+
+<img data-src="../papers/figures/hsu_wages_2college.png" class="r-stretch"></section>
+<section id="wage-profiles-4-year-college-graduates" class="slide level2">
+<h2>Wage Profiles: 4-Year College Graduates</h2>
+
+<img data-src="../papers/figures/hsu_wages_4college.png" class="r-stretch"></section>
+<section id="noncognitive-skills-are-important" class="slide level2">
+<h2>Noncognitive Skills are Important</h2>
 <div>
 <ul>
 <li class="fragment">Noncognitive skills <strong>also</strong> predict wages</li>
@@ -269,9 +290,6 @@
 <li class="fragment">Effects are <strong>large and persistent</strong></li>
 <li class="fragment">For some outcomes (e.g., crime), noncognitive effects <strong>dominate</strong> cognitive</li>
 </ul>
-</div>
-<div class="fragment">
-<p><em>[Figure would show wage distributions by noncognitive factor quintiles and schooling level]</em></p>
 </div>
 </section>
 <section id="educational-attainment-and-skills" class="slide level2">
@@ -282,9 +300,6 @@
 <li class="fragment"><strong>Noncognitive skills are particularly important</strong> for college completion
 <ul>
 <li class="fragment">Requires persistence, motivation, delayed gratification</li>
-</ul></li>
-<li class="fragment">This helps explain the Becker-Tomes “psychic costs”
-<ul>
 <li class="fragment">Not just ability to do the work</li>
 <li class="fragment">Also willingness to persist, study habits, etc.</li>
 </ul></li>
@@ -329,15 +344,25 @@
 <p>The <strong>elasticity of substitution</strong> is: <span class="math display">\[ \sigma_k = \frac{1}{1-\phi_k} \]</span></p>
 <div>
 <ul>
-<li class="fragment">If <span class="math inline">\(\sigma_k\)</span> is <strong>high</strong>: early and late investments are <strong>substitutes</strong>
+<li class="fragment">If <span class="math inline">\(\sigma_k\in(0,1]\)</span>: early and late investments are <strong>substitutes</strong>
 <ul>
 <li class="fragment">Can compensate for poor early environment with later remediation</li>
 </ul></li>
-<li class="fragment">If <span class="math inline">\(\sigma_k\)</span> is <strong>low</strong>: early and late investments are <strong>complements</strong>
+<li class="fragment">If <span class="math inline">\(\sigma_k\in(\infty,1]\)</span>: early and late investments are <strong>complements</strong>
 <ul>
 <li class="fragment">Early investment is crucial; hard to compensate later</li>
 </ul></li>
 <li class="fragment">Empirical question: What are <span class="math inline">\(\sigma_{\text{cog}}\)</span> and <span class="math inline">\(\sigma_{\text{noncog}}\)</span>?</li>
+</ul>
+</div>
+</section>
+<section id="exercise" class="slide level2">
+<h2>Exercise</h2>
+<div>
+<ul>
+<li class="fragment">Take the derivatives of the CES with respect to <span class="math inline">\(I\)</span></li>
+<li class="fragment">Solve the problem: <span class="math display">\[ \min p_{1}I_{1} + p_{2}I_{2} s.t. f(I_{1},I_{2}) \geq 1 \]</span> where <span class="math inline">\(f\)</span> is a CES production function and <span class="math inline">\(I_{t}\)</span> is investment in period <span class="math inline">\(t\)</span></li>
+<li class="fragment">What happens when investment is more costly in period 1?</li>
 </ul>
 </div>
 </section>
@@ -367,7 +392,7 @@
 <p>From <span class="citation" data-cites="Cunha2007">Cunha and Heckman (<a href="#/references" role="doc-biblioref" onclick="">2007</a>)</span>:</p>
 <div>
 <ul>
-<li class="fragment"><strong>Critical period</strong>: A time when <span class="math inline">\(\sigma_k \approx 0\)</span> (pure complements)
+<li class="fragment"><strong>Critical period</strong>: A time when <span class="math inline">\(\sigma_k \leq 0\)</span> (pure complements)
 <ul>
 <li class="fragment">Investment <strong>must</strong> happen then; cannot compensate later</li>
 </ul></li>
@@ -382,7 +407,7 @@
 </section>
 <section id="the-importance-of-early-investment" class="slide level2">
 <h2>The Importance of Early Investment</h2>
-<p>Key finding from <span class="citation" data-cites="Cunha2007">Cunha and Heckman (<a href="#/references" role="doc-biblioref" onclick="">2007</a>)</span>:</p>
+<p>A review of evidence in <span class="citation" data-cites="Cunha2007">Cunha and Heckman (<a href="#/references" role="doc-biblioref" onclick="">2007</a>)</span>:</p>
 <div>
 <ul>
 <li class="fragment">For cognitive skills: <span class="math inline">\(\sigma_{\text{cog}}\)</span> is <strong>low</strong> in early childhood
@@ -441,7 +466,7 @@
 </section>
 <section id="the-latent-factor-approach" class="slide level2">
 <h2>The Latent Factor Approach</h2>
-<p>Key idea from <span class="citation" data-cites="Heckman2006">J. Heckman, Stixrud, and Urzua (<a href="#/references" role="doc-biblioref" onclick="">2006</a>)</span>:</p>
+<p>Example from <span class="citation" data-cites="Heckman2006">J. Heckman, Stixrud, and Urzua (<a href="#/references" role="doc-biblioref" onclick="">2006</a>)</span>:</p>
 <div>
 <ol type="1">
 <li class="fragment">Assume there are <span class="math inline">\(K\)</span> latent factors <span class="math inline">\(\theta = (\theta_1, \ldots, \theta_K)\)</span></li>
@@ -505,28 +530,23 @@
 <section id="example-nlsy79-data" class="slide level2">
 <h2>Example: NLSY79 Data</h2>
 <p><span class="citation" data-cites="Heckman2006">J. Heckman, Stixrud, and Urzua (<a href="#/references" role="doc-biblioref" onclick="">2006</a>)</span> use:</p>
-<p><strong>Cognitive measurements</strong>: - ASVAB: Arithmetic reasoning, word knowledge, paragraph comprehension, math knowledge, coding speed</p>
-<p><strong>Noncognitive measurements</strong>: - Rotter Locus of Control Scale - Rosenberg Self-Esteem Scale</p>
+<ul>
+<li><strong>Cognitive measurements</strong>:
+<ul>
+<li>ASVAB: Arithmetic reasoning, word knowledge, paragraph comprehension, math knowledge, coding speed</li>
+</ul></li>
+<li><strong>Noncognitive measurements</strong>:
+<ul>
+<li>Rotter Locus of Control Scale, Rosenberg Self-Esteem Scale</li>
+</ul></li>
+</ul>
 <div class="fragment">
 <p>With two factors and multiple measures, the model is <strong>overidentified</strong> and can be tested.</p>
 </div>
 </section>
-<section id="estimating-the-factor-distribution" class="slide level2">
-<h2>Estimating the Factor Distribution</h2>
-<p>Key methodological point from <span class="citation" data-cites="Cunha2007">Cunha and Heckman (<a href="#/references" role="doc-biblioref" onclick="">2007</a>)</span>:</p>
-<div>
-<ul>
-<li class="fragment">Traditional factor analysis assumes <strong>normal</strong> factors</li>
-<li class="fragment">But factors may be <strong>non-normal</strong> in reality</li>
-<li class="fragment">Solution: Use <strong>mixture of normals</strong> <span class="math display">\[ f(\theta_k) = \sum_{j=1}^{J_k} p_{kj} \phi(\theta_k | \mu_{kj}, \sigma_{kj}^2) \]</span></li>
-<li class="fragment">This is flexible and nests normality as a special case</li>
-<li class="fragment">Allows for skewness, multimodality, etc.</li>
-</ul>
-</div>
-</section>
 <section id="separating-heterogeneity-from-uncertainty" class="slide level2">
 <h2>Separating Heterogeneity from Uncertainty</h2>
-<p>Another key use of factor models (from the <span class="citation" data-cites="Cunha2007">Cunha and Heckman (<a href="#/references" role="doc-biblioref" onclick="">2007</a>)</span> paper):</p>
+<p>Another interesting use of factor models (from the <span class="citation" data-cites="Cunha2007">Cunha and Heckman (<a href="#/references" role="doc-biblioref" onclick="">2007</a>)</span>):</p>
 <div>
 <ul>
 <li class="fragment">Observed wage variance has two sources:
@@ -595,6 +615,7 @@
 <ul>
 <li class="fragment">They face both low <span class="math inline">\(\theta\)</span> and low <span class="math inline">\(I\)</span></li>
 <li class="fragment">Dynamic complementarity means early intervention is most effective for them</li>
+<li class="fragment">No equity-efficiency trade-off</li>
 </ul></li>
 </ol>
 </div>
@@ -614,39 +635,6 @@
 <li class="fragment">Effects work through <strong>both cognitive and noncognitive</strong> channels</li>
 <li class="fragment">But <strong>noncognitive effects persist</strong> while cognitive fade</li>
 <li class="fragment">Illustrates importance of early, comprehensive intervention</li>
-</ul>
-</div>
-</section>
-<section id="remaining-questions" class="slide level2">
-<h2>Remaining Questions</h2>
-<div>
-<ul>
-<li class="fragment"><strong>Which</strong> noncognitive skills are most malleable?</li>
-<li class="fragment"><strong>How</strong> do parental investments respond to child skills?
-<ul>
-<li class="fragment">Reinforcing or compensating?</li>
-</ul></li>
-<li class="fragment"><strong>Can</strong> we remediate in adolescence?
-<ul>
-<li class="fragment">Evidence suggests yes for noncognitive, harder for cognitive</li>
-</ul></li>
-<li class="fragment"><strong>What policies</strong> are most cost-effective?</li>
-<li class="fragment">How do skills interact with <strong>institutions</strong> (schools, labor markets)?</li>
-</ul>
-</div>
-</section>
-<section id="next-steps" class="slide level2">
-<h2>Next Steps</h2>
-<div>
-<ul>
-<li class="fragment">Next lectures will explore:
-<ul>
-<li class="fragment">Quantitative models of intergenerational mobility</li>
-<li class="fragment">Parenting and investments</li>
-<li class="fragment">Policy evaluation: ECE, safety net, etc.</li>
-</ul></li>
-<li class="fragment">We’ll use the framework developed today as a foundation</li>
-<li class="fragment">Recurring theme: <strong>Dynamic complementarity</strong> makes timing crucial</li>
 </ul>
 </div>
 </section>

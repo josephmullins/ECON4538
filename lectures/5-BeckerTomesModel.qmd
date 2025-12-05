@@ -129,12 +129,25 @@ What is the long-run effect of an increase in $z$?
 $$ u'(C_{t}) = \beta(1+r)\mathbb{E}u'(C_{t+1}) $$
 2. Under our assumptions at steady state: 
 $$C_{t}=C_{t+1}=\bar{C}$$
-3. Iterate the budget constraint:
-$$ \sum_{t=0}^\infty \frac{1}{(1+r)^{t}} \bar{C} = A_{0} + \sum_{t=0}\frac{1}{(1+r)^t} w H_{t} $$
-4. Show that 
-$$ \frac{\partial\log(H_{t})}{\partial z_{-1}} = \rho^{t}\times\frac{1}{1-\delta} \Rightarrow \frac{\partial \log(\bar{C})}{\partial z_{0}} \approx \frac{1}{1-\delta}\frac{r}{1+r-\rho} $$
-5. Interpret!!
+3. Define $Z_{t}=\exp(\mu+z_{t})$ and iterate the budget constraint:
+$$ \sum_{t=0}^\infty \frac{1}{(1+r)^{t}} \bar{C} = \Omega_{0} + \sum_{t=0}\frac{1}{(1+r)^t}\max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] $$
+4. Show that
+$$ \max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] = \left(\frac{Z_{t}w}{(1+r)}\right)^{\delta/(1-\delta)}\psi^{-1/(1-\delta)}\left(\delta^{\delta/(1-\delta)} - \delta^{1/(1-\delta)}\right)$$
 :::
+
+## Result 3: The Long-Run Effects of Good Fortune {.smaller}
+
+:::{.incremental}
+5. Hence:
+$$ \sum_{t=0}^{\infty}\frac{1}{(1+r)^{t}}\bar{C} = \Omega_{0} + B\sum_{t=0}^{\infty}\exp(z_{t})^{\delta/(1-\delta)} \left(= \Omega_{0}+B \text{ at long-run steady state}\right)$$ 
+where $B$ collects constants in previous expression.
+6. Consider a one-time, small increase in $z_{0}$, s.t. $z_{t} = \rho^{t}z_{0}$:
+$$ \frac{d\bar{C}}{dz_{0}}\Big\vert_{z_{0}=0} = \frac{r}{1+r} \frac{\delta}{1-\delta} B\sum_{t=0}^{\infty}\frac{\rho^{t}}{(1+r)^{t}} = \frac{\delta}{1-\delta}\times B\times \frac{r}{1+r-\rho}$$
+7. So
+$$ \frac{d\log(\bar{C})}{dz_{0}}\Big\vert_{z_{0}=0} = \text{Future earnings share of wealth} \times\frac{\delta}{1-\delta}\times \frac{1+r}{1+r-\rho}  $$
+8. Interpret!
+:::
+
 
 ## Connecting to IGE Estimation
 
@@ -347,7 +360,7 @@ with equality iff $A'\geq 0$ and strict inequality if $A=0$.
 - Solve for $X^*$ when $A=0$:
 $$ \max_{X} u(\Omega - \psi X) + \beta u(wzX^{\delta}) $$
 - With log utility:
-$$ X^* = \frac{1}{\psi}\frac{\beta\delta w z}{1+\beta\delta w z} \Omega $$
+$$ X^* = \frac{1}{\psi}\frac{\beta\delta}{1+\beta\delta} \Omega $$
 - Note that $X^{*}$ now depends on $\Omega$ 
 :::
 
@@ -355,7 +368,7 @@ $$ X^* = \frac{1}{\psi}\frac{\beta\delta w z}{1+\beta\delta w z} \Omega $$
 
 The borrowing constraint binds if:
 
-$$\frac{1}{\psi}\frac{\beta \delta w z}{1 + \beta \delta w z} \Omega \leq \left( \frac{\delta w z}{\psi(1+r)} \right)^{\frac{1}{1-\delta}}$$
+$$\frac{1}{\psi}\frac{\beta \delta }{1 + \beta \delta} \Omega \leq \left( \frac{\delta w z}{\psi(1+r)} \right)^{\frac{1}{1-\delta}}$$
 
 :::{.incremental}
 - More likely to bind when $\Omega$ is low (poor families)
@@ -392,7 +405,7 @@ X_star_low = (δ * w * z_low / (ψ * (1 + r)))^(1 / (1 - δ))
 function investment(Ω, z)
     X_star = (δ * w * z / (ψ * (1 + r)))^(1 / (1 - δ))
     # When constrained (A=0): X = (β δ w z)/(ψ(1 + β δ w z)) * Ω
-    X_constrained = (β * δ * w * z) / (ψ * (1 + β * δ * w * z)) * Ω
+    X_constrained = (β * δ ) / (ψ * (1 + β * δ )) * Ω
     return min(X_constrained, X_star)
 end
 

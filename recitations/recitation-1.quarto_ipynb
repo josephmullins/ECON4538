@@ -1,0 +1,172 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Recitation 1\"\n",
+        "bibliography: ../reading_list.bib\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Creating Household Income Measures in the CPS-ASEC\n",
+        "\n",
+        "In this recitation we're going to work with extracts of the CPS-ASEC from the years (1970,1980,1990,2000,2010,2019). This is a slightly smaller dataset than the version I'm using in class, but will nonetheless capture the same trends.\n",
+        "\n",
+        "Our focus in this class will be earned income at the individual and household level, as well as government transfers at the individual and household level. The code below loads the data and creates some variables:\n",
+        "\n",
+        "- `EARN` which will be the sum of wages and business income\n",
+        "- `GOV` which will be the sum of welfare, social security income, supplemental security income, the Earned Income Tax Credit (EITC) and the Child Tax Credit (CTC).\n",
+        "\n",
+        "Some other things to note:\n",
+        "\n",
+        "- These are **limited measures** of income and if you peruse the variables in IPUMS you will find many more categories.\n",
+        "- Wage and business income is subject to [**top coding**](https://cps.ipums.org/cps/topcodes_tables.shtml) and we are not doing anything to solve that issue here, but you should be aware of it. See @Heathcote2023 for one approach to this problem.\n",
+        "- Many of the variables we are analyzing are assigned dummy values (e.g. 9999999) if they are missing or not asked for an individual in the survey (\"Not in Universe\"). One should normally check to make sure these dummy values don't appear in the final data.\n",
+        "- Our measure of transfers does not include **in-kind** transfers such as Medicaid and Food Stamps (which comprise a very large share of overall transfers).\n",
+        "\n",
+        "With that being said, below is code to load the data and create these variables:\n"
+      ],
+      "id": "5d0e896a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "using DataFrames, CSV, StatsPlots, DataFramesMeta, StatsBase\n",
+        "pce = CSV.read(\"../data/PCE_index.csv\",DataFrame)\n",
+        "\n",
+        "data = @chain CSV.read(\"../data/asec_1970_2019.csv\",DataFrame) begin\n",
+        "  innerjoin(pce,on=:YEAR)\n",
+        "  @transform begin \n",
+        "    # fill in some missing values and deflat\n",
+        "    :EITC = 100 * coalesce.(:EITCRED,0.) ./ :PCE\n",
+        "    :CTC = 100 * coalesce.(:ACTCCRD,0.) ./ :PCE\n",
+        "    :SSI = 100 * coalesce.(:INCSSI,0.) ./ :PCE\n",
+        "    :WELF = 100 * :INCWELFR ./ :PCE\n",
+        "    :SS = 100 * :INCSS ./ :PCE\n",
+        "    # create the income measures\n",
+        "    :EARN = 100 * (:INCWAGE .+ :INCBUS) ./ :PCE #<- deflate earnings (2017 base)\n",
+        "    end\n",
+        "    @transform :GOV = :EITC .+ :CTC .+ :SSI .+ :WELF .+ :SS\n",
+        "end"
+      ],
+      "id": "bafe76de",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Constructing a measure of pooled or equivalized income\n",
+        "\n",
+        "Each row of thse data corresponds to an individual in a particular year. For some questions, we may instead be interested in per-person (or equivalized) measures of these income variables. The code below constructs those measures by summing over all individuals within a household, where `CPSID` is a unique identifier for each household in the survey.\n"
+      ],
+      "id": "94630b84"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# - gov transfers\n",
+        "# - Create a household-level dataset by summing CPSID (the household ID variable)\n",
+        "house = @chain data begin\n",
+        "    @subset .!ismissing.(:CPSID) #<- drop all obs where this variable is missing (all of 1970)\n",
+        "    @select :CPSID :CPSIDP :YEAR :EARN :GOV :SS :SSI :WELF :CTC :EITC\n",
+        "    stack(Not([:CPSID,:CPSIDP,:YEAR]))\n",
+        "    groupby([:YEAR,:CPSID,:variable])\n",
+        "    @combine :value = mean(:value)\n",
+        "    unstack([:YEAR,:CPSID],:variable,:value)\n",
+        "end"
+      ],
+      "id": "b5adb354",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Some notes:\n",
+        "\n",
+        "- Try commenting out the code that follows the `stack()` command to see how the `stack` and `unstack` functions work here.\n",
+        "- Notice that we are calculating the mean only over individuals 25-64 in the sample (since we dropped everyone else before even pulling the data from IPUMS). Ideally one would want to include other household members as well for this equivalized measure.\n",
+        "\n",
+        "## Plotting and decomposing transfers over time\n",
+        "\n",
+        "How prominently do government transfers feature in the household budget constraint? And how has this evolved over time? Although our measures of income and transfers are not exhaustive, we can use them to get a partial answer to this question.\n",
+        "\n",
+        "The code below calculates average transfers relative to average net income for the poorest 20% of households (as measured by our variable `EARN`) and produces a plot."
+      ],
+      "id": "9157269c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "@chain house begin\n",
+        "    groupby(:YEAR)\n",
+        "    @transform :q20 = quantile(:EARN,0.2) #<- keep bottom 20% in each year\n",
+        "    @subset :EARN .< :q20\n",
+        "    groupby(:YEAR)\n",
+        "    @combine begin \n",
+        "        :gov_share = mean(:GOV)  / (mean(:GOV) .+ mean(:EARN))\n",
+        "    end\n",
+        "    @df _ begin \n",
+        "        plot(:YEAR,:gov_share,linewidth=3)\n",
+        "        scatter!(:YEAR,:gov_share,legend=false)\n",
+        "    end\n",
+        "end"
+      ],
+      "id": "1dce7270",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Note that these fluctuations can be caused by fluctuations in the numerator or the denominator. **An exercise for you** to complete is to verify that these fluctuations are driven by fluctuations in earned income. What event in 2010 could explain the large drop in earned income?\n",
+        "\n",
+        "\n",
+        "### Sources of government income\n",
+        "\n",
+        "Over this time, what sources of government transfers are most prevalent? The code below plots the five sources of transfers that we included in our measure as a fraction of the total in each year. \n"
+      ],
+      "id": "92a35df1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "@chain house begin\n",
+        "    groupby(:YEAR)\n",
+        "    @combine  begin \n",
+        "        :eitc = mean(:EITC)  / mean(:GOV)\n",
+        "        :ssi = mean(:SSI)  / mean(:GOV)\n",
+        "        :welf = mean(:WELF)  / mean(:GOV)\n",
+        "        :ctc = mean(:CTC)  / mean(:GOV)\n",
+        "        :ss = mean(:SS)  / mean(:GOV)\n",
+        "    end\n",
+        "    stack(Not(:YEAR))\n",
+        "    @df _ plot(:YEAR,:value,group = :variable,linewidth = 3.)\n",
+        "end"
+      ],
+      "id": "a5a80dfa",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "julia-1.11",
+      "language": "julia",
+      "display_name": "Julia 1.11.3",
+      "path": "/Users/mullinsj/Library/Jupyter/kernels/julia-1.11"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
