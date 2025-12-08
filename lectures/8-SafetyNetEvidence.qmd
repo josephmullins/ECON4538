@@ -1,0 +1,452 @@
+---
+title: "Connecting Theory with Evidence: The Safety Net"
+bibliography: ../reading_list.bib
+format:
+  revealjs:
+    theme: solarized
+    transition: slide
+    chalkboard:
+        theme: whiteboard
+        chalk-effect: 0.0
+        chalk-width: 6
+jupyter: julia-1.11
+execute:
+  cache: true
+  freeze: auto
+---
+
+## Overview
+
+:::{.incremental}
+- We've studied theoretical models of human capital formation and mobility
+- Today: **empirical evidence** on how policy affects skill formation
+- Focus: social safety net programs
+- Key questions:
+  - Do income transfers affect child development?
+  - What are the long-run effects on education and earnings?
+  - How do these findings connect to our theoretical models?
+:::
+
+## A Brief Recap
+
+:::{.incremental}
+- We found that for unconstrained households, optimal investments *are not* affected by economic resources.
+  - Finding effects of resources / interventions, a sign of constraints $\Rightarrow$ welfare and efficiency gains
+- But would it be a good idea to simply do OLS?
+$$ \log(H_{t+1}) = \beta_{0} + \beta_{1}\log(\Omega_{t}) + \epsilon_{t} $$
+- No!! e.g. $z_{t-1}\rightarrow \Omega$ and $z_{t}\rightarrow H_{t+1}$
+- Must look for *experimental* and *quasi-experimental* evidence
+:::
+
+# The Earned Income Tax Credit (EITC)
+
+## What is the EITC?
+
+:::{.incremental}
+- Refundable tax credit for low-income working families
+- Phases in with earnings, plateaus, then phases out
+- For families with children, substantial benefits (max ~$7,000)
+- Key features:
+  - Conditional on working (labor supply incentive)
+  - Varies with number of children
+  - Expanded significantly in 1993
+- A few ways to use this variation
+:::
+
+## EITC Schedule
+
+:::{.incremental}
+- Three regions:
+  1. **Phase-in**: credit increases with earnings
+  2. **Plateau**: credit remains constant
+  3. **Phase-out**: credit decreases with earnings
+- Creates variation in income while holding work incentives roughly constant
+:::
+
+# Dahl and Lochner (2012)
+
+## Research Question
+
+:::{.incremental}
+- Does family income *causally* affect child achievement?
+- Previous research showed correlations, but hard to separate:
+  - Direct income effect
+  - Selection (parents with higher income have other advantages)
+- **Innovation**: use EITC expansions as exogenous income shocks
+- Focus on test scores as outcomes
+:::
+
+## Identification Strategy {.smaller}
+
+:::{.incremental}
+- Compare children in families eligible for large vs small EITC increases
+- Key variation: 1993 EITC expansion differentially affected families by initial earnings level
+- Use *predicted income growth* conditional on earnings as an instrument for *actual income growth*
+- To use this variation, must also control for initial earnings
+:::
+
+## Main Results {.smaller}
+
+From [@Dahl2012]:
+
+:::{.incremental}
+- **Effect size**: $1,000 increase in income → 6% of standard deviation increase in test scores
+- Effects concentrated in math and reading
+- Larger effects for:
+  - Younger children
+  - More disadvantaged families
+- No evidence of effects in phase-out region (where income increases but work disincentives exist)
+:::
+
+# Bastian and Michelmore (2018)
+
+## Long-Run Effects of EITC
+
+[@Bastian2018] ask: what are the **lifetime** impacts of EITC exposure?
+
+:::{.incremental}
+- Follow children exposed to EITC expansions into adulthood
+- Outcomes:
+  - Educational attainment
+  - Employment
+  - Earnings
+- **Key insight**: early childhood income may have persistent effects
+:::
+
+## Identification Strategy
+
+:::{.incremental}
+- Exploit state-level EITC programs (additional to federal)
+- Timing: states adopted at different times
+- Compare children in same state, different birth cohorts
+- Also use variation in family size and income
+:::
+
+## Variation in EITC Exposure
+
+![](../papers/figures/bastian2018_fig2.png){width=75%}
+
+Source: [@Bastian2018, Figure 2]
+
+## Specification
+
+$$ Y_{i} = \beta_{1}EITC_{i,0-5} + \beta_{2}EITC_{i,6-12} + \beta_{3}EITC_{i,13-18} + \eta X_{i} + \psi V_{s,t} + \lambda Z_{s} + \pi W_{t} + \epsilon_{i} $$
+
+- $EITC_{i,-}$: maximum available EITC credit given state, year, family size
+- $X_{i}$: family characteristics
+- $Z_{s}$: state fixed effects
+- $W_{t}$: year fixed effects
+- $V_{s,t}$: state-year policy variables
+
+## Main Findings {.smaller}
+
+:::{.incremental}
+- $1,000 increase in EITC exposure (**age 13-18**) leads to:
+  - 1.3 percentage point increase in high school completion
+  - Higher college attendance
+  - 2% increase in earnings in mid-20s
+- The EITC is a **work incentive** and had an effect on maternal labor supply
+  - Changes in money **and** time with children
+:::
+
+## Main Findings
+
+# Barr, Eggleston, and Smith (2022)
+
+## Tax Benefits and the Birthday Lottery
+
+[@Barr2022] exploit a natural experiment: the January 1 birthdate cutoff
+
+:::{.incremental}
+- U.S. child tax benefits determined by December 31 cutoff
+- Child born December 31 → family gets full tax year benefits
+- Child born January 1 → family waits a year for benefits
+- **Natural randomization**: due date doesn't predict birth date precisely
+- Average difference: ~$1,300 for low-income families (~10% of annual income)
+:::
+
+## The Cash Transfer Discontinuity
+
+![](../papers/figures/barr2021_fig1.png){width=80%}
+
+Source: [@Barr2022, Figure I]
+
+## Research Question
+
+Do cash transfers in the first year of life affect long-run child outcomes?
+
+:::{.incremental}
+- Focus: transfer received (or not) right after birth
+- Compare children born just before vs just after January 1
+- **Innovation**: use universe of administrative tax data
+- Follow children into adulthood (measure earnings in 20s)
+- Also examine intermediate outcomes (test scores, graduation)
+:::
+
+## Identification Strategy {.smaller}
+
+:::{.incremental}
+- **Key assumption**: children born Dec 31 vs Jan 1 are similar except for transfer timing
+- Potential threats:
+  - C-sections scheduled to manipulate birth date?
+  - **Response**: show no bunching around January 1
+  - Different demographics around cutoff?
+  - **Response**: show balance on observables
+- Window: focus on births within days of cutoff
+:::
+
+## Main Results {.smaller}
+
+Children who received ~$1,300 transfer in first year show:
+
+:::{.incremental}
+- **Long-run earnings**: 1-2% higher at age 20-25
+  - Larger effects for males (3-4%)
+  - Concentrated among low-income families
+- **Intermediate outcomes**:
+  - Higher math and reading test scores
+  - Increased high school graduation rates
+- Effects emerge early and persist
+:::
+
+. . .
+
+**Return on investment**: $1,300 transfer yields increased lifetime earnings far exceeding cost
+
+## Effect on Adult Earnings
+
+![](../papers/figures/barr2021_fig3.png){width=75%}
+
+Source: [@Barr2022, Figure III]
+
+## Mechanisms and Timing
+
+Why do transfers in infancy matter?
+
+:::{.incremental}
+- **Critical period**: first year of life is developmentally important
+  - Brain development
+  - Nutrition and health
+  - Parent-child bonding
+- Families may be especially credit-constrained after birth
+- Small amounts can have large effects if spent on high-return investments
+:::
+
+## Effects grow with age
+
+![](../papers/figures/barr2021_fig5.png){width=75%}
+
+Source: [@Barr2022, Figure V]
+
+## Effect on Test Scores (North Carolina)
+
+![](../papers/figures/barr2021_fig7.png){width=75%}
+
+Source: [@Barr2022, Figure VII]
+
+# Food Stamps: Bailey et al. (2024)
+
+## The Food Stamp Program
+
+:::{.incremental}
+- In-kind transfer program (now called SNAP)
+- Provides food benefits to low-income households
+- Rolled out county-by-county between 1961-1975
+- **Research opportunity**: quasi-experimental variation in timing of access
+:::
+
+## Food Stamp Program Rollout
+
+![](../papers/figures/bailey2024_fig1.png){width=70%}
+
+Source: [@bailey2024, Figure 1]
+
+## Bailey et al. (2024) Study Design
+
+[@bailey2024] leverage rollout timing:
+
+:::{.incremental}
+- Compare cohorts born just before vs just after Food Stamps arrived
+- Within-county variation in exposure by birth year
+- Link historical rollout data to modern outcomes
+- **Long-run outcomes**: health, education, economic self-sufficiency in adulthood
+:::
+
+## Specification {.smaller}
+$$ Y_{cbt} = \theta_{c} + \delta_{s(c)b} + \psi_{t} + X_{cb}\beta + \sum_{a=-5}^{a=17}\mathbf{1}\{FS_{c}-b = a\} + \epsilon_{cbt} $$
+
+- $c$: county
+- $b$: birth year
+- $t$: year of observation
+- $FS_{c}$: year in which country $c$ gets FS program
+- $X_{cb}$ :county-by-birth year covariates
+
+## Logic of Study Design
+
+![](../papers/figures/bailey2024_fig2.png){width=75%}
+
+## Main Findings {.smaller}
+
+Childhood access to Food Stamps led to:
+
+:::{.incremental}
+- **Health**: reduced metabolic syndrome, obesity in adulthood
+- **Education**: increased high school completion
+- **Economic**: higher earnings, less likely to receive government assistance
+- **Intergenerational**: children of treated individuals have better outcomes
+- Effects larger for:
+  - More disadvantaged families
+  - Exposure during early childhood and in utero
+:::
+
+. . .
+
+**Interpretation**: nutrition and food security in childhood have lifelong consequences
+
+## Event Study: Example
+
+![](../papers/figures/bailey2024_fig3.png){width=75%}
+
+Source: [@bailey2024, Figure 3]
+
+## Return on Investment
+
+:::{.incremental}
+- Authors calculate cost-benefit ratio
+- Benefits from:
+  - Higher earnings (increased tax revenue)
+  - Better health (lower medical costs)
+  - Less transfer receipt (lower government spending)
+- Find ROI of approximately 56 cents per dollar spent
+- **Interpretation**: Food Stamps are an *investment* not just consumption
+:::
+
+# Carneiro et al. (2021): Nigeria Cash Transfer Program
+
+## The Child Development Grant Programme (CDGP)
+
+[@Carneiro2021] study a multifaceted intervention in Northern Nigeria:
+
+:::{.incremental}
+- Information provision to mothers and fathers on pregnancy and infant feeding practices
+- **Cash transfers** to mothers: $22/month (85% of women's earnings)
+- Transfers begin during pregnancy, continue until child is 24 months
+- Implemented at village level, targeted to pregnant women
+- Randomized controlled trial with 3,688 pregnant women at baseline
+:::
+
+## Why This Context Matters
+
+:::{.incremental}
+- Northern Nigeria: extreme poverty (70% below $1.90/day)
+- High stunting rates (67% of children under 5)
+- Infant mortality: 90 per 1,000 births
+- Low knowledge of child nutrition practices
+- Women retain control over resources they bring into household
+- Agricultural lean season creates food insecurity
+:::
+
+## Main Results {.smaller}
+
+:::{.incremental}
+- **Child anthropometrics** (2 years post-intervention):
+  - Height-for-age Z-score increases by 0.22σ
+  - Stunting reduced by 8%, extreme stunting by 15%
+  - Effects sustained at 4 years
+- **Child health**:
+  - 18% reduction in diarrhea episodes
+  - Increased vaccination and deworming rates
+- **Mother's labor supply**:
+  - 21% increase in earnings at 2 years, sustained at 4 years
+  - Increased livestock ownership (key for protein-rich diets)
+- **Cognition**
+  - Effect on communication, but fade-out
+:::
+
+## Effect on Food Consumption
+
+![](../papers/figures/carneiro2021_fig3.png){width=75%}
+
+Source: [@Carneiro2021, Figure 3]
+
+## Effect on Resources
+
+![](../papers/figures/carneiro2021_fig4.png){width=75%}
+
+Source: [@Carneiro2021, Figure 4]
+
+## Long-Run Impacts and Mechanisms
+
+:::{.incremental}
+- **Key mechanisms**:
+  - Increased parental knowledge and improved practices (breastfeeding, antenatal care)
+  - Women invest transfers in livestock assets → protein-rich foods for children
+  - Labor supply increases (no reduction despite transfers)
+  - Food security improves, especially during lean season
+- **Sustained effects**: impacts persist 2 years after transfers end
+- **Return on investment**: Internal rate of return 5-20% depending on assumptions
+:::
+
+## Interpreting Through Our Models
+
+:::{.incremental}
+- Becker-Tomes: intervention relaxes budget constraints AND provides information
+- Evidence of binding credit constraints for low-income families
+- Technology of skill formation (Cunha-Heckman):
+  - Early investments matter (impacts on gestation, early nutrition)
+  - Multiple inputs: cash enables protein-rich foods, better practices
+  - Dynamic complementarity: early health + continued investment
+- **Unique insight**: Cash transfers enable productive investments (livestock) that generate sustained income
+:::
+
+# Synthesis and Implications
+
+## What Have We Learned? {.smaller}
+
+:::{.incremental}
+1. **Income matters**: Causal evidence from EITC, PFD, Food Stamps
+2. **Timing is critical**: Largest effects for early childhood exposure
+3. **Long-run effects**: Childhood resources affect adult outcomes
+4. **Multiple channels**: Income, information, parenting, health all matter
+5. **Intergenerational**: Effects potentially transmit to next generation
+:::
+
+. . .
+
+**Policy implication**: Safety net programs are investments in human capital, not just transfers
+
+## Connecting to Theory {.smaller}
+
+These findings validate and extend our models:
+
+:::{.incremental}
+- **Credit constraints bind**: low-income families would invest more if they could
+- **Self-productivity**: early investments have compounding returns
+- **Dynamic complementarity**: nutrition, health, cognitive stimulation interact
+- **Multiple skills**: cognitive and non-cognitive both affected
+- **Intergenerational transmission**: improved child outcomes → improved parenting → next generation
+:::
+
+. . .
+
+Where do the models need refinement?
+
+:::{.incremental}
+- More explicit modeling of multiple input types
+- Better understanding of production function non-linearities
+- Behavioral aspects (information, salience, planning)
+:::
+
+## Remaining Questions
+
+:::{.incremental}
+- **Mechanisms**: exactly how does income translate to better outcomes?
+  - Direct purchases (food, books, healthcare)
+  - Parental time allocation
+  - Stress reduction
+  - Neighborhood quality
+- **Optimal design**: conditional vs unconditional? cash vs in-kind?
+- **General equilibrium**: what if everyone receives transfers?
+- **Cost-effectiveness**: which interventions have highest returns?
+:::
+

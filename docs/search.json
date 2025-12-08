@@ -284,7 +284,7 @@
     "href": "lectures.html",
     "title": "Lecture Slides",
     "section": "",
-    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nSyllabus\nSlides\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\nSlides\n\n\nEstimating Income Processes\nSlides\n\n\nIntergenerational Mobility\nSlides\n\n\nThe Becker-Tomes Model\nSlides\n\n\nEvidence"
+    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nSyllabus\nSlides\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\nSlides\n\n\nEstimating Income Processes\nSlides\n\n\nIntergenerational Mobility\nSlides\n\n\nThe Becker-Tomes Model\nSlides\n\n\nEvidence from Safety Net Programs\nSlides"
   },
   {
     "objectID": "lectures/Syllabus.html#facts-about-inequality",
@@ -2384,7 +2384,7 @@
     "href": "CLAUDE.html",
     "title": "ECON4538 - Labor Economics",
     "section": "",
-    "text": "Advanced undergraduate course on inequality, human capital, and welfare analysis using quantitative methods.\n\n\nStandard YAML header (RevealJS, solarized theme, julia-1.11, cache enabled, freeze auto). Citations use ../reading_list.bib with format [@AuthorYear].\n\n\n\nStart with Overview slide using :::{.incremental} for bullet points\nUse incremental reveals extensively for theory and key points\nMark exercises explicitly (“Exercise:” or “Exercises:”)\nUse # for major section headers\nApply .smaller class for dense content, .scrollable for long code\n\n\n\n\nStandard options: #| echo: true, #| code-fold: true, #| output: false, #| code-line-numbers: \"2|3-4|5\"\n\n\n\nPackages: DataFrames, DataFramesMeta, StatsPlots, StatsBase - Use @chain for data pipelines - Apply weights with weights(:ASECWT) - Naming: m_wage, var_lw, etc. - Plot with @df macro\n\n\n\n\nSave figures to ../papers/figures/\nUse :::: {.columns} / ::: {.column width=\"50%\"} for multi-panel\nUse ::: {.panel-tabset} for comparisons\n\n\n\n\n\nFlow: Theory → Data → Application - Start with intuition, build to formal models - Ground concepts in empirical examples - Use LaTeX for equations, build incrementally - Show real data analysis, replicate findings - Mix board and computational exercises - Engage with “What do you think…?” prompts\n\n\n\nInequality: Variance of log wages, percentile gaps (p90-p10, p75-p25), trends over time/lifecycle, demographics\nWelfare: Distinguish insurance vs redistribution, certainty equivalent decompositions\nDynamic Models: Simple to complex (2-period → infinite horizon), show recursive formulations\nHuman Capital: Link to IGE, Becker-Tomes framework, technology of skill formation\n\n\n\nCore papers in ../papers/. See reading_list.bib for citations.\nPart 1: Inequality & Welfare 1. Documenting Inequality (@Heathcote2023, @moffitt2011, @Guvenen2021) 2. Insurance vs Redistribution (@Storesletten2004) 3. Income Processes (@Meghir2004, @Guvenen2009, @Low2010) 4. Intergenerational Mobility (@corak2013, @mazumder2005, @Chetty2014)\nPart 2: Human Capital 5. Becker-Tomes Model (@Becker1979, @Becker1986, @Goldberger1989, @Mulligan1999, @Cunha2006, @Cunha2007) 6. Skills, Inequality, and the Technology of Skill Formation (@Heckman2006, @Cunha2008a, @Cunha2007, @Cunha2008b) 7. Quantitative Mobility Models (@Lee2019, @Caucutt2020)\nPart 3: Policy (Planned) 8. Causal Inference, 9. ECE (@heckman2010, @Garcia2020), 10. Safety Net (@Dahl2012, @bailey2024), 11. Parenting (@ATTANASIO2020), 12. Skill Formation (@Cunha2007, @Cunha2008b)\n\n\n\nDatasets: CPS (IPUMS), PSID, CEX, SCF References: QuantEcon julia course, Ljungqvist & Sargent textbook\n\n\n\nClear language for advanced undergrads, balance rigor with intuition, define jargon, concrete before abstract, consistent notation, no emojis."
+    "text": "Advanced undergraduate course on inequality, human capital, and welfare analysis using quantitative methods.\n\n\nStandard YAML header (RevealJS, solarized theme, julia-1.11, cache enabled, freeze auto). Citations use ../reading_list.bib with format [@AuthorYear].\n\n\n\nStart with Overview slide using :::{.incremental} for bullet points\nUse incremental reveals extensively for theory and key points\nMark exercises explicitly (“Exercise:” or “Exercises:”)\nUse # for major section headers\nApply .smaller class for dense content, .scrollable for long code\n\n\n\n\nStandard options: #| echo: true, #| code-fold: true, #| output: false, #| code-line-numbers: \"2|3-4|5\"\n\n\n\nPackages: DataFrames, DataFramesMeta, StatsPlots, StatsBase - Use @chain for data pipelines - Apply weights with weights(:ASECWT) - Naming: m_wage, var_lw, etc. - Plot with @df macro\n\n\n\n\nSave figures to ../papers/figures/\nUse :::: {.columns} / ::: {.column width=\"50%\"} for multi-panel\nUse ::: {.panel-tabset} for comparisons\n\n\n\n\n\nFlow: Theory → Data → Application - Start with intuition, build to formal models - Ground concepts in empirical examples - Use LaTeX for equations, build incrementally - Show real data analysis, replicate findings - Mix board and computational exercises - Engage with “What do you think…?” prompts\n\n\n\nInequality: Variance of log wages, percentile gaps (p90-p10, p75-p25), trends over time/lifecycle, demographics\nWelfare: Distinguish insurance vs redistribution, certainty equivalent decompositions\nDynamic Models: Simple to complex (2-period → infinite horizon), show recursive formulations\nHuman Capital: Link to IGE, Becker-Tomes framework, technology of skill formation\n\n\n\nCore papers in ../papers/. See reading_list.bib for citations.\nPart 1: Inequality & Welfare 1. Documenting Inequality (@Heathcote2023, @moffitt2011, @Guvenen2021) 2. Insurance vs Redistribution (@Storesletten2004) 3. Income Processes (@Meghir2004, @Guvenen2009, @Low2010) 4. Intergenerational Mobility (@corak2013, @mazumder2005, @Chetty2014)\nPart 2: Human Capital 5. Becker-Tomes Model (@Becker1979, @Becker1986, @Goldberger1989, @Mulligan1999, @Cunha2006, @Cunha2007) 6. Skills, Inequality, and the Technology of Skill Formation (@Heckman2006, @Cunha2008a, @Cunha2007, @Cunha2008b) 7. Quantitative Mobility Models (@Lee2019, @Caucutt2020)\nPart 3: Policy (Planned) 8. Connecting with the evidence. 1. Evidence of the effect of social programs on child skill formation and long-run outcomes [@Dahl2012; @Barr2022; @Bastian2018; @Carneiro2021; @bailey2024] 2. Evidence of the effect of early childhood education on skill formation and long-run outcomes [@heckman2010; @Garcia2020; @Kline2016] 3. Evidence of the effect of parenting and home interventions on skill formation and long-run outcomes [@ATTANASIO2020; @Walker2022; @Carneiro2024] 4. Estimating the technology of skill formation. [@Cunha2008b; @ATTANASIO2020]\n\n\n\nDatasets: CPS (IPUMS), PSID, CEX, SCF References: QuantEcon julia course, Ljungqvist & Sargent textbook\n\n\n\nClear language for advanced undergrads, balance rigor with intuition, define jargon, concrete before abstract, consistent notation, no emojis."
   },
   {
     "objectID": "CLAUDE.html#quarto-slide-format",
@@ -2412,7 +2412,7 @@
     "href": "CLAUDE.html#course-outline",
     "title": "ECON4538 - Labor Economics",
     "section": "",
-    "text": "Core papers in ../papers/. See reading_list.bib for citations.\nPart 1: Inequality & Welfare 1. Documenting Inequality (@Heathcote2023, @moffitt2011, @Guvenen2021) 2. Insurance vs Redistribution (@Storesletten2004) 3. Income Processes (@Meghir2004, @Guvenen2009, @Low2010) 4. Intergenerational Mobility (@corak2013, @mazumder2005, @Chetty2014)\nPart 2: Human Capital 5. Becker-Tomes Model (@Becker1979, @Becker1986, @Goldberger1989, @Mulligan1999, @Cunha2006, @Cunha2007) 6. Skills, Inequality, and the Technology of Skill Formation (@Heckman2006, @Cunha2008a, @Cunha2007, @Cunha2008b) 7. Quantitative Mobility Models (@Lee2019, @Caucutt2020)\nPart 3: Policy (Planned) 8. Causal Inference, 9. ECE (@heckman2010, @Garcia2020), 10. Safety Net (@Dahl2012, @bailey2024), 11. Parenting (@ATTANASIO2020), 12. Skill Formation (@Cunha2007, @Cunha2008b)"
+    "text": "Core papers in ../papers/. See reading_list.bib for citations.\nPart 1: Inequality & Welfare 1. Documenting Inequality (@Heathcote2023, @moffitt2011, @Guvenen2021) 2. Insurance vs Redistribution (@Storesletten2004) 3. Income Processes (@Meghir2004, @Guvenen2009, @Low2010) 4. Intergenerational Mobility (@corak2013, @mazumder2005, @Chetty2014)\nPart 2: Human Capital 5. Becker-Tomes Model (@Becker1979, @Becker1986, @Goldberger1989, @Mulligan1999, @Cunha2006, @Cunha2007) 6. Skills, Inequality, and the Technology of Skill Formation (@Heckman2006, @Cunha2008a, @Cunha2007, @Cunha2008b) 7. Quantitative Mobility Models (@Lee2019, @Caucutt2020)\nPart 3: Policy (Planned) 8. Connecting with the evidence. 1. Evidence of the effect of social programs on child skill formation and long-run outcomes [@Dahl2012; @Barr2022; @Bastian2018; @Carneiro2021; @bailey2024] 2. Evidence of the effect of early childhood education on skill formation and long-run outcomes [@heckman2010; @Garcia2020; @Kline2016] 3. Evidence of the effect of parenting and home interventions on skill formation and long-run outcomes [@ATTANASIO2020; @Walker2022; @Carneiro2024] 4. Estimating the technology of skill formation. [@Cunha2008b; @ATTANASIO2020]"
   },
   {
     "objectID": "CLAUDE.html#data-resources",
@@ -3666,5 +3666,383 @@
     "title": "The Becker-Tomes Model",
     "section": "Result 3: The Long-Run Effects of Good Fortune",
     "text": "Result 3: The Long-Run Effects of Good Fortune\n\n\nHence: \\[ \\sum_{t=0}^{\\infty}\\frac{1}{(1+r)^{t}}\\bar{C} = \\Omega_{0} + B\\sum_{t=0}^{\\infty}\\exp(z_{t})^{\\delta/(1-\\delta)} \\left(= \\Omega_{0}+B \\text{ at long-run steady state}\\right)\\] where \\(B\\) collects constants in previous expression.\nConsider a one-time, small increase in \\(z_{0}\\), s.t. \\(z_{t} = \\rho^{t}z_{0}\\): \\[ \\frac{d\\bar{C}}{dz_{0}}\\Big\\vert_{z_{0}=0} = \\frac{r}{1+r} \\frac{\\delta}{1-\\delta} B\\sum_{t=0}^{\\infty}\\frac{\\rho^{t}}{(1+r)^{t}} = \\frac{\\delta}{1-\\delta}\\times B\\times \\frac{r}{1+r-\\rho}\\]\nSo \\[ \\frac{d\\log(\\bar{C})}{dz_{0}}\\Big\\vert_{z_{0}=0} = \\text{Future earnings share of wealth} \\times\\frac{\\delta}{1-\\delta}\\times \\frac{1+r}{1+r-\\rho}  \\]\nInterpret!"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#overview",
+    "href": "lectures/8-SafetyNetEvidence.html#overview",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Overview",
+    "text": "Overview\n\n\nWe’ve studied theoretical models of human capital formation and mobility\nToday: empirical evidence on how policy affects skill formation\nFocus: social safety net programs\nKey questions:\n\nDo income transfers affect child development?\nWhat are the long-run effects on education and earnings?\nHow do these findings connect to our theoretical models?"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#what-is-the-eitc",
+    "href": "lectures/8-SafetyNetEvidence.html#what-is-the-eitc",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "What is the EITC?",
+    "text": "What is the EITC?\n\n\nRefundable tax credit for low-income working families\nPhases in with earnings, plateaus, then phases out\nFor families with children, substantial benefits (max ~$7,000)\nKey features:\n\nConditional on working (labor supply incentive)\nVaries with number of children\nExpanded significantly in 1993\n\nA few ways to use this variation"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#eitc-schedule",
+    "href": "lectures/8-SafetyNetEvidence.html#eitc-schedule",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "EITC Schedule",
+    "text": "EITC Schedule\n\n\nThree regions:\n\nPhase-in: credit increases with earnings\nPlateau: credit remains constant\nPhase-out: credit decreases with earnings\n\nCreates variation in income while holding work incentives roughly constant"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#research-question",
+    "href": "lectures/8-SafetyNetEvidence.html#research-question",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Research Question",
+    "text": "Research Question\n\n\nDoes family income causally affect child achievement?\nPrevious research showed correlations, but hard to separate:\n\nDirect income effect\nSelection (parents with higher income have other advantages)\n\nInnovation: use EITC expansions as exogenous income shocks\nFocus on test scores as outcomes"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#identification-strategy",
+    "href": "lectures/8-SafetyNetEvidence.html#identification-strategy",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Identification Strategy",
+    "text": "Identification Strategy\n\n\nCompare children in families eligible for large vs small EITC increases\nKey variation: 1993 EITC expansion differentially affected families by initial earnings level\nUse predicted income growth conditional on earnings as an instrument for actual income growth\nTo use this variation, must also control for initial earnings"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#main-results",
+    "href": "lectures/8-SafetyNetEvidence.html#main-results",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Main Results",
+    "text": "Main Results\nFrom (Dahl and Lochner 2012):\n\n\nEffect size: $1,000 increase in income → 6% of standard deviation increase in test scores\nEffects concentrated in math and reading\nLarger effects for:\n\nYounger children\nMore disadvantaged families\n\nNo evidence of effects in phase-out region (where income increases but work disincentives exist)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#connecting-to-theory",
+    "href": "lectures/8-SafetyNetEvidence.html#connecting-to-theory",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Connecting to Theory",
+    "text": "Connecting to Theory\nThese findings validate and extend our models:\n\n\nCredit constraints bind: low-income families would invest more if they could\nSelf-productivity: early investments have compounding returns\nDynamic complementarity: nutrition, health, cognitive stimulation interact\nMultiple skills: cognitive and non-cognitive both affected\nIntergenerational transmission: improved child outcomes → improved parenting → next generation\n\n\n\nWhere do the models need refinement?\n\n\nMore explicit modeling of multiple input types\nBetter understanding of production function non-linearities\nBehavioral aspects (information, salience, planning)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#long-run-effects-of-eitc",
+    "href": "lectures/8-SafetyNetEvidence.html#long-run-effects-of-eitc",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Long-Run Effects of EITC",
+    "text": "Long-Run Effects of EITC\n(Bastian and Michelmore 2018) ask: what are the lifetime impacts of EITC exposure?\n\n\nFollow children exposed to EITC expansions into adulthood\nOutcomes:\n\nEducational attainment\nEmployment\nEarnings\n\nKey insight: early childhood income may have persistent effects"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#identification-strategy-1",
+    "href": "lectures/8-SafetyNetEvidence.html#identification-strategy-1",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Identification Strategy",
+    "text": "Identification Strategy\n\n\nExploit state-level EITC programs (additional to federal)\nTiming: states adopted at different times\nCompare children in same state, different birth cohorts\nAlso use variation in family size and income"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#main-findings",
+    "href": "lectures/8-SafetyNetEvidence.html#main-findings",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Main Findings",
+    "text": "Main Findings\n\n\n$1,000 increase in EITC exposure (age 13-18) leads to:\n\n1.3 percentage point increase in high school completion\nHigher college attendance\n2% increase in earnings in mid-20s\n\nThe EITC is a work incentive and had an effect on maternal labor supply\n\nChanges in money and time with children"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#mechanisms",
+    "href": "lectures/8-SafetyNetEvidence.html#mechanisms",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Mechanisms",
+    "text": "Mechanisms\nWhat drives these long-run effects?\n\n\nDirect channel: more resources → better inputs (nutrition, healthcare, learning materials)\nIndirect channels:\n\nReduced parental stress\nBetter neighborhoods (if families move)\nMore stable home environment\n\nComplementarity with early investments (dynamic complementarity from Cunha-Heckman)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#the-alaska-permanent-fund-dividend",
+    "href": "lectures/8-SafetyNetEvidence.html#the-alaska-permanent-fund-dividend",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "The Alaska Permanent Fund Dividend",
+    "text": "The Alaska Permanent Fund Dividend\n\n\nAnnual cash transfer to all Alaska residents\nFunded by oil revenues\nVaries annually (~$1,000-$2,000 per person)\nKey features:\n\nUniversal (no income targeting)\nUnconditional (no work requirement)\nSubstantial for families with children\n\nDifferent policy design than EITC"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#research-question-1",
+    "href": "lectures/8-SafetyNetEvidence.html#research-question-1",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Research Question",
+    "text": "Research Question\nDo cash transfers in the first year of life affect long-run child outcomes?\n\n\nFocus: transfer received (or not) right after birth\nCompare children born just before vs just after January 1\nInnovation: use universe of administrative tax data\nFollow children into adulthood (measure earnings in 20s)\nAlso examine intermediate outcomes (test scores, graduation)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#identification",
+    "href": "lectures/8-SafetyNetEvidence.html#identification",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Identification",
+    "text": "Identification\n\n\nExploit year-to-year variation in dividend amounts\nCompare children born in high-dividend vs low-dividend years\nWithin-family analysis: siblings born in different years\nAssumption: dividend amount uncorrelated with other determinants of child outcomes\n\n\n\nPotential concerns?\n\n\nOil price shocks affect local economy\nResponse: control for local economic conditions, use within-family variation\nFertility responses\nResponse: show no evidence of selection into birth timing"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#main-results-1",
+    "href": "lectures/8-SafetyNetEvidence.html#main-results-1",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Main Results",
+    "text": "Main Results\nChildren who received ~$1,300 transfer in first year show:\n\n\nLong-run earnings: 1-2% higher at age 20-25\n\nLarger effects for males (3-4%)\nConcentrated among low-income families\n\nIntermediate outcomes:\n\nHigher math and reading test scores\nIncreased high school graduation rates\n\nEffects emerge early and persist\n\n\n\nReturn on investment: $1,300 transfer yields increased lifetime earnings far exceeding cost"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#comparing-eitc-and-pfd",
+    "href": "lectures/8-SafetyNetEvidence.html#comparing-eitc-and-pfd",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Comparing EITC and PFD",
+    "text": "Comparing EITC and PFD\nWhat do we learn from comparing these programs?\n\n\nEITC: conditional on work, targeted to low-income\nPFD: unconditional, universal\nBoth show positive effects on children\nSuggests income effect is important, not just selection or work requirements\nTiming matters: largest effects for transfers early in life"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#the-food-stamp-program",
+    "href": "lectures/8-SafetyNetEvidence.html#the-food-stamp-program",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "The Food Stamp Program",
+    "text": "The Food Stamp Program\n\n\nIn-kind transfer program (now called SNAP)\nProvides food benefits to low-income households\nRolled out county-by-county between 1961-1975\nResearch opportunity: quasi-experimental variation in timing of access"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#bailey-et-al.-2024-study-design",
+    "href": "lectures/8-SafetyNetEvidence.html#bailey-et-al.-2024-study-design",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Bailey et al. (2024) Study Design",
+    "text": "Bailey et al. (2024) Study Design\n(Bailey et al. 2024) leverage rollout timing:\n\n\nCompare cohorts born just before vs just after Food Stamps arrived\nWithin-county variation in exposure by birth year\nLink historical rollout data to modern outcomes\nLong-run outcomes: health, education, economic self-sufficiency in adulthood"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#main-findings-1",
+    "href": "lectures/8-SafetyNetEvidence.html#main-findings-1",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Main Findings",
+    "text": "Main Findings"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#return-on-investment",
+    "href": "lectures/8-SafetyNetEvidence.html#return-on-investment",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Return on Investment",
+    "text": "Return on Investment\n\n\nAuthors calculate cost-benefit ratio\nBenefits from:\n\nHigher earnings (increased tax revenue)\nBetter health (lower medical costs)\nLess transfer receipt (lower government spending)\n\nFind ROI of approximately 56 cents per dollar spent\nInterpretation: Food Stamps are an investment not just consumption"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#the-family-nurse-partnership",
+    "href": "lectures/8-SafetyNetEvidence.html#the-family-nurse-partnership",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "The Family Nurse Partnership",
+    "text": "The Family Nurse Partnership\n(Carneiro et al. 2021) study a different type of intervention:\n\n\nHome visiting program for first-time disadvantaged mothers\nIntensive: regular visits from pregnancy through age 2\nFocus on:\n\nPrenatal health\nParenting skills\nLife planning\n\nRandomized controlled trial in UK"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#multifaceted-intervention",
+    "href": "lectures/8-SafetyNetEvidence.html#multifaceted-intervention",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Multifaceted Intervention",
+    "text": "Multifaceted Intervention\n\n\nNot just income, but also:\n\nInformation (about child development, health)\nSkills (parenting techniques)\nSupport (reducing stress, connecting to services)\n\nQuestion: can we separate income from other channels?"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#main-results-2",
+    "href": "lectures/8-SafetyNetEvidence.html#main-results-2",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Main Results",
+    "text": "Main Results\n\n\nChild anthropometrics (2 years post-intervention):\n\nHeight-for-age Z-score increases by 0.22σ\nStunting reduced by 8%, extreme stunting by 15%\nEffects sustained at 4 years\n\nChild health:\n\n18% reduction in diarrhea episodes\nIncreased vaccination and deworming rates\n\nMother’s labor supply:\n\n21% increase in earnings at 2 years, sustained at 4 years\nIncreased livestock ownership (key for protein-rich diets)\n\nCognition\n\nEffect on communication, but fade-out"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#interpreting-through-our-models",
+    "href": "lectures/8-SafetyNetEvidence.html#interpreting-through-our-models",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Interpreting Through Our Models",
+    "text": "Interpreting Through Our Models\n\n\nBecker-Tomes: intervention relaxes budget constraints AND provides information\nEvidence of binding credit constraints for low-income families\nTechnology of skill formation (Cunha-Heckman):\n\nEarly investments matter (impacts on gestation, early nutrition)\nMultiple inputs: cash enables protein-rich foods, better practices\nDynamic complementarity: early health + continued investment\n\nUnique insight: Cash transfers enable productive investments (livestock) that generate sustained income"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#what-have-we-learned",
+    "href": "lectures/8-SafetyNetEvidence.html#what-have-we-learned",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "What Have We Learned?",
+    "text": "What Have We Learned?\n\n\nIncome matters: Causal evidence from EITC, PFD, Food Stamps\nTiming is critical: Largest effects for early childhood exposure\nLong-run effects: Childhood resources affect adult outcomes\nMultiple channels: Income, information, parenting, health all matter\nIntergenerational: Effects potentially transmit to next generation\n\n\n\nPolicy implication: Safety net programs are investments in human capital, not just transfers"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#connecting-to-theory-1",
+    "href": "lectures/8-SafetyNetEvidence.html#connecting-to-theory-1",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Connecting to Theory",
+    "text": "Connecting to Theory\nThese findings validate and extend our models:\n\n\nCredit constraints bind: low-income families would invest more if they could\nSelf-productivity: early investments have compounding returns\nDynamic complementarity: nutrition, health, cognitive stimulation interact\nMultiple skills: cognitive and non-cognitive both affected\nIntergenerational transmission: improved child outcomes → improved parenting → next generation\n\n\n\nWhere do the models need refinement?\n\n\nMore explicit modeling of multiple input types\nBetter understanding of production function non-linearities\nBehavioral aspects (information, salience, planning)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#remaining-questions",
+    "href": "lectures/8-SafetyNetEvidence.html#remaining-questions",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Remaining Questions",
+    "text": "Remaining Questions\n\n\nMechanisms: exactly how does income translate to better outcomes?\n\nDirect purchases (food, books, healthcare)\nParental time allocation\nStress reduction\nNeighborhood quality\n\nOptimal design: conditional vs unconditional? cash vs in-kind?\nGeneral equilibrium: what if everyone receives transfers?\nCost-effectiveness: which interventions have highest returns?\n\n\n\n\n\n\nBailey, Martha J, Hilary Hoynes, Maya Rossin-Slater, and Reed Walker. 2024. “Is the Social Safety Net a Long-Term Investment? Large-Scale Evidence from the Food Stamps Program.” Review of Economic Studies 91 (3): 1291–1330.\n\n\nBarr, Andrew, Jonathan Eggleston, and Alexander A. Smith. 2022. “Investing in Infants: The Lasting Effects of Cash Transfers to New Families.” The Quarterly Journal of Economics, no. 4: 2539–83. https://doi.org/10.1093/qje/qjac023.\n\n\nBastian, Jacob, and Katherine Michelmore. 2018. “The Long-Term Impact of the Earned Income Tax Credit on Children’s Education and Employment Outcomes.” Journal of Labor Economics, no. 4: 1127–63. https://doi.org/10.1086/697477.\n\n\nCarneiro, Pedro, Lucy Kraftman, Giacomo Mason, Lucie Moore, Imran Rasul, and Molly Scott. 2021. “The Impacts of a Multifaceted Prenatal Intervention on Human Capital Accumulation in Early Life.” The American Economic Review, no. 8: 2506–49. https://doi.org/10.1257/aer.20191726.\n\n\nDahl, Gordon B., and Lance Lochner. 2012. “The Impact of Family Income on Child Achievement: Evidence from the Earned Income Tax Credit.” The American Economic Review, no. 5: 1927–56. https://doi.org/10.1257/aer.102.5.1927."
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#next-steps",
+    "href": "lectures/8-SafetyNetEvidence.html#next-steps",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Next Steps",
+    "text": "Next Steps\n\n\nNext lecture: Evidence from early childhood education programs\nThen: Evidence from parenting interventions\nFinally: Estimating the technology of skill formation\nGoal: build from reduced-form evidence to structural understanding\n\n\n\n\n\n\nBailey, Martha J, Hilary Hoynes, Maya Rossin-Slater, and Reed Walker. 2024. “Is the Social Safety Net a Long-Term Investment? Large-Scale Evidence from the Food Stamps Program.” Review of Economic Studies 91 (3): 1291–1330.\n\n\nBarr, Andrew, Jonathan Eggleston, and Alexander A. Smith. 2022. “Investing in Infants: The Lasting Effects of Cash Transfers to New Families.” The Quarterly Journal of Economics, no. 4: 2539–83. https://doi.org/10.1093/qje/qjac023.\n\n\nBastian, Jacob, and Katherine Michelmore. 2018. “The Long-Term Impact of the Earned Income Tax Credit on Children’s Education and Employment Outcomes.” Journal of Labor Economics, no. 4: 1127–63. https://doi.org/10.1086/697477.\n\n\nCarneiro, Pedro, Lucy Kraftman, Giacomo Mason, Lucie Moore, Imran Rasul, and Molly Scott. 2021. “The Impacts of a Multifaceted Prenatal Intervention on Human Capital Accumulation in Early Life.” The American Economic Review, no. 8: 2506–49. https://doi.org/10.1257/aer.20191726.\n\n\nDahl, Gordon B., and Lance Lochner. 2012. “The Impact of Family Income on Child Achievement: Evidence from the Earned Income Tax Credit.” The American Economic Review, no. 5: 1927–56. https://doi.org/10.1257/aer.102.5.1927."
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#tax-benefits-and-the-birthday-lottery",
+    "href": "lectures/8-SafetyNetEvidence.html#tax-benefits-and-the-birthday-lottery",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Tax Benefits and the Birthday Lottery",
+    "text": "Tax Benefits and the Birthday Lottery\n(Barr, Eggleston, and Smith 2022) exploit a natural experiment: the January 1 birthdate cutoff\n\n\nU.S. child tax benefits determined by December 31 cutoff\nChild born December 31 → family gets full tax year benefits\nChild born January 1 → family waits a year for benefits\nNatural randomization: due date doesn’t predict birth date precisely\nAverage difference: ~$1,300 for low-income families (~10% of annual income)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#identification-strategy-2",
+    "href": "lectures/8-SafetyNetEvidence.html#identification-strategy-2",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Identification Strategy",
+    "text": "Identification Strategy\n\n\nKey assumption: children born Dec 31 vs Jan 1 are similar except for transfer timing\nPotential threats:\n\nC-sections scheduled to manipulate birth date?\nResponse: show no bunching around January 1\nDifferent demographics around cutoff?\nResponse: show balance on observables\n\nWindow: focus on births within days of cutoff"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#mechanisms-and-timing",
+    "href": "lectures/8-SafetyNetEvidence.html#mechanisms-and-timing",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Mechanisms and Timing",
+    "text": "Mechanisms and Timing\nWhy do transfers in infancy matter?\n\n\nCritical period: first year of life is developmentally important\n\nBrain development\nNutrition and health\nParent-child bonding\n\nFamilies may be especially credit-constrained after birth\nSmall amounts can have large effects if spent on high-return investments"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#comparing-policy-designs",
+    "href": "lectures/8-SafetyNetEvidence.html#comparing-policy-designs",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Comparing Policy Designs",
+    "text": "Comparing Policy Designs\nWhat do we learn from comparing EITC and tax benefit studies?\n\n\nEITC: conditional on work, recurrent, predictable\nTax benefits: unconditional, one-time, unpredictable\nBoth show positive effects on children\nSuggests:\n\nIncome effect is important, not just work incentives\nEven one-time transfers can have lasting effects\nTiming matters: transfers when children are very young may be especially valuable"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#the-cash-transfer-discontinuity",
+    "href": "lectures/8-SafetyNetEvidence.html#the-cash-transfer-discontinuity",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "The Cash Transfer Discontinuity",
+    "text": "The Cash Transfer Discontinuity\n\nSource: (Barr, Eggleston, and Smith 2022, fig. I)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#effect-on-adult-earnings",
+    "href": "lectures/8-SafetyNetEvidence.html#effect-on-adult-earnings",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Effect on Adult Earnings",
+    "text": "Effect on Adult Earnings\n\nSource: (Barr, Eggleston, and Smith 2022, fig. III)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#effect-on-student-outcomes",
+    "href": "lectures/8-SafetyNetEvidence.html#effect-on-student-outcomes",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Effect on Student Outcomes",
+    "text": "Effect on Student Outcomes\n\nSource: (Barr, Eggleston, and Smith 2022, fig. V)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#food-stamp-program-rollout",
+    "href": "lectures/8-SafetyNetEvidence.html#food-stamp-program-rollout",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Food Stamp Program Rollout",
+    "text": "Food Stamp Program Rollout\n\nSource: (Bailey et al. 2024, fig. 1)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#effects-on-adult-health-and-economic-outcomes",
+    "href": "lectures/8-SafetyNetEvidence.html#effects-on-adult-health-and-economic-outcomes",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Effects on Adult Health and Economic Outcomes",
+    "text": "Effects on Adult Health and Economic Outcomes\n\nSource: (Bailey et al. 2024, fig. 2)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#intergenerational-effects",
+    "href": "lectures/8-SafetyNetEvidence.html#intergenerational-effects",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Intergenerational Effects",
+    "text": "Intergenerational Effects\n\nSource: (Bailey et al. 2024, fig. 3)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#the-child-development-grant-programme-cdgp",
+    "href": "lectures/8-SafetyNetEvidence.html#the-child-development-grant-programme-cdgp",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "The Child Development Grant Programme (CDGP)",
+    "text": "The Child Development Grant Programme (CDGP)\n(Carneiro et al. 2021) study a multifaceted intervention in Northern Nigeria:\n\n\nInformation provision to mothers and fathers on pregnancy and infant feeding practices\nCash transfers to mothers: $22/month (85% of women’s earnings)\nTransfers begin during pregnancy, continue until child is 24 months\nImplemented at village level, targeted to pregnant women\nRandomized controlled trial with 3,688 pregnant women at baseline"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#why-this-context-matters",
+    "href": "lectures/8-SafetyNetEvidence.html#why-this-context-matters",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Why This Context Matters",
+    "text": "Why This Context Matters\n\n\nNorthern Nigeria: extreme poverty (70% below $1.90/day)\nHigh stunting rates (67% of children under 5)\nInfant mortality: 90 per 1,000 births\nLow knowledge of child nutrition practices\nWomen retain control over resources they bring into household\nAgricultural lean season creates food insecurity"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#long-run-impacts-and-mechanisms",
+    "href": "lectures/8-SafetyNetEvidence.html#long-run-impacts-and-mechanisms",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Long-Run Impacts and Mechanisms",
+    "text": "Long-Run Impacts and Mechanisms\n\n\nKey mechanisms:\n\nIncreased parental knowledge and improved practices (breastfeeding, antenatal care)\nWomen invest transfers in livestock assets → protein-rich foods for children\nLabor supply increases (no reduction despite transfers)\nFood security improves, especially during lean season\n\nSustained effects: impacts persist 2 years after transfers end\nReturn on investment: Internal rate of return 5-20% depending on assumptions"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#a-brief-recap",
+    "href": "lectures/8-SafetyNetEvidence.html#a-brief-recap",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "A Brief Recap",
+    "text": "A Brief Recap\n\n\nWe found that for unconstrained households, optimal investments are not affected by economic resources.\n\nFinding effects of resources / interventions, a sign of constraints \\(\\Rightarrow\\) welfare and efficiency gains\n\nBut would it be a good idea to simply do OLS? \\[ \\log(H_{t+1}) = \\beta_{0} + \\beta_{1}\\log(\\Omega_{t}) + \\epsilon_{t} \\]\nNo!! e.g. \\(z_{t-1}\\rightarrow \\Omega\\) and \\(z_{t}\\rightarrow H_{t+1}\\)\nMust look for experimental and quasi-experimental evidence"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#effects-grow-with-age",
+    "href": "lectures/8-SafetyNetEvidence.html#effects-grow-with-age",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Effects grow with age",
+    "text": "Effects grow with age\n\nSource: (Barr, Eggleston, and Smith 2022, fig. V)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#logic-of-study-design",
+    "href": "lectures/8-SafetyNetEvidence.html#logic-of-study-design",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Logic of Study Design",
+    "text": "Logic of Study Design"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#event-study-example",
+    "href": "lectures/8-SafetyNetEvidence.html#event-study-example",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Event Study: Example",
+    "text": "Event Study: Example\n\nSource: (Bailey et al. 2024, fig. 3)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#effect-on-test-scores-north-carolina",
+    "href": "lectures/8-SafetyNetEvidence.html#effect-on-test-scores-north-carolina",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Effect on Test Scores (North Carolina)",
+    "text": "Effect on Test Scores (North Carolina)\n\nSource: (Barr, Eggleston, and Smith 2022, fig. VII)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#specification",
+    "href": "lectures/8-SafetyNetEvidence.html#specification",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Specification",
+    "text": "Specification\n\\[ Y_{i} = \\beta_{1}EITC_{i,0-5} + \\beta_{2}EITC_{i,6-12} + \\beta_{3}EITC_{i,13-18} + \\eta X_{i} + \\psi V_{s,t} + \\lambda Z_{s} + \\pi W_{t} + \\epsilon_{i} \\]\n\n\\(EITC_{i,-}\\): maximum available EITC credit given state, year, family size\n\\(X_{i}\\): family characteristics\n\\(Z_{s}\\): state fixed effects\n\\(W_{t}\\): year fixed effects\n\\(V_{s,t}\\): state-year policy variables"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#effect-on-child-height-haz",
+    "href": "lectures/8-SafetyNetEvidence.html#effect-on-child-height-haz",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Effect on Child Height (HAZ)",
+    "text": "Effect on Child Height (HAZ)\n\nSource: (Carneiro et al. 2021, fig. 3)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#effect-on-mothers-earnings",
+    "href": "lectures/8-SafetyNetEvidence.html#effect-on-mothers-earnings",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Effect on Mother’s Earnings",
+    "text": "Effect on Mother’s Earnings\n\nSource: (Carneiro et al. 2021, fig. 4)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#effect-on-food-consumption",
+    "href": "lectures/8-SafetyNetEvidence.html#effect-on-food-consumption",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Effect on Food Consumption",
+    "text": "Effect on Food Consumption\n\nSource: (Carneiro et al. 2021, fig. 3)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#effect-on-resources",
+    "href": "lectures/8-SafetyNetEvidence.html#effect-on-resources",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Effect on Resources",
+    "text": "Effect on Resources\n\nSource: (Carneiro et al. 2021, fig. 4)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#variation-in-eitc-exposure",
+    "href": "lectures/8-SafetyNetEvidence.html#variation-in-eitc-exposure",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Variation in EITC Exposure",
+    "text": "Variation in EITC Exposure\n\nSource: (Bastian and Michelmore 2018, fig. 2)"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#specification-1",
+    "href": "lectures/8-SafetyNetEvidence.html#specification-1",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Specification",
+    "text": "Specification\n\\[ Y_{cbt} = \\theta_{c} + \\delta_{s(c)b} + \\psi_{t} + X_{cb}\\beta + \\sum_{a=-5}^{a=17}\\mathbf{1}\\{FS_{c}-b = a\\} + \\epsilon_{cbt} \\]\n\n\\(c\\): county\n\\(b\\): birth year\n\\(t\\): year of observation\n\\(FS_{c}\\): year in which country \\(c\\) gets FS program\n\\(X_{cb}\\) :county-by-birth year covariates"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#main-findings-2",
+    "href": "lectures/8-SafetyNetEvidence.html#main-findings-2",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "Main Findings",
+    "text": "Main Findings\nChildhood access to Food Stamps led to:\n\n\nHealth: reduced metabolic syndrome, obesity in adulthood\nEducation: increased high school completion\nEconomic: higher earnings, less likely to receive government assistance\nIntergenerational: children of treated individuals have better outcomes\nEffects larger for:\n\nMore disadvantaged families\nExposure during early childhood and in utero\n\n\n\n\nInterpretation: nutrition and food security in childhood have lifelong consequences"
   }
 ]
