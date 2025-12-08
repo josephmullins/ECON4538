@@ -320,7 +320,7 @@ Source: [@bailey2024, Figure 3]
 
 # Carneiro et al. (2021): Nigeria Cash Transfer Program
 
-## The Child Development Grant Programme (CDGP)
+## The Child Development Grant Programme (CDGP) {.smaller}
 
 [@Carneiro2021] study a multifaceted intervention in Northern Nigeria:
 
@@ -372,7 +372,7 @@ Source: [@Carneiro2021, Figure 3]
 
 Source: [@Carneiro2021, Figure 4]
 
-## Long-Run Impacts and Mechanisms
+## Long-Run Impacts and Mechanisms {.smaller}
 
 :::{.incremental}
 - **Key mechanisms**:
@@ -384,55 +384,21 @@ Source: [@Carneiro2021, Figure 4]
 - **Return on investment**: Internal rate of return 5-20% depending on assumptions
 :::
 
-## Interpreting Through Our Models
-
-:::{.incremental}
-- Becker-Tomes: intervention relaxes budget constraints AND provides information
-- Evidence of binding credit constraints for low-income families
-- Technology of skill formation (Cunha-Heckman):
-  - Early investments matter (impacts on gestation, early nutrition)
-  - Multiple inputs: cash enables protein-rich foods, better practices
-  - Dynamic complementarity: early health + continued investment
-- **Unique insight**: Cash transfers enable productive investments (livestock) that generate sustained income
-:::
-
 # Synthesis and Implications
 
 ## What Have We Learned? {.smaller}
 
+If we believe the findings:
+
 :::{.incremental}
 1. **Income matters**: Causal evidence from EITC, PFD, Food Stamps
-2. **Timing is critical**: Largest effects for early childhood exposure
+2. **Timing matters**: Largest effects for early childhood exposure (mostly)
 3. **Long-run effects**: Childhood resources affect adult outcomes
-4. **Multiple channels**: Income, information, parenting, health all matter
-5. **Intergenerational**: Effects potentially transmit to next generation
 :::
 
 . . .
 
 **Policy implication**: Safety net programs are investments in human capital, not just transfers
-
-## Connecting to Theory {.smaller}
-
-These findings validate and extend our models:
-
-:::{.incremental}
-- **Credit constraints bind**: low-income families would invest more if they could
-- **Self-productivity**: early investments have compounding returns
-- **Dynamic complementarity**: nutrition, health, cognitive stimulation interact
-- **Multiple skills**: cognitive and non-cognitive both affected
-- **Intergenerational transmission**: improved child outcomes → improved parenting → next generation
-:::
-
-. . .
-
-Where do the models need refinement?
-
-:::{.incremental}
-- More explicit modeling of multiple input types
-- Better understanding of production function non-linearities
-- Behavioral aspects (information, salience, planning)
-:::
 
 ## Remaining Questions
 
@@ -447,3 +413,4 @@ Where do the models need refinement?
 - **Cost-effectiveness**: which interventions have highest returns?
 :::
 
+## 

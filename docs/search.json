@@ -3714,7 +3714,7 @@
     "href": "lectures/8-SafetyNetEvidence.html#connecting-to-theory",
     "title": "Connecting Theory with Evidence: The Safety Net",
     "section": "Connecting to Theory",
-    "text": "Connecting to Theory\nThese findings validate and extend our models:\n\n\nCredit constraints bind: low-income families would invest more if they could\nSelf-productivity: early investments have compounding returns\nDynamic complementarity: nutrition, health, cognitive stimulation interact\nMultiple skills: cognitive and non-cognitive both affected\nIntergenerational transmission: improved child outcomes → improved parenting → next generation\n\n\n\nWhere do the models need refinement?\n\n\nMore explicit modeling of multiple input types\nBetter understanding of production function non-linearities\nBehavioral aspects (information, salience, planning)"
+    "text": "Connecting to Theory\nThese findings validate the theoretical framework:\n\n\nCredit constraints bind: low-income families would invest more if they could\nSelf-productivity: early investments have compounding returns\nDynamic complementarity: nutrition, health, cognitive stimulation interact\nMultiple skills: cognitive and non-cognitive both affected\nIntergenerational transmission: improved child outcomes → improved parenting → next generation"
   },
   {
     "objectID": "lectures/8-SafetyNetEvidence.html#long-run-effects-of-eitc",
@@ -3840,7 +3840,7 @@
     "href": "lectures/8-SafetyNetEvidence.html#what-have-we-learned",
     "title": "Connecting Theory with Evidence: The Safety Net",
     "section": "What Have We Learned?",
-    "text": "What Have We Learned?\n\n\nIncome matters: Causal evidence from EITC, PFD, Food Stamps\nTiming is critical: Largest effects for early childhood exposure\nLong-run effects: Childhood resources affect adult outcomes\nMultiple channels: Income, information, parenting, health all matter\nIntergenerational: Effects potentially transmit to next generation\n\n\n\nPolicy implication: Safety net programs are investments in human capital, not just transfers"
+    "text": "What Have We Learned?\nIf we believe the findings:\n\n\nIncome matters: Causal evidence from EITC, PFD, Food Stamps\nTiming matters: Largest effects for early childhood exposure (mostly)\nLong-run effects: Childhood resources affect adult outcomes\n\n\n\nPolicy implication: Safety net programs are investments in human capital, not just transfers"
   },
   {
     "objectID": "lectures/8-SafetyNetEvidence.html#connecting-to-theory-1",
@@ -3854,7 +3854,7 @@
     "href": "lectures/8-SafetyNetEvidence.html#remaining-questions",
     "title": "Connecting Theory with Evidence: The Safety Net",
     "section": "Remaining Questions",
-    "text": "Remaining Questions\n\n\nMechanisms: exactly how does income translate to better outcomes?\n\nDirect purchases (food, books, healthcare)\nParental time allocation\nStress reduction\nNeighborhood quality\n\nOptimal design: conditional vs unconditional? cash vs in-kind?\nGeneral equilibrium: what if everyone receives transfers?\nCost-effectiveness: which interventions have highest returns?\n\n\n\n\n\n\nBailey, Martha J, Hilary Hoynes, Maya Rossin-Slater, and Reed Walker. 2024. “Is the Social Safety Net a Long-Term Investment? Large-Scale Evidence from the Food Stamps Program.” Review of Economic Studies 91 (3): 1291–1330.\n\n\nBarr, Andrew, Jonathan Eggleston, and Alexander A. Smith. 2022. “Investing in Infants: The Lasting Effects of Cash Transfers to New Families.” The Quarterly Journal of Economics, no. 4: 2539–83. https://doi.org/10.1093/qje/qjac023.\n\n\nBastian, Jacob, and Katherine Michelmore. 2018. “The Long-Term Impact of the Earned Income Tax Credit on Children’s Education and Employment Outcomes.” Journal of Labor Economics, no. 4: 1127–63. https://doi.org/10.1086/697477.\n\n\nCarneiro, Pedro, Lucy Kraftman, Giacomo Mason, Lucie Moore, Imran Rasul, and Molly Scott. 2021. “The Impacts of a Multifaceted Prenatal Intervention on Human Capital Accumulation in Early Life.” The American Economic Review, no. 8: 2506–49. https://doi.org/10.1257/aer.20191726.\n\n\nDahl, Gordon B., and Lance Lochner. 2012. “The Impact of Family Income on Child Achievement: Evidence from the Earned Income Tax Credit.” The American Economic Review, no. 5: 1927–56. https://doi.org/10.1257/aer.102.5.1927."
+    "text": "Remaining Questions\n\n\nMechanisms: exactly how does income translate to better outcomes?\n\nDirect purchases (food, books, healthcare)\nParental time allocation\nStress reduction\nNeighborhood quality\n\nOptimal design: conditional vs unconditional? cash vs in-kind?\nGeneral equilibrium: what if everyone receives transfers?\nCost-effectiveness: which interventions have highest returns?"
   },
   {
     "objectID": "lectures/8-SafetyNetEvidence.html#next-steps",
@@ -4051,5 +4051,12 @@
     "title": "The Becker-Tomes Model",
     "section": "",
     "text": "We have learned that income inequality tends to persist across generations\nToday: theory of intergenerational transmission\nThe Becker-Tomes model (Becker and Tomes 1979, 1986) is a workhorse framework\nWe’ll study some stylized versions\nKey questions:\n\nWhy do earnings regress to the mean?\nHow do parents affect children’s outcomes?\nWhat determines the speed of mobility?\n\nBuilding a unified framework for inequality and mobility"
+  },
+  {
+    "objectID": "lectures/8-SafetyNetEvidence.html#section",
+    "href": "lectures/8-SafetyNetEvidence.html#section",
+    "title": "Connecting Theory with Evidence: The Safety Net",
+    "section": "",
+    "text": "Bailey, Martha J, Hilary Hoynes, Maya Rossin-Slater, and Reed Walker. 2024. “Is the Social Safety Net a Long-Term Investment? Large-Scale Evidence from the Food Stamps Program.” Review of Economic Studies 91 (3): 1291–1330.\n\n\nBarr, Andrew, Jonathan Eggleston, and Alexander A. Smith. 2022. “Investing in Infants: The Lasting Effects of Cash Transfers to New Families.” The Quarterly Journal of Economics, no. 4: 2539–83. https://doi.org/10.1093/qje/qjac023.\n\n\nBastian, Jacob, and Katherine Michelmore. 2018. “The Long-Term Impact of the Earned Income Tax Credit on Children’s Education and Employment Outcomes.” Journal of Labor Economics, no. 4: 1127–63. https://doi.org/10.1086/697477.\n\n\nCarneiro, Pedro, Lucy Kraftman, Giacomo Mason, Lucie Moore, Imran Rasul, and Molly Scott. 2021. “The Impacts of a Multifaceted Prenatal Intervention on Human Capital Accumulation in Early Life.” The American Economic Review, no. 8: 2506–49. https://doi.org/10.1257/aer.20191726.\n\n\nDahl, Gordon B., and Lance Lochner. 2012. “The Impact of Family Income on Child Achievement: Evidence from the Earned Income Tax Credit.” The American Economic Review, no. 5: 1927–56. https://doi.org/10.1257/aer.102.5.1927."
   }
 ]
