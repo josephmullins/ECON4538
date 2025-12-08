@@ -272,7 +272,7 @@ H_{t+1} = \exp(\mu+z_{t})X_{t}^{\delta}
 <li class="fragment">Show that in general: <span class="math display">\[ u'(C_{t}) = \beta(1+r)\mathbb{E}u'(C_{t+1}) \]</span></li>
 <li class="fragment">Under our assumptions at steady state: <span class="math display">\[C_{t}=C_{t+1}=\bar{C}\]</span></li>
 <li class="fragment">Define <span class="math inline">\(Z_{t}=\exp(\mu+z_{t})\)</span> and iterate the budget constraint: <span class="math display">\[ \sum_{t=0}^\infty \frac{1}{(1+r)^{t}} \bar{C} = \Omega_{0} + \sum_{t=0}\frac{1}{(1+r)^t}\max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] \]</span></li>
-<li class="fragment">Show that <span class="math display">\[ \max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] = \left(\frac{Z_{t}w}{(1+r)}\right)^{\delta/(1-\delta)}\psi^{-1/(1-\delta)}\left(\delta^{\delta/(1-\delta)} - \delta^{1/(1-\delta)}\right)\]</span></li>
+<li class="fragment">Show that <span class="math display">\[ \max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] = \left(\frac{Z_{t}w}{(1+r)}\right)^{1/(1-\delta)}\psi^{-\delta/(1-\delta)}\left(\delta^{\delta/(1-\delta)} - \delta^{1/(1-\delta)}\right)\]</span></li>
 </ol>
 </div>
 </section>
@@ -280,9 +280,9 @@ H_{t+1} = \exp(\mu+z_{t})X_{t}^{\delta}
 <h2>Result 3: The Long-Run Effects of Good Fortune</h2>
 <div>
 <ol start="5" type="1">
-<li class="fragment">Hence: <span class="math display">\[ \sum_{t=0}^{\infty}\frac{1}{(1+r)^{t}}\bar{C} = \Omega_{0} + B\sum_{t=0}^{\infty}\exp(z_{t})^{\delta/(1-\delta)} \left(= \Omega_{0}+B \text{ at long-run steady state}\right)\]</span> where <span class="math inline">\(B\)</span> collects constants in previous expression.</li>
-<li class="fragment">Consider a one-time, small increase in <span class="math inline">\(z_{0}\)</span>, s.t. <span class="math inline">\(z_{t} = \rho^{t}z_{0}\)</span>: <span class="math display">\[ \frac{d\bar{C}}{dz_{0}}\Big\vert_{z_{0}=0} = \frac{r}{1+r} \frac{\delta}{1-\delta} B\sum_{t=0}^{\infty}\frac{\rho^{t}}{(1+r)^{t}} = \frac{\delta}{1-\delta}\times B\times \frac{r}{1+r-\rho}\]</span></li>
-<li class="fragment">So <span class="math display">\[ \frac{d\log(\bar{C})}{dz_{0}}\Big\vert_{z_{0}=0} = \text{Future earnings share of wealth} \times\frac{\delta}{1-\delta}\times \frac{1+r}{1+r-\rho}  \]</span></li>
+<li class="fragment">Hence: <span class="math display">\[ \sum_{t=0}^{\infty}\frac{1}{(1+r)^{t}}\bar{C} = \Omega_{0} + B\sum_{t=0}^{\infty}\exp(z_{t})^{1/(1-\delta)} \left(= \Omega_{0}+B \text{ at long-run steady state}\right)\]</span> where <span class="math inline">\(B\)</span> collects constants in previous expression.</li>
+<li class="fragment">Consider a one-time, small increase in <span class="math inline">\(z_{0}\)</span>, s.t. <span class="math inline">\(z_{t} = \rho^{t}z_{0}\)</span>: <span class="math display">\[ \frac{d\bar{C}}{dz_{0}}\Big\vert_{z_{0}=0} = \frac{r}{1+r} \frac{1}{1-\delta} B\sum_{t=0}^{\infty}\frac{\rho^{t}}{(1+r)^{t}} = \frac{1}{1-\delta}\times B\times \frac{r}{1+r-\rho}\]</span></li>
+<li class="fragment">So <span class="math display">\[ \frac{d\log(\bar{C})}{dz_{0}}\Big\vert_{z_{0}=0} = \text{Future earnings share of wealth} \times\frac{1}{1-\delta}\times \frac{1+r}{1+r-\rho}  \]</span></li>
 <li class="fragment">Interpret!</li>
 </ol>
 </div>
@@ -510,7 +510,7 @@ A' &amp;\geq&amp; 0
 </section>
 <section id="investment-and-income-two-regimes" class="slide level2 scrollable">
 <h2>Investment and Income: Two Regimes</h2>
-<div id="21aff435" class="cell" data-execution_count="1">
+<div id="21aff435" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="700" height="450" viewbox="0 0 2800 1800">

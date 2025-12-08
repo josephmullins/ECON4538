@@ -132,19 +132,19 @@ $$C_{t}=C_{t+1}=\bar{C}$$
 3. Define $Z_{t}=\exp(\mu+z_{t})$ and iterate the budget constraint:
 $$ \sum_{t=0}^\infty \frac{1}{(1+r)^{t}} \bar{C} = \Omega_{0} + \sum_{t=0}\frac{1}{(1+r)^t}\max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] $$
 4. Show that
-$$ \max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] = \left(\frac{Z_{t}w}{(1+r)}\right)^{\delta/(1-\delta)}\psi^{-1/(1-\delta)}\left(\delta^{\delta/(1-\delta)} - \delta^{1/(1-\delta)}\right)$$
+$$ \max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] = \left(\frac{Z_{t}w}{(1+r)}\right)^{1/(1-\delta)}\psi^{-\delta/(1-\delta)}\left(\delta^{\delta/(1-\delta)} - \delta^{1/(1-\delta)}\right)$$
 :::
 
 ## Result 3: The Long-Run Effects of Good Fortune {.smaller}
 
 :::{.incremental}
 5. Hence:
-$$ \sum_{t=0}^{\infty}\frac{1}{(1+r)^{t}}\bar{C} = \Omega_{0} + B\sum_{t=0}^{\infty}\exp(z_{t})^{\delta/(1-\delta)} \left(= \Omega_{0}+B \text{ at long-run steady state}\right)$$ 
+$$ \sum_{t=0}^{\infty}\frac{1}{(1+r)^{t}}\bar{C} = \Omega_{0} + B\sum_{t=0}^{\infty}\exp(z_{t})^{1/(1-\delta)} \left(= \Omega_{0}+B \text{ at long-run steady state}\right)$$ 
 where $B$ collects constants in previous expression.
 6. Consider a one-time, small increase in $z_{0}$, s.t. $z_{t} = \rho^{t}z_{0}$:
-$$ \frac{d\bar{C}}{dz_{0}}\Big\vert_{z_{0}=0} = \frac{r}{1+r} \frac{\delta}{1-\delta} B\sum_{t=0}^{\infty}\frac{\rho^{t}}{(1+r)^{t}} = \frac{\delta}{1-\delta}\times B\times \frac{r}{1+r-\rho}$$
+$$ \frac{d\bar{C}}{dz_{0}}\Big\vert_{z_{0}=0} = \frac{r}{1+r} \frac{1}{1-\delta} B\sum_{t=0}^{\infty}\frac{\rho^{t}}{(1+r)^{t}} = \frac{1}{1-\delta}\times B\times \frac{r}{1+r-\rho}$$
 7. So
-$$ \frac{d\log(\bar{C})}{dz_{0}}\Big\vert_{z_{0}=0} = \text{Future earnings share of wealth} \times\frac{\delta}{1-\delta}\times \frac{1+r}{1+r-\rho}  $$
+$$ fix\frac{d\log(\bar{C})}{dz_{0}}\Big\vert_{z_{0}=0} = \text{Future earnings share of wealth} \times\frac{1}{1-\delta}\times \frac{1+r}{1+r-\rho}  $$
 8. Interpret!
 :::
 
