@@ -3707,7 +3707,7 @@
     "href": "lectures/8-SafetyNetEvidence.html#main-results",
     "title": "Connecting Theory with Evidence: The Safety Net",
     "section": "Main Results",
-    "text": "Main Results\nFrom (Dahl and Lochner 2012):\n\n\nEffect size: $1,000 increase in income → 6% of standard deviation increase in test scores\nEffects concentrated in math and reading\nLarger effects for:\n\nYounger children\nMore disadvantaged families\n\nNo evidence of effects in phase-out region (where income increases but work disincentives exist)"
+    "text": "Main Results\nFrom (Dahl and Lochner 2012):\n\n\nEffect size: $1,000 increase in income → 6% of standard deviation increase in test scores\nEffects concentrated in math and reading\nLarger effects for:\n\nYounger children\nMore disadvantaged families"
   },
   {
     "objectID": "lectures/8-SafetyNetEvidence.html#connecting-to-theory",
@@ -3721,14 +3721,14 @@
     "href": "lectures/8-SafetyNetEvidence.html#long-run-effects-of-eitc",
     "title": "Connecting Theory with Evidence: The Safety Net",
     "section": "Long-Run Effects of EITC",
-    "text": "Long-Run Effects of EITC\n(Bastian and Michelmore 2018) ask: what are the lifetime impacts of EITC exposure?\n\n\nFollow children exposed to EITC expansions into adulthood\nOutcomes:\n\nEducational attainment\nEmployment\nEarnings\n\nKey insight: early childhood income may have persistent effects"
+    "text": "Long-Run Effects of EITC\n(Bastian and Michelmore 2018) ask: what are the lifetime impacts of EITC exposure?\n\n\nFollow children exposed to EITC expansions into adulthood\nOutcomes:\n\nEducational attainment\nEmployment\nEarnings\n\nKey insight: childhood income may have persistent effects"
   },
   {
     "objectID": "lectures/8-SafetyNetEvidence.html#identification-strategy-1",
     "href": "lectures/8-SafetyNetEvidence.html#identification-strategy-1",
     "title": "Connecting Theory with Evidence: The Safety Net",
     "section": "Identification Strategy",
-    "text": "Identification Strategy\n\n\nExploit state-level EITC programs (additional to federal)\nTiming: states adopted at different times\nCompare children in same state, different birth cohorts\nAlso use variation in family size and income"
+    "text": "Identification Strategy\n\n\nExploit state-level EITC programs (additional to federal)\nTiming: states adopted at different times\nCompare children in same state, different birth cohorts\nState, year, family size \\(\\rightarrow\\) different max credit"
   },
   {
     "objectID": "lectures/8-SafetyNetEvidence.html#main-findings",
@@ -3798,7 +3798,7 @@
     "href": "lectures/8-SafetyNetEvidence.html#main-findings-1",
     "title": "Connecting Theory with Evidence: The Safety Net",
     "section": "Main Findings",
-    "text": "Main Findings"
+    "text": "Main Findings\nChildhood access to Food Stamps led to:\n\n\nHealth: reduced metabolic syndrome, obesity in adulthood\nEducation: increased high school completion\nEconomic: higher earnings, less likely to receive government assistance\nIntergenerational: children of treated individuals have better outcomes\nEffects larger for:\n\nMore disadvantaged families\nExposure during early childhood and in utero\n\n\n\n\nInterpretation: nutrition and food security in childhood have lifelong consequences"
   },
   {
     "objectID": "lectures/8-SafetyNetEvidence.html#return-on-investment",

@@ -95,7 +95,6 @@ From [@Dahl2012]:
 - Larger effects for:
   - Younger children
   - More disadvantaged families
-- No evidence of effects in phase-out region (where income increases but work disincentives exist)
 :::
 
 # Bastian and Michelmore (2018)
@@ -110,7 +109,7 @@ From [@Dahl2012]:
   - Educational attainment
   - Employment
   - Earnings
-- **Key insight**: early childhood income may have persistent effects
+- **Key insight**: childhood income may have persistent effects
 :::
 
 ## Identification Strategy
@@ -119,7 +118,7 @@ From [@Dahl2012]:
 - Exploit state-level EITC programs (additional to federal)
 - Timing: states adopted at different times
 - Compare children in same state, different birth cohorts
-- Also use variation in family size and income
+- State, year, family size $\rightarrow$ different max credit
 :::
 
 ## Variation in EITC Exposure
@@ -128,7 +127,7 @@ From [@Dahl2012]:
 
 Source: [@Bastian2018, Figure 2]
 
-## Specification
+## Specification {.smaller}
 
 $$ Y_{i} = \beta_{1}EITC_{i,0-5} + \beta_{2}EITC_{i,6-12} + \beta_{3}EITC_{i,13-18} + \eta X_{i} + \psi V_{s,t} + \lambda Z_{s} + \pi W_{t} + \epsilon_{i} $$
 
@@ -148,8 +147,6 @@ $$ Y_{i} = \beta_{1}EITC_{i,0-5} + \beta_{2}EITC_{i,6-12} + \beta_{3}EITC_{i,13-
 - The EITC is a **work incentive** and had an effect on maternal labor supply
   - Changes in money **and** time with children
 :::
-
-## Main Findings
 
 # Barr, Eggleston, and Smith (2022)
 
