@@ -12,4 +12,5 @@ Materials here will be uploaded as we continue through the course.
 | Estimating Income Processes | [Slides](lectures/3-Income_Processes.qmd) |
 | Intergenerational Mobility | [Slides](lectures/4-IntergenerationalMobility.qmd) |
 | The Becker-Tomes Model | [Slides](lectures/5-BeckerTomesModel.qmd) |
+| Measuring Skills and Skill Formation | [Slides](lectures/6-SkillsInequalityTechnology.qmd) |
 | Evidence from Safety Net Programs | [Slides](lectures/8-SafetyNetEvidence.qmd) |

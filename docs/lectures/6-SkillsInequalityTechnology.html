@@ -246,6 +246,12 @@
 </section>
 <section id="wages-and-skills" class="slide level2">
 <h2>Wages and Skills</h2>
+<p>After correcting for measurement error:</p>
+<ul>
+<li>Wages grow with both cognitive and non-cognitive skill</li>
+<li>Slopes are comparable in magnitude</li>
+<li>Some pictures to follow…</li>
+</ul>
 </section>
 <section id="mens-wage-profiles" class="slide level2">
 <h2>Men’s Wage Profiles</h2>
@@ -266,6 +272,7 @@
 <li class="fragment">But the <strong>gradient is steeper</strong> for college graduates</li>
 <li class="fragment">This suggests <strong>complementarity</strong> between skills and education</li>
 <li class="fragment">Cognitive skills have bigger payoffs with more schooling</li>
+<li class="fragment">Conversely, the gradient in non-cognitive skill gets <strong>flatter</strong></li>
 </ul>
 </div>
 </section>
@@ -313,7 +320,7 @@
 </section>
 <section id="skills-are-produced" class="slide level2">
 <h2>Skills Are Produced</h2>
-<p>From the Becker-Tomes model, we had: <span class="math display">\[ H_{t+1} = f(I_t, \theta_t) \]</span></p>
+<p>From the Becker-Tomes model, we had: <span class="math display">\[ H_{t+1} = f(X_t, z_t) \]</span></p>
 <div>
 <ul>
 <li class="fragment">But what is the <strong>technology</strong> <span class="math inline">\(f(\cdot)\)</span>?</li>
@@ -344,11 +351,11 @@
 <p>The <strong>elasticity of substitution</strong> is: <span class="math display">\[ \sigma_k = \frac{1}{1-\phi_k} \]</span></p>
 <div>
 <ul>
-<li class="fragment">If <span class="math inline">\(\sigma_k\in(0,1]\)</span>: early and late investments are <strong>substitutes</strong>
+<li class="fragment">If <span class="math inline">\(\sigma_k\in[1,\infty)\)</span>: early and late investments are <strong>substitutes</strong>
 <ul>
 <li class="fragment">Can compensate for poor early environment with later remediation</li>
 </ul></li>
-<li class="fragment">If <span class="math inline">\(\sigma_k\in(\infty,1]\)</span>: early and late investments are <strong>complements</strong>
+<li class="fragment">If <span class="math inline">\(\sigma_k\in(0,1)\)</span>: early and late investments are <strong>complements</strong>
 <ul>
 <li class="fragment">Early investment is crucial; hard to compensate later</li>
 </ul></li>
@@ -358,10 +365,10 @@
 </section>
 <section id="exercise" class="slide level2">
 <h2>Exercise</h2>
+<p>Two period model: <span class="math display">\[ \theta = (\gamma I_{1}^{\phi} + (1-\gamma)I_{2}^{\phi}) \]</span></p>
 <div>
 <ul>
-<li class="fragment">Take the derivatives of the CES with respect to <span class="math inline">\(I\)</span></li>
-<li class="fragment">Solve the problem: <span class="math display">\[ \min p_{1}I_{1} + p_{2}I_{2} s.t. f(I_{1},I_{2}) \geq 1 \]</span> where <span class="math inline">\(f\)</span> is a CES production function and <span class="math inline">\(I_{t}\)</span> is investment in period <span class="math inline">\(t\)</span></li>
+<li class="fragment">Solve the problem: <span class="math display">\[ \min p_{1}I_{1} + p_{2}I_{2}\ s.t.\ f(I_{1},I_{2}) \geq 1 \]</span> where <span class="math inline">\(f\)</span> is the CES production function and <span class="math inline">\(I_{t}\)</span> is investment in period <span class="math inline">\(t\)</span></li>
 <li class="fragment">What happens when investment is more costly in period 1?</li>
 </ul>
 </div>
@@ -392,11 +399,11 @@
 <p>From <span class="citation" data-cites="Cunha2007">Cunha and Heckman (<a href="#/references" role="doc-biblioref" onclick="">2007</a>)</span>:</p>
 <div>
 <ul>
-<li class="fragment"><strong>Critical period</strong>: A time when <span class="math inline">\(\sigma_k \leq 0\)</span> (pure complements)
+<li class="fragment"><strong>Critical period</strong>: A time when <span class="math inline">\(\phi_k \leq 0\)</span> (pure complements)
 <ul>
-<li class="fragment">Investment <strong>must</strong> happen then; cannot compensate later</li>
+<li class="fragment">Investment <strong>must</strong> happen then; very hard to compensate later</li>
 </ul></li>
-<li class="fragment"><strong>Sensitive period</strong>: A time when <span class="math inline">\(\sigma_k\)</span> is low but not zero
+<li class="fragment"><strong>Sensitive period</strong>: A time when <span class="math inline">\(\phi_k\in(0,1]\)</span>
 <ul>
 <li class="fragment">Investment is especially productive, but some later compensation possible</li>
 </ul></li>

@@ -86,6 +86,12 @@ How do we measure cognitive and noncognitive ability?
 
 ## Wages and Skills
 
+After correcting for measurement error:
+
+- Wages grow with both cognitive and non-cognitive skill
+- Slopes are comparable in magnitude
+- Some pictures to follow...
+
 ## Men's Wage Profiles
 
 ![](../papers/figures/hsu_wages_men.png)
@@ -107,6 +113,7 @@ From @Heckman2006:
 - But the **gradient is steeper** for college graduates
 - This suggests **complementarity** between skills and education
 - Cognitive skills have bigger payoffs with more schooling
+- Conversely, the gradient in non-cognitive skill gets **flatter**
 :::
 
 ## Wage Profiles: High School Dropouts
@@ -148,7 +155,7 @@ From @Heckman2006:
 ## Skills Are Produced
 
 From the Becker-Tomes model, we had:
-$$ H_{t+1} = f(I_t, \theta_t) $$
+$$ H_{t+1} = f(X_t, z_t) $$
 
 :::{.incremental}
 - But what is the **technology** $f(\cdot)$?
@@ -179,20 +186,21 @@ The **elasticity of substitution** is:
 $$ \sigma_k = \frac{1}{1-\phi_k} $$
 
 :::{.incremental}
-- If $\sigma_k\in(0,1]$: early and late investments are **substitutes**
+- If $\sigma_k\in[1,\infty)$: early and late investments are **substitutes**
   - Can compensate for poor early environment with later remediation
-- If $\sigma_k\in(\infty,1]$: early and late investments are **complements**
+- If $\sigma_k\in(0,1)$: early and late investments are **complements**
   - Early investment is crucial; hard to compensate later
 - Empirical question: What are $\sigma_{\text{cog}}$ and $\sigma_{\text{noncog}}$?
 :::
 
 ## Exercise
+Two period model:
+$$ \theta = (\gamma I_{1}^{\phi} + (1-\gamma)I_{2}^{\phi}) $$
 
 :::{.incremental}
-- Take the derivatives of the CES with respect to $I$
 - Solve the problem:
-$$ \min p_{1}I_{1} + p_{2}I_{2} s.t. f(I_{1},I_{2}) \geq 1 $$
-where $f$ is a CES production function and $I_{t}$ is investment in period $t$
+$$ \min p_{1}I_{1} + p_{2}I_{2}\ s.t.\ f(I_{1},I_{2}) \geq 1 $$
+where $f$ is the CES production function and $I_{t}$ is investment in period $t$
 - What happens when investment is more costly in period 1?
 :::
 
@@ -218,9 +226,9 @@ These properties have profound implications for policy timing.
 From @Cunha2007:
 
 :::{.incremental}
-- **Critical period**: A time when $\sigma_k \leq 0$ (pure complements)
-  - Investment **must** happen then; cannot compensate later
-- **Sensitive period**: A time when $\sigma_k$ is low but not zero
+- **Critical period**: A time when $\phi_k \leq 0$ (pure complements)
+  - Investment **must** happen then; very hard to compensate later
+- **Sensitive period**: A time when $\phi_k\in(0,1]$
   - Investment is especially productive, but some later compensation possible
 - Evidence: **Early childhood is a sensitive period** for both skill types
 - But noncognitive skills remain more malleable into adolescence

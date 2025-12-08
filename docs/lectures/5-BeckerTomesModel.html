@@ -1,215 +1,299 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>The Becker-Tomes Model – ECON4538</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.40">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-  <title>ECON4538 – The Becker-Tomes Model</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-      vertical-align: middle;
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
     }
-    /* CSS for citations */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-      margin-bottom: 0em;
-    }
-    .hanging-indent div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2a4c8bc07c7bed3f644724215556eb12.css">
-  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-    .reveal div.sourceCode {
-      margin: 0;
-      overflow: auto;
-    }
-    .reveal div.hanging-indent {
-      margin-left: 1em;
-      text-indent: -1em;
-    }
-    .reveal .slide:not(.center) {
-      height: 100%;
-    }
-    .reveal .slide.scrollable {
-      overflow-y: auto;
-    }
-    .reveal .footnotes {
-      height: 100%;
-      overflow-y: auto;
-    }
-    .reveal .slide .absolute {
-      position: absolute;
-      display: block;
-    }
-    .reveal .footnotes ol {
-      counter-reset: ol;
-      list-style-type: none; 
-      margin-left: 0;
-    }
-    .reveal .footnotes ol li:before {
-      counter-increment: ol;
-      content: counter(ol) ". "; 
-    }
-    .reveal .footnotes ol li > p:first-child {
-      display: inline-block;
-    }
-    .reveal .slide ul,
-    .reveal .slide ol {
-      margin-bottom: 0.5em;
-    }
-    .reveal .slide ul li,
-    .reveal .slide ol li {
-      margin-top: 0.4em;
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide ul[role="tablist"] li {
-      margin-bottom: 0;
-    }
-    .reveal .slide ul li > *:first-child,
-    .reveal .slide ol li > *:first-child {
-      margin-block-start: 0;
-    }
-    .reveal .slide ul li > *:last-child,
-    .reveal .slide ol li > *:last-child {
-      margin-block-end: 0;
-    }
-    .reveal .slide .columns:nth-child(3) {
-      margin-block-start: 0.8em;
-    }
-    .reveal blockquote {
-      box-shadow: none;
-    }
-    .reveal .tippy-content>* {
-      margin-top: 0.2em;
-      margin-bottom: 0.7em;
-    }
-    .reveal .tippy-content>*:last-child {
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide > img.stretch.quarto-figure-center,
-    .reveal .slide > img.r-stretch.quarto-figure-center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-left,
-    .reveal .slide > img.r-stretch.quarto-figure-left  {
-      display: block;
-      margin-left: 0;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-right,
-    .reveal .slide > img.r-stretch.quarto-figure-right  {
-      display: block;
-      margin-left: auto;
-      margin-right: 0; 
-    }
-  </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-  
-  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
-<body class="quarto-light">
-  <div class="reveal">
-    <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">The Becker-Tomes Model</h1>
+<body class="nav-fixed">
 
-<div class="quarto-title-authors">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ECON4538</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lectures.html"> 
+<span class="menu-text">Lecture Slides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../recitations.html"> 
+<span class="menu-text">Recitation Materials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assignments.html"> 
+<span class="menu-text">Assignments</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../exercises.html"> 
+<span class="menu-text">Practice Exercises</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#the-becker-tomes-framework" id="toc-the-becker-tomes-framework" class="nav-link" data-scroll-target="#the-becker-tomes-framework">The Becker-Tomes Framework</a>
+  <ul class="collapse">
+  <li><a href="#basic-setup" id="toc-basic-setup" class="nav-link" data-scroll-target="#basic-setup">Basic Setup</a></li>
+  <li><a href="#a-simple-version" id="toc-a-simple-version" class="nav-link" data-scroll-target="#a-simple-version">A Simple Version</a></li>
+  <li><a href="#a-recursive-formulation" id="toc-a-recursive-formulation" class="nav-link" data-scroll-target="#a-recursive-formulation">A recursive formulation</a></li>
+  <li><a href="#model-solution" id="toc-model-solution" class="nav-link" data-scroll-target="#model-solution">Model Solution</a></li>
+  <li><a href="#result-1-investment-does-not-depend-on-income" id="toc-result-1-investment-does-not-depend-on-income" class="nav-link" data-scroll-target="#result-1-investment-does-not-depend-on-income">Result 1: Investment does not depend on Income</a></li>
+  <li><a href="#result-2-the-ige" id="toc-result-2-the-ige" class="nav-link" data-scroll-target="#result-2-the-ige">Result 2: The IGE</a></li>
+  <li><a href="#result-3-the-long-run-effects-of-good-fortune" id="toc-result-3-the-long-run-effects-of-good-fortune" class="nav-link" data-scroll-target="#result-3-the-long-run-effects-of-good-fortune">Result 3: The Long-Run Effects of Good Fortune</a></li>
+  <li><a href="#result-3-the-long-run-effects-of-good-fortune-1" id="toc-result-3-the-long-run-effects-of-good-fortune-1" class="nav-link" data-scroll-target="#result-3-the-long-run-effects-of-good-fortune-1">Result 3: The Long-Run Effects of Good Fortune</a></li>
+  <li><a href="#result-3-the-long-run-effects-of-good-fortune-2" id="toc-result-3-the-long-run-effects-of-good-fortune-2" class="nav-link" data-scroll-target="#result-3-the-long-run-effects-of-good-fortune-2">Result 3: The Long-Run Effects of Good Fortune</a></li>
+  <li><a href="#connecting-to-ige-estimation" id="toc-connecting-to-ige-estimation" class="nav-link" data-scroll-target="#connecting-to-ige-estimation">Connecting to IGE Estimation</a></li>
+  <li><a href="#takeaways-so-far" id="toc-takeaways-so-far" class="nav-link" data-scroll-target="#takeaways-so-far">Takeaways so far</a></li>
+  </ul></li>
+  <li><a href="#a-two-period-model" id="toc-a-two-period-model" class="nav-link" data-scroll-target="#a-two-period-model">A Two-Period Model</a>
+  <ul class="collapse">
+  <li><a href="#why-start-with-two-periods" id="toc-why-start-with-two-periods" class="nav-link" data-scroll-target="#why-start-with-two-periods">Why Start with Two Periods?</a></li>
+  <li><a href="#two-period-setup" id="toc-two-period-setup" class="nav-link" data-scroll-target="#two-period-setup">Two-Period Setup</a></li>
+  <li><a href="#combining-budget-constraints" id="toc-combining-budget-constraints" class="nav-link" data-scroll-target="#combining-budget-constraints">Combining Budget Constraints</a></li>
+  <li><a href="#first-order-conditions" id="toc-first-order-conditions" class="nav-link" data-scroll-target="#first-order-conditions">First-Order Conditions</a></li>
+  <li><a href="#investment-does-not-depend-on-income-again" id="toc-investment-does-not-depend-on-income-again" class="nav-link" data-scroll-target="#investment-does-not-depend-on-income-again">Investment Does Not Depend on Income (again)</a></li>
+  <li><a href="#with-log-utility" id="toc-with-log-utility" class="nav-link" data-scroll-target="#with-log-utility">With Log Utility</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
+  </ul></li>
+  <li><a href="#efficiency-and-the-social-planner" id="toc-efficiency-and-the-social-planner" class="nav-link" data-scroll-target="#efficiency-and-the-social-planner">Efficiency and the Social Planner</a>
+  <ul class="collapse">
+  <li><a href="#is-the-market-outcome-efficient" id="toc-is-the-market-outcome-efficient" class="nav-link" data-scroll-target="#is-the-market-outcome-efficient">Is the Market Outcome Efficient?</a></li>
+  <li><a href="#planners-first-order-conditions" id="toc-planners-first-order-conditions" class="nav-link" data-scroll-target="#planners-first-order-conditions">Planner’s First-Order Conditions</a></li>
+  <li><a href="#efficiency-interpretation" id="toc-efficiency-interpretation" class="nav-link" data-scroll-target="#efficiency-interpretation">Efficiency Interpretation</a></li>
+  </ul></li>
+  <li><a href="#incomplete-markets" id="toc-incomplete-markets" class="nav-link" data-scroll-target="#incomplete-markets">Incomplete Markets</a>
+  <ul class="collapse">
+  <li><a href="#can-parents-borrow" id="toc-can-parents-borrow" class="nav-link" data-scroll-target="#can-parents-borrow">Can Parents Borrow?</a></li>
+  <li><a href="#a-more-realistic-setup" id="toc-a-more-realistic-setup" class="nav-link" data-scroll-target="#a-more-realistic-setup">A more realistic setup</a></li>
+  <li><a href="#inefficient-investment" id="toc-inefficient-investment" class="nav-link" data-scroll-target="#inefficient-investment">Inefficient investment</a></li>
+  <li><a href="#when-do-constraints-bind" id="toc-when-do-constraints-bind" class="nav-link" data-scroll-target="#when-do-constraints-bind">When do constraints bind?</a></li>
+  <li><a href="#when-do-constraints-bind-1" id="toc-when-do-constraints-bind-1" class="nav-link" data-scroll-target="#when-do-constraints-bind-1">When Do Constraints Bind?</a></li>
+  <li><a href="#investment-and-income-two-regimes" id="toc-investment-and-income-two-regimes" class="nav-link" data-scroll-target="#investment-and-income-two-regimes">Investment and Income: Two Regimes</a></li>
+  <li><a href="#policy-implications" id="toc-policy-implications" class="nav-link" data-scroll-target="#policy-implications">Policy Implications</a></li>
+  <li><a href="#what-does-the-evidence-say" id="toc-what-does-the-evidence-say" class="nav-link" data-scroll-target="#what-does-the-evidence-say">What Does the Evidence Say?</a></li>
+  <li><a href="#reading" id="toc-reading" class="nav-link" data-scroll-target="#reading">Reading</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="5-BeckerTomesModel.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The Becker-Tomes Model</h1>
 </div>
 
-</section>
-<section id="overview" class="slide level2">
-<h2>Overview</h2>
-<div>
-<ul>
-<li class="fragment">We have learned that income inequality tends to persist across generations</li>
-<li class="fragment">Today: <strong>theory</strong> of intergenerational transmission</li>
-<li class="fragment">The Becker-Tomes model <span class="citation" data-cites="Becker1979 Becker1986">(<a href="#/reading" role="doc-biblioref" onclick="">Becker and Tomes 1979</a>, <a href="#/reading" role="doc-biblioref" onclick="">1986</a>)</span> is a workhorse framework</li>
-<li class="fragment">We’ll study some stylized versions</li>
-<li class="fragment">Key questions:
-<ul>
-<li class="fragment">Why do earnings regress to the mean?</li>
-<li class="fragment">How do parents affect children’s outcomes?</li>
-<li class="fragment">What determines the speed of mobility?</li>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>We have learned that income inequality tends to persist across generations</li>
+<li>Today: <strong>theory</strong> of intergenerational transmission</li>
+<li>The Becker-Tomes model <span class="citation" data-cites="Becker1979 Becker1986">(<a href="#ref-Becker1979" role="doc-biblioref">Becker and Tomes 1979</a>, <a href="#ref-Becker1986" role="doc-biblioref">1986</a>)</span> is a workhorse framework</li>
+<li>We’ll study some stylized versions</li>
+<li>Key questions:
+<ul class="incremental">
+<li>Why do earnings regress to the mean?</li>
+<li>How do parents affect children’s outcomes?</li>
+<li>What determines the speed of mobility?</li>
 </ul></li>
-<li class="fragment">Building a <strong>unified framework</strong> for inequality and mobility</li>
+<li>Building a <strong>unified framework</strong> for inequality and mobility</li>
 </ul>
 </div>
 </section>
-<section>
-<section id="the-becker-tomes-framework" class="title-slide slide level1 center">
+<section id="the-becker-tomes-framework" class="level1">
 <h1>The Becker-Tomes Framework</h1>
-
-</section>
-<section id="basic-setup" class="slide level2 smaller">
-<h2>Basic Setup</h2>
+<section id="basic-setup" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="basic-setup">Basic Setup</h2>
 <p>There are 5 basic ingredients in the model:</p>
-<div>
-<ol type="1">
-<li class="fragment">In each period <span class="math inline">\(t\)</span>, one generation of adults raises the next generation for <span class="math inline">\(t+1\)</span> (an “OLG” framework)</li>
-<li class="fragment">Care only about consumption, with an altruistic weight <span class="math inline">\(\beta\)</span> on future generations</li>
-<li class="fragment">Can transfer wealth through:
-<ol type="1">
-<li class="fragment"><em>Financial assets</em> <span class="math inline">\(A_{t}\)</span>, with rate of return <span class="math inline">\(r\)</span>; or</li>
-<li class="fragment"><em>Human capital</em>, <span class="math inline">\(H_{t}\)</span>, with price <span class="math inline">\(w\)</span> (the wage)</li>
+<div class="incremental">
+<ol class="incremental" type="1">
+<li>In each period <span class="math inline">\(t\)</span>, one generation of adults raises the next generation for <span class="math inline">\(t+1\)</span> (an “OLG” framework)</li>
+<li>Care only about consumption, with an altruistic weight <span class="math inline">\(\beta\)</span> on future generations</li>
+<li>Can transfer wealth through:
+<ol class="incremental" type="1">
+<li><em>Financial assets</em> <span class="math inline">\(A_{t}\)</span>, with rate of return <span class="math inline">\(r\)</span>; or</li>
+<li><em>Human capital</em>, <span class="math inline">\(H_{t}\)</span>, with price <span class="math inline">\(w\)</span> (the wage)</li>
 </ol></li>
-<li class="fragment">A production function converts investments <span class="math inline">\(X_{t}\)</span> into human capital <span class="math inline">\(H_{t+1}\)</span></li>
-<li class="fragment">An ability endowment, <span class="math inline">\(z_{t}\)</span>, evolves exogenously.</li>
+<li>A production function converts investments <span class="math inline">\(X_{t}\)</span> into human capital <span class="math inline">\(H_{t+1}\)</span></li>
+<li>An ability endowment, <span class="math inline">\(z_{t}\)</span>, evolves exogenously.</li>
 </ol>
 </div>
 </section>
-<section id="a-simple-version" class="slide level2 smaller">
-<h2>A Simple Version</h2>
+<section id="a-simple-version" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="a-simple-version">A Simple Version</h2>
 <p>Here is a simple version that captures important forces:</p>
-<div>
-<ul>
-<li class="fragment">Ability is mean-reverting: <span class="math display">\[ z_{t+1} = \rho z_{t} + \eta_{t+1},\ \rho \in(0,1) \]</span></li>
-<li class="fragment">Human capital production: <span class="math display">\[ H_{t+1} = \exp(\mu + z_{t})X_{t}^{\delta} \]</span> where <span class="math inline">\(X_{t}\)</span> has price <span class="math inline">\(\psi\)</span></li>
-<li class="fragment">Budget constraint: <span class="math display">\[ C_{t} + \frac{A_{t+1}}{1+r} + \psi X_{t} \leq A_{t} + wH_{t} \]</span></li>
+<div class="incremental">
+<ul class="incremental">
+<li>Ability is mean-reverting: <span class="math display">\[ z_{t+1} = \rho z_{t} + \eta_{t+1},\ \rho \in(0,1) \]</span></li>
+<li>Human capital production: <span class="math display">\[ H_{t+1} = \exp(\mu + z_{t})X_{t}^{\delta} \]</span> where <span class="math inline">\(X_{t}\)</span> has price <span class="math inline">\(\psi\)</span></li>
+<li>Budget constraint: <span class="math display">\[ C_{t} + \frac{A_{t+1}}{1+r} + \psi X_{t} \leq A_{t} + wH_{t} \]</span></li>
 </ul>
 </div>
 </section>
-<section id="a-recursive-formulation" class="slide level2">
-<h2>A recursive formulation</h2>
+<section id="a-recursive-formulation" class="level2">
+<h2 class="anchored" data-anchor-id="a-recursive-formulation">A recursive formulation</h2>
 <p>Let <span class="math inline">\(\Omega_{t} = A_{t} + wH_{t}\)</span> be total wealth in period <span class="math inline">\(t\)</span>:</p>
 <p><span class="math display">\[ V(\Omega_{t},z_{t}) = \max_{C_{t},X_{t},A_{t+1}}\left\{ u(C_{t}) + \beta \mathbb{E}[V(\Omega_{t+1},z_{t+1})] \right\} \]</span></p>
 <p>subject to:</p>
@@ -221,23 +305,22 @@ z_{t+1} = \rho z_{t} + \eta_{t+1} \\
 H_{t+1} = \exp(\mu+z_{t})X_{t}^{\delta}
 \end{eqnarray}
 \]</span></p>
-<div class="fragment">
+<p>. . .</p>
 <p><strong>Note:</strong> no constraints on borrowing (for now)</p>
-</div>
 </section>
-<section id="model-solution" class="slide level2">
-<h2>Model Solution</h2>
-<div>
-<ul>
-<li class="fragment">This is quite a simple model, but we can learn some interesting and useful things from it</li>
-<li class="fragment">We’ll show that investment <em>does not</em> depend on wealth or income</li>
-<li class="fragment">We’ll derive the IGE in terms of model primitives</li>
-<li class="fragment">We’ll look at the effect of innovations in <span class="math inline">\(z_{t}\)</span> in the long-run</li>
+<section id="model-solution" class="level2">
+<h2 class="anchored" data-anchor-id="model-solution">Model Solution</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>This is quite a simple model, but we can learn some interesting and useful things from it</li>
+<li>We’ll show that investment <em>does not</em> depend on wealth or income</li>
+<li>We’ll derive the IGE in terms of model primitives</li>
+<li>We’ll look at the effect of innovations in <span class="math inline">\(z_{t}\)</span> in the long-run</li>
 </ul>
 </div>
 </section>
-<section id="result-1-investment-does-not-depend-on-income" class="slide level2">
-<h2>Result 1: Investment does not depend on Income</h2>
+<section id="result-1-investment-does-not-depend-on-income" class="level2">
+<h2 class="anchored" data-anchor-id="result-1-investment-does-not-depend-on-income">Result 1: Investment does not depend on Income</h2>
 <p>Steps:</p>
 <ol type="1">
 <li>Take FOC wrt <span class="math inline">\(X_{t}\)</span> and <span class="math inline">\(A_{t+1}\)</span></li>
@@ -245,8 +328,8 @@ H_{t+1} = \exp(\mu+z_{t})X_{t}^{\delta}
 <li>Analyze. Notice no direct effect of income.</li>
 </ol>
 </section>
-<section id="result-2-the-ige" class="slide level2 smaller">
-<h2>Result 2: The IGE</h2>
+<section id="result-2-the-ige" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="result-2-the-ige">Result 2: The IGE</h2>
 <p>Steps:</p>
 <ol type="1">
 <li>Show that <span class="math display">\[\log(H_{t}) = c + \frac{1}{1-\delta}z_{t-1}\]</span> where <span class="math inline">\(c\)</span> is a constant.</li>
@@ -254,84 +337,81 @@ H_{t+1} = \exp(\mu+z_{t})X_{t}^{\delta}
 <li>Show that the IGE is equal to <span class="math inline">\(\rho\)</span>.</li>
 </ol>
 </section>
-<section id="result-3-the-long-run-effects-of-good-fortune" class="slide level2">
-<h2>Result 3: The Long-Run Effects of Good Fortune</h2>
+<section id="result-3-the-long-run-effects-of-good-fortune" class="level2">
+<h2 class="anchored" data-anchor-id="result-3-the-long-run-effects-of-good-fortune">Result 3: The Long-Run Effects of Good Fortune</h2>
 <p>What is the long-run effect of an increase in <span class="math inline">\(z\)</span>?</p>
-<div>
-<ul>
-<li class="fragment">To do this, let’s assume that <span class="math inline">\(\beta(1+r) = 1\)</span> for simplicity</li>
-<li class="fragment">We’ll take a derivative around the deterministic steady state</li>
-<li class="fragment">Assume <span class="math inline">\(u(\cdot) = \log(\cdot)\)</span>.</li>
+<div class="incremental">
+<ul class="incremental">
+<li>To do this, let’s assume that <span class="math inline">\(\beta(1+r) = 1\)</span> for simplicity</li>
+<li>We’ll take a derivative around the deterministic steady state</li>
+<li>Assume <span class="math inline">\(u(\cdot) = \log(\cdot)\)</span>.</li>
 </ul>
 </div>
 </section>
-<section id="result-3-the-long-run-effects-of-good-fortune-1" class="slide level2 smaller">
-<h2>Result 3: The Long-Run Effects of Good Fortune</h2>
-<div>
-<ol type="1">
-<li class="fragment">Show that in general: <span class="math display">\[ u'(C_{t}) = \beta(1+r)\mathbb{E}u'(C_{t+1}) \]</span></li>
-<li class="fragment">Under our assumptions at steady state: <span class="math display">\[C_{t}=C_{t+1}=\bar{C}\]</span></li>
-<li class="fragment">Define <span class="math inline">\(Z_{t}=\exp(\mu+z_{t})\)</span> and iterate the budget constraint: <span class="math display">\[ \sum_{t=0}^\infty \frac{1}{(1+r)^{t}} \bar{C} = \Omega_{0} + \sum_{t=0}\frac{1}{(1+r)^t}\max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] \]</span></li>
-<li class="fragment">Show that <span class="math display">\[ \max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] = \left(\frac{Z_{t}w}{(1+r)}\right)^{1/(1-\delta)}\psi^{-\delta/(1-\delta)}\left(\delta^{\delta/(1-\delta)} - \delta^{1/(1-\delta)}\right)\]</span></li>
+<section id="result-3-the-long-run-effects-of-good-fortune-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="result-3-the-long-run-effects-of-good-fortune-1">Result 3: The Long-Run Effects of Good Fortune</h2>
+<div class="incremental">
+<ol class="incremental" type="1">
+<li>Show that in general: <span class="math display">\[ u'(C_{t}) = \beta(1+r)\mathbb{E}u'(C_{t+1}) \]</span></li>
+<li>Under our assumptions at steady state: <span class="math display">\[C_{t}=C_{t+1}=\bar{C}\]</span></li>
+<li>Define <span class="math inline">\(Z_{t}=\exp(\mu+z_{t})\)</span> and iterate the budget constraint: <span class="math display">\[ \sum_{t=0}^\infty \frac{1}{(1+r)^{t}} \bar{C} = \Omega_{0} + \sum_{t=0}\frac{1}{(1+r)^t}\max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] \]</span></li>
+<li>Show that <span class="math display">\[ \max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] = \left(\frac{Z_{t}w}{(1+r)}\right)^{1/(1-\delta)}\psi^{-\delta/(1-\delta)}\left(\delta^{\delta/(1-\delta)} - \delta^{1/(1-\delta)}\right)\]</span></li>
 </ol>
 </div>
 </section>
-<section id="result-3-the-long-run-effects-of-good-fortune-2" class="slide level2 smaller">
-<h2>Result 3: The Long-Run Effects of Good Fortune</h2>
-<div>
-<ol start="5" type="1">
-<li class="fragment">Hence: <span class="math display">\[ \sum_{t=0}^{\infty}\frac{1}{(1+r)^{t}}\bar{C} = \Omega_{0} + B\sum_{t=0}^{\infty}\exp(z_{t})^{1/(1-\delta)} \left(= \Omega_{0}+B \text{ at long-run steady state}\right)\]</span> where <span class="math inline">\(B\)</span> collects constants in previous expression.</li>
-<li class="fragment">Consider a one-time, small increase in <span class="math inline">\(z_{0}\)</span>, s.t. <span class="math inline">\(z_{t} = \rho^{t}z_{0}\)</span>: <span class="math display">\[ \frac{d\bar{C}}{dz_{0}}\Big\vert_{z_{0}=0} = \frac{r}{1+r} \frac{1}{1-\delta} B\sum_{t=0}^{\infty}\frac{\rho^{t}}{(1+r)^{t}} = \frac{1}{1-\delta}\times B\times \frac{r}{1+r-\rho}\]</span></li>
-<li class="fragment">So <span class="math display">\[ \frac{d\log(\bar{C})}{dz_{0}}\Big\vert_{z_{0}=0} = \text{Future earnings share of wealth} \times\frac{1}{1-\delta}\times \frac{1+r}{1+r-\rho}  \]</span></li>
-<li class="fragment">Interpret!</li>
+<section id="result-3-the-long-run-effects-of-good-fortune-2" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="result-3-the-long-run-effects-of-good-fortune-2">Result 3: The Long-Run Effects of Good Fortune</h2>
+<div class="incremental">
+<ol class="incremental" start="5" type="1">
+<li>Hence: <span class="math display">\[ \sum_{t=0}^{\infty}\frac{1}{(1+r)^{t}}\bar{C} = \Omega_{0} + B\sum_{t=0}^{\infty}\exp(z_{t})^{1/(1-\delta)} \left(= \Omega_{0}+B \text{ at long-run steady state}\right)\]</span> where <span class="math inline">\(B\)</span> collects constants in previous expression.</li>
+<li>Consider a one-time, small increase in <span class="math inline">\(z_{0}\)</span>, s.t. <span class="math inline">\(z_{t} = \rho^{t}z_{0}\)</span>: <span class="math display">\[ \frac{d\bar{C}}{dz_{0}}\Big\vert_{z_{0}=0} = \frac{r}{1+r} \frac{1}{1-\delta} B\sum_{t=0}^{\infty}\frac{\rho^{t}}{(1+r)^{t}} = \frac{1}{1-\delta}\times B\times \frac{r}{1+r-\rho}\]</span></li>
+<li>So <span class="math display">\[ fix\frac{d\log(\bar{C})}{dz_{0}}\Big\vert_{z_{0}=0} = \text{Future earnings share of wealth} \times\frac{1}{1-\delta}\times \frac{1+r}{1+r-\rho}  \]</span></li>
+<li>Interpret!</li>
 </ol>
 </div>
 </section>
-<section id="connecting-to-ige-estimation" class="slide level2">
-<h2>Connecting to IGE Estimation</h2>
+<section id="connecting-to-ige-estimation" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-to-ige-estimation">Connecting to IGE Estimation</h2>
 <p>Recall from last lecture we estimated:</p>
 <p><span class="math display">\[y_{\text{child}} = \alpha + \beta \cdot y_{\text{parent}} + \varepsilon\]</span></p>
-<div>
-<ul>
-<li class="fragment">In this model: <span class="math inline">\(\beta = \rho\)</span> (ability persistence)</li>
-<li class="fragment">Independent of technology parameter <span class="math inline">\(\delta\)</span></li>
-<li class="fragment">Independent of prices <span class="math inline">\(w\)</span>, <span class="math inline">\(\psi\)</span>, <span class="math inline">\(r\)</span></li>
-<li class="fragment"><strong>Policy invariant</strong>: transfers don’t change IGE</li>
+<div class="incremental">
+<ul class="incremental">
+<li>In this model: <span class="math inline">\(\beta = \rho\)</span> (ability persistence)</li>
+<li>Independent of technology parameter <span class="math inline">\(\delta\)</span></li>
+<li>Independent of prices <span class="math inline">\(w\)</span>, <span class="math inline">\(\psi\)</span>, <span class="math inline">\(r\)</span></li>
+<li><strong>Policy invariant</strong>: transfers don’t change IGE</li>
 </ul>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <p><strong>Think</strong>: Is this consistent with geographic variation in mobility we saw?</p>
-</div>
 </section>
-<section id="takeaways-so-far" class="slide level2">
-<h2>Takeaways so far</h2>
-<div>
-<ul>
-<li class="fragment">Investment does not depend on income (when borrowing is unconstrained)</li>
-<li class="fragment">Human capital differences fade away, but consumption effects last forever</li>
-<li class="fragment">Rich households use wealth bequests to maintain dynasties as human capital fades away</li>
-<li class="fragment">IGE determined by ability persistence (<span class="math inline">\(\rho\)</span>) and human capital production (<span class="math inline">\(\delta\)</span>)</li>
-<li class="fragment">But is this realistic? What about credit constraints?</li>
+<section id="takeaways-so-far" class="level2">
+<h2 class="anchored" data-anchor-id="takeaways-so-far">Takeaways so far</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Investment does not depend on income (when borrowing is unconstrained)</li>
+<li>Human capital differences fade away, but consumption effects last forever</li>
+<li>Rich households use wealth bequests to maintain dynasties as human capital fades away</li>
+<li>IGE determined by ability persistence (<span class="math inline">\(\rho\)</span>) and human capital production (<span class="math inline">\(\delta\)</span>)</li>
+<li>But is this realistic? What about credit constraints?</li>
 </ul>
 </div>
-</section></section>
-<section>
-<section id="a-two-period-model" class="title-slide slide level1 center">
+</section>
+</section>
+<section id="a-two-period-model" class="level1">
 <h1>A Two-Period Model</h1>
-
-</section>
-<section id="why-start-with-two-periods" class="slide level2">
-<h2>Why Start with Two Periods?</h2>
-<div>
-<ul>
-<li class="fragment">Simplify exposition of some key points</li>
-<li class="fragment">Two-period version captures key forces</li>
-<li class="fragment">Lessons generalize</li>
+<section id="why-start-with-two-periods" class="level2">
+<h2 class="anchored" data-anchor-id="why-start-with-two-periods">Why Start with Two Periods?</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Simplify exposition of some key points</li>
+<li>Two-period version captures key forces</li>
+<li>Lessons generalize</li>
 </ul>
 </div>
 </section>
-<section id="two-period-setup" class="slide level2 smaller">
-<h2>Two-Period Setup</h2>
+<section id="two-period-setup" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="two-period-setup">Two-Period Setup</h2>
 <p>Parent’s problem in period 1:</p>
 <p><span class="math display">\[\max_{C_1, C_2, X} u(C_1) + \beta u(C_2)\]</span></p>
 <p>subject to:</p>
@@ -341,127 +421,118 @@ C_1 + \psi X + \frac{A'}{1+r} &amp;\leq&amp; \Omega \\
 C_2 &amp;=&amp; A' + w z X^{\delta}
 \end{eqnarray}
 \]</span></p>
-<div>
-<ul>
-<li class="fragment"><span class="math inline">\(\Omega = wH + A\)</span>: total lifetime wealth</li>
-<li class="fragment"><span class="math inline">\(A'\)</span>: bequests (can be negative = borrowing)</li>
+<div class="incremental">
+<ul class="incremental">
+<li><span class="math inline">\(\Omega = wH + A\)</span>: total lifetime wealth</li>
+<li><span class="math inline">\(A'\)</span>: bequests (can be negative = borrowing)</li>
 </ul>
 </div>
 </section>
-<section id="combining-budget-constraints" class="slide level2">
-<h2>Combining Budget Constraints</h2>
+<section id="combining-budget-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="combining-budget-constraints">Combining Budget Constraints</h2>
 <p>Combining the two constraints:</p>
 <p><span class="math display">\[C_1 + \frac{1}{1+r} C_2 \leq \Omega + \frac{w z X^{\delta}}{1+r} - \psi X\]</span></p>
-<div>
-<ul>
-<li class="fragment">Left side: present value of consumption</li>
-<li class="fragment">Right side: wealth plus net human capital investment</li>
-<li class="fragment">Net investment: returns <span class="math inline">\(\frac{w z X^{\delta}}{1+r}\)</span> but costs <span class="math inline">\(\psi X\)</span></li>
+<div class="incremental">
+<ul class="incremental">
+<li>Left side: present value of consumption</li>
+<li>Right side: wealth plus net human capital investment</li>
+<li>Net investment: returns <span class="math inline">\(\frac{w z X^{\delta}}{1+r}\)</span> but costs <span class="math inline">\(\psi X\)</span></li>
 </ul>
 </div>
 </section>
-<section id="first-order-conditions" class="slide level2">
-<h2>First-Order Conditions</h2>
+<section id="first-order-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="first-order-conditions">First-Order Conditions</h2>
 <p>Euler equation:</p>
 <p><span class="math display">\[u'(C_1) = \beta(1+r) u'(C_2)\]</span></p>
-<div class="fragment">
+<p>. . .</p>
 <p>FOC with respect to <span class="math inline">\(X\)</span>:</p>
 <p><span class="math display">\[\psi = \frac{\delta w z X^{\delta-1}}{1+r}\]</span></p>
-</div>
-<div class="fragment">
+<p>. . .</p>
 <p>Same result as before on optimal <span class="math inline">\(X\)</span>.</p>
-</div>
 </section>
-<section id="investment-does-not-depend-on-income-again" class="slide level2">
-<h2>Investment Does Not Depend on Income (again)</h2>
+<section id="investment-does-not-depend-on-income-again" class="level2">
+<h2 class="anchored" data-anchor-id="investment-does-not-depend-on-income-again">Investment Does Not Depend on Income (again)</h2>
 <p>Just as before, we get: <span class="math display">\[X^* = \left( \frac{\delta w z}{\psi(1+r)} \right)^{\frac{1}{1-\delta}}\]</span></p>
 </section>
-<section id="with-log-utility" class="slide level2 smaller">
-<h2>With Log Utility</h2>
+<section id="with-log-utility" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="with-log-utility">With Log Utility</h2>
 <p>If <span class="math inline">\(u(C) = \log(C)\)</span>, we can solve explicitly:</p>
 <p>From Euler equation: <span class="math display">\[\frac{C_2}{C_1} = \beta(1+r)\]</span></p>
 <p>Therefore: <span class="math display">\[(1+\beta)C_1 = \Omega + \frac{w z X^{*\delta}}{1+r} - \psi X^{*}\]</span></p>
 <p>Where <span class="math display">\[X^* = \left( \frac{\delta w z}{\psi(1+r)} \right)^{\frac{1}{1-\delta}}\]</span></p>
 </section>
-<section id="interpretation" class="slide level2">
-<h2>Interpretation</h2>
+<section id="interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
 <p>What does this mean economically?</p>
-<div>
-<ul>
-<li class="fragment">Parents optimize to equate marginal returns across uses</li>
-<li class="fragment">Rich and poor parents with same <span class="math inline">\(z\)</span> invest the same in children</li>
-<li class="fragment">Differences in income absorbed by <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span>, and <span class="math inline">\(A\)</span></li>
-<li class="fragment"><strong>Crucial assumption</strong>: can borrow against future returns to H.C. investment</li>
+<div class="incremental">
+<ul class="incremental">
+<li>Parents optimize to equate marginal returns across uses</li>
+<li>Rich and poor parents with same <span class="math inline">\(z\)</span> invest the same in children</li>
+<li>Differences in income absorbed by <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span>, and <span class="math inline">\(A\)</span></li>
+<li><strong>Crucial assumption</strong>: can borrow against future returns to H.C. investment</li>
 </ul>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <p><strong>Question</strong>: Is this realistic? What if parents can’t borrow?</p>
-</div>
-</section></section>
-<section>
-<section id="efficiency-and-the-social-planner" class="title-slide slide level1 center">
-<h1>Efficiency and the Social Planner</h1>
-
 </section>
-<section id="is-the-market-outcome-efficient" class="slide level2 smaller">
-<h2>Is the Market Outcome Efficient?</h2>
+</section>
+<section id="efficiency-and-the-social-planner" class="level1">
+<h1>Efficiency and the Social Planner</h1>
+<section id="is-the-market-outcome-efficient" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="is-the-market-outcome-efficient">Is the Market Outcome Efficient?</h2>
 <p>Consider a social planner who maximizes weighted welfare:</p>
 <p><span class="math display">\[\max_{\{C_{i1}, C_{i2}, X_i\}_{i\in[0,1]}} \int \left(\mu_{i1} u(C_{i1}) + \mu_{i2} u(C_{i2})\right)di\]</span></p>
 <p>subject to resource constraint:</p>
 <p><span class="math display">\[\int C_{i1} di + \frac{1}{1+r} \int C_{i2} di \leq \int \Omega_i di + \frac{w}{1+r} \int z_i X_i^{\delta} di - \psi \int X_i di\]</span></p>
-<div class="fragment">
+<p>. . .</p>
 <p><strong>Key question</strong>: Does the planner’s solution coincide with the market?</p>
-</div>
 </section>
-<section id="planners-first-order-conditions" class="slide level2 smaller">
-<h2>Planner’s First-Order Conditions</h2>
+<section id="planners-first-order-conditions" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="planners-first-order-conditions">Planner’s First-Order Conditions</h2>
 <p>The planner’s FOCs are:</p>
 <p><span class="math display">\[\frac{u'(C_{i1})}{u'(C_{i2})} = \frac{\mu_{i2}}{\mu_{i1}}, \quad \frac{\delta w z_i X_i^{\delta-1}}{1+r} = \psi\]</span></p>
 <p>Compare to market FOCs:</p>
 <p><span class="math display">\[\frac{u'(C_{i1})}{u'(C_{i2})} = \beta(1+r), \quad \frac{\delta w z_{i} X_{i}^{\delta-1}}{1+r} = \psi\]</span></p>
-<div>
-<ul>
-<li class="fragment">Investment is <strong>identical</strong>: <span class="math inline">\(X_i^* = X_i^{planner}\)</span></li>
-<li class="fragment">Only difference: consumption allocation via weights <span class="math inline">\(\mu_{i1}, \mu_{i2}\)</span></li>
-<li class="fragment">Market outcome is <strong>efficient</strong> for some choice of weights</li>
+<div class="incremental">
+<ul class="incremental">
+<li>Investment is <strong>identical</strong>: <span class="math inline">\(X_i^* = X_i^{planner}\)</span></li>
+<li>Only difference: consumption allocation via weights <span class="math inline">\(\mu_{i1}, \mu_{i2}\)</span></li>
+<li>Market outcome is <strong>efficient</strong> for some choice of weights</li>
 </ul>
 </div>
 </section>
-<section id="efficiency-interpretation" class="slide level2">
-<h2>Efficiency Interpretation</h2>
+<section id="efficiency-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="efficiency-interpretation">Efficiency Interpretation</h2>
 <p>What does this mean?</p>
-<div>
-<ul>
-<li class="fragment">The market outcome is <strong>Pareto efficient</strong></li>
-<li class="fragment">“can’t make anyone better off without making someone worse off”</li>
-<li class="fragment">Relative to Laissez-Faire economy, Planner can redistribute but that’s it</li>
+<div class="incremental">
+<ul class="incremental">
+<li>The market outcome is <strong>Pareto efficient</strong></li>
+<li>“can’t make anyone better off without making someone worse off”</li>
+<li>Relative to Laissez-Faire economy, Planner can redistribute but that’s it</li>
 </ul>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <p><strong>But</strong>: This relies critically on perfect credit markets!</p>
-</div>
-</section></section>
-<section>
-<section id="incomplete-markets" class="title-slide slide level1 center">
-<h1>Incomplete Markets</h1>
-
 </section>
-<section id="can-parents-borrow" class="slide level2">
-<h2>Can Parents Borrow?</h2>
-<div>
-<ul>
-<li class="fragment">Is it really plausible that parents can borrow against returns on their investment in children?
-<ul>
-<li class="fragment">And make the children pay for it?</li>
+</section>
+<section id="incomplete-markets" class="level1">
+<h1>Incomplete Markets</h1>
+<section id="can-parents-borrow" class="level2">
+<h2 class="anchored" data-anchor-id="can-parents-borrow">Can Parents Borrow?</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Is it really plausible that parents can borrow against returns on their investment in children?
+<ul class="incremental">
+<li>And make the children pay for it?</li>
 </ul></li>
-<li class="fragment">No!!</li>
-<li class="fragment">All kinds of moral hazard problems + legal issues</li>
-<li class="fragment">Also implied no role for income in shaping human capital</li>
+<li>No!!</li>
+<li>All kinds of moral hazard problems + legal issues</li>
+<li>Also implied no role for income in shaping human capital</li>
 </ul>
 </div>
 </section>
-<section id="a-more-realistic-setup" class="slide level2">
-<h2>A more realistic setup</h2>
+<section id="a-more-realistic-setup" class="level2">
+<h2 class="anchored" data-anchor-id="a-more-realistic-setup">A more realistic setup</h2>
 <p><span class="math display">\[\max_{C_1, C_2, X} u(C_1) + \beta u(C_2)\]</span></p>
 <p>subject to:</p>
 <p><span class="math display">\[
@@ -471,544 +542,563 @@ C_2 &amp;=&amp; A' + w z X^{\delta} \\
 A' &amp;\geq&amp; 0
 \end{eqnarray}
 \]</span></p>
-<div class="fragment">
+<p>. . .</p>
 <p>Positive bequests only!</p>
-</div>
 </section>
-<section id="inefficient-investment" class="slide level2">
-<h2>Inefficient investment</h2>
-<div>
-<ul>
-<li class="fragment">This now implies: <span class="math display">\[ \frac{\delta w z X^{\delta - 1}}{1+r} \geq \psi \]</span> with equality iff <span class="math inline">\(A'\geq 0\)</span> and strict inequality if <span class="math inline">\(A=0\)</span>.</li>
-<li class="fragment">Equilibriums is <strong>inefficient</strong>.</li>
-<li class="fragment">Introduces a role for policy to improve market outcomes</li>
-<li class="fragment">Make everyone better off (Pareto improvement)</li>
+<section id="inefficient-investment" class="level2">
+<h2 class="anchored" data-anchor-id="inefficient-investment">Inefficient investment</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>This now implies: <span class="math display">\[ \frac{\delta w z X^{\delta - 1}}{1+r} \geq \psi \]</span> with equality iff <span class="math inline">\(A'\geq 0\)</span> and strict inequality if <span class="math inline">\(A=0\)</span>.</li>
+<li>Equilibriums is <strong>inefficient</strong>.</li>
+<li>Introduces a role for policy to improve market outcomes</li>
+<li>Make everyone better off (Pareto improvement)</li>
 </ul>
 </div>
 </section>
-<section id="when-do-constraints-bind" class="slide level2">
-<h2>When do constraints bind?</h2>
-<div>
-<ul>
-<li class="fragment">Solve for <span class="math inline">\(X^*\)</span> when <span class="math inline">\(A=0\)</span>: <span class="math display">\[ \max_{X} u(\Omega - \psi X) + \beta u(wzX^{\delta}) \]</span></li>
-<li class="fragment">With log utility: <span class="math display">\[ X^* = \frac{1}{\psi}\frac{\beta\delta}{1+\beta\delta} \Omega \]</span></li>
-<li class="fragment">Note that <span class="math inline">\(X^{*}\)</span> now depends on <span class="math inline">\(\Omega\)</span></li>
+<section id="when-do-constraints-bind" class="level2">
+<h2 class="anchored" data-anchor-id="when-do-constraints-bind">When do constraints bind?</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Solve for <span class="math inline">\(X^*\)</span> when <span class="math inline">\(A=0\)</span>: <span class="math display">\[ \max_{X} u(\Omega - \psi X) + \beta u(wzX^{\delta}) \]</span></li>
+<li>With log utility: <span class="math display">\[ X^* = \frac{1}{\psi}\frac{\beta\delta}{1+\beta\delta} \Omega \]</span></li>
+<li>Note that <span class="math inline">\(X^{*}\)</span> now depends on <span class="math inline">\(\Omega\)</span></li>
 </ul>
 </div>
 </section>
-<section id="when-do-constraints-bind-1" class="slide level2">
-<h2>When Do Constraints Bind?</h2>
+<section id="when-do-constraints-bind-1" class="level2">
+<h2 class="anchored" data-anchor-id="when-do-constraints-bind-1">When Do Constraints Bind?</h2>
 <p>The borrowing constraint binds if:</p>
 <p><span class="math display">\[\frac{1}{\psi}\frac{\beta \delta }{1 + \beta \delta} \Omega \leq \left( \frac{\delta w z}{\psi(1+r)} \right)^{\frac{1}{1-\delta}}\]</span></p>
-<div>
-<ul>
-<li class="fragment">More likely to bind when <span class="math inline">\(\Omega\)</span> is low (poor families)</li>
-<li class="fragment">More likely to bind when <span class="math inline">\(z\)</span> is high (high returns to investment)</li>
-<li class="fragment">Creates a <strong>region</strong> where investment increases with income</li>
+<div class="incremental">
+<ul class="incremental">
+<li>More likely to bind when <span class="math inline">\(\Omega\)</span> is low (poor families)</li>
+<li>More likely to bind when <span class="math inline">\(z\)</span> is high (high returns to investment)</li>
+<li>Creates a <strong>region</strong> where investment increases with income</li>
 </ul>
 </div>
 </section>
-<section id="investment-and-income-two-regimes" class="slide level2 scrollable">
-<h2>Investment and Income: Two Regimes</h2>
-<div id="21aff435" class="cell" data-execution_count="2">
+<section id="investment-and-income-two-regimes" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="investment-and-income-two-regimes">Investment and Income: Two Regimes</h2>
+<div id="5bc65af5" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="700" height="450" viewbox="0 0 2800 1800">
 <defs>
-  <clippath id="clip740">
+  <clippath id="clip760">
     <rect x="0" y="0" width="2800" height="1800"></rect>
   </clippath>
 </defs>
-<path clip-path="url(#clip740)" d="M0 1800 L2800 1800 L2800 -1.33227e-13 L0 -1.33227e-13  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
+<path clip-path="url(#clip760)" d="M0 1800 L2800 1800 L2800 -1.33227e-13 L0 -1.33227e-13  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
 <defs>
-  <clippath id="clip741">
+  <clippath id="clip761">
     <rect x="560" y="0" width="1961" height="1800"></rect>
   </clippath>
 </defs>
-<path clip-path="url(#clip740)" d="M331.572 1513.88 L2752.76 1513.88 L2752.76 184.304 L331.572 184.304  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
+<path clip-path="url(#clip760)" d="M331.572 1513.88 L2752.76 1513.88 L2752.76 184.304 L331.572 184.304  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
 <defs>
-  <clippath id="clip742">
+  <clippath id="clip762">
     <rect x="331" y="184" width="2422" height="1331"></rect>
   </clippath>
 </defs>
-<polyline clip-path="url(#clip742)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="341.529,1513.88 341.529,184.304 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="927.204,1513.88 927.204,184.304 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1512.88,1513.88 1512.88,184.304 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2098.56,1513.88 2098.56,184.304 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2684.23,1513.88 2684.23,184.304 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="331.572,1199.8 2752.76,1199.8 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="331.572,882.479 2752.76,882.479 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="331.572,565.158 2752.76,565.158 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="331.572,247.837 2752.76,247.837 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,1513.88 2752.76,1513.88 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="341.529,1513.88 341.529,1494.98 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="927.204,1513.88 927.204,1494.98 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1512.88,1513.88 1512.88,1494.98 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2098.56,1513.88 2098.56,1494.98 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2684.23,1513.88 2684.23,1494.98 "></polyline>
-<path clip-path="url(#clip740)" d="M341.529 1547.99 Q337.917 1547.99 336.089 1551.56 Q334.283 1555.1 334.283 1562.23 Q334.283 1569.34 336.089 1572.9 Q337.917 1576.44 341.529 1576.44 Q345.163 1576.44 346.968 1572.9 Q348.797 1569.34 348.797 1562.23 Q348.797 1555.1 346.968 1551.56 Q345.163 1547.99 341.529 1547.99 M341.529 1544.29 Q347.339 1544.29 350.394 1548.9 Q353.473 1553.48 353.473 1562.23 Q353.473 1570.96 350.394 1575.56 Q347.339 1580.15 341.529 1580.15 Q335.718 1580.15 332.64 1575.56 Q329.584 1570.96 329.584 1562.23 Q329.584 1553.48 332.64 1548.9 Q335.718 1544.29 341.529 1544.29 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M917.586 1575.54 L925.225 1575.54 L925.225 1549.17 L916.915 1550.84 L916.915 1546.58 L925.179 1544.92 L929.855 1544.92 L929.855 1575.54 L937.494 1575.54 L937.494 1579.48 L917.586 1579.48 L917.586 1575.54 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1507.53 1575.54 L1523.85 1575.54 L1523.85 1579.48 L1501.91 1579.48 L1501.91 1575.54 Q1504.57 1572.79 1509.15 1568.16 Q1513.76 1563.5 1514.94 1562.16 Q1517.19 1559.64 1518.07 1557.9 Q1518.97 1556.14 1518.97 1554.45 Q1518.97 1551.7 1517.02 1549.96 Q1515.1 1548.23 1512 1548.23 Q1509.8 1548.23 1507.35 1548.99 Q1504.92 1549.75 1502.14 1551.3 L1502.14 1546.58 Q1504.96 1545.45 1507.42 1544.87 Q1509.87 1544.29 1511.91 1544.29 Q1517.28 1544.29 1520.47 1546.98 Q1523.67 1549.66 1523.67 1554.15 Q1523.67 1556.28 1522.86 1558.2 Q1522.07 1560.1 1519.96 1562.69 Q1519.38 1563.36 1516.28 1566.58 Q1513.18 1569.78 1507.53 1575.54 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2102.8 1560.84 Q2106.16 1561.56 2108.04 1563.83 Q2109.93 1566.1 2109.93 1569.43 Q2109.93 1574.54 2106.41 1577.35 Q2102.9 1580.15 2096.41 1580.15 Q2094.24 1580.15 2091.92 1579.71 Q2089.63 1579.29 2087.18 1578.43 L2087.18 1573.92 Q2089.12 1575.05 2091.44 1575.63 Q2093.75 1576.21 2096.28 1576.21 Q2100.67 1576.21 2102.97 1574.48 Q2105.28 1572.74 2105.28 1569.43 Q2105.28 1566.37 2103.13 1564.66 Q2101 1562.92 2097.18 1562.92 L2093.15 1562.92 L2093.15 1559.08 L2097.36 1559.08 Q2100.81 1559.08 2102.64 1557.72 Q2104.47 1556.33 2104.47 1553.73 Q2104.47 1551.07 2102.57 1549.66 Q2100.7 1548.23 2097.18 1548.23 Q2095.26 1548.23 2093.06 1548.64 Q2090.86 1549.06 2088.22 1549.94 L2088.22 1545.77 Q2090.88 1545.03 2093.2 1544.66 Q2095.54 1544.29 2097.6 1544.29 Q2102.92 1544.29 2106.02 1546.72 Q2109.12 1549.13 2109.12 1553.25 Q2109.12 1556.12 2107.48 1558.11 Q2105.84 1560.08 2102.8 1560.84 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2687.24 1548.99 L2675.44 1567.44 L2687.24 1567.44 L2687.24 1548.99 M2686.01 1544.92 L2691.89 1544.92 L2691.89 1567.44 L2696.82 1567.44 L2696.82 1571.33 L2691.89 1571.33 L2691.89 1579.48 L2687.24 1579.48 L2687.24 1571.33 L2671.64 1571.33 L2671.64 1566.81 L2686.01 1544.92 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1372.52 1617.22 L1379.01 1617.22 L1389.01 1657.39 L1398.97 1617.22 L1406.19 1617.22 L1416.19 1657.39 L1426.15 1617.22 L1432.67 1617.22 L1420.74 1664.74 L1412.65 1664.74 L1402.63 1623.49 L1392.51 1664.74 L1384.42 1664.74 L1372.52 1617.22 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1467.62 1645.45 L1467.62 1648.32 L1440.69 1648.32 Q1441.08 1654.36 1444.32 1657.55 Q1447.6 1660.7 1453.43 1660.7 Q1456.8 1660.7 1459.95 1659.87 Q1463.13 1659.04 1466.25 1657.39 L1466.25 1662.92 Q1463.1 1664.26 1459.79 1664.96 Q1456.48 1665.66 1453.08 1665.66 Q1444.55 1665.66 1439.55 1660.7 Q1434.58 1655.73 1434.58 1647.27 Q1434.58 1638.51 1439.29 1633.39 Q1444.04 1628.23 1452.06 1628.23 Q1459.25 1628.23 1463.42 1632.88 Q1467.62 1637.49 1467.62 1645.45 M1461.77 1643.73 Q1461.7 1638.93 1459.06 1636.06 Q1456.45 1633.2 1452.12 1633.2 Q1447.22 1633.2 1444.26 1635.97 Q1441.33 1638.74 1440.89 1643.76 L1461.77 1643.73 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1493.43 1646.82 Q1486.34 1646.82 1483.6 1648.44 Q1480.86 1650.07 1480.86 1653.98 Q1480.86 1657.1 1482.9 1658.95 Q1484.97 1660.76 1488.5 1660.76 Q1493.37 1660.76 1496.3 1657.32 Q1499.26 1653.85 1499.26 1648.12 L1499.26 1646.82 L1493.43 1646.82 M1505.12 1644.4 L1505.12 1664.74 L1499.26 1664.74 L1499.26 1659.33 Q1497.25 1662.57 1494.26 1664.13 Q1491.27 1665.66 1486.94 1665.66 Q1481.47 1665.66 1478.22 1662.61 Q1475.01 1659.52 1475.01 1654.36 Q1475.01 1648.35 1479.02 1645.29 Q1483.06 1642.24 1491.05 1642.24 L1499.26 1642.24 L1499.26 1641.66 Q1499.26 1637.62 1496.59 1635.42 Q1493.94 1633.2 1489.14 1633.2 Q1486.08 1633.2 1483.19 1633.93 Q1480.29 1634.66 1477.62 1636.13 L1477.62 1630.71 Q1480.83 1629.47 1483.85 1628.87 Q1486.88 1628.23 1489.74 1628.23 Q1497.48 1628.23 1501.3 1632.24 Q1505.12 1636.25 1505.12 1644.4 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1517.18 1615.21 L1523.04 1615.21 L1523.04 1664.74 L1517.18 1664.74 L1517.18 1615.21 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1541.08 1618.97 L1541.08 1629.09 L1553.14 1629.09 L1553.14 1633.64 L1541.08 1633.64 L1541.08 1652.99 Q1541.08 1657.35 1542.26 1658.6 Q1543.47 1659.84 1547.13 1659.84 L1553.14 1659.84 L1553.14 1664.74 L1547.13 1664.74 Q1540.35 1664.74 1537.77 1662.22 Q1535.19 1659.68 1535.19 1652.99 L1535.19 1633.64 L1530.9 1633.64 L1530.9 1629.09 L1535.19 1629.09 L1535.19 1618.97 L1541.08 1618.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1590.48 1643.22 L1590.48 1664.74 L1584.62 1664.74 L1584.62 1643.41 Q1584.62 1638.35 1582.65 1635.84 Q1580.68 1633.32 1576.73 1633.32 Q1571.99 1633.32 1569.25 1636.35 Q1566.51 1639.37 1566.51 1644.59 L1566.51 1664.74 L1560.62 1664.74 L1560.62 1615.21 L1566.51 1615.21 L1566.51 1634.63 Q1568.61 1631.41 1571.45 1629.82 Q1574.31 1628.23 1578.03 1628.23 Q1584.18 1628.23 1587.33 1632.05 Q1590.48 1635.84 1590.48 1643.22 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1636.95 1615.28 Q1632.68 1622.6 1630.62 1629.76 Q1628.55 1636.92 1628.55 1644.27 Q1628.55 1651.63 1630.62 1658.85 Q1632.72 1666.04 1636.95 1673.33 L1631.86 1673.33 Q1627.08 1665.85 1624.7 1658.63 Q1622.34 1651.4 1622.34 1644.27 Q1622.34 1637.18 1624.7 1629.98 Q1627.05 1622.79 1631.86 1615.28 L1636.95 1615.28 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1689.5 1659.07 L1689.5 1664.74 L1670.4 1664.74 L1670.4 1659.07 Q1676.03 1655.99 1679.19 1650.7 Q1682.34 1645.42 1682.34 1638.99 Q1682.34 1631.35 1678.14 1626.74 Q1673.93 1622.12 1667.06 1622.12 Q1660.18 1622.12 1655.95 1626.77 Q1651.75 1631.38 1651.75 1638.99 Q1651.75 1645.42 1654.9 1650.7 Q1658.08 1655.99 1663.75 1659.07 L1663.75 1664.74 L1644.65 1664.74 L1644.65 1659.07 L1654.81 1659.07 Q1649.78 1654.65 1647.45 1649.91 Q1645.16 1645.16 1645.16 1639.31 Q1645.16 1629.19 1651.27 1622.92 Q1657.35 1616.65 1667.06 1616.65 Q1676.7 1616.65 1682.85 1622.92 Q1688.96 1629.15 1688.96 1638.99 Q1688.96 1645.16 1686.7 1649.88 Q1684.44 1654.59 1679.31 1659.07 L1689.5 1659.07 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1697.2 1615.28 L1702.29 1615.28 Q1707.07 1622.79 1709.42 1629.98 Q1711.81 1637.18 1711.81 1644.27 Q1711.81 1651.4 1709.42 1658.63 Q1707.07 1665.85 1702.29 1673.33 L1697.2 1673.33 Q1701.43 1666.04 1703.5 1658.85 Q1705.6 1651.63 1705.6 1644.27 Q1705.6 1636.92 1703.5 1629.76 Q1701.43 1622.6 1697.2 1615.28 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,1513.88 331.572,184.304 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,1199.8 350.47,1199.8 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,882.479 350.47,882.479 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,565.158 350.47,565.158 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,247.837 350.47,247.837 "></polyline>
-<path clip-path="url(#clip740)" d="M233.392 1185.6 Q229.781 1185.6 227.952 1189.16 Q226.146 1192.71 226.146 1199.83 Q226.146 1206.94 227.952 1210.51 Q229.781 1214.05 233.392 1214.05 Q237.026 1214.05 238.832 1210.51 Q240.66 1206.94 240.66 1199.83 Q240.66 1192.71 238.832 1189.16 Q237.026 1185.6 233.392 1185.6 M233.392 1181.9 Q239.202 1181.9 242.257 1186.5 Q245.336 1191.08 245.336 1199.83 Q245.336 1208.56 242.257 1213.17 Q239.202 1217.75 233.392 1217.75 Q227.582 1217.75 224.503 1213.17 Q221.447 1208.56 221.447 1199.83 Q221.447 1191.08 224.503 1186.5 Q227.582 1181.9 233.392 1181.9 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M253.554 1211.2 L258.438 1211.2 L258.438 1217.08 L253.554 1217.08 L253.554 1211.2 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M268.669 1182.52 L287.026 1182.52 L287.026 1186.46 L272.952 1186.46 L272.952 1194.93 Q273.97 1194.58 274.989 1194.42 Q276.007 1194.23 277.026 1194.23 Q282.813 1194.23 286.192 1197.4 Q289.572 1200.58 289.572 1205.99 Q289.572 1211.57 286.1 1214.67 Q282.628 1217.75 276.308 1217.75 Q274.132 1217.75 271.864 1217.38 Q269.618 1217.01 267.211 1216.27 L267.211 1211.57 Q269.294 1212.71 271.517 1213.26 Q273.739 1213.82 276.216 1213.82 Q280.22 1213.82 282.558 1211.71 Q284.896 1209.6 284.896 1205.99 Q284.896 1202.38 282.558 1200.27 Q280.22 1198.17 276.216 1198.17 Q274.341 1198.17 272.466 1198.58 Q270.614 1199 268.669 1199.88 L268.669 1182.52 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M223.207 895.824 L230.845 895.824 L230.845 869.458 L222.535 871.125 L222.535 866.866 L230.799 865.199 L235.475 865.199 L235.475 895.824 L243.114 895.824 L243.114 899.759 L223.207 899.759 L223.207 895.824 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M252.558 893.88 L257.443 893.88 L257.443 899.759 L252.558 899.759 L252.558 893.88 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M277.628 868.278 Q274.017 868.278 272.188 871.843 Q270.382 875.384 270.382 882.514 Q270.382 889.62 272.188 893.185 Q274.017 896.727 277.628 896.727 Q281.262 896.727 283.067 893.185 Q284.896 889.62 284.896 882.514 Q284.896 875.384 283.067 871.843 Q281.262 868.278 277.628 868.278 M277.628 864.574 Q283.438 864.574 286.493 869.181 Q289.572 873.764 289.572 882.514 Q289.572 891.241 286.493 895.847 Q283.438 900.43 277.628 900.43 Q271.817 900.43 268.739 895.847 Q265.683 891.241 265.683 882.514 Q265.683 873.764 268.739 869.181 Q271.817 864.574 277.628 864.574 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M224.202 578.503 L231.841 578.503 L231.841 552.137 L223.531 553.804 L223.531 549.545 L231.795 547.878 L236.47 547.878 L236.47 578.503 L244.109 578.503 L244.109 582.438 L224.202 582.438 L224.202 578.503 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M253.554 576.559 L258.438 576.559 L258.438 582.438 L253.554 582.438 L253.554 576.559 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M268.669 547.878 L287.026 547.878 L287.026 551.813 L272.952 551.813 L272.952 560.286 Q273.97 559.938 274.989 559.776 Q276.007 559.591 277.026 559.591 Q282.813 559.591 286.192 562.762 Q289.572 565.934 289.572 571.35 Q289.572 576.929 286.1 580.031 Q282.628 583.11 276.308 583.11 Q274.132 583.11 271.864 582.739 Q269.618 582.369 267.211 581.628 L267.211 576.929 Q269.294 578.063 271.517 578.619 Q273.739 579.174 276.216 579.174 Q280.22 579.174 282.558 577.068 Q284.896 574.961 284.896 571.35 Q284.896 567.739 282.558 565.633 Q280.22 563.526 276.216 563.526 Q274.341 563.526 272.466 563.943 Q270.614 564.36 268.669 565.239 L268.669 547.878 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M226.424 261.182 L242.744 261.182 L242.744 265.117 L220.799 265.117 L220.799 261.182 Q223.461 258.428 228.045 253.798 Q232.651 249.145 233.832 247.803 Q236.077 245.28 236.957 243.543 Q237.859 241.784 237.859 240.094 Q237.859 237.34 235.915 235.604 Q233.994 233.868 230.892 233.868 Q228.693 233.868 226.239 234.631 Q223.808 235.395 221.031 236.946 L221.031 232.224 Q223.855 231.09 226.308 230.511 Q228.762 229.932 230.799 229.932 Q236.17 229.932 239.364 232.618 Q242.558 235.303 242.558 239.793 Q242.558 241.923 241.748 243.844 Q240.961 245.742 238.855 248.335 Q238.276 249.006 235.174 252.224 Q232.072 255.418 226.424 261.182 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M252.558 259.238 L257.443 259.238 L257.443 265.117 L252.558 265.117 L252.558 259.238 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M277.628 233.636 Q274.017 233.636 272.188 237.201 Q270.382 240.742 270.382 247.872 Q270.382 254.979 272.188 258.543 Q274.017 262.085 277.628 262.085 Q281.262 262.085 283.067 258.543 Q284.896 254.979 284.896 247.872 Q284.896 240.742 283.067 237.201 Q281.262 233.636 277.628 233.636 M277.628 229.932 Q283.438 229.932 286.493 234.539 Q289.572 239.122 289.572 247.872 Q289.572 256.599 286.493 261.205 Q283.438 265.789 277.628 265.789 Q271.817 265.789 268.739 261.205 Q265.683 256.599 265.683 247.872 Q265.683 239.122 268.739 234.539 Q271.817 229.932 277.628 229.932 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M117.023 1085.81 L117.023 1079.39 L164.543 1079.39 L164.543 1085.81 L117.023 1085.81 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M143.027 1037.21 L164.543 1037.21 L164.543 1043.07 L143.218 1043.07 Q138.157 1043.07 135.643 1045.04 Q133.128 1047.02 133.128 1050.96 Q133.128 1055.7 136.152 1058.44 Q139.176 1061.18 144.396 1061.18 L164.543 1061.18 L164.543 1067.07 L128.895 1067.07 L128.895 1061.18 L134.433 1061.18 Q131.219 1059.08 129.627 1056.25 Q128.036 1053.38 128.036 1049.66 Q128.036 1043.51 131.855 1040.36 Q135.643 1037.21 143.027 1037.21 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M128.895 1029.73 L128.895 1023.53 L158.814 1012.39 L128.895 1001.25 L128.895 995.039 L164.543 1008.41 L164.543 1016.36 L128.895 1029.73 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M145.255 956.463 L148.12 956.463 L148.12 983.39 Q154.167 983.008 157.35 979.762 Q160.501 976.483 160.501 970.659 Q160.501 967.285 159.673 964.134 Q158.846 960.951 157.191 957.832 L162.729 957.832 Q164.066 960.983 164.766 964.293 Q165.466 967.603 165.466 971.009 Q165.466 979.539 160.501 984.536 Q155.536 989.501 147.069 989.501 Q138.317 989.501 133.192 984.791 Q128.036 980.048 128.036 972.027 Q128.036 964.834 132.683 960.665 Q137.298 956.463 145.255 956.463 M143.536 962.32 Q138.73 962.383 135.866 965.025 Q133.001 967.635 133.001 971.964 Q133.001 976.865 135.77 979.825 Q138.539 982.754 143.568 983.199 L143.536 962.32 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M129.946 924.125 L135.484 924.125 Q134.211 926.608 133.574 929.282 Q132.938 931.955 132.938 934.82 Q132.938 939.18 134.274 941.376 Q135.611 943.541 138.285 943.541 Q140.322 943.541 141.499 941.981 Q142.645 940.422 143.696 935.711 L144.141 933.706 Q145.478 927.467 147.929 924.857 Q150.348 922.216 154.708 922.216 Q159.673 922.216 162.57 926.162 Q165.466 930.077 165.466 936.952 Q165.466 939.817 164.893 942.936 Q164.352 946.023 163.238 949.461 L157.191 949.461 Q158.878 946.214 159.737 943.063 Q160.565 939.912 160.565 936.825 Q160.565 932.687 159.164 930.459 Q157.732 928.231 155.154 928.231 Q152.767 928.231 151.494 929.855 Q150.22 931.446 149.043 936.889 L148.565 938.926 Q147.419 944.368 145.064 946.787 Q142.677 949.206 138.539 949.206 Q133.51 949.206 130.773 945.642 Q128.036 942.077 128.036 935.52 Q128.036 932.274 128.513 929.409 Q128.991 926.544 129.946 924.125 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M118.774 907.097 L128.895 907.097 L128.895 895.034 L133.447 895.034 L133.447 907.097 L152.799 907.097 Q157.159 907.097 158.4 905.919 Q159.642 904.71 159.642 901.05 L159.642 895.034 L164.543 895.034 L164.543 901.05 Q164.543 907.829 162.029 910.407 Q159.482 912.985 152.799 912.985 L133.447 912.985 L133.447 917.282 L128.895 917.282 L128.895 912.985 L118.774 912.985 L118.774 907.097 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M135.738 859.577 Q131.792 857.381 129.914 854.325 Q128.036 851.27 128.036 847.132 Q128.036 841.562 131.951 838.538 Q135.834 835.515 143.027 835.515 L164.543 835.515 L164.543 841.403 L143.218 841.403 Q138.094 841.403 135.611 843.217 Q133.128 845.032 133.128 848.755 Q133.128 853.307 136.152 855.949 Q139.176 858.59 144.396 858.59 L164.543 858.59 L164.543 864.479 L143.218 864.479 Q138.062 864.479 135.611 866.293 Q133.128 868.107 133.128 871.895 Q133.128 876.383 136.184 879.024 Q139.208 881.666 144.396 881.666 L164.543 881.666 L164.543 887.554 L128.895 887.554 L128.895 881.666 L134.433 881.666 Q131.155 879.661 129.596 876.86 Q128.036 874.059 128.036 870.208 Q128.036 866.325 130.009 863.619 Q131.983 860.882 135.738 859.577 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M145.255 793.342 L148.12 793.342 L148.12 820.269 Q154.167 819.887 157.35 816.64 Q160.501 813.362 160.501 807.538 Q160.501 804.164 159.673 801.013 Q158.846 797.83 157.191 794.711 L162.729 794.711 Q164.066 797.862 164.766 801.172 Q165.466 804.482 165.466 807.888 Q165.466 816.418 160.501 821.415 Q155.536 826.38 147.069 826.38 Q138.317 826.38 133.192 821.669 Q128.036 816.927 128.036 808.906 Q128.036 801.713 132.683 797.543 Q137.298 793.342 145.255 793.342 M143.536 799.198 Q138.73 799.262 135.866 801.904 Q133.001 804.514 133.001 808.842 Q133.001 813.744 135.77 816.704 Q138.539 819.632 143.568 820.078 L143.536 799.198 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M143.027 754.097 L164.543 754.097 L164.543 759.954 L143.218 759.954 Q138.157 759.954 135.643 761.927 Q133.128 763.901 133.128 767.847 Q133.128 772.59 136.152 775.327 Q139.176 778.064 144.396 778.064 L164.543 778.064 L164.543 783.953 L128.895 783.953 L128.895 778.064 L134.433 778.064 Q131.219 775.964 129.627 773.131 Q128.036 770.266 128.036 766.542 Q128.036 760.399 131.855 757.248 Q135.643 754.097 143.027 754.097 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M118.774 736.624 L128.895 736.624 L128.895 724.561 L133.447 724.561 L133.447 736.624 L152.799 736.624 Q157.159 736.624 158.4 735.446 Q159.642 734.236 159.642 730.576 L159.642 724.561 L164.543 724.561 L164.543 730.576 Q164.543 737.356 162.029 739.934 Q159.482 742.512 152.799 742.512 L133.447 742.512 L133.447 746.809 L128.895 746.809 L128.895 742.512 L118.774 742.512 L118.774 736.624 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M115.082 682.069 Q122.402 686.334 129.564 688.403 Q136.725 690.472 144.077 690.472 Q151.43 690.472 158.655 688.403 Q165.848 686.303 173.137 682.069 L173.137 687.162 Q165.657 691.936 158.432 694.323 Q151.207 696.679 144.077 696.679 Q136.98 696.679 129.786 694.323 Q122.593 691.968 115.082 687.162 L115.082 682.069 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M117.023 672.744 L117.023 665.837 L134.688 654.028 L117.023 642.156 L117.023 635.25 L139.844 650.527 L164.543 634.231 L164.543 641.138 L144.332 654.506 L164.543 667.969 L164.543 674.908 L139.176 657.943 L117.023 672.744 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M115.082 626.974 L115.082 621.882 Q122.593 617.107 129.786 614.752 Q136.98 612.365 144.077 612.365 Q151.207 612.365 158.432 614.752 Q165.657 617.107 173.137 621.882 L173.137 626.974 Q165.848 622.741 158.655 620.672 Q151.43 618.571 144.077 618.571 Q136.725 618.571 129.564 620.672 Q122.402 622.741 115.082 626.974 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M739.315 12.096 L747.498 12.096 L747.498 72.576 L739.315 72.576 L739.315 12.096 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M801.173 45.1919 L801.173 72.576 L793.719 72.576 L793.719 45.4349 Q793.719 38.994 791.207 35.7938 Q788.696 32.5936 783.673 32.5936 Q777.637 32.5936 774.153 36.4419 Q770.669 40.2903 770.669 46.9338 L770.669 72.576 L763.175 72.576 L763.175 27.2059 L770.669 27.2059 L770.669 34.2544 Q773.343 30.163 776.948 28.1376 Q780.594 26.1121 785.334 26.1121 Q793.152 26.1121 797.162 30.9732 Q801.173 35.7938 801.173 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M810.692 27.2059 L818.591 27.2059 L832.77 65.2844 L846.948 27.2059 L854.847 27.2059 L837.833 72.576 L827.706 72.576 L810.692 27.2059 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M903.944 48.0275 L903.944 51.6733 L869.673 51.6733 Q870.159 59.3701 874.291 63.421 Q878.464 67.4314 885.877 67.4314 Q890.171 67.4314 894.181 66.3781 Q898.232 65.3249 902.202 63.2184 L902.202 70.267 Q898.192 71.9684 893.979 72.8596 Q889.766 73.7508 885.431 73.7508 Q874.575 73.7508 868.215 67.4314 Q861.896 61.1119 861.896 50.3365 Q861.896 39.1965 867.891 32.6746 Q873.927 26.1121 884.135 26.1121 Q893.29 26.1121 898.597 32.0264 Q903.944 37.9003 903.944 48.0275 M896.49 45.84 Q896.409 39.7232 893.047 36.0774 Q889.725 32.4315 884.216 32.4315 Q877.978 32.4315 874.21 35.9558 Q870.484 39.4801 869.916 45.8805 L896.49 45.84 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M945.101 28.5427 L945.101 35.5912 Q941.941 33.9709 938.539 33.1607 Q935.136 32.3505 931.49 32.3505 Q925.94 32.3505 923.145 34.0519 Q920.391 35.7533 920.391 39.156 Q920.391 41.7486 922.376 43.2475 Q924.361 44.7058 930.356 46.0426 L932.908 46.6097 Q940.848 48.3111 944.169 51.4303 Q947.532 54.509 947.532 60.0587 Q947.532 66.3781 942.509 70.0644 Q937.526 73.7508 928.776 73.7508 Q925.13 73.7508 921.16 73.0216 Q917.231 72.3329 912.856 70.9151 L912.856 63.2184 Q916.988 65.3654 920.998 66.4591 Q925.009 67.5124 928.938 67.5124 Q934.204 67.5124 937.04 65.73 Q939.876 63.9071 939.876 60.6258 Q939.876 57.5877 937.81 55.9673 Q935.784 54.3469 928.857 52.8481 L926.264 52.2405 Q919.337 50.7821 916.259 47.7845 Q913.18 44.7463 913.18 39.4801 Q913.18 33.0797 917.717 29.5959 Q922.254 26.1121 930.599 26.1121 Q934.731 26.1121 938.377 26.7198 Q942.022 27.3274 945.101 28.5427 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M966.774 14.324 L966.774 27.2059 L982.126 27.2059 L982.126 32.9987 L966.774 32.9987 L966.774 57.6282 Q966.774 63.1779 968.272 64.7578 Q969.812 66.3376 974.47 66.3376 L982.126 66.3376 L982.126 72.576 L974.47 72.576 Q965.842 72.576 962.561 69.3758 Q959.279 66.1351 959.279 57.6282 L959.279 32.9987 L953.811 32.9987 L953.811 27.2059 L959.279 27.2059 L959.279 14.324 L966.774 14.324 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1027.25 35.9153 Q1030.05 30.8922 1033.94 28.5022 Q1037.83 26.1121 1043.09 26.1121 Q1050.18 26.1121 1054.03 31.0947 Q1057.88 36.0368 1057.88 45.1919 L1057.88 72.576 L1050.38 72.576 L1050.38 45.4349 Q1050.38 38.913 1048.08 35.7533 Q1045.77 32.5936 1041.03 32.5936 Q1035.23 32.5936 1031.87 36.4419 Q1028.51 40.2903 1028.51 46.9338 L1028.51 72.576 L1021.02 72.576 L1021.02 45.4349 Q1021.02 38.8725 1018.71 35.7533 Q1016.4 32.5936 1011.58 32.5936 Q1005.86 32.5936 1002.5 36.4824 Q999.14 40.3308 999.14 46.9338 L999.14 72.576 L991.646 72.576 L991.646 27.2059 L999.14 27.2059 L999.14 34.2544 Q1001.69 30.082 1005.26 28.0971 Q1008.82 26.1121 1013.72 26.1121 Q1018.67 26.1121 1022.11 28.6237 Q1025.59 31.1352 1027.25 35.9153 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1111.55 48.0275 L1111.55 51.6733 L1077.28 51.6733 Q1077.77 59.3701 1081.9 63.421 Q1086.07 67.4314 1093.49 67.4314 Q1097.78 67.4314 1101.79 66.3781 Q1105.84 65.3249 1109.81 63.2184 L1109.81 70.267 Q1105.8 71.9684 1101.59 72.8596 Q1097.37 73.7508 1093.04 73.7508 Q1082.18 73.7508 1075.82 67.4314 Q1069.5 61.1119 1069.5 50.3365 Q1069.5 39.1965 1075.5 32.6746 Q1081.54 26.1121 1091.74 26.1121 Q1100.9 26.1121 1106.21 32.0264 Q1111.55 37.9003 1111.55 48.0275 M1104.1 45.84 Q1104.02 39.7232 1100.66 36.0774 Q1097.33 32.4315 1091.82 32.4315 Q1085.59 32.4315 1081.82 35.9558 Q1078.09 39.4801 1077.53 45.8805 L1104.1 45.84 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1161.5 45.1919 L1161.5 72.576 L1154.05 72.576 L1154.05 45.4349 Q1154.05 38.994 1151.54 35.7938 Q1149.02 32.5936 1144 32.5936 Q1137.96 32.5936 1134.48 36.4419 Q1131 40.2903 1131 46.9338 L1131 72.576 L1123.5 72.576 L1123.5 27.2059 L1131 27.2059 L1131 34.2544 Q1133.67 30.163 1137.28 28.1376 Q1140.92 26.1121 1145.66 26.1121 Q1153.48 26.1121 1157.49 30.9732 Q1161.5 35.7938 1161.5 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1183.74 14.324 L1183.74 27.2059 L1199.09 27.2059 L1199.09 32.9987 L1183.74 32.9987 L1183.74 57.6282 Q1183.74 63.1779 1185.24 64.7578 Q1186.78 66.3376 1191.44 66.3376 L1199.09 66.3376 L1199.09 72.576 L1191.44 72.576 Q1182.81 72.576 1179.53 69.3758 Q1176.25 66.1351 1176.25 57.6282 L1176.25 32.9987 L1170.78 32.9987 L1170.78 27.2059 L1176.25 27.2059 L1176.25 14.324 L1183.74 14.324 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1230.93 27.2059 L1238.39 27.2059 L1247.7 62.6108 L1256.98 27.2059 L1265.77 27.2059 L1275.09 62.6108 L1284.36 27.2059 L1291.82 27.2059 L1279.95 72.576 L1271.16 72.576 L1261.4 35.3887 L1251.59 72.576 L1242.8 72.576 L1230.93 27.2059 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1303.12 27.2059 L1310.57 27.2059 L1310.57 72.576 L1303.12 72.576 L1303.12 27.2059 M1303.12 9.54393 L1310.57 9.54393 L1310.57 18.9825 L1303.12 18.9825 L1303.12 9.54393 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1333.54 14.324 L1333.54 27.2059 L1348.9 27.2059 L1348.9 32.9987 L1333.54 32.9987 L1333.54 57.6282 Q1333.54 63.1779 1335.04 64.7578 Q1336.58 66.3376 1341.24 66.3376 L1348.9 66.3376 L1348.9 72.576 L1341.24 72.576 Q1332.61 72.576 1329.33 69.3758 Q1326.05 66.1351 1326.05 57.6282 L1326.05 32.9987 L1320.58 32.9987 L1320.58 27.2059 L1326.05 27.2059 L1326.05 14.324 L1333.54 14.324 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1396.41 45.1919 L1396.41 72.576 L1388.96 72.576 L1388.96 45.4349 Q1388.96 38.994 1386.45 35.7938 Q1383.94 32.5936 1378.91 32.5936 Q1372.88 32.5936 1369.39 36.4419 Q1365.91 40.2903 1365.91 46.9338 L1365.91 72.576 L1358.41 72.576 L1358.41 9.54393 L1365.91 9.54393 L1365.91 34.2544 Q1368.58 30.163 1372.19 28.1376 Q1375.83 26.1121 1380.57 26.1121 Q1388.39 26.1121 1392.4 30.9732 Q1396.41 35.7938 1396.41 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1446.16 43.6931 L1446.16 65.8515 L1459.28 65.8515 Q1465.89 65.8515 1469.05 63.1374 Q1472.25 60.3828 1472.25 54.752 Q1472.25 49.0808 1469.05 46.4072 Q1465.89 43.6931 1459.28 43.6931 L1446.16 43.6931 M1446.16 18.8205 L1446.16 37.0496 L1458.27 37.0496 Q1464.27 37.0496 1467.18 34.8216 Q1470.14 32.5531 1470.14 27.935 Q1470.14 23.3575 1467.18 21.089 Q1464.27 18.8205 1458.27 18.8205 L1446.16 18.8205 M1437.97 12.096 L1458.88 12.096 Q1468.23 12.096 1473.3 15.9849 Q1478.36 19.8737 1478.36 27.0438 Q1478.36 32.5936 1475.77 35.8748 Q1473.18 39.156 1468.15 39.9662 Q1474.19 41.2625 1477.51 45.3944 Q1480.87 49.4858 1480.87 55.6432 Q1480.87 63.745 1475.36 68.1605 Q1469.86 72.576 1459.69 72.576 L1437.97 72.576 L1437.97 12.096 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1512.15 32.4315 Q1506.15 32.4315 1502.67 37.1306 Q1499.18 41.7891 1499.18 49.9314 Q1499.18 58.0738 1502.63 62.7728 Q1506.11 67.4314 1512.15 67.4314 Q1518.1 67.4314 1521.59 62.7323 Q1525.07 58.0333 1525.07 49.9314 Q1525.07 41.8701 1521.59 37.1711 Q1518.1 32.4315 1512.15 32.4315 M1512.15 26.1121 Q1521.87 26.1121 1527.42 32.4315 Q1532.97 38.7509 1532.97 49.9314 Q1532.97 61.0714 1527.42 67.4314 Q1521.87 73.7508 1512.15 73.7508 Q1502.38 73.7508 1496.83 67.4314 Q1491.33 61.0714 1491.33 49.9314 Q1491.33 38.7509 1496.83 32.4315 Q1502.38 26.1121 1512.15 26.1121 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1571.61 34.1734 Q1570.36 33.4443 1568.86 33.1202 Q1567.4 32.7556 1565.62 32.7556 Q1559.3 32.7556 1555.9 36.8875 Q1552.53 40.9789 1552.53 48.6757 L1552.53 72.576 L1545.04 72.576 L1545.04 27.2059 L1552.53 27.2059 L1552.53 34.2544 Q1554.88 30.1225 1558.65 28.1376 Q1562.42 26.1121 1567.81 26.1121 Q1568.58 26.1121 1569.51 26.2337 Q1570.44 26.3147 1571.57 26.5172 L1571.61 34.1734 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1604.26 34.1734 Q1603.01 33.4443 1601.51 33.1202 Q1600.05 32.7556 1598.27 32.7556 Q1591.95 32.7556 1588.55 36.8875 Q1585.18 40.9789 1585.18 48.6757 L1585.18 72.576 L1577.69 72.576 L1577.69 27.2059 L1585.18 27.2059 L1585.18 34.2544 Q1587.53 30.1225 1591.3 28.1376 Q1595.07 26.1121 1600.46 26.1121 Q1601.23 26.1121 1602.16 26.2337 Q1603.09 26.3147 1604.22 26.5172 L1604.26 34.1734 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1627.84 32.4315 Q1621.85 32.4315 1618.36 37.1306 Q1614.88 41.7891 1614.88 49.9314 Q1614.88 58.0738 1618.32 62.7728 Q1621.8 67.4314 1627.84 67.4314 Q1633.8 67.4314 1637.28 62.7323 Q1640.76 58.0333 1640.76 49.9314 Q1640.76 41.8701 1637.28 37.1711 Q1633.8 32.4315 1627.84 32.4315 M1627.84 26.1121 Q1637.56 26.1121 1643.11 32.4315 Q1648.66 38.7509 1648.66 49.9314 Q1648.66 61.0714 1643.11 67.4314 Q1637.56 73.7508 1627.84 73.7508 Q1618.08 73.7508 1612.53 67.4314 Q1607.02 61.0714 1607.02 49.9314 Q1607.02 38.7509 1612.53 32.4315 Q1618.08 26.1121 1627.84 26.1121 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1656.68 27.2059 L1664.14 27.2059 L1673.45 62.6108 L1682.73 27.2059 L1691.52 27.2059 L1700.84 62.6108 L1710.11 27.2059 L1717.57 27.2059 L1705.7 72.576 L1696.91 72.576 L1687.15 35.3887 L1677.34 72.576 L1668.55 72.576 L1656.68 27.2059 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1728.87 27.2059 L1736.32 27.2059 L1736.32 72.576 L1728.87 72.576 L1728.87 27.2059 M1728.87 9.54393 L1736.32 9.54393 L1736.32 18.9825 L1728.87 18.9825 L1728.87 9.54393 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1789.63 45.1919 L1789.63 72.576 L1782.18 72.576 L1782.18 45.4349 Q1782.18 38.994 1779.67 35.7938 Q1777.16 32.5936 1772.13 32.5936 Q1766.1 32.5936 1762.61 36.4419 Q1759.13 40.2903 1759.13 46.9338 L1759.13 72.576 L1751.64 72.576 L1751.64 27.2059 L1759.13 27.2059 L1759.13 34.2544 Q1761.8 30.163 1765.41 28.1376 Q1769.06 26.1121 1773.79 26.1121 Q1781.61 26.1121 1785.62 30.9732 Q1789.63 35.7938 1789.63 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1834.36 49.3643 Q1834.36 41.2625 1830.99 36.8065 Q1827.67 32.3505 1821.64 32.3505 Q1815.64 32.3505 1812.28 36.8065 Q1808.96 41.2625 1808.96 49.3643 Q1808.96 57.4256 1812.28 61.8816 Q1815.64 66.3376 1821.64 66.3376 Q1827.67 66.3376 1830.99 61.8816 Q1834.36 57.4256 1834.36 49.3643 M1841.81 66.9452 Q1841.81 78.5308 1836.66 84.1616 Q1831.52 89.8329 1820.91 89.8329 Q1816.98 89.8329 1813.49 89.2252 Q1810.01 88.6581 1806.73 87.4428 L1806.73 80.1917 Q1810.01 81.9741 1813.21 82.8248 Q1816.41 83.6755 1819.73 83.6755 Q1827.06 83.6755 1830.71 79.8271 Q1834.36 76.0193 1834.36 68.282 L1834.36 64.5957 Q1832.05 68.6061 1828.44 70.5911 Q1824.84 72.576 1819.81 72.576 Q1811.47 72.576 1806.36 66.2161 Q1801.26 59.8562 1801.26 49.3643 Q1801.26 38.832 1806.36 32.472 Q1811.47 26.1121 1819.81 26.1121 Q1824.84 26.1121 1828.44 28.0971 Q1832.05 30.082 1834.36 34.0924 L1834.36 27.2059 L1841.81 27.2059 L1841.81 66.9452 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1929.15 16.7545 L1929.15 25.383 Q1925.01 21.5346 1920.32 19.6307 Q1915.66 17.7268 1910.39 17.7268 Q1900.02 17.7268 1894.51 24.0867 Q1889 30.4061 1889 42.3968 Q1889 54.3469 1894.51 60.7069 Q1900.02 67.0263 1910.39 67.0263 Q1915.66 67.0263 1920.32 65.1223 Q1925.01 63.2184 1929.15 59.3701 L1929.15 67.9175 Q1924.85 70.8341 1920.03 72.2924 Q1915.25 73.7508 1909.91 73.7508 Q1896.17 73.7508 1888.27 65.3654 Q1880.37 56.9395 1880.37 42.3968 Q1880.37 27.8135 1888.27 19.4281 Q1896.17 11.0023 1909.91 11.0023 Q1915.33 11.0023 1920.11 12.4606 Q1924.93 13.8784 1929.15 16.7545 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M1959.04 32.4315 Q1953.05 32.4315 1949.56 37.1306 Q1946.08 41.7891 1946.08 49.9314 Q1946.08 58.0738 1949.52 62.7728 Q1953.01 67.4314 1959.04 67.4314 Q1965 67.4314 1968.48 62.7323 Q1971.96 58.0333 1971.96 49.9314 Q1971.96 41.8701 1968.48 37.1711 Q1965 32.4315 1959.04 32.4315 M1959.04 26.1121 Q1968.76 26.1121 1974.31 32.4315 Q1979.86 38.7509 1979.86 49.9314 Q1979.86 61.0714 1974.31 67.4314 Q1968.76 73.7508 1959.04 73.7508 Q1949.28 73.7508 1943.73 67.4314 Q1938.22 61.0714 1938.22 49.9314 Q1938.22 38.7509 1943.73 32.4315 Q1949.28 26.1121 1959.04 26.1121 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2029.93 45.1919 L2029.93 72.576 L2022.48 72.576 L2022.48 45.4349 Q2022.48 38.994 2019.97 35.7938 Q2017.46 32.5936 2012.43 32.5936 Q2006.4 32.5936 2002.91 36.4419 Q1999.43 40.2903 1999.43 46.9338 L1999.43 72.576 L1991.94 72.576 L1991.94 27.2059 L1999.43 27.2059 L1999.43 34.2544 Q2002.1 30.163 2005.71 28.1376 Q2009.35 26.1121 2014.09 26.1121 Q2021.91 26.1121 2025.92 30.9732 Q2029.93 35.7938 2029.93 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2073.72 28.5427 L2073.72 35.5912 Q2070.56 33.9709 2067.16 33.1607 Q2063.76 32.3505 2060.11 32.3505 Q2054.56 32.3505 2051.77 34.0519 Q2049.01 35.7533 2049.01 39.156 Q2049.01 41.7486 2051 43.2475 Q2052.98 44.7058 2058.98 46.0426 L2061.53 46.6097 Q2069.47 48.3111 2072.79 51.4303 Q2076.15 54.509 2076.15 60.0587 Q2076.15 66.3781 2071.13 70.0644 Q2066.15 73.7508 2057.4 73.7508 Q2053.75 73.7508 2049.78 73.0216 Q2045.85 72.3329 2041.48 70.9151 L2041.48 63.2184 Q2045.61 65.3654 2049.62 66.4591 Q2053.63 67.5124 2057.56 67.5124 Q2062.83 67.5124 2065.66 65.73 Q2068.5 63.9071 2068.5 60.6258 Q2068.5 57.5877 2066.43 55.9673 Q2064.41 54.3469 2057.48 52.8481 L2054.89 52.2405 Q2047.96 50.7821 2044.88 47.7845 Q2041.8 44.7463 2041.8 39.4801 Q2041.8 33.0797 2046.34 29.5959 Q2050.88 26.1121 2059.22 26.1121 Q2063.35 26.1121 2067 26.7198 Q2070.64 27.3274 2073.72 28.5427 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2095.4 14.324 L2095.4 27.2059 L2110.75 27.2059 L2110.75 32.9987 L2095.4 32.9987 L2095.4 57.6282 Q2095.4 63.1779 2096.89 64.7578 Q2098.43 66.3376 2103.09 66.3376 L2110.75 66.3376 L2110.75 72.576 L2103.09 72.576 Q2094.46 72.576 2091.18 69.3758 Q2087.9 66.1351 2087.9 57.6282 L2087.9 32.9987 L2082.43 32.9987 L2082.43 27.2059 L2087.9 27.2059 L2087.9 14.324 L2095.4 14.324 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2146.84 34.1734 Q2145.59 33.4443 2144.09 33.1202 Q2142.63 32.7556 2140.85 32.7556 Q2134.53 32.7556 2131.12 36.8875 Q2127.76 40.9789 2127.76 48.6757 L2127.76 72.576 L2120.27 72.576 L2120.27 27.2059 L2127.76 27.2059 L2127.76 34.2544 Q2130.11 30.1225 2133.88 28.1376 Q2137.65 26.1121 2143.03 26.1121 Q2143.8 26.1121 2144.74 26.2337 Q2145.67 26.3147 2146.8 26.5172 L2146.84 34.1734 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2175.28 49.7694 Q2166.25 49.7694 2162.76 51.8354 Q2159.28 53.9013 2159.28 58.8839 Q2159.28 62.8538 2161.87 65.2034 Q2164.5 67.5124 2169 67.5124 Q2175.2 67.5124 2178.93 63.1374 Q2182.69 58.7219 2182.69 51.4303 L2182.69 49.7694 L2175.28 49.7694 M2190.15 46.6907 L2190.15 72.576 L2182.69 72.576 L2182.69 65.6895 Q2180.14 69.8214 2176.33 71.8063 Q2172.53 73.7508 2167.02 73.7508 Q2160.05 73.7508 2155.92 69.8619 Q2151.83 65.9325 2151.83 59.3701 Q2151.83 51.7138 2156.93 47.825 Q2162.07 43.9361 2172.24 43.9361 L2182.69 43.9361 L2182.69 43.2069 Q2182.69 38.0623 2179.29 35.2672 Q2175.93 32.4315 2169.81 32.4315 Q2165.92 32.4315 2162.24 33.3632 Q2158.55 34.295 2155.15 36.1584 L2155.15 29.2718 Q2159.24 27.692 2163.09 26.9223 Q2166.93 26.1121 2170.58 26.1121 Q2180.42 26.1121 2185.29 31.2163 Q2190.15 36.3204 2190.15 46.6907 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2205.5 27.2059 L2212.95 27.2059 L2212.95 72.576 L2205.5 72.576 L2205.5 27.2059 M2205.5 9.54393 L2212.95 9.54393 L2212.95 18.9825 L2205.5 18.9825 L2205.5 9.54393 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2266.26 45.1919 L2266.26 72.576 L2258.81 72.576 L2258.81 45.4349 Q2258.81 38.994 2256.3 35.7938 Q2253.79 32.5936 2248.76 32.5936 Q2242.73 32.5936 2239.24 36.4419 Q2235.76 40.2903 2235.76 46.9338 L2235.76 72.576 L2228.27 72.576 L2228.27 27.2059 L2235.76 27.2059 L2235.76 34.2544 Q2238.43 30.163 2242.04 28.1376 Q2245.68 26.1121 2250.42 26.1121 Q2258.24 26.1121 2262.25 30.9732 Q2266.26 35.7938 2266.26 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2288.5 14.324 L2288.5 27.2059 L2303.86 27.2059 L2303.86 32.9987 L2288.5 32.9987 L2288.5 57.6282 Q2288.5 63.1779 2290 64.7578 Q2291.54 66.3376 2296.2 66.3376 L2303.86 66.3376 L2303.86 72.576 L2296.2 72.576 Q2287.57 72.576 2284.29 69.3758 Q2281.01 66.1351 2281.01 57.6282 L2281.01 32.9987 L2275.54 32.9987 L2275.54 27.2059 L2281.01 27.2059 L2281.01 14.324 L2288.5 14.324 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2342.58 28.5427 L2342.58 35.5912 Q2339.42 33.9709 2336.02 33.1607 Q2332.62 32.3505 2328.97 32.3505 Q2323.42 32.3505 2320.63 34.0519 Q2317.87 35.7533 2317.87 39.156 Q2317.87 41.7486 2319.86 43.2475 Q2321.84 44.7058 2327.84 46.0426 L2330.39 46.6097 Q2338.33 48.3111 2341.65 51.4303 Q2345.01 54.509 2345.01 60.0587 Q2345.01 66.3781 2339.99 70.0644 Q2335.01 73.7508 2326.26 73.7508 Q2322.61 73.7508 2318.64 73.0216 Q2314.71 72.3329 2310.34 70.9151 L2310.34 63.2184 Q2314.47 65.3654 2318.48 66.4591 Q2322.49 67.5124 2326.42 67.5124 Q2331.69 67.5124 2334.52 65.73 Q2337.36 63.9071 2337.36 60.6258 Q2337.36 57.5877 2335.29 55.9673 Q2333.27 54.3469 2326.34 52.8481 L2323.75 52.2405 Q2316.82 50.7821 2313.74 47.7845 Q2310.66 44.7463 2310.66 39.4801 Q2310.66 33.0797 2315.2 29.5959 Q2319.74 26.1121 2328.08 26.1121 Q2332.21 26.1121 2335.86 26.7198 Q2339.5 27.3274 2342.58 28.5427 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip742)" style="stroke:#0000ff; stroke-linecap:round; stroke-linejoin:round; stroke-width:12; stroke-opacity:1; fill:none" points="400.096,1476.25 423.168,1460.14 446.24,1444.04 469.312,1427.94 492.384,1411.84 515.456,1395.73 538.529,1379.63 561.601,1363.53 584.673,1347.43 607.745,1331.32 630.817,1315.22 653.889,1299.12 676.961,1283.02 700.033,1266.91 723.105,1250.81 746.177,1234.71 769.249,1218.61 792.321,1202.51 815.393,1186.4 838.466,1170.3 861.538,1154.2 884.61,1138.1 907.682,1121.99 930.754,1105.89 953.826,1089.79 976.898,1073.69 999.97,1057.58 1023.04,1041.48 1046.11,1025.38 1069.19,1009.28 1092.26,993.175 1115.33,977.072 1138.4,960.97 1161.47,944.868 1184.55,928.765 1207.62,912.663 1230.69,896.561 1253.76,880.458 1276.84,864.356 1299.91,848.253 1322.98,832.151 1346.05,816.049 1369.12,799.946 1392.2,783.844 1415.27,767.742 1438.34,751.639 1461.41,735.537 1484.48,719.435 1507.56,703.332 1530.63,687.23 1553.7,671.127 1576.77,655.025 1599.84,638.923 1622.92,622.82 1645.99,606.718 1669.06,590.616 1692.13,574.513 1715.2,558.411 1738.28,542.309 1761.35,526.206 1784.42,510.104 1807.49,494.001 1830.56,477.899 1853.64,461.797 1876.71,445.694 1899.78,429.592 1922.85,413.49 1945.93,397.387 1969,381.285 1992.07,365.183 2015.14,349.08 2038.21,332.978 2061.29,316.875 2084.36,300.773 2107.43,284.671 2130.5,268.568 2153.57,252.466 2176.65,236.364 2199.72,221.934 2222.79,221.934 2245.86,221.934 2268.93,221.934 2292.01,221.934 2315.08,221.934 2338.15,221.934 2361.22,221.934 2384.29,221.934 2407.37,221.934 2430.44,221.934 2453.51,221.934 2476.58,221.934 2499.66,221.934 2522.73,221.934 2545.8,221.934 2568.87,221.934 2591.94,221.934 2615.02,221.934 2638.09,221.934 2661.16,221.934 2684.23,221.934 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#ff0000; stroke-linecap:round; stroke-linejoin:round; stroke-width:12; stroke-opacity:1; fill:none" points="400.096,1476.25 423.168,1460.14 446.24,1444.04 469.312,1427.94 492.384,1411.84 515.456,1395.73 538.529,1379.63 561.601,1363.53 584.673,1347.43 607.745,1331.32 630.817,1315.22 653.889,1299.12 676.961,1283.02 700.033,1266.91 723.105,1250.81 746.177,1234.71 769.249,1218.61 792.321,1202.51 815.393,1186.4 838.466,1170.3 861.538,1154.2 884.61,1148.71 907.682,1148.71 930.754,1148.71 953.826,1148.71 976.898,1148.71 999.97,1148.71 1023.04,1148.71 1046.11,1148.71 1069.19,1148.71 1092.26,1148.71 1115.33,1148.71 1138.4,1148.71 1161.47,1148.71 1184.55,1148.71 1207.62,1148.71 1230.69,1148.71 1253.76,1148.71 1276.84,1148.71 1299.91,1148.71 1322.98,1148.71 1346.05,1148.71 1369.12,1148.71 1392.2,1148.71 1415.27,1148.71 1438.34,1148.71 1461.41,1148.71 1484.48,1148.71 1507.56,1148.71 1530.63,1148.71 1553.7,1148.71 1576.77,1148.71 1599.84,1148.71 1622.92,1148.71 1645.99,1148.71 1669.06,1148.71 1692.13,1148.71 1715.2,1148.71 1738.28,1148.71 1761.35,1148.71 1784.42,1148.71 1807.49,1148.71 1830.56,1148.71 1853.64,1148.71 1876.71,1148.71 1899.78,1148.71 1922.85,1148.71 1945.93,1148.71 1969,1148.71 1992.07,1148.71 2015.14,1148.71 2038.21,1148.71 2061.29,1148.71 2084.36,1148.71 2107.43,1148.71 2130.5,1148.71 2153.57,1148.71 2176.65,1148.71 2199.72,1148.71 2222.79,1148.71 2245.86,1148.71 2268.93,1148.71 2292.01,1148.71 2315.08,1148.71 2338.15,1148.71 2361.22,1148.71 2384.29,1148.71 2407.37,1148.71 2430.44,1148.71 2453.51,1148.71 2476.58,1148.71 2499.66,1148.71 2522.73,1148.71 2545.8,1148.71 2568.87,1148.71 2591.94,1148.71 2615.02,1148.71 2638.09,1148.71 2661.16,1148.71 2684.23,1148.71 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#0000ff; stroke-linecap:round; stroke-linejoin:round; stroke-width:6; stroke-opacity:0.5; fill:none" stroke-dasharray="24, 15" points="-2089.61,221.934 5173.94,221.934 "></polyline>
-<polyline clip-path="url(#clip742)" style="stroke:#ff0000; stroke-linecap:round; stroke-linejoin:round; stroke-width:6; stroke-opacity:0.5; fill:none" stroke-dasharray="24, 15" points="-2089.61,1148.71 5173.94,1148.71 "></polyline>
-<path clip-path="url(#clip740)" d="M2287.71 1469.56 L2672.05 1469.56 L2672.05 1314.04 L2287.71 1314.04  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
-<polyline clip-path="url(#clip740)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2287.71,1469.56 2672.05,1469.56 2672.05,1314.04 2287.71,1314.04 2287.71,1469.56 "></polyline>
-<polyline clip-path="url(#clip740)" style="stroke:#0000ff; stroke-linecap:round; stroke-linejoin:round; stroke-width:12; stroke-opacity:1; fill:none" points="2314.61,1365.88 2476.02,1365.88 "></polyline>
-<path clip-path="url(#clip740)" d="M2502.93 1348.6 L2507.6 1348.6 L2507.6 1362.76 L2524.59 1362.76 L2524.59 1348.6 L2529.27 1348.6 L2529.27 1383.16 L2524.59 1383.16 L2524.59 1366.7 L2507.6 1366.7 L2507.6 1383.16 L2502.93 1383.16 L2502.93 1348.6 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2538.39 1357.23 L2542.65 1357.23 L2542.65 1383.16 L2538.39 1383.16 L2538.39 1357.23 M2538.39 1347.14 L2542.65 1347.14 L2542.65 1352.53 L2538.39 1352.53 L2538.39 1347.14 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2568.62 1369.89 Q2568.62 1365.26 2566.7 1362.72 Q2564.8 1360.17 2561.35 1360.17 Q2557.93 1360.17 2556 1362.72 Q2554.11 1365.26 2554.11 1369.89 Q2554.11 1374.5 2556 1377.04 Q2557.93 1379.59 2561.35 1379.59 Q2564.8 1379.59 2566.7 1377.04 Q2568.62 1374.5 2568.62 1369.89 M2572.88 1379.94 Q2572.88 1386.56 2569.94 1389.78 Q2567 1393.02 2560.94 1393.02 Q2558.69 1393.02 2556.7 1392.67 Q2554.71 1392.35 2552.83 1391.65 L2552.83 1387.51 Q2554.71 1388.53 2556.54 1389.01 Q2558.37 1389.5 2560.26 1389.5 Q2564.45 1389.5 2566.54 1387.3 Q2568.62 1385.12 2568.62 1380.7 L2568.62 1378.6 Q2567.3 1380.89 2565.24 1382.02 Q2563.18 1383.16 2560.31 1383.16 Q2555.54 1383.16 2552.63 1379.52 Q2549.71 1375.89 2549.71 1369.89 Q2549.71 1363.87 2552.63 1360.24 Q2555.54 1356.61 2560.31 1356.61 Q2563.18 1356.61 2565.24 1357.74 Q2567.3 1358.87 2568.62 1361.17 L2568.62 1357.23 L2572.88 1357.23 L2572.88 1379.94 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2603.2 1367.51 L2603.2 1383.16 L2598.94 1383.16 L2598.94 1367.65 Q2598.94 1363.97 2597.51 1362.14 Q2596.07 1360.31 2593.2 1360.31 Q2589.75 1360.31 2587.76 1362.51 Q2585.77 1364.71 2585.77 1368.5 L2585.77 1383.16 L2581.49 1383.16 L2581.49 1347.14 L2585.77 1347.14 L2585.77 1361.26 Q2587.3 1358.92 2589.36 1357.76 Q2591.44 1356.61 2594.15 1356.61 Q2598.62 1356.61 2600.91 1359.38 Q2603.2 1362.14 2603.2 1367.51 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2624.92 1357.23 L2645.15 1357.23 L2645.15 1361.12 L2629.13 1379.75 L2645.15 1379.75 L2645.15 1383.16 L2624.34 1383.16 L2624.34 1379.27 L2640.36 1360.63 L2624.92 1360.63 L2624.92 1357.23 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip740)" style="stroke:#ff0000; stroke-linecap:round; stroke-linejoin:round; stroke-width:12; stroke-opacity:1; fill:none" points="2314.61,1417.72 2476.02,1417.72 "></polyline>
-<path clip-path="url(#clip740)" d="M2502.93 1400.44 L2507.6 1400.44 L2507.6 1431.06 L2524.43 1431.06 L2524.43 1435 L2502.93 1435 L2502.93 1400.44 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2538.37 1412.06 Q2534.94 1412.06 2532.95 1414.74 Q2530.96 1417.4 2530.96 1422.06 Q2530.96 1426.71 2532.93 1429.39 Q2534.92 1432.06 2538.37 1432.06 Q2541.77 1432.06 2543.76 1429.37 Q2545.75 1426.69 2545.75 1422.06 Q2545.75 1417.45 2543.76 1414.76 Q2541.77 1412.06 2538.37 1412.06 M2538.37 1408.45 Q2543.92 1408.45 2547.09 1412.06 Q2550.26 1415.67 2550.26 1422.06 Q2550.26 1428.42 2547.09 1432.06 Q2543.92 1435.67 2538.37 1435.67 Q2532.79 1435.67 2529.62 1432.06 Q2526.47 1428.42 2526.47 1422.06 Q2526.47 1415.67 2529.62 1412.06 Q2532.79 1408.45 2538.37 1408.45 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2554.85 1409.07 L2559.11 1409.07 L2564.43 1429.3 L2569.73 1409.07 L2574.75 1409.07 L2580.08 1429.3 L2585.38 1409.07 L2589.64 1409.07 L2582.86 1435 L2577.83 1435 L2572.25 1413.75 L2566.65 1435 L2561.63 1435 L2554.85 1409.07 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip740)" d="M2609.31 1409.07 L2629.55 1409.07 L2629.55 1412.96 L2613.53 1431.59 L2629.55 1431.59 L2629.55 1435 L2608.74 1435 L2608.74 1431.11 L2624.75 1412.47 L2609.31 1412.47 L2609.31 1409.07 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path></svg>
+<polyline clip-path="url(#clip762)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="341.529,1513.88 341.529,184.304 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="927.204,1513.88 927.204,184.304 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1512.88,1513.88 1512.88,184.304 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2098.56,1513.88 2098.56,184.304 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2684.23,1513.88 2684.23,184.304 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="331.572,1199.8 2752.76,1199.8 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="331.572,882.479 2752.76,882.479 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="331.572,565.158 2752.76,565.158 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="331.572,247.837 2752.76,247.837 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,1513.88 2752.76,1513.88 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="341.529,1513.88 341.529,1494.98 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="927.204,1513.88 927.204,1494.98 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1512.88,1513.88 1512.88,1494.98 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2098.56,1513.88 2098.56,1494.98 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2684.23,1513.88 2684.23,1494.98 "></polyline>
+<path clip-path="url(#clip760)" d="M341.529 1547.99 Q337.917 1547.99 336.089 1551.56 Q334.283 1555.1 334.283 1562.23 Q334.283 1569.34 336.089 1572.9 Q337.917 1576.44 341.529 1576.44 Q345.163 1576.44 346.968 1572.9 Q348.797 1569.34 348.797 1562.23 Q348.797 1555.1 346.968 1551.56 Q345.163 1547.99 341.529 1547.99 M341.529 1544.29 Q347.339 1544.29 350.394 1548.9 Q353.473 1553.48 353.473 1562.23 Q353.473 1570.96 350.394 1575.56 Q347.339 1580.15 341.529 1580.15 Q335.718 1580.15 332.64 1575.56 Q329.584 1570.96 329.584 1562.23 Q329.584 1553.48 332.64 1548.9 Q335.718 1544.29 341.529 1544.29 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M917.586 1575.54 L925.225 1575.54 L925.225 1549.17 L916.915 1550.84 L916.915 1546.58 L925.179 1544.92 L929.855 1544.92 L929.855 1575.54 L937.494 1575.54 L937.494 1579.48 L917.586 1579.48 L917.586 1575.54 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1507.53 1575.54 L1523.85 1575.54 L1523.85 1579.48 L1501.91 1579.48 L1501.91 1575.54 Q1504.57 1572.79 1509.15 1568.16 Q1513.76 1563.5 1514.94 1562.16 Q1517.19 1559.64 1518.07 1557.9 Q1518.97 1556.14 1518.97 1554.45 Q1518.97 1551.7 1517.02 1549.96 Q1515.1 1548.23 1512 1548.23 Q1509.8 1548.23 1507.35 1548.99 Q1504.92 1549.75 1502.14 1551.3 L1502.14 1546.58 Q1504.96 1545.45 1507.42 1544.87 Q1509.87 1544.29 1511.91 1544.29 Q1517.28 1544.29 1520.47 1546.98 Q1523.67 1549.66 1523.67 1554.15 Q1523.67 1556.28 1522.86 1558.2 Q1522.07 1560.1 1519.96 1562.69 Q1519.38 1563.36 1516.28 1566.58 Q1513.18 1569.78 1507.53 1575.54 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2102.8 1560.84 Q2106.16 1561.56 2108.04 1563.83 Q2109.93 1566.1 2109.93 1569.43 Q2109.93 1574.54 2106.41 1577.35 Q2102.9 1580.15 2096.41 1580.15 Q2094.24 1580.15 2091.92 1579.71 Q2089.63 1579.29 2087.18 1578.43 L2087.18 1573.92 Q2089.12 1575.05 2091.44 1575.63 Q2093.75 1576.21 2096.28 1576.21 Q2100.67 1576.21 2102.97 1574.48 Q2105.28 1572.74 2105.28 1569.43 Q2105.28 1566.37 2103.13 1564.66 Q2101 1562.92 2097.18 1562.92 L2093.15 1562.92 L2093.15 1559.08 L2097.36 1559.08 Q2100.81 1559.08 2102.64 1557.72 Q2104.47 1556.33 2104.47 1553.73 Q2104.47 1551.07 2102.57 1549.66 Q2100.7 1548.23 2097.18 1548.23 Q2095.26 1548.23 2093.06 1548.64 Q2090.86 1549.06 2088.22 1549.94 L2088.22 1545.77 Q2090.88 1545.03 2093.2 1544.66 Q2095.54 1544.29 2097.6 1544.29 Q2102.92 1544.29 2106.02 1546.72 Q2109.12 1549.13 2109.12 1553.25 Q2109.12 1556.12 2107.48 1558.11 Q2105.84 1560.08 2102.8 1560.84 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2687.24 1548.99 L2675.44 1567.44 L2687.24 1567.44 L2687.24 1548.99 M2686.01 1544.92 L2691.89 1544.92 L2691.89 1567.44 L2696.82 1567.44 L2696.82 1571.33 L2691.89 1571.33 L2691.89 1579.48 L2687.24 1579.48 L2687.24 1571.33 L2671.64 1571.33 L2671.64 1566.81 L2686.01 1544.92 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1372.52 1617.22 L1379.01 1617.22 L1389.01 1657.39 L1398.97 1617.22 L1406.19 1617.22 L1416.19 1657.39 L1426.15 1617.22 L1432.67 1617.22 L1420.74 1664.74 L1412.65 1664.74 L1402.63 1623.49 L1392.51 1664.74 L1384.42 1664.74 L1372.52 1617.22 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1467.62 1645.45 L1467.62 1648.32 L1440.69 1648.32 Q1441.08 1654.36 1444.32 1657.55 Q1447.6 1660.7 1453.43 1660.7 Q1456.8 1660.7 1459.95 1659.87 Q1463.13 1659.04 1466.25 1657.39 L1466.25 1662.92 Q1463.1 1664.26 1459.79 1664.96 Q1456.48 1665.66 1453.08 1665.66 Q1444.55 1665.66 1439.55 1660.7 Q1434.58 1655.73 1434.58 1647.27 Q1434.58 1638.51 1439.29 1633.39 Q1444.04 1628.23 1452.06 1628.23 Q1459.25 1628.23 1463.42 1632.88 Q1467.62 1637.49 1467.62 1645.45 M1461.77 1643.73 Q1461.7 1638.93 1459.06 1636.06 Q1456.45 1633.2 1452.12 1633.2 Q1447.22 1633.2 1444.26 1635.97 Q1441.33 1638.74 1440.89 1643.76 L1461.77 1643.73 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1493.43 1646.82 Q1486.34 1646.82 1483.6 1648.44 Q1480.86 1650.07 1480.86 1653.98 Q1480.86 1657.1 1482.9 1658.95 Q1484.97 1660.76 1488.5 1660.76 Q1493.37 1660.76 1496.3 1657.32 Q1499.26 1653.85 1499.26 1648.12 L1499.26 1646.82 L1493.43 1646.82 M1505.12 1644.4 L1505.12 1664.74 L1499.26 1664.74 L1499.26 1659.33 Q1497.25 1662.57 1494.26 1664.13 Q1491.27 1665.66 1486.94 1665.66 Q1481.47 1665.66 1478.22 1662.61 Q1475.01 1659.52 1475.01 1654.36 Q1475.01 1648.35 1479.02 1645.29 Q1483.06 1642.24 1491.05 1642.24 L1499.26 1642.24 L1499.26 1641.66 Q1499.26 1637.62 1496.59 1635.42 Q1493.94 1633.2 1489.14 1633.2 Q1486.08 1633.2 1483.19 1633.93 Q1480.29 1634.66 1477.62 1636.13 L1477.62 1630.71 Q1480.83 1629.47 1483.85 1628.87 Q1486.88 1628.23 1489.74 1628.23 Q1497.48 1628.23 1501.3 1632.24 Q1505.12 1636.25 1505.12 1644.4 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1517.18 1615.21 L1523.04 1615.21 L1523.04 1664.74 L1517.18 1664.74 L1517.18 1615.21 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1541.08 1618.97 L1541.08 1629.09 L1553.14 1629.09 L1553.14 1633.64 L1541.08 1633.64 L1541.08 1652.99 Q1541.08 1657.35 1542.26 1658.6 Q1543.47 1659.84 1547.13 1659.84 L1553.14 1659.84 L1553.14 1664.74 L1547.13 1664.74 Q1540.35 1664.74 1537.77 1662.22 Q1535.19 1659.68 1535.19 1652.99 L1535.19 1633.64 L1530.9 1633.64 L1530.9 1629.09 L1535.19 1629.09 L1535.19 1618.97 L1541.08 1618.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1590.48 1643.22 L1590.48 1664.74 L1584.62 1664.74 L1584.62 1643.41 Q1584.62 1638.35 1582.65 1635.84 Q1580.68 1633.32 1576.73 1633.32 Q1571.99 1633.32 1569.25 1636.35 Q1566.51 1639.37 1566.51 1644.59 L1566.51 1664.74 L1560.62 1664.74 L1560.62 1615.21 L1566.51 1615.21 L1566.51 1634.63 Q1568.61 1631.41 1571.45 1629.82 Q1574.31 1628.23 1578.03 1628.23 Q1584.18 1628.23 1587.33 1632.05 Q1590.48 1635.84 1590.48 1643.22 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1636.95 1615.28 Q1632.68 1622.6 1630.62 1629.76 Q1628.55 1636.92 1628.55 1644.27 Q1628.55 1651.63 1630.62 1658.85 Q1632.72 1666.04 1636.95 1673.33 L1631.86 1673.33 Q1627.08 1665.85 1624.7 1658.63 Q1622.34 1651.4 1622.34 1644.27 Q1622.34 1637.18 1624.7 1629.98 Q1627.05 1622.79 1631.86 1615.28 L1636.95 1615.28 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1689.5 1659.07 L1689.5 1664.74 L1670.4 1664.74 L1670.4 1659.07 Q1676.03 1655.99 1679.19 1650.7 Q1682.34 1645.42 1682.34 1638.99 Q1682.34 1631.35 1678.14 1626.74 Q1673.93 1622.12 1667.06 1622.12 Q1660.18 1622.12 1655.95 1626.77 Q1651.75 1631.38 1651.75 1638.99 Q1651.75 1645.42 1654.9 1650.7 Q1658.08 1655.99 1663.75 1659.07 L1663.75 1664.74 L1644.65 1664.74 L1644.65 1659.07 L1654.81 1659.07 Q1649.78 1654.65 1647.45 1649.91 Q1645.16 1645.16 1645.16 1639.31 Q1645.16 1629.19 1651.27 1622.92 Q1657.35 1616.65 1667.06 1616.65 Q1676.7 1616.65 1682.85 1622.92 Q1688.96 1629.15 1688.96 1638.99 Q1688.96 1645.16 1686.7 1649.88 Q1684.44 1654.59 1679.31 1659.07 L1689.5 1659.07 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1697.2 1615.28 L1702.29 1615.28 Q1707.07 1622.79 1709.42 1629.98 Q1711.81 1637.18 1711.81 1644.27 Q1711.81 1651.4 1709.42 1658.63 Q1707.07 1665.85 1702.29 1673.33 L1697.2 1673.33 Q1701.43 1666.04 1703.5 1658.85 Q1705.6 1651.63 1705.6 1644.27 Q1705.6 1636.92 1703.5 1629.76 Q1701.43 1622.6 1697.2 1615.28 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,1513.88 331.572,184.304 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,1199.8 350.47,1199.8 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,882.479 350.47,882.479 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,565.158 350.47,565.158 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="331.572,247.837 350.47,247.837 "></polyline>
+<path clip-path="url(#clip760)" d="M233.392 1185.6 Q229.781 1185.6 227.952 1189.16 Q226.146 1192.71 226.146 1199.83 Q226.146 1206.94 227.952 1210.51 Q229.781 1214.05 233.392 1214.05 Q237.026 1214.05 238.832 1210.51 Q240.66 1206.94 240.66 1199.83 Q240.66 1192.71 238.832 1189.16 Q237.026 1185.6 233.392 1185.6 M233.392 1181.9 Q239.202 1181.9 242.257 1186.5 Q245.336 1191.08 245.336 1199.83 Q245.336 1208.56 242.257 1213.17 Q239.202 1217.75 233.392 1217.75 Q227.582 1217.75 224.503 1213.17 Q221.447 1208.56 221.447 1199.83 Q221.447 1191.08 224.503 1186.5 Q227.582 1181.9 233.392 1181.9 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M253.554 1211.2 L258.438 1211.2 L258.438 1217.08 L253.554 1217.08 L253.554 1211.2 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M268.669 1182.52 L287.026 1182.52 L287.026 1186.46 L272.952 1186.46 L272.952 1194.93 Q273.97 1194.58 274.989 1194.42 Q276.007 1194.23 277.026 1194.23 Q282.813 1194.23 286.192 1197.4 Q289.572 1200.58 289.572 1205.99 Q289.572 1211.57 286.1 1214.67 Q282.628 1217.75 276.308 1217.75 Q274.132 1217.75 271.864 1217.38 Q269.618 1217.01 267.211 1216.27 L267.211 1211.57 Q269.294 1212.71 271.517 1213.26 Q273.739 1213.82 276.216 1213.82 Q280.22 1213.82 282.558 1211.71 Q284.896 1209.6 284.896 1205.99 Q284.896 1202.38 282.558 1200.27 Q280.22 1198.17 276.216 1198.17 Q274.341 1198.17 272.466 1198.58 Q270.614 1199 268.669 1199.88 L268.669 1182.52 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M223.207 895.824 L230.845 895.824 L230.845 869.458 L222.535 871.125 L222.535 866.866 L230.799 865.199 L235.475 865.199 L235.475 895.824 L243.114 895.824 L243.114 899.759 L223.207 899.759 L223.207 895.824 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M252.558 893.88 L257.443 893.88 L257.443 899.759 L252.558 899.759 L252.558 893.88 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M277.628 868.278 Q274.017 868.278 272.188 871.843 Q270.382 875.384 270.382 882.514 Q270.382 889.62 272.188 893.185 Q274.017 896.727 277.628 896.727 Q281.262 896.727 283.067 893.185 Q284.896 889.62 284.896 882.514 Q284.896 875.384 283.067 871.843 Q281.262 868.278 277.628 868.278 M277.628 864.574 Q283.438 864.574 286.493 869.181 Q289.572 873.764 289.572 882.514 Q289.572 891.241 286.493 895.847 Q283.438 900.43 277.628 900.43 Q271.817 900.43 268.739 895.847 Q265.683 891.241 265.683 882.514 Q265.683 873.764 268.739 869.181 Q271.817 864.574 277.628 864.574 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M224.202 578.503 L231.841 578.503 L231.841 552.137 L223.531 553.804 L223.531 549.545 L231.795 547.878 L236.47 547.878 L236.47 578.503 L244.109 578.503 L244.109 582.438 L224.202 582.438 L224.202 578.503 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M253.554 576.559 L258.438 576.559 L258.438 582.438 L253.554 582.438 L253.554 576.559 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M268.669 547.878 L287.026 547.878 L287.026 551.813 L272.952 551.813 L272.952 560.286 Q273.97 559.938 274.989 559.776 Q276.007 559.591 277.026 559.591 Q282.813 559.591 286.192 562.762 Q289.572 565.934 289.572 571.35 Q289.572 576.929 286.1 580.031 Q282.628 583.11 276.308 583.11 Q274.132 583.11 271.864 582.739 Q269.618 582.369 267.211 581.628 L267.211 576.929 Q269.294 578.063 271.517 578.619 Q273.739 579.174 276.216 579.174 Q280.22 579.174 282.558 577.068 Q284.896 574.961 284.896 571.35 Q284.896 567.739 282.558 565.633 Q280.22 563.526 276.216 563.526 Q274.341 563.526 272.466 563.943 Q270.614 564.36 268.669 565.239 L268.669 547.878 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M226.424 261.182 L242.744 261.182 L242.744 265.117 L220.799 265.117 L220.799 261.182 Q223.461 258.428 228.045 253.798 Q232.651 249.145 233.832 247.803 Q236.077 245.28 236.957 243.543 Q237.859 241.784 237.859 240.094 Q237.859 237.34 235.915 235.604 Q233.994 233.868 230.892 233.868 Q228.693 233.868 226.239 234.631 Q223.808 235.395 221.031 236.946 L221.031 232.224 Q223.855 231.09 226.308 230.511 Q228.762 229.932 230.799 229.932 Q236.17 229.932 239.364 232.618 Q242.558 235.303 242.558 239.793 Q242.558 241.923 241.748 243.844 Q240.961 245.742 238.855 248.335 Q238.276 249.006 235.174 252.224 Q232.072 255.418 226.424 261.182 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M252.558 259.238 L257.443 259.238 L257.443 265.117 L252.558 265.117 L252.558 259.238 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M277.628 233.636 Q274.017 233.636 272.188 237.201 Q270.382 240.742 270.382 247.872 Q270.382 254.979 272.188 258.543 Q274.017 262.085 277.628 262.085 Q281.262 262.085 283.067 258.543 Q284.896 254.979 284.896 247.872 Q284.896 240.742 283.067 237.201 Q281.262 233.636 277.628 233.636 M277.628 229.932 Q283.438 229.932 286.493 234.539 Q289.572 239.122 289.572 247.872 Q289.572 256.599 286.493 261.205 Q283.438 265.789 277.628 265.789 Q271.817 265.789 268.739 261.205 Q265.683 256.599 265.683 247.872 Q265.683 239.122 268.739 234.539 Q271.817 229.932 277.628 229.932 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M117.023 1085.81 L117.023 1079.39 L164.543 1079.39 L164.543 1085.81 L117.023 1085.81 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M143.027 1037.21 L164.543 1037.21 L164.543 1043.07 L143.218 1043.07 Q138.157 1043.07 135.643 1045.04 Q133.128 1047.02 133.128 1050.96 Q133.128 1055.7 136.152 1058.44 Q139.176 1061.18 144.396 1061.18 L164.543 1061.18 L164.543 1067.07 L128.895 1067.07 L128.895 1061.18 L134.433 1061.18 Q131.219 1059.08 129.627 1056.25 Q128.036 1053.38 128.036 1049.66 Q128.036 1043.51 131.855 1040.36 Q135.643 1037.21 143.027 1037.21 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M128.895 1029.73 L128.895 1023.53 L158.814 1012.39 L128.895 1001.25 L128.895 995.039 L164.543 1008.41 L164.543 1016.36 L128.895 1029.73 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M145.255 956.463 L148.12 956.463 L148.12 983.39 Q154.167 983.008 157.35 979.762 Q160.501 976.483 160.501 970.659 Q160.501 967.285 159.673 964.134 Q158.846 960.951 157.191 957.832 L162.729 957.832 Q164.066 960.983 164.766 964.293 Q165.466 967.603 165.466 971.009 Q165.466 979.539 160.501 984.536 Q155.536 989.501 147.069 989.501 Q138.317 989.501 133.192 984.791 Q128.036 980.048 128.036 972.027 Q128.036 964.834 132.683 960.665 Q137.298 956.463 145.255 956.463 M143.536 962.32 Q138.73 962.383 135.866 965.025 Q133.001 967.635 133.001 971.964 Q133.001 976.865 135.77 979.825 Q138.539 982.754 143.568 983.199 L143.536 962.32 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M129.946 924.125 L135.484 924.125 Q134.211 926.608 133.574 929.282 Q132.938 931.955 132.938 934.82 Q132.938 939.18 134.274 941.376 Q135.611 943.541 138.285 943.541 Q140.322 943.541 141.499 941.981 Q142.645 940.422 143.696 935.711 L144.141 933.706 Q145.478 927.467 147.929 924.857 Q150.348 922.216 154.708 922.216 Q159.673 922.216 162.57 926.162 Q165.466 930.077 165.466 936.952 Q165.466 939.817 164.893 942.936 Q164.352 946.023 163.238 949.461 L157.191 949.461 Q158.878 946.214 159.737 943.063 Q160.565 939.912 160.565 936.825 Q160.565 932.687 159.164 930.459 Q157.732 928.231 155.154 928.231 Q152.767 928.231 151.494 929.855 Q150.22 931.446 149.043 936.889 L148.565 938.926 Q147.419 944.368 145.064 946.787 Q142.677 949.206 138.539 949.206 Q133.51 949.206 130.773 945.642 Q128.036 942.077 128.036 935.52 Q128.036 932.274 128.513 929.409 Q128.991 926.544 129.946 924.125 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M118.774 907.097 L128.895 907.097 L128.895 895.034 L133.447 895.034 L133.447 907.097 L152.799 907.097 Q157.159 907.097 158.4 905.919 Q159.642 904.71 159.642 901.05 L159.642 895.034 L164.543 895.034 L164.543 901.05 Q164.543 907.829 162.029 910.407 Q159.482 912.985 152.799 912.985 L133.447 912.985 L133.447 917.282 L128.895 917.282 L128.895 912.985 L118.774 912.985 L118.774 907.097 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M135.738 859.577 Q131.792 857.381 129.914 854.325 Q128.036 851.27 128.036 847.132 Q128.036 841.562 131.951 838.538 Q135.834 835.515 143.027 835.515 L164.543 835.515 L164.543 841.403 L143.218 841.403 Q138.094 841.403 135.611 843.217 Q133.128 845.032 133.128 848.755 Q133.128 853.307 136.152 855.949 Q139.176 858.59 144.396 858.59 L164.543 858.59 L164.543 864.479 L143.218 864.479 Q138.062 864.479 135.611 866.293 Q133.128 868.107 133.128 871.895 Q133.128 876.383 136.184 879.024 Q139.208 881.666 144.396 881.666 L164.543 881.666 L164.543 887.554 L128.895 887.554 L128.895 881.666 L134.433 881.666 Q131.155 879.661 129.596 876.86 Q128.036 874.059 128.036 870.208 Q128.036 866.325 130.009 863.619 Q131.983 860.882 135.738 859.577 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M145.255 793.342 L148.12 793.342 L148.12 820.269 Q154.167 819.887 157.35 816.64 Q160.501 813.362 160.501 807.538 Q160.501 804.164 159.673 801.013 Q158.846 797.83 157.191 794.711 L162.729 794.711 Q164.066 797.862 164.766 801.172 Q165.466 804.482 165.466 807.888 Q165.466 816.418 160.501 821.415 Q155.536 826.38 147.069 826.38 Q138.317 826.38 133.192 821.669 Q128.036 816.927 128.036 808.906 Q128.036 801.713 132.683 797.543 Q137.298 793.342 145.255 793.342 M143.536 799.198 Q138.73 799.262 135.866 801.904 Q133.001 804.514 133.001 808.842 Q133.001 813.744 135.77 816.704 Q138.539 819.632 143.568 820.078 L143.536 799.198 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M143.027 754.097 L164.543 754.097 L164.543 759.954 L143.218 759.954 Q138.157 759.954 135.643 761.927 Q133.128 763.901 133.128 767.847 Q133.128 772.59 136.152 775.327 Q139.176 778.064 144.396 778.064 L164.543 778.064 L164.543 783.953 L128.895 783.953 L128.895 778.064 L134.433 778.064 Q131.219 775.964 129.627 773.131 Q128.036 770.266 128.036 766.542 Q128.036 760.399 131.855 757.248 Q135.643 754.097 143.027 754.097 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M118.774 736.624 L128.895 736.624 L128.895 724.561 L133.447 724.561 L133.447 736.624 L152.799 736.624 Q157.159 736.624 158.4 735.446 Q159.642 734.236 159.642 730.576 L159.642 724.561 L164.543 724.561 L164.543 730.576 Q164.543 737.356 162.029 739.934 Q159.482 742.512 152.799 742.512 L133.447 742.512 L133.447 746.809 L128.895 746.809 L128.895 742.512 L118.774 742.512 L118.774 736.624 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M115.082 682.069 Q122.402 686.334 129.564 688.403 Q136.725 690.472 144.077 690.472 Q151.43 690.472 158.655 688.403 Q165.848 686.303 173.137 682.069 L173.137 687.162 Q165.657 691.936 158.432 694.323 Q151.207 696.679 144.077 696.679 Q136.98 696.679 129.786 694.323 Q122.593 691.968 115.082 687.162 L115.082 682.069 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M117.023 672.744 L117.023 665.837 L134.688 654.028 L117.023 642.156 L117.023 635.25 L139.844 650.527 L164.543 634.231 L164.543 641.138 L144.332 654.506 L164.543 667.969 L164.543 674.908 L139.176 657.943 L117.023 672.744 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M115.082 626.974 L115.082 621.882 Q122.593 617.107 129.786 614.752 Q136.98 612.365 144.077 612.365 Q151.207 612.365 158.432 614.752 Q165.657 617.107 173.137 621.882 L173.137 626.974 Q165.848 622.741 158.655 620.672 Q151.43 618.571 144.077 618.571 Q136.725 618.571 129.564 620.672 Q122.402 622.741 115.082 626.974 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M739.315 12.096 L747.498 12.096 L747.498 72.576 L739.315 72.576 L739.315 12.096 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M801.173 45.1919 L801.173 72.576 L793.719 72.576 L793.719 45.4349 Q793.719 38.994 791.207 35.7938 Q788.696 32.5936 783.673 32.5936 Q777.637 32.5936 774.153 36.4419 Q770.669 40.2903 770.669 46.9338 L770.669 72.576 L763.175 72.576 L763.175 27.2059 L770.669 27.2059 L770.669 34.2544 Q773.343 30.163 776.948 28.1376 Q780.594 26.1121 785.334 26.1121 Q793.152 26.1121 797.162 30.9732 Q801.173 35.7938 801.173 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M810.692 27.2059 L818.591 27.2059 L832.77 65.2844 L846.948 27.2059 L854.847 27.2059 L837.833 72.576 L827.706 72.576 L810.692 27.2059 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M903.944 48.0275 L903.944 51.6733 L869.673 51.6733 Q870.159 59.3701 874.291 63.421 Q878.464 67.4314 885.877 67.4314 Q890.171 67.4314 894.181 66.3781 Q898.232 65.3249 902.202 63.2184 L902.202 70.267 Q898.192 71.9684 893.979 72.8596 Q889.766 73.7508 885.431 73.7508 Q874.575 73.7508 868.215 67.4314 Q861.896 61.1119 861.896 50.3365 Q861.896 39.1965 867.891 32.6746 Q873.927 26.1121 884.135 26.1121 Q893.29 26.1121 898.597 32.0264 Q903.944 37.9003 903.944 48.0275 M896.49 45.84 Q896.409 39.7232 893.047 36.0774 Q889.725 32.4315 884.216 32.4315 Q877.978 32.4315 874.21 35.9558 Q870.484 39.4801 869.916 45.8805 L896.49 45.84 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M945.101 28.5427 L945.101 35.5912 Q941.941 33.9709 938.539 33.1607 Q935.136 32.3505 931.49 32.3505 Q925.94 32.3505 923.145 34.0519 Q920.391 35.7533 920.391 39.156 Q920.391 41.7486 922.376 43.2475 Q924.361 44.7058 930.356 46.0426 L932.908 46.6097 Q940.848 48.3111 944.169 51.4303 Q947.532 54.509 947.532 60.0587 Q947.532 66.3781 942.509 70.0644 Q937.526 73.7508 928.776 73.7508 Q925.13 73.7508 921.16 73.0216 Q917.231 72.3329 912.856 70.9151 L912.856 63.2184 Q916.988 65.3654 920.998 66.4591 Q925.009 67.5124 928.938 67.5124 Q934.204 67.5124 937.04 65.73 Q939.876 63.9071 939.876 60.6258 Q939.876 57.5877 937.81 55.9673 Q935.784 54.3469 928.857 52.8481 L926.264 52.2405 Q919.337 50.7821 916.259 47.7845 Q913.18 44.7463 913.18 39.4801 Q913.18 33.0797 917.717 29.5959 Q922.254 26.1121 930.599 26.1121 Q934.731 26.1121 938.377 26.7198 Q942.022 27.3274 945.101 28.5427 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M966.774 14.324 L966.774 27.2059 L982.126 27.2059 L982.126 32.9987 L966.774 32.9987 L966.774 57.6282 Q966.774 63.1779 968.272 64.7578 Q969.812 66.3376 974.47 66.3376 L982.126 66.3376 L982.126 72.576 L974.47 72.576 Q965.842 72.576 962.561 69.3758 Q959.279 66.1351 959.279 57.6282 L959.279 32.9987 L953.811 32.9987 L953.811 27.2059 L959.279 27.2059 L959.279 14.324 L966.774 14.324 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1027.25 35.9153 Q1030.05 30.8922 1033.94 28.5022 Q1037.83 26.1121 1043.09 26.1121 Q1050.18 26.1121 1054.03 31.0947 Q1057.88 36.0368 1057.88 45.1919 L1057.88 72.576 L1050.38 72.576 L1050.38 45.4349 Q1050.38 38.913 1048.08 35.7533 Q1045.77 32.5936 1041.03 32.5936 Q1035.23 32.5936 1031.87 36.4419 Q1028.51 40.2903 1028.51 46.9338 L1028.51 72.576 L1021.02 72.576 L1021.02 45.4349 Q1021.02 38.8725 1018.71 35.7533 Q1016.4 32.5936 1011.58 32.5936 Q1005.86 32.5936 1002.5 36.4824 Q999.14 40.3308 999.14 46.9338 L999.14 72.576 L991.646 72.576 L991.646 27.2059 L999.14 27.2059 L999.14 34.2544 Q1001.69 30.082 1005.26 28.0971 Q1008.82 26.1121 1013.72 26.1121 Q1018.67 26.1121 1022.11 28.6237 Q1025.59 31.1352 1027.25 35.9153 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1111.55 48.0275 L1111.55 51.6733 L1077.28 51.6733 Q1077.77 59.3701 1081.9 63.421 Q1086.07 67.4314 1093.49 67.4314 Q1097.78 67.4314 1101.79 66.3781 Q1105.84 65.3249 1109.81 63.2184 L1109.81 70.267 Q1105.8 71.9684 1101.59 72.8596 Q1097.37 73.7508 1093.04 73.7508 Q1082.18 73.7508 1075.82 67.4314 Q1069.5 61.1119 1069.5 50.3365 Q1069.5 39.1965 1075.5 32.6746 Q1081.54 26.1121 1091.74 26.1121 Q1100.9 26.1121 1106.21 32.0264 Q1111.55 37.9003 1111.55 48.0275 M1104.1 45.84 Q1104.02 39.7232 1100.66 36.0774 Q1097.33 32.4315 1091.82 32.4315 Q1085.59 32.4315 1081.82 35.9558 Q1078.09 39.4801 1077.53 45.8805 L1104.1 45.84 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1161.5 45.1919 L1161.5 72.576 L1154.05 72.576 L1154.05 45.4349 Q1154.05 38.994 1151.54 35.7938 Q1149.02 32.5936 1144 32.5936 Q1137.96 32.5936 1134.48 36.4419 Q1131 40.2903 1131 46.9338 L1131 72.576 L1123.5 72.576 L1123.5 27.2059 L1131 27.2059 L1131 34.2544 Q1133.67 30.163 1137.28 28.1376 Q1140.92 26.1121 1145.66 26.1121 Q1153.48 26.1121 1157.49 30.9732 Q1161.5 35.7938 1161.5 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1183.74 14.324 L1183.74 27.2059 L1199.09 27.2059 L1199.09 32.9987 L1183.74 32.9987 L1183.74 57.6282 Q1183.74 63.1779 1185.24 64.7578 Q1186.78 66.3376 1191.44 66.3376 L1199.09 66.3376 L1199.09 72.576 L1191.44 72.576 Q1182.81 72.576 1179.53 69.3758 Q1176.25 66.1351 1176.25 57.6282 L1176.25 32.9987 L1170.78 32.9987 L1170.78 27.2059 L1176.25 27.2059 L1176.25 14.324 L1183.74 14.324 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1230.93 27.2059 L1238.39 27.2059 L1247.7 62.6108 L1256.98 27.2059 L1265.77 27.2059 L1275.09 62.6108 L1284.36 27.2059 L1291.82 27.2059 L1279.95 72.576 L1271.16 72.576 L1261.4 35.3887 L1251.59 72.576 L1242.8 72.576 L1230.93 27.2059 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1303.12 27.2059 L1310.57 27.2059 L1310.57 72.576 L1303.12 72.576 L1303.12 27.2059 M1303.12 9.54393 L1310.57 9.54393 L1310.57 18.9825 L1303.12 18.9825 L1303.12 9.54393 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1333.54 14.324 L1333.54 27.2059 L1348.9 27.2059 L1348.9 32.9987 L1333.54 32.9987 L1333.54 57.6282 Q1333.54 63.1779 1335.04 64.7578 Q1336.58 66.3376 1341.24 66.3376 L1348.9 66.3376 L1348.9 72.576 L1341.24 72.576 Q1332.61 72.576 1329.33 69.3758 Q1326.05 66.1351 1326.05 57.6282 L1326.05 32.9987 L1320.58 32.9987 L1320.58 27.2059 L1326.05 27.2059 L1326.05 14.324 L1333.54 14.324 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1396.41 45.1919 L1396.41 72.576 L1388.96 72.576 L1388.96 45.4349 Q1388.96 38.994 1386.45 35.7938 Q1383.94 32.5936 1378.91 32.5936 Q1372.88 32.5936 1369.39 36.4419 Q1365.91 40.2903 1365.91 46.9338 L1365.91 72.576 L1358.41 72.576 L1358.41 9.54393 L1365.91 9.54393 L1365.91 34.2544 Q1368.58 30.163 1372.19 28.1376 Q1375.83 26.1121 1380.57 26.1121 Q1388.39 26.1121 1392.4 30.9732 Q1396.41 35.7938 1396.41 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1446.16 43.6931 L1446.16 65.8515 L1459.28 65.8515 Q1465.89 65.8515 1469.05 63.1374 Q1472.25 60.3828 1472.25 54.752 Q1472.25 49.0808 1469.05 46.4072 Q1465.89 43.6931 1459.28 43.6931 L1446.16 43.6931 M1446.16 18.8205 L1446.16 37.0496 L1458.27 37.0496 Q1464.27 37.0496 1467.18 34.8216 Q1470.14 32.5531 1470.14 27.935 Q1470.14 23.3575 1467.18 21.089 Q1464.27 18.8205 1458.27 18.8205 L1446.16 18.8205 M1437.97 12.096 L1458.88 12.096 Q1468.23 12.096 1473.3 15.9849 Q1478.36 19.8737 1478.36 27.0438 Q1478.36 32.5936 1475.77 35.8748 Q1473.18 39.156 1468.15 39.9662 Q1474.19 41.2625 1477.51 45.3944 Q1480.87 49.4858 1480.87 55.6432 Q1480.87 63.745 1475.36 68.1605 Q1469.86 72.576 1459.69 72.576 L1437.97 72.576 L1437.97 12.096 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1512.15 32.4315 Q1506.15 32.4315 1502.67 37.1306 Q1499.18 41.7891 1499.18 49.9314 Q1499.18 58.0738 1502.63 62.7728 Q1506.11 67.4314 1512.15 67.4314 Q1518.1 67.4314 1521.59 62.7323 Q1525.07 58.0333 1525.07 49.9314 Q1525.07 41.8701 1521.59 37.1711 Q1518.1 32.4315 1512.15 32.4315 M1512.15 26.1121 Q1521.87 26.1121 1527.42 32.4315 Q1532.97 38.7509 1532.97 49.9314 Q1532.97 61.0714 1527.42 67.4314 Q1521.87 73.7508 1512.15 73.7508 Q1502.38 73.7508 1496.83 67.4314 Q1491.33 61.0714 1491.33 49.9314 Q1491.33 38.7509 1496.83 32.4315 Q1502.38 26.1121 1512.15 26.1121 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1571.61 34.1734 Q1570.36 33.4443 1568.86 33.1202 Q1567.4 32.7556 1565.62 32.7556 Q1559.3 32.7556 1555.9 36.8875 Q1552.53 40.9789 1552.53 48.6757 L1552.53 72.576 L1545.04 72.576 L1545.04 27.2059 L1552.53 27.2059 L1552.53 34.2544 Q1554.88 30.1225 1558.65 28.1376 Q1562.42 26.1121 1567.81 26.1121 Q1568.58 26.1121 1569.51 26.2337 Q1570.44 26.3147 1571.57 26.5172 L1571.61 34.1734 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1604.26 34.1734 Q1603.01 33.4443 1601.51 33.1202 Q1600.05 32.7556 1598.27 32.7556 Q1591.95 32.7556 1588.55 36.8875 Q1585.18 40.9789 1585.18 48.6757 L1585.18 72.576 L1577.69 72.576 L1577.69 27.2059 L1585.18 27.2059 L1585.18 34.2544 Q1587.53 30.1225 1591.3 28.1376 Q1595.07 26.1121 1600.46 26.1121 Q1601.23 26.1121 1602.16 26.2337 Q1603.09 26.3147 1604.22 26.5172 L1604.26 34.1734 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1627.84 32.4315 Q1621.85 32.4315 1618.36 37.1306 Q1614.88 41.7891 1614.88 49.9314 Q1614.88 58.0738 1618.32 62.7728 Q1621.8 67.4314 1627.84 67.4314 Q1633.8 67.4314 1637.28 62.7323 Q1640.76 58.0333 1640.76 49.9314 Q1640.76 41.8701 1637.28 37.1711 Q1633.8 32.4315 1627.84 32.4315 M1627.84 26.1121 Q1637.56 26.1121 1643.11 32.4315 Q1648.66 38.7509 1648.66 49.9314 Q1648.66 61.0714 1643.11 67.4314 Q1637.56 73.7508 1627.84 73.7508 Q1618.08 73.7508 1612.53 67.4314 Q1607.02 61.0714 1607.02 49.9314 Q1607.02 38.7509 1612.53 32.4315 Q1618.08 26.1121 1627.84 26.1121 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1656.68 27.2059 L1664.14 27.2059 L1673.45 62.6108 L1682.73 27.2059 L1691.52 27.2059 L1700.84 62.6108 L1710.11 27.2059 L1717.57 27.2059 L1705.7 72.576 L1696.91 72.576 L1687.15 35.3887 L1677.34 72.576 L1668.55 72.576 L1656.68 27.2059 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1728.87 27.2059 L1736.32 27.2059 L1736.32 72.576 L1728.87 72.576 L1728.87 27.2059 M1728.87 9.54393 L1736.32 9.54393 L1736.32 18.9825 L1728.87 18.9825 L1728.87 9.54393 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1789.63 45.1919 L1789.63 72.576 L1782.18 72.576 L1782.18 45.4349 Q1782.18 38.994 1779.67 35.7938 Q1777.16 32.5936 1772.13 32.5936 Q1766.1 32.5936 1762.61 36.4419 Q1759.13 40.2903 1759.13 46.9338 L1759.13 72.576 L1751.64 72.576 L1751.64 27.2059 L1759.13 27.2059 L1759.13 34.2544 Q1761.8 30.163 1765.41 28.1376 Q1769.06 26.1121 1773.79 26.1121 Q1781.61 26.1121 1785.62 30.9732 Q1789.63 35.7938 1789.63 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1834.36 49.3643 Q1834.36 41.2625 1830.99 36.8065 Q1827.67 32.3505 1821.64 32.3505 Q1815.64 32.3505 1812.28 36.8065 Q1808.96 41.2625 1808.96 49.3643 Q1808.96 57.4256 1812.28 61.8816 Q1815.64 66.3376 1821.64 66.3376 Q1827.67 66.3376 1830.99 61.8816 Q1834.36 57.4256 1834.36 49.3643 M1841.81 66.9452 Q1841.81 78.5308 1836.66 84.1616 Q1831.52 89.8329 1820.91 89.8329 Q1816.98 89.8329 1813.49 89.2252 Q1810.01 88.6581 1806.73 87.4428 L1806.73 80.1917 Q1810.01 81.9741 1813.21 82.8248 Q1816.41 83.6755 1819.73 83.6755 Q1827.06 83.6755 1830.71 79.8271 Q1834.36 76.0193 1834.36 68.282 L1834.36 64.5957 Q1832.05 68.6061 1828.44 70.5911 Q1824.84 72.576 1819.81 72.576 Q1811.47 72.576 1806.36 66.2161 Q1801.26 59.8562 1801.26 49.3643 Q1801.26 38.832 1806.36 32.472 Q1811.47 26.1121 1819.81 26.1121 Q1824.84 26.1121 1828.44 28.0971 Q1832.05 30.082 1834.36 34.0924 L1834.36 27.2059 L1841.81 27.2059 L1841.81 66.9452 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1929.15 16.7545 L1929.15 25.383 Q1925.01 21.5346 1920.32 19.6307 Q1915.66 17.7268 1910.39 17.7268 Q1900.02 17.7268 1894.51 24.0867 Q1889 30.4061 1889 42.3968 Q1889 54.3469 1894.51 60.7069 Q1900.02 67.0263 1910.39 67.0263 Q1915.66 67.0263 1920.32 65.1223 Q1925.01 63.2184 1929.15 59.3701 L1929.15 67.9175 Q1924.85 70.8341 1920.03 72.2924 Q1915.25 73.7508 1909.91 73.7508 Q1896.17 73.7508 1888.27 65.3654 Q1880.37 56.9395 1880.37 42.3968 Q1880.37 27.8135 1888.27 19.4281 Q1896.17 11.0023 1909.91 11.0023 Q1915.33 11.0023 1920.11 12.4606 Q1924.93 13.8784 1929.15 16.7545 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M1959.04 32.4315 Q1953.05 32.4315 1949.56 37.1306 Q1946.08 41.7891 1946.08 49.9314 Q1946.08 58.0738 1949.52 62.7728 Q1953.01 67.4314 1959.04 67.4314 Q1965 67.4314 1968.48 62.7323 Q1971.96 58.0333 1971.96 49.9314 Q1971.96 41.8701 1968.48 37.1711 Q1965 32.4315 1959.04 32.4315 M1959.04 26.1121 Q1968.76 26.1121 1974.31 32.4315 Q1979.86 38.7509 1979.86 49.9314 Q1979.86 61.0714 1974.31 67.4314 Q1968.76 73.7508 1959.04 73.7508 Q1949.28 73.7508 1943.73 67.4314 Q1938.22 61.0714 1938.22 49.9314 Q1938.22 38.7509 1943.73 32.4315 Q1949.28 26.1121 1959.04 26.1121 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2029.93 45.1919 L2029.93 72.576 L2022.48 72.576 L2022.48 45.4349 Q2022.48 38.994 2019.97 35.7938 Q2017.46 32.5936 2012.43 32.5936 Q2006.4 32.5936 2002.91 36.4419 Q1999.43 40.2903 1999.43 46.9338 L1999.43 72.576 L1991.94 72.576 L1991.94 27.2059 L1999.43 27.2059 L1999.43 34.2544 Q2002.1 30.163 2005.71 28.1376 Q2009.35 26.1121 2014.09 26.1121 Q2021.91 26.1121 2025.92 30.9732 Q2029.93 35.7938 2029.93 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2073.72 28.5427 L2073.72 35.5912 Q2070.56 33.9709 2067.16 33.1607 Q2063.76 32.3505 2060.11 32.3505 Q2054.56 32.3505 2051.77 34.0519 Q2049.01 35.7533 2049.01 39.156 Q2049.01 41.7486 2051 43.2475 Q2052.98 44.7058 2058.98 46.0426 L2061.53 46.6097 Q2069.47 48.3111 2072.79 51.4303 Q2076.15 54.509 2076.15 60.0587 Q2076.15 66.3781 2071.13 70.0644 Q2066.15 73.7508 2057.4 73.7508 Q2053.75 73.7508 2049.78 73.0216 Q2045.85 72.3329 2041.48 70.9151 L2041.48 63.2184 Q2045.61 65.3654 2049.62 66.4591 Q2053.63 67.5124 2057.56 67.5124 Q2062.83 67.5124 2065.66 65.73 Q2068.5 63.9071 2068.5 60.6258 Q2068.5 57.5877 2066.43 55.9673 Q2064.41 54.3469 2057.48 52.8481 L2054.89 52.2405 Q2047.96 50.7821 2044.88 47.7845 Q2041.8 44.7463 2041.8 39.4801 Q2041.8 33.0797 2046.34 29.5959 Q2050.88 26.1121 2059.22 26.1121 Q2063.35 26.1121 2067 26.7198 Q2070.64 27.3274 2073.72 28.5427 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2095.4 14.324 L2095.4 27.2059 L2110.75 27.2059 L2110.75 32.9987 L2095.4 32.9987 L2095.4 57.6282 Q2095.4 63.1779 2096.89 64.7578 Q2098.43 66.3376 2103.09 66.3376 L2110.75 66.3376 L2110.75 72.576 L2103.09 72.576 Q2094.46 72.576 2091.18 69.3758 Q2087.9 66.1351 2087.9 57.6282 L2087.9 32.9987 L2082.43 32.9987 L2082.43 27.2059 L2087.9 27.2059 L2087.9 14.324 L2095.4 14.324 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2146.84 34.1734 Q2145.59 33.4443 2144.09 33.1202 Q2142.63 32.7556 2140.85 32.7556 Q2134.53 32.7556 2131.12 36.8875 Q2127.76 40.9789 2127.76 48.6757 L2127.76 72.576 L2120.27 72.576 L2120.27 27.2059 L2127.76 27.2059 L2127.76 34.2544 Q2130.11 30.1225 2133.88 28.1376 Q2137.65 26.1121 2143.03 26.1121 Q2143.8 26.1121 2144.74 26.2337 Q2145.67 26.3147 2146.8 26.5172 L2146.84 34.1734 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2175.28 49.7694 Q2166.25 49.7694 2162.76 51.8354 Q2159.28 53.9013 2159.28 58.8839 Q2159.28 62.8538 2161.87 65.2034 Q2164.5 67.5124 2169 67.5124 Q2175.2 67.5124 2178.93 63.1374 Q2182.69 58.7219 2182.69 51.4303 L2182.69 49.7694 L2175.28 49.7694 M2190.15 46.6907 L2190.15 72.576 L2182.69 72.576 L2182.69 65.6895 Q2180.14 69.8214 2176.33 71.8063 Q2172.53 73.7508 2167.02 73.7508 Q2160.05 73.7508 2155.92 69.8619 Q2151.83 65.9325 2151.83 59.3701 Q2151.83 51.7138 2156.93 47.825 Q2162.07 43.9361 2172.24 43.9361 L2182.69 43.9361 L2182.69 43.2069 Q2182.69 38.0623 2179.29 35.2672 Q2175.93 32.4315 2169.81 32.4315 Q2165.92 32.4315 2162.24 33.3632 Q2158.55 34.295 2155.15 36.1584 L2155.15 29.2718 Q2159.24 27.692 2163.09 26.9223 Q2166.93 26.1121 2170.58 26.1121 Q2180.42 26.1121 2185.29 31.2163 Q2190.15 36.3204 2190.15 46.6907 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2205.5 27.2059 L2212.95 27.2059 L2212.95 72.576 L2205.5 72.576 L2205.5 27.2059 M2205.5 9.54393 L2212.95 9.54393 L2212.95 18.9825 L2205.5 18.9825 L2205.5 9.54393 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2266.26 45.1919 L2266.26 72.576 L2258.81 72.576 L2258.81 45.4349 Q2258.81 38.994 2256.3 35.7938 Q2253.79 32.5936 2248.76 32.5936 Q2242.73 32.5936 2239.24 36.4419 Q2235.76 40.2903 2235.76 46.9338 L2235.76 72.576 L2228.27 72.576 L2228.27 27.2059 L2235.76 27.2059 L2235.76 34.2544 Q2238.43 30.163 2242.04 28.1376 Q2245.68 26.1121 2250.42 26.1121 Q2258.24 26.1121 2262.25 30.9732 Q2266.26 35.7938 2266.26 45.1919 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2288.5 14.324 L2288.5 27.2059 L2303.86 27.2059 L2303.86 32.9987 L2288.5 32.9987 L2288.5 57.6282 Q2288.5 63.1779 2290 64.7578 Q2291.54 66.3376 2296.2 66.3376 L2303.86 66.3376 L2303.86 72.576 L2296.2 72.576 Q2287.57 72.576 2284.29 69.3758 Q2281.01 66.1351 2281.01 57.6282 L2281.01 32.9987 L2275.54 32.9987 L2275.54 27.2059 L2281.01 27.2059 L2281.01 14.324 L2288.5 14.324 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2342.58 28.5427 L2342.58 35.5912 Q2339.42 33.9709 2336.02 33.1607 Q2332.62 32.3505 2328.97 32.3505 Q2323.42 32.3505 2320.63 34.0519 Q2317.87 35.7533 2317.87 39.156 Q2317.87 41.7486 2319.86 43.2475 Q2321.84 44.7058 2327.84 46.0426 L2330.39 46.6097 Q2338.33 48.3111 2341.65 51.4303 Q2345.01 54.509 2345.01 60.0587 Q2345.01 66.3781 2339.99 70.0644 Q2335.01 73.7508 2326.26 73.7508 Q2322.61 73.7508 2318.64 73.0216 Q2314.71 72.3329 2310.34 70.9151 L2310.34 63.2184 Q2314.47 65.3654 2318.48 66.4591 Q2322.49 67.5124 2326.42 67.5124 Q2331.69 67.5124 2334.52 65.73 Q2337.36 63.9071 2337.36 60.6258 Q2337.36 57.5877 2335.29 55.9673 Q2333.27 54.3469 2326.34 52.8481 L2323.75 52.2405 Q2316.82 50.7821 2313.74 47.7845 Q2310.66 44.7463 2310.66 39.4801 Q2310.66 33.0797 2315.2 29.5959 Q2319.74 26.1121 2328.08 26.1121 Q2332.21 26.1121 2335.86 26.7198 Q2339.5 27.3274 2342.58 28.5427 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip762)" style="stroke:#0000ff; stroke-linecap:round; stroke-linejoin:round; stroke-width:12; stroke-opacity:1; fill:none" points="400.096,1476.25 423.168,1460.14 446.24,1444.04 469.312,1427.94 492.384,1411.84 515.456,1395.73 538.529,1379.63 561.601,1363.53 584.673,1347.43 607.745,1331.32 630.817,1315.22 653.889,1299.12 676.961,1283.02 700.033,1266.91 723.105,1250.81 746.177,1234.71 769.249,1218.61 792.321,1202.51 815.393,1186.4 838.466,1170.3 861.538,1154.2 884.61,1138.1 907.682,1121.99 930.754,1105.89 953.826,1089.79 976.898,1073.69 999.97,1057.58 1023.04,1041.48 1046.11,1025.38 1069.19,1009.28 1092.26,993.175 1115.33,977.072 1138.4,960.97 1161.47,944.868 1184.55,928.765 1207.62,912.663 1230.69,896.561 1253.76,880.458 1276.84,864.356 1299.91,848.253 1322.98,832.151 1346.05,816.049 1369.12,799.946 1392.2,783.844 1415.27,767.742 1438.34,751.639 1461.41,735.537 1484.48,719.435 1507.56,703.332 1530.63,687.23 1553.7,671.127 1576.77,655.025 1599.84,638.923 1622.92,622.82 1645.99,606.718 1669.06,590.616 1692.13,574.513 1715.2,558.411 1738.28,542.309 1761.35,526.206 1784.42,510.104 1807.49,494.001 1830.56,477.899 1853.64,461.797 1876.71,445.694 1899.78,429.592 1922.85,413.49 1945.93,397.387 1969,381.285 1992.07,365.183 2015.14,349.08 2038.21,332.978 2061.29,316.875 2084.36,300.773 2107.43,284.671 2130.5,268.568 2153.57,252.466 2176.65,236.364 2199.72,221.934 2222.79,221.934 2245.86,221.934 2268.93,221.934 2292.01,221.934 2315.08,221.934 2338.15,221.934 2361.22,221.934 2384.29,221.934 2407.37,221.934 2430.44,221.934 2453.51,221.934 2476.58,221.934 2499.66,221.934 2522.73,221.934 2545.8,221.934 2568.87,221.934 2591.94,221.934 2615.02,221.934 2638.09,221.934 2661.16,221.934 2684.23,221.934 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#ff0000; stroke-linecap:round; stroke-linejoin:round; stroke-width:12; stroke-opacity:1; fill:none" points="400.096,1476.25 423.168,1460.14 446.24,1444.04 469.312,1427.94 492.384,1411.84 515.456,1395.73 538.529,1379.63 561.601,1363.53 584.673,1347.43 607.745,1331.32 630.817,1315.22 653.889,1299.12 676.961,1283.02 700.033,1266.91 723.105,1250.81 746.177,1234.71 769.249,1218.61 792.321,1202.51 815.393,1186.4 838.466,1170.3 861.538,1154.2 884.61,1148.71 907.682,1148.71 930.754,1148.71 953.826,1148.71 976.898,1148.71 999.97,1148.71 1023.04,1148.71 1046.11,1148.71 1069.19,1148.71 1092.26,1148.71 1115.33,1148.71 1138.4,1148.71 1161.47,1148.71 1184.55,1148.71 1207.62,1148.71 1230.69,1148.71 1253.76,1148.71 1276.84,1148.71 1299.91,1148.71 1322.98,1148.71 1346.05,1148.71 1369.12,1148.71 1392.2,1148.71 1415.27,1148.71 1438.34,1148.71 1461.41,1148.71 1484.48,1148.71 1507.56,1148.71 1530.63,1148.71 1553.7,1148.71 1576.77,1148.71 1599.84,1148.71 1622.92,1148.71 1645.99,1148.71 1669.06,1148.71 1692.13,1148.71 1715.2,1148.71 1738.28,1148.71 1761.35,1148.71 1784.42,1148.71 1807.49,1148.71 1830.56,1148.71 1853.64,1148.71 1876.71,1148.71 1899.78,1148.71 1922.85,1148.71 1945.93,1148.71 1969,1148.71 1992.07,1148.71 2015.14,1148.71 2038.21,1148.71 2061.29,1148.71 2084.36,1148.71 2107.43,1148.71 2130.5,1148.71 2153.57,1148.71 2176.65,1148.71 2199.72,1148.71 2222.79,1148.71 2245.86,1148.71 2268.93,1148.71 2292.01,1148.71 2315.08,1148.71 2338.15,1148.71 2361.22,1148.71 2384.29,1148.71 2407.37,1148.71 2430.44,1148.71 2453.51,1148.71 2476.58,1148.71 2499.66,1148.71 2522.73,1148.71 2545.8,1148.71 2568.87,1148.71 2591.94,1148.71 2615.02,1148.71 2638.09,1148.71 2661.16,1148.71 2684.23,1148.71 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#0000ff; stroke-linecap:round; stroke-linejoin:round; stroke-width:6; stroke-opacity:0.5; fill:none" stroke-dasharray="24, 15" points="-2089.61,221.934 5173.94,221.934 "></polyline>
+<polyline clip-path="url(#clip762)" style="stroke:#ff0000; stroke-linecap:round; stroke-linejoin:round; stroke-width:6; stroke-opacity:0.5; fill:none" stroke-dasharray="24, 15" points="-2089.61,1148.71 5173.94,1148.71 "></polyline>
+<path clip-path="url(#clip760)" d="M2287.71 1469.56 L2672.05 1469.56 L2672.05 1314.04 L2287.71 1314.04  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
+<polyline clip-path="url(#clip760)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2287.71,1469.56 2672.05,1469.56 2672.05,1314.04 2287.71,1314.04 2287.71,1469.56 "></polyline>
+<polyline clip-path="url(#clip760)" style="stroke:#0000ff; stroke-linecap:round; stroke-linejoin:round; stroke-width:12; stroke-opacity:1; fill:none" points="2314.61,1365.88 2476.02,1365.88 "></polyline>
+<path clip-path="url(#clip760)" d="M2502.93 1348.6 L2507.6 1348.6 L2507.6 1362.76 L2524.59 1362.76 L2524.59 1348.6 L2529.27 1348.6 L2529.27 1383.16 L2524.59 1383.16 L2524.59 1366.7 L2507.6 1366.7 L2507.6 1383.16 L2502.93 1383.16 L2502.93 1348.6 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2538.39 1357.23 L2542.65 1357.23 L2542.65 1383.16 L2538.39 1383.16 L2538.39 1357.23 M2538.39 1347.14 L2542.65 1347.14 L2542.65 1352.53 L2538.39 1352.53 L2538.39 1347.14 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2568.62 1369.89 Q2568.62 1365.26 2566.7 1362.72 Q2564.8 1360.17 2561.35 1360.17 Q2557.93 1360.17 2556 1362.72 Q2554.11 1365.26 2554.11 1369.89 Q2554.11 1374.5 2556 1377.04 Q2557.93 1379.59 2561.35 1379.59 Q2564.8 1379.59 2566.7 1377.04 Q2568.62 1374.5 2568.62 1369.89 M2572.88 1379.94 Q2572.88 1386.56 2569.94 1389.78 Q2567 1393.02 2560.94 1393.02 Q2558.69 1393.02 2556.7 1392.67 Q2554.71 1392.35 2552.83 1391.65 L2552.83 1387.51 Q2554.71 1388.53 2556.54 1389.01 Q2558.37 1389.5 2560.26 1389.5 Q2564.45 1389.5 2566.54 1387.3 Q2568.62 1385.12 2568.62 1380.7 L2568.62 1378.6 Q2567.3 1380.89 2565.24 1382.02 Q2563.18 1383.16 2560.31 1383.16 Q2555.54 1383.16 2552.63 1379.52 Q2549.71 1375.89 2549.71 1369.89 Q2549.71 1363.87 2552.63 1360.24 Q2555.54 1356.61 2560.31 1356.61 Q2563.18 1356.61 2565.24 1357.74 Q2567.3 1358.87 2568.62 1361.17 L2568.62 1357.23 L2572.88 1357.23 L2572.88 1379.94 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2603.2 1367.51 L2603.2 1383.16 L2598.94 1383.16 L2598.94 1367.65 Q2598.94 1363.97 2597.51 1362.14 Q2596.07 1360.31 2593.2 1360.31 Q2589.75 1360.31 2587.76 1362.51 Q2585.77 1364.71 2585.77 1368.5 L2585.77 1383.16 L2581.49 1383.16 L2581.49 1347.14 L2585.77 1347.14 L2585.77 1361.26 Q2587.3 1358.92 2589.36 1357.76 Q2591.44 1356.61 2594.15 1356.61 Q2598.62 1356.61 2600.91 1359.38 Q2603.2 1362.14 2603.2 1367.51 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2624.92 1357.23 L2645.15 1357.23 L2645.15 1361.12 L2629.13 1379.75 L2645.15 1379.75 L2645.15 1383.16 L2624.34 1383.16 L2624.34 1379.27 L2640.36 1360.63 L2624.92 1360.63 L2624.92 1357.23 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip760)" style="stroke:#ff0000; stroke-linecap:round; stroke-linejoin:round; stroke-width:12; stroke-opacity:1; fill:none" points="2314.61,1417.72 2476.02,1417.72 "></polyline>
+<path clip-path="url(#clip760)" d="M2502.93 1400.44 L2507.6 1400.44 L2507.6 1431.06 L2524.43 1431.06 L2524.43 1435 L2502.93 1435 L2502.93 1400.44 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2538.37 1412.06 Q2534.94 1412.06 2532.95 1414.74 Q2530.96 1417.4 2530.96 1422.06 Q2530.96 1426.71 2532.93 1429.39 Q2534.92 1432.06 2538.37 1432.06 Q2541.77 1432.06 2543.76 1429.37 Q2545.75 1426.69 2545.75 1422.06 Q2545.75 1417.45 2543.76 1414.76 Q2541.77 1412.06 2538.37 1412.06 M2538.37 1408.45 Q2543.92 1408.45 2547.09 1412.06 Q2550.26 1415.67 2550.26 1422.06 Q2550.26 1428.42 2547.09 1432.06 Q2543.92 1435.67 2538.37 1435.67 Q2532.79 1435.67 2529.62 1432.06 Q2526.47 1428.42 2526.47 1422.06 Q2526.47 1415.67 2529.62 1412.06 Q2532.79 1408.45 2538.37 1408.45 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2554.85 1409.07 L2559.11 1409.07 L2564.43 1429.3 L2569.73 1409.07 L2574.75 1409.07 L2580.08 1429.3 L2585.38 1409.07 L2589.64 1409.07 L2582.86 1435 L2577.83 1435 L2572.25 1413.75 L2566.65 1435 L2561.63 1435 L2554.85 1409.07 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip760)" d="M2609.31 1409.07 L2629.55 1409.07 L2629.55 1412.96 L2613.53 1431.59 L2629.55 1431.59 L2629.55 1435 L2608.74 1435 L2608.74 1431.11 L2624.75 1412.47 L2609.31 1412.47 L2609.31 1409.07 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path></svg>
 </div>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <p>Note: High-<span class="math inline">\(z\)</span> children benefit more from relaxing constraints (steeper slope when binding)</p>
-</div>
 </section>
-<section id="policy-implications" class="slide level2">
-<h2>Policy Implications</h2>
-<div>
-<ul>
-<li class="fragment">Note that we would like to target transfers based on <span class="math inline">\(z\)</span></li>
-<li class="fragment">But <span class="math inline">\(z\)</span> is <em>unobservable</em></li>
-<li class="fragment">An alternative is income-targeted transfers
-<ul>
-<li class="fragment">e.g.&nbsp;progressive taxation</li>
+<section id="policy-implications" class="level2">
+<h2 class="anchored" data-anchor-id="policy-implications">Policy Implications</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Note that we would like to target transfers based on <span class="math inline">\(z\)</span></li>
+<li>But <span class="math inline">\(z\)</span> is <em>unobservable</em></li>
+<li>An alternative is income-targeted transfers
+<ul class="incremental">
+<li>e.g.&nbsp;progressive taxation</li>
 </ul></li>
-<li class="fragment">Can also try direct public investment (e.g.&nbsp;education, early childhood programs)</li>
-<li class="fragment">The gains to society depend on the joint distribution of <span class="math inline">\((\Omega,z)\)</span></li>
-<li class="fragment">What does the evidence say?</li>
+<li>Can also try direct public investment (e.g.&nbsp;education, early childhood programs)</li>
+<li>The gains to society depend on the joint distribution of <span class="math inline">\((\Omega,z)\)</span></li>
+<li>What does the evidence say?</li>
 </ul>
 </div>
 </section>
-<section id="what-does-the-evidence-say" class="slide level2">
-<h2>What Does the Evidence Say?</h2>
+<section id="what-does-the-evidence-say" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-the-evidence-say">What Does the Evidence Say?</h2>
 <p>In coming lectures we’ll see:</p>
-<div>
-<ul>
-<li class="fragment">Evidence suggests borrowing constraints <strong>do bind</strong> for many families</li>
-<li class="fragment">Returns to college are high, but many don’t attend</li>
-<li class="fragment">Educational interventions (especially early childhood) show high returns</li>
-<li class="fragment">Suggests scope for welfare-improving policy</li>
+<div class="incremental">
+<ul class="incremental">
+<li>Evidence suggests borrowing constraints <strong>do bind</strong> for many families</li>
+<li>Returns to college are high, but many don’t attend</li>
+<li>Educational interventions (especially early childhood) show high returns</li>
+<li>Suggests scope for welfare-improving policy</li>
 </ul>
 </div>
 </section>
-<section id="reading" class="slide level2 smaller scrollable">
-<h2>Reading</h2>
+<section id="reading" class="level2">
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Reading</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-Becker1979" class="csl-entry" role="listitem">
 Becker, Gary S., and Nigel Tomes. 1979. <span>“An Equilibrium Theory of the Distribution of Income and Intergenerational Mobility.”</span> <em>The Journal of Political Economy</em>, no. 6: 1153–89. <a href="https://doi.org/10.1086/260831">https://doi.org/10.1086/260831</a>.
 </div>
 <div id="ref-Becker1986" class="csl-entry" role="listitem">
 ———. 1986. <span>“Human Capital and the Rise and Fall of Families.”</span> <em>Journal of Labor Economics</em>, no. 3: S1–39. <a href="https://doi.org/10.1086/298118">https://doi.org/10.1086/298118</a>.
 </div>
-</div>
-</section></section>
-    </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
-<div class="footer footer-default">
-
-</div>
-</div></div>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
-
-      // Full list of configuration options available at:
-      // https://revealjs.com/config/
-      Reveal.initialize({
-'controlsAuto': true,
-'previewLinksAuto': false,
-'pdfSeparateFragments': false,
-'autoAnimateEasing': "ease",
-'autoAnimateDuration': 1,
-'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true,"theme":"whiteboard","chalkEffect":0,"chalkWidth":6},
-'smaller': false,
- 
-        // Display controls in the bottom right corner
-        controls: false,
-
-        // Help the user learn the controls by providing hints, for example by
-        // bouncing the down arrow when they first encounter a vertical slide
-        controlsTutorial: false,
-
-        // Determines where controls appear, "edges" or "bottom-right"
-        controlsLayout: 'edges',
-
-        // Visibility rule for backwards navigation arrows; "faded", "hidden"
-        // or "visible"
-        controlsBackArrows: 'faded',
-
-        // Display a presentation progress bar
-        progress: true,
-
-        // Display the page number of the current slide
-        slideNumber: false,
-
-        // 'all', 'print', or 'speaker'
-        showSlideNumber: 'all',
-
-        // Add the current slide number to the URL hash so that reloading the
-        // page/copying the URL will return you to the same slide
-        hash: true,
-
-        // Start with 1 for the hash rather than 0
-        hashOneBasedIndex: false,
-
-        // Flags if we should monitor the hash and change slides accordingly
-        respondToHashChanges: true,
-
-        // Push each slide change to the browser history
-        history: true,
-
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-
-        // Enable the slide overview mode
-        overview: true,
-
-        // Disables the default reveal.js slide layout (scaling and centering)
-        // so that you can use custom CSS layout
-        disableLayout: false,
-
-        // Vertical centering of slides
-        center: false,
-
-        // Enables touch navigation on devices with touch input
-        touch: true,
-
-        // Loop the presentation
-        loop: false,
-
-        // Change the presentation direction to be RTL
-        rtl: false,
-
-        // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'linear',
-
-        // Randomizes the order of slides each time the presentation loads
-        shuffle: false,
-
-        // Turns fragments on and off globally
-        fragments: true,
-
-        // Flags whether to include the current fragment in the URL,
-        // so that reloading brings you to the same fragment position
-        fragmentInURL: false,
-
-        // Flags if the presentation is running in an embedded mode,
-        // i.e. contained within a limited portion of the screen
-        embedded: false,
-
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-
-        // Flags if it should be possible to pause the presentation (blackout)
-        pause: true,
-
-        // Flags if speaker notes should be visible to all viewers
-        showNotes: false,
-
-        // Global override for autoplaying embedded media (null/true/false)
-        autoPlayMedia: null,
-
-        // Global override for preloading lazy-loaded iframes (null/true/false)
-        preloadIframes: null,
-
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
-
-        // Use this method for navigation when auto-sliding
-        autoSlideMethod: null,
-
-        // Specify the average time in seconds that you think you will spend
-        // presenting each slide. This is used to show a pacing timer in the
-        // speaker view
-        defaultTiming: null,
-
-        // Enable slide navigation via mouse wheel
-        mouseWheel: false,
-
-        // The display mode that will be used to show slides
-        display: 'block',
-
-        // Hide cursor if inactive
-        hideInactiveCursor: true,
-
-        // Time before the cursor is hidden (in ms)
-        hideCursorTime: 5000,
-
-        // Opens links in an iframe preview overlay
-        previewLinks: false,
-
-        // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'slide',
-
-        // Transition speed (default/fast/slow)
-        transitionSpeed: 'default',
-
-        // Transition style for full page slide backgrounds
-        // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'none',
-
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
-
-        // Number of slides away from the current that are visible on mobile
-        // devices. It is advisable to set this to a lower number than
-        // viewDistance in order to save resources.
-        mobileViewDistance: 2,
-
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: 1050,
-
-        height: 700,
-
-        // Factor of the display size that should remain empty around the content
-        margin: 0.1,
-
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
-
-          RevealMath,
-          RevealNotes,
-          RevealSearch,
-          RevealZoom
-        ]
-      });
-    </script>
-    <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
       }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
       }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
-          });
-        }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
       }
     });
-    </script>
-    
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
 
 </body></html>

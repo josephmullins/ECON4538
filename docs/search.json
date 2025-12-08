@@ -284,7 +284,7 @@
     "href": "lectures.html",
     "title": "Lecture Slides",
     "section": "",
-    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nSyllabus\nSlides\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\nSlides\n\n\nEstimating Income Processes\nSlides\n\n\nIntergenerational Mobility\nSlides\n\n\nThe Becker-Tomes Model\nSlides\n\n\nEvidence from Safety Net Programs\nSlides"
+    "text": "Materials here will be uploaded as we continue through the course.\n\n\n\nTopic\nSlides\n\n\n\n\nSyllabus\nSlides\n\n\nDocumenting Facts about Inequality\nSlides\n\n\nPolicy Implications: Redistribution vs Insurance\nSlides\n\n\nEstimating Income Processes\nSlides\n\n\nIntergenerational Mobility\nSlides\n\n\nThe Becker-Tomes Model\nSlides\n\n\nMeasuring Skills and Skill Formation\nSlides\n\n\nEvidence from Safety Net Programs\nSlides"
   },
   {
     "objectID": "lectures/Syllabus.html#facts-about-inequality",
@@ -1942,8 +1942,8 @@
     "objectID": "lectures/5-BeckerTomesModel.html#overview",
     "href": "lectures/5-BeckerTomesModel.html#overview",
     "title": "The Becker-Tomes Model",
-    "section": "Overview",
-    "text": "Overview\n\n\nWe have learned that income inequality tends to persist across generations\nToday: theory of intergenerational transmission\nThe Becker-Tomes model (Becker and Tomes 1979, 1986) is a workhorse framework\nWe’ll study some stylized versions\nKey questions:\n\nWhy do earnings regress to the mean?\nHow do parents affect children’s outcomes?\nWhat determines the speed of mobility?\n\nBuilding a unified framework for inequality and mobility"
+    "section": "",
+    "text": "We have learned that income inequality tends to persist across generations\nToday: theory of intergenerational transmission\nThe Becker-Tomes model (Becker and Tomes 1979, 1986) is a workhorse framework\nWe’ll study some stylized versions\nKey questions:\n\nWhy do earnings regress to the mean?\nHow do parents affect children’s outcomes?\nWhat determines the speed of mobility?\n\nBuilding a unified framework for inequality and mobility"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#three-channels-of-transmission",
@@ -2517,7 +2517,7 @@
     "href": "lectures/5-BeckerTomesModel.html#a-recursive-formulation",
     "title": "The Becker-Tomes Model",
     "section": "A recursive formulation",
-    "text": "A recursive formulation\nLet \\(\\Omega_{t} = A_{t} + wH_{t}\\) be total wealth in period \\(t\\):\n\\[ V(\\Omega_{t},z_{t}) = \\max_{C_{t},X_{t},A_{t+1}}\\left\\{ u(C_{t}) + \\beta \\mathbb{E}[V(\\Omega_{t+1},z_{t+1})] \\right\\} \\]\nsubject to:\n\\[\n\\begin{eqnarray}\nC_{t} + \\psi X_{t} + \\frac{A_{t+1}}{1+r} \\leq \\Omega_{t} \\\\\n\\Omega_{t+1} = A_{t+1} + wH_{t+1} \\\\\nz_{t+1} = \\rho z_{t} + \\eta_{t+1} \\\\\nH_{t+1} = \\exp(\\mu+z_{t})X_{t}^{\\delta}\n\\end{eqnarray}\n\\]\n\nNote: no constraints on borrowing (for now)"
+    "text": "A recursive formulation\nLet \\(\\Omega_{t} = A_{t} + wH_{t}\\) be total wealth in period \\(t\\):\n\\[ V(\\Omega_{t},z_{t}) = \\max_{C_{t},X_{t},A_{t+1}}\\left\\{ u(C_{t}) + \\beta \\mathbb{E}[V(\\Omega_{t+1},z_{t+1})] \\right\\} \\]\nsubject to:\n\\[\n\\begin{eqnarray}\nC_{t} + \\psi X_{t} + \\frac{A_{t+1}}{1+r} \\leq \\Omega_{t} \\\\\n\\Omega_{t+1} = A_{t+1} + wH_{t+1} \\\\\nz_{t+1} = \\rho z_{t} + \\eta_{t+1} \\\\\nH_{t+1} = \\exp(\\mu+z_{t})X_{t}^{\\delta}\n\\end{eqnarray}\n\\]\n. . .\nNote: no constraints on borrowing (for now)"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#model-solution",
@@ -2573,7 +2573,7 @@
     "href": "lectures/5-BeckerTomesModel.html#connecting-to-ige-estimation",
     "title": "The Becker-Tomes Model",
     "section": "Connecting to IGE Estimation",
-    "text": "Connecting to IGE Estimation\nRecall from last lecture we estimated:\n\\[y_{\\text{child}} = \\alpha + \\beta \\cdot y_{\\text{parent}} + \\varepsilon\\]\n\n\nIn this model: \\(\\beta = \\rho\\) (ability persistence)\nIndependent of technology parameter \\(\\delta\\)\nIndependent of prices \\(w\\), \\(\\psi\\), \\(r\\)\nPolicy invariant: transfers don’t change IGE\n\n\n\nThink: Is this consistent with geographic variation in mobility we saw?"
+    "text": "Connecting to IGE Estimation\nRecall from last lecture we estimated:\n\\[y_{\\text{child}} = \\alpha + \\beta \\cdot y_{\\text{parent}} + \\varepsilon\\]\n\n\nIn this model: \\(\\beta = \\rho\\) (ability persistence)\nIndependent of technology parameter \\(\\delta\\)\nIndependent of prices \\(w\\), \\(\\psi\\), \\(r\\)\nPolicy invariant: transfers don’t change IGE\n\n\n. . .\nThink: Is this consistent with geographic variation in mobility we saw?"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#why-start-with-two-periods",
@@ -2601,7 +2601,7 @@
     "href": "lectures/5-BeckerTomesModel.html#first-order-conditions",
     "title": "The Becker-Tomes Model",
     "section": "First-Order Conditions",
-    "text": "First-Order Conditions\nEuler equation:\n\\[u'(C_1) = \\beta(1+r) u'(C_2)\\]\n\nFOC with respect to \\(X\\):\n\\[\\psi = \\frac{\\delta w z X^{\\delta-1}}{1+r}\\]\n\n\nSame result as before on optimal \\(X\\)."
+    "text": "First-Order Conditions\nEuler equation:\n\\[u'(C_1) = \\beta(1+r) u'(C_2)\\]\n. . .\nFOC with respect to \\(X\\):\n\\[\\psi = \\frac{\\delta w z X^{\\delta-1}}{1+r}\\]\n. . .\nSame result as before on optimal \\(X\\)."
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#investment-does-not-depend-on-income",
@@ -2622,14 +2622,14 @@
     "href": "lectures/5-BeckerTomesModel.html#interpretation",
     "title": "The Becker-Tomes Model",
     "section": "Interpretation",
-    "text": "Interpretation\nWhat does this mean economically?\n\n\nParents optimize to equate marginal returns across uses\nRich and poor parents with same \\(z\\) invest the same in children\nDifferences in income absorbed by \\(C_1\\), \\(C_2\\), and \\(A\\)\nCrucial assumption: can borrow against future returns to H.C. investment\n\n\n\nQuestion: Is this realistic? What if parents can’t borrow?"
+    "text": "Interpretation\nWhat does this mean economically?\n\n\nParents optimize to equate marginal returns across uses\nRich and poor parents with same \\(z\\) invest the same in children\nDifferences in income absorbed by \\(C_1\\), \\(C_2\\), and \\(A\\)\nCrucial assumption: can borrow against future returns to H.C. investment\n\n\n. . .\nQuestion: Is this realistic? What if parents can’t borrow?"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#is-the-market-outcome-efficient",
     "href": "lectures/5-BeckerTomesModel.html#is-the-market-outcome-efficient",
     "title": "The Becker-Tomes Model",
     "section": "Is the Market Outcome Efficient?",
-    "text": "Is the Market Outcome Efficient?\nConsider a social planner who maximizes weighted welfare:\n\\[\\max_{\\{C_{i1}, C_{i2}, X_i\\}_{i\\in[0,1]}} \\int \\left(\\mu_{i1} u(C_{i1}) + \\mu_{i2} u(C_{i2})\\right)di\\]\nsubject to resource constraint:\n\\[\\int C_{i1} di + \\frac{1}{1+r} \\int C_{i2} di \\leq \\int \\Omega_i di + \\frac{w}{1+r} \\int z_i X_i^{\\delta} di - \\psi \\int X_i di\\]\n\nKey question: Does the planner’s solution coincide with the market?"
+    "text": "Is the Market Outcome Efficient?\nConsider a social planner who maximizes weighted welfare:\n\\[\\max_{\\{C_{i1}, C_{i2}, X_i\\}_{i\\in[0,1]}} \\int \\left(\\mu_{i1} u(C_{i1}) + \\mu_{i2} u(C_{i2})\\right)di\\]\nsubject to resource constraint:\n\\[\\int C_{i1} di + \\frac{1}{1+r} \\int C_{i2} di \\leq \\int \\Omega_i di + \\frac{w}{1+r} \\int z_i X_i^{\\delta} di - \\psi \\int X_i di\\]\n. . .\nKey question: Does the planner’s solution coincide with the market?"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#planners-first-order-conditions",
@@ -2643,7 +2643,7 @@
     "href": "lectures/5-BeckerTomesModel.html#efficiency-interpretation",
     "title": "The Becker-Tomes Model",
     "section": "Efficiency Interpretation",
-    "text": "Efficiency Interpretation\nWhat does this mean?\n\n\nThe market outcome is Pareto efficient\n“can’t make anyone better off without making someone worse off”\nRelative to Laissez-Faire economy, Planner can redistribute but that’s it\n\n\n\nBut: This relies critically on perfect credit markets!"
+    "text": "Efficiency Interpretation\nWhat does this mean?\n\n\nThe market outcome is Pareto efficient\n“can’t make anyone better off without making someone worse off”\nRelative to Laissez-Faire economy, Planner can redistribute but that’s it\n\n\n. . .\nBut: This relies critically on perfect credit markets!"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#what-if-parents-cant-borrow",
@@ -2671,7 +2671,7 @@
     "href": "lectures/5-BeckerTomesModel.html#investment-and-income-two-regimes",
     "title": "The Becker-Tomes Model",
     "section": "Investment and Income: Two Regimes",
-    "text": "Investment and Income: Two Regimes\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote: High-\\(z\\) children benefit more from relaxing constraints (steeper slope when binding)"
+    "text": "Investment and Income: Two Regimes\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n. . .\nNote: High-\\(z\\) children benefit more from relaxing constraints (steeper slope when binding)"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#policy-options",
@@ -2734,7 +2734,7 @@
     "href": "lectures/5-BeckerTomesModel.html#a-more-realistic-setup",
     "title": "The Becker-Tomes Model",
     "section": "A more realistic setup",
-    "text": "A more realistic setup\n\\[\\max_{C_1, C_2, X} u(C_1) + \\beta u(C_2)\\]\nsubject to:\n\\[\n\\begin{eqnarray}\nC_1 + \\psi X + \\frac{A'}{1+r} &\\leq& \\Omega \\\\\nC_2 &=& A' + w z X^{\\delta} \\\\\nA' &\\geq& 0\n\\end{eqnarray}\n\\]\n\nPositive bequests only!"
+    "text": "A more realistic setup\n\\[\\max_{C_1, C_2, X} u(C_1) + \\beta u(C_2)\\]\nsubject to:\n\\[\n\\begin{eqnarray}\nC_1 + \\psi X + \\frac{A'}{1+r} &\\leq& \\Omega \\\\\nC_2 &=& A' + w z X^{\\delta} \\\\\nA' &\\geq& 0\n\\end{eqnarray}\n\\]\n. . .\nPositive bequests only!"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#inefficient-investment",
@@ -3392,7 +3392,7 @@
     "href": "lectures/6-SkillsInequalityTechnology.html#skills-are-produced",
     "title": "Skills, Inequality, and the Technology of Skill Formation",
     "section": "Skills Are Produced",
-    "text": "Skills Are Produced\nFrom the Becker-Tomes model, we had: \\[ H_{t+1} = f(I_t, \\theta_t) \\]\n\n\nBut what is the technology \\(f(\\cdot)\\)?\nHow do cognitive and noncognitive skills interact?\nAre there critical periods for investment?\nCan we compensate for early disadvantage with late investment?"
+    "text": "Skills Are Produced\nFrom the Becker-Tomes model, we had: \\[ H_{t+1} = f(X_t, z_t) \\]\n\n\nBut what is the technology \\(f(\\cdot)\\)?\nHow do cognitive and noncognitive skills interact?\nAre there critical periods for investment?\nCan we compensate for early disadvantage with late investment?"
   },
   {
     "objectID": "lectures/6-SkillsInequalityTechnology.html#the-ces-technology-of-skill-formation",
@@ -3406,7 +3406,7 @@
     "href": "lectures/6-SkillsInequalityTechnology.html#key-parameters-elasticity-of-substitution",
     "title": "Skills, Inequality, and the Technology of Skill Formation",
     "section": "Key Parameters: Elasticity of Substitution",
-    "text": "Key Parameters: Elasticity of Substitution\nThe elasticity of substitution is: \\[ \\sigma_k = \\frac{1}{1-\\phi_k} \\]\n\n\nIf \\(\\sigma_k\\in(0,1]\\): early and late investments are substitutes\n\nCan compensate for poor early environment with later remediation\n\nIf \\(\\sigma_k\\in(\\infty,1]\\): early and late investments are complements\n\nEarly investment is crucial; hard to compensate later\n\nEmpirical question: What are \\(\\sigma_{\\text{cog}}\\) and \\(\\sigma_{\\text{noncog}}\\)?"
+    "text": "Key Parameters: Elasticity of Substitution\nThe elasticity of substitution is: \\[ \\sigma_k = \\frac{1}{1-\\phi_k} \\]\n\n\nIf \\(\\sigma_k\\in[1,\\infty)\\): early and late investments are substitutes\n\nCan compensate for poor early environment with later remediation\n\nIf \\(\\sigma_k\\in(0,1)\\): early and late investments are complements\n\nEarly investment is crucial; hard to compensate later\n\nEmpirical question: What are \\(\\sigma_{\\text{cog}}\\) and \\(\\sigma_{\\text{noncog}}\\)?"
   },
   {
     "objectID": "lectures/6-SkillsInequalityTechnology.html#self-productivity-and-dynamic-complementarity",
@@ -3420,7 +3420,7 @@
     "href": "lectures/6-SkillsInequalityTechnology.html#critical-and-sensitive-periods",
     "title": "Skills, Inequality, and the Technology of Skill Formation",
     "section": "Critical and Sensitive Periods",
-    "text": "Critical and Sensitive Periods\nFrom Cunha and Heckman (2007):\n\n\nCritical period: A time when \\(\\sigma_k \\leq 0\\) (pure complements)\n\nInvestment must happen then; cannot compensate later\n\nSensitive period: A time when \\(\\sigma_k\\) is low but not zero\n\nInvestment is especially productive, but some later compensation possible\n\nEvidence: Early childhood is a sensitive period for both skill types\nBut noncognitive skills remain more malleable into adolescence"
+    "text": "Critical and Sensitive Periods\nFrom Cunha and Heckman (2007):\n\n\nCritical period: A time when \\(\\phi_k \\leq 0\\) (pure complements)\n\nInvestment must happen then; very hard to compensate later\n\nSensitive period: A time when \\(\\phi_k\\in(0,1]\\)\n\nInvestment is especially productive, but some later compensation possible\n\nEvidence: Early childhood is a sensitive period for both skill types\nBut noncognitive skills remain more malleable into adolescence"
   },
   {
     "objectID": "lectures/6-SkillsInequalityTechnology.html#the-importance-of-early-investment",
@@ -3637,14 +3637,14 @@
     "href": "lectures/6-SkillsInequalityTechnology.html#wages-and-skills",
     "title": "Skills, Inequality, and the Technology of Skill Formation",
     "section": "Wages and Skills",
-    "text": "Wages and Skills"
+    "text": "Wages and Skills\nAfter correcting for measurement error:\n\nWages grow with both cognitive and non-cognitive skill\nSlopes are comparable in magnitude\nSome pictures to follow…"
   },
   {
     "objectID": "lectures/6-SkillsInequalityTechnology.html#complementarity-with-schooling",
     "href": "lectures/6-SkillsInequalityTechnology.html#complementarity-with-schooling",
     "title": "Skills, Inequality, and the Technology of Skill Formation",
     "section": "Complementarity with Schooling",
-    "text": "Complementarity with Schooling\nFrom J. Heckman, Stixrud, and Urzua (2006):\n\n\nHigher cognitive ability → higher wages at all schooling levels\nBut the gradient is steeper for college graduates\nThis suggests complementarity between skills and education\nCognitive skills have bigger payoffs with more schooling"
+    "text": "Complementarity with Schooling\nFrom J. Heckman, Stixrud, and Urzua (2006):\n\n\nHigher cognitive ability → higher wages at all schooling levels\nBut the gradient is steeper for college graduates\nThis suggests complementarity between skills and education\nCognitive skills have bigger payoffs with more schooling\nConversely, the gradient in non-cognitive skill gets flatter"
   },
   {
     "objectID": "lectures/6-SkillsInequalityTechnology.html#noncognitive-skills-are-important",
@@ -3658,14 +3658,14 @@
     "href": "lectures/6-SkillsInequalityTechnology.html#exercise",
     "title": "Skills, Inequality, and the Technology of Skill Formation",
     "section": "Exercise",
-    "text": "Exercise\n\n\nTake the derivatives of the CES with respect to \\(I\\)\nSolve the problem: \\[ \\min p_{1}I_{1} + p_{2}I_{2} s.t. f(I_{1},I_{2}) \\geq 1 \\] where \\(f\\) is a CES production function and \\(I_{t}\\) is investment in period \\(t\\)\nWhat happens when investment is more costly in period 1?"
+    "text": "Exercise\nTwo period model: \\[ \\theta = (\\gamma I_{1}^{\\phi} + (1-\\gamma)I_{2}^{\\phi}) \\]\n\n\nSolve the problem: \\[ \\min p_{1}I_{1} + p_{2}I_{2}\\ s.t.\\ f(I_{1},I_{2}) \\geq 1 \\] where \\(f\\) is the CES production function and \\(I_{t}\\) is investment in period \\(t\\)\nWhat happens when investment is more costly in period 1?"
   },
   {
     "objectID": "lectures/5-BeckerTomesModel.html#result-3-the-long-run-effects-of-good-fortune-2",
     "href": "lectures/5-BeckerTomesModel.html#result-3-the-long-run-effects-of-good-fortune-2",
     "title": "The Becker-Tomes Model",
     "section": "Result 3: The Long-Run Effects of Good Fortune",
-    "text": "Result 3: The Long-Run Effects of Good Fortune\n\n\nHence: \\[ \\sum_{t=0}^{\\infty}\\frac{1}{(1+r)^{t}}\\bar{C} = \\Omega_{0} + B\\sum_{t=0}^{\\infty}\\exp(z_{t})^{1/(1-\\delta)} \\left(= \\Omega_{0}+B \\text{ at long-run steady state}\\right)\\] where \\(B\\) collects constants in previous expression.\nConsider a one-time, small increase in \\(z_{0}\\), s.t. \\(z_{t} = \\rho^{t}z_{0}\\): \\[ \\frac{d\\bar{C}}{dz_{0}}\\Big\\vert_{z_{0}=0} = \\frac{r}{1+r} \\frac{1}{1-\\delta} B\\sum_{t=0}^{\\infty}\\frac{\\rho^{t}}{(1+r)^{t}} = \\frac{1}{1-\\delta}\\times B\\times \\frac{r}{1+r-\\rho}\\]\nSo \\[ \\frac{d\\log(\\bar{C})}{dz_{0}}\\Big\\vert_{z_{0}=0} = \\text{Future earnings share of wealth} \\times\\frac{1}{1-\\delta}\\times \\frac{1+r}{1+r-\\rho}  \\]\nInterpret!"
+    "text": "Result 3: The Long-Run Effects of Good Fortune\n\n\nHence: \\[ \\sum_{t=0}^{\\infty}\\frac{1}{(1+r)^{t}}\\bar{C} = \\Omega_{0} + B\\sum_{t=0}^{\\infty}\\exp(z_{t})^{1/(1-\\delta)} \\left(= \\Omega_{0}+B \\text{ at long-run steady state}\\right)\\] where \\(B\\) collects constants in previous expression.\nConsider a one-time, small increase in \\(z_{0}\\), s.t. \\(z_{t} = \\rho^{t}z_{0}\\): \\[ \\frac{d\\bar{C}}{dz_{0}}\\Big\\vert_{z_{0}=0} = \\frac{r}{1+r} \\frac{1}{1-\\delta} B\\sum_{t=0}^{\\infty}\\frac{\\rho^{t}}{(1+r)^{t}} = \\frac{1}{1-\\delta}\\times B\\times \\frac{r}{1+r-\\rho}\\]\nSo \\[ fix\\frac{d\\log(\\bar{C})}{dz_{0}}\\Big\\vert_{z_{0}=0} = \\text{Future earnings share of wealth} \\times\\frac{1}{1-\\delta}\\times \\frac{1+r}{1+r-\\rho}  \\]\nInterpret!"
   },
   {
     "objectID": "lectures/8-SafetyNetEvidence.html#overview",
@@ -4044,5 +4044,12 @@
     "title": "Connecting Theory with Evidence: The Safety Net",
     "section": "Main Findings",
     "text": "Main Findings\nChildhood access to Food Stamps led to:\n\n\nHealth: reduced metabolic syndrome, obesity in adulthood\nEducation: increased high school completion\nEconomic: higher earnings, less likely to receive government assistance\nIntergenerational: children of treated individuals have better outcomes\nEffects larger for:\n\nMore disadvantaged families\nExposure during early childhood and in utero\n\n\n\n\nInterpretation: nutrition and food security in childhood have lifelong consequences"
+  },
+  {
+    "objectID": "lectures/5-BeckerTomesModel.html",
+    "href": "lectures/5-BeckerTomesModel.html",
+    "title": "The Becker-Tomes Model",
+    "section": "",
+    "text": "We have learned that income inequality tends to persist across generations\nToday: theory of intergenerational transmission\nThe Becker-Tomes model (Becker and Tomes 1979, 1986) is a workhorse framework\nWe’ll study some stylized versions\nKey questions:\n\nWhy do earnings regress to the mean?\nHow do parents affect children’s outcomes?\nWhat determines the speed of mobility?\n\nBuilding a unified framework for inequality and mobility"
   }
 ]
