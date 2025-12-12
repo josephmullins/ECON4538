@@ -202,7 +202,8 @@ What is (1)? What is (2)? Which term represents the gains from insurance?
 :::
 
 ### Part (g)
-Make sense! $\sigma_{\varepsilon}^2$ is variance component in $y_{it}$ coming from risk, $\sigma_\alpha^2$ is the component coming from ex-ante inequality.
+
+Interpret this result.
 
 ::: {.callout-note collapse="true"}
 ## Interpretation
@@ -305,11 +306,11 @@ Write the FOC for unconstrained households.
 
 For unconstrained:
 
-$$(1+r) = \frac{\lambda_2 (1-\tau) \delta(w z) X^{\delta(1-\tau)-1}}{\psi}$$
+$$(1+r) = \frac{\lambda_2 (1-\tau) \delta(w z)^{1-\tau} X^{\delta(1-\tau)-1}}{\psi}$$
 :::
 
 ### Part (b)
-Recall that the planner would set, if possible, $(1+r) = \frac{wz X^{\delta-1}}{\psi}$ in each household $i$. Can the equilibrium with taxation be efficient?
+Recall that the planner would set, if possible, $(1+r) = \frac{\delta wz X^{\delta-1}}{\psi}$ in each household $i$. Can the equilibrium with taxation be efficient?
 
 ::: {.callout-note collapse="true"}
 ## Solution
