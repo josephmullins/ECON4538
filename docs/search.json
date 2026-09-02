@@ -4156,5 +4156,12 @@
     "title": "ECON4538 Final Exam",
     "section": "Part (e) (3 points)",
     "text": "Part (e) (3 points)\nWhat happens to this insurance component as \\(\\pi \\rightarrow 1\\)? As \\(\\beta \\rightarrow 0\\)? Why?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nAs \\(\\beta\\rightarrow 0\\), individuals no longer care about the future. Since the future is the only source of income risk, the insurance component must go to zero.\nAs \\(\\pi\\rightarrow 1\\), income risk goes to zero (initial income is perfectly predictive of future income) so again naturally the insurance component must go to zero."
+  },
+  {
+    "objectID": "index.html#admin-details",
+    "href": "index.html#admin-details",
+    "title": "ECON4538 - Syllabus",
+    "section": "Admin Details",
+    "text": "Admin Details\nFor details on assessment, lecture times, and office hours, please refer to the course Canvas page."
   }
 ]

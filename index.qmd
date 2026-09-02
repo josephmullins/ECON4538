@@ -5,19 +5,9 @@ bibliography: reading_list.bib
 
 This is an advanced undergraduate course in Labor Economics. Please read below for the course outline and syllabus.
 
-## Class Times
+## Admin Details
 
-### Lectures
-
-Mondays and Wednesdays, 9:45am - 11am, Blegen Hall 240
-
-### Recitations
-
-Fridays, 10:10am - 11am, Blegen Hall 215
-
-## Email and Office Hours
-
-You will find details on how to contact me and sign up for office hours on the [course Canvas page](https://canvas.umn.edu/). 
+For details on assessment, lecture times, and office hours, please refer to the [course Canvas page](https://canvas.umn.edu/). 
 
 
 ## Course Overview and Objectives
@@ -53,17 +43,6 @@ You may also find some of the following books useful.
 We will demonstrate and develop the computational tools you are learning using the `julia` programming language, which is well-suited for scientific computation and data analysis. LATIS provides a copy of `julia` on AppstoGo, but we recommend installing your own version, since it is completely free and open source. [See the website](https://julialang.org/) for more details on the language and installation instructions.
 
 Throughout the course, you may find the [QuantEcon](https://julia.quantecon.org/intro.html) `julia` course (by Tom Sargent, John Stachurski, and Jesse Perla) a useful additional resource.
-
-## Assessment
-
-The course will be graded based on 6 problem sets (each worth 7%, 42% total), a midterm exam (20%), and a final exam (38%).
-
-### Submission Guidelines
-
-It is your responsibility to submit neat and legible solutions to the problem sets. Your TA may deduct marks for illegible submissions. Please follow these guidelines:
-
-- All homework assignments must be submitted as a `Quarto` or `jupyter` notebook rendered as an html or pdf, with code and output showing all required results. You will be introduced to these notebooks through recitation materials.
-- For questions requiring mathematical solutions, you may submit handwritten solutions if you prefer, but they must be submitted as a pdf using a scanner or scanning app on your phone.
 
 ## Course Outline
 
