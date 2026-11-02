@@ -319,7 +319,7 @@
     "href": "lectures/Syllabus.html#assessment",
     "title": "Syllabus",
     "section": "Assessment",
-    "text": "Assessment\n\n\n3 problem sets (due dates on Canvas)\n\ntheory + coding\nwill provide examples in recitation to scaffold\nuse genAI as much as you want, but…\n\nFinal\n\nDecember 15, Blegen 240, 10:30am - 12:30pm\ntheory and coding questions (will provide examples)\nso make sure you use the problem sets to learn"
+    "text": "Assessment\n\n\n3 problem sets (due dates on Canvas)\n\ntheory + coding\nwill provide examples in recitation to scaffold\nuse AI as much as you want, but…\n\nExams\n\nNovember 23 and December 19\nTheory + literature questions\nso make sure you use the problem sets to learn"
   },
   {
     "objectID": "lectures/Syllabus.html#the-human-capital-framework",
@@ -500,8 +500,8 @@
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#overview",
     "href": "lectures/2-Insurance_vs_Redistribution.html#overview",
     "title": "Policy Implications: Insurance vs Redistribution",
-    "section": "",
-    "text": "We documented that inequality is increasing in the US\nWe don’t yet have a model to think about policy implications\nA natural policy to consider is taxes and transfers\nLook at planner’s problem\nDistinguish between insurance vs redistribution effects\nLook at a research application: Storesletten, Telmer, and Yaron (2004)"
+    "section": "Overview",
+    "text": "Overview\n\n\nWe documented that inequality is increasing in the US\nWe don’t yet have a model to think about policy implications\nA natural policy to consider is taxes and transfers\nLook at planner’s problem\nDistinguish between insurance vs redistribution effects\nLook at a research application: Storesletten, Telmer, and Yaron (2004)"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-static-economy",
@@ -697,7 +697,7 @@
     "href": "lectures/2-Insurance_vs_Redistribution.html#the-earnings-process",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "The Earnings Process",
-    "text": "The Earnings Process\nLog earnings for household \\(i\\) at age \\(h\\): \\[ \\log(n_{ih}) = \\kappa_h + \\alpha_i + z_{ih} + \\varepsilon_{ih} \\]\n\n\n\\(\\kappa_h\\): deterministic age profile\n\\(\\alpha_i \\sim N(0, \\sigma^2_\\alpha)\\): fixed effect (realized at birth, permanent)\n\\(z_{ih}\\): persistent shock: \\(z_{ih} = \\rho z_{i,h-1} + \\eta_{ih}\\), where \\(\\eta_{ih} \\sim N(0, \\sigma^2_\\eta)\\)\n\\(\\varepsilon_{ih} \\sim N(0, \\sigma^2_\\varepsilon)\\): transitory shock (i.i.d.)\n\n\n. . .\nKey Estimate: \\(\\rho \\approx 0.999\\) (near unit root!)"
+    "text": "The Earnings Process\nLog earnings for household \\(i\\) at age \\(h\\): \\[ \\log(n_{ih}) = \\kappa_h + \\alpha_i + z_{ih} + \\varepsilon_{ih} \\]\n\n\n\\(\\kappa_h\\): deterministic age profile\n\\(\\alpha_i \\sim N(0, \\sigma^2_\\alpha)\\): fixed effect (realized at birth, permanent)\n\\(z_{ih}\\): persistent shock: \\(z_{ih} = \\rho z_{i,h-1} + \\eta_{ih}\\), where \\(\\eta_{ih} \\sim N(0, \\sigma^2_\\eta)\\)\n\\(\\varepsilon_{ih} \\sim N(0, \\sigma^2_\\varepsilon)\\): transitory shock (i.i.d.)\n\n\n\nKey Estimate: \\(\\rho \\approx 0.999\\) (near unit root!)"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#why-near-unit-root-persistence",
@@ -711,7 +711,7 @@
     "href": "lectures/2-Insurance_vs_Redistribution.html#the-model-key-features",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "The Model: Key Features",
-    "text": "The Model: Key Features\nOverlapping Generations Economy:\n\n\nAgents live ages 22-100, retire at 65\nFace uninsurable idiosyncratic earnings shocks\nCan save/borrow via a single asset (capital)\nPay-as-you-go social security system\nGeneral equilibrium: aggregate wealth is endogenous\n\n\n. . .\nCalibration Strategy:\n\nMatch aggregate wealth/income ratio = 3.1 (for bottom 99%)\nMatch earnings process to PSID data\nCheck if model matches consumption inequality from CEX"
+    "text": "The Model: Key Features\nOverlapping Generations Economy:\n\n\nAgents live ages 22-100, retire at 65\nFace uninsurable idiosyncratic earnings shocks\nCan save/borrow via a single asset (capital)\nPay-as-you-go social security system\nGeneral equilibrium: aggregate wealth is endogenous\n\n\n\nCalibration Strategy:\n\nMatch aggregate wealth/income ratio = 3.1 (for bottom 99%)\nMatch earnings process to PSID data\nCheck if model matches consumption inequality from CEX"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#main-results",
@@ -732,7 +732,7 @@
     "href": "lectures/2-Insurance_vs_Redistribution.html#insurance-vs.-redistribution-decomposition",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Insurance vs. Redistribution Decomposition",
-    "text": "Insurance vs. Redistribution Decomposition\nKey Welfare Question: Which matters more?\n\nFixed effects (\\(\\alpha_i\\)): Inequality determined at birth\nLife-cycle shocks (\\(z_{ih}, \\varepsilon_{ih}\\)): Shocks received during working years\n\n. . .\nResults:\n\n\n\nType of Risk\nWelfare Cost (% of consumption)\n\n\n\n\nLife-cycle shocks\n27.4%\n\n\nFixed effects\n20.2%"
+    "text": "Insurance vs. Redistribution Decomposition\nKey Welfare Question: Which matters more?\n\nFixed effects (\\(\\alpha_i\\)): Inequality determined at birth\nLife-cycle shocks (\\(z_{ih}, \\varepsilon_{ih}\\)): Shocks received during working years\n\n\nResults:\n\n\n\nType of Risk\nWelfare Cost (% of consumption)\n\n\n\n\nLife-cycle shocks\n27.4%\n\n\nFixed effects\n20.2%"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#policy-implications",
@@ -774,7 +774,7 @@
     "href": "lectures/2-Insurance_vs_Redistribution.html#example-1-step-1---total-welfare-gain",
     "title": "Policy Implications: Insurance vs Redistribution",
     "section": "Example 1: Step 1 - Total welfare gain",
-    "text": "Example 1: Step 1 - Total welfare gain\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nC*\n\n\nTotal welfare gain\n\n\n\n\nGKS: could not find font bold.ttf"
+    "text": "Example 1: Step 1 - Total welfare gain\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nC*\n\n\nTotal welfare gain"
   },
   {
     "objectID": "lectures/2-Insurance_vs_Redistribution.html#example-1-step-2---certainty-equivalents",
@@ -4163,5 +4163,12 @@
     "title": "ECON4538 - Syllabus",
     "section": "Admin Details",
     "text": "Admin Details\nFor details on assessment, lecture times, and office hours, please refer to the course Canvas page."
+  },
+  {
+    "objectID": "lectures/2-Insurance_vs_Redistribution.html#reading",
+    "href": "lectures/2-Insurance_vs_Redistribution.html#reading",
+    "title": "Policy Implications: Insurance vs Redistribution",
+    "section": "Reading",
+    "text": "Reading\n\n\n\n\nStoresletten, Kjetil, Christopher I. Telmer, and Amir Yaron. 2004. “Consumption and Risk Sharing over the Life Cycle.” Journal of Monetary Economics, no. 3: 609–33. https://doi.org/10.1016/j.jmoneco.2003.06.005."
   }
 ]
