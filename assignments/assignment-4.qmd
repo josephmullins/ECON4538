@@ -1,0 +1,63 @@
+---
+title: "Assignment 4"
+bibliography: ../reading_list.bib
+---
+
+This assignment studies how intergenerational mobility is measured, building on [Lecture 4](../lectures/4-IntergenerationalMobility.qmd). Questions 1 and 2 use simulated data, so you know the true answer and can see exactly how measurement problems bias estimates. Question 3 uses the commuting zone (CZ) data from @Chetty2014, available [here](https://github.com/josephmullins/ECON4538/blob/main/data/chetty2014_cz_mobility.csv) (original source: Online Data Tables V and VIII at [opportunityinsights.org/data](https://opportunityinsights.org/data/)).
+
+Throughout, use $N = 100{,}000$ families and set a random seed so that your results are reproducible.
+
+## Question 1: Transitory Income and Attenuation Bias
+
+Let $x_i$ be the parent's permanent log income and $Y_i$ the child's permanent log income, with
+
+$$ Y_i = \beta x_i + \varepsilon_i, \qquad x_i \sim N(0, \sigma^2_p), \quad \varepsilon_i \sim N(0, \sigma^2_\varepsilon) $$
+
+and $\beta = 0.6$, $\sigma^2_p = 0.3$, $\sigma^2_\varepsilon = 0.3$. In each year $t$ we observe parent income $y_{p,it} = x_i + \nu_{it}$.
+
+a. Suppose $\nu_{it} \sim N(0,\sigma^2_\nu)$ is i.i.d. across years, and let $\bar{y}_{p,i}$ be the average of parent income over $T$ years. Show that the OLS coefficient from regressing $Y_i$ on $\bar{y}_{p,i}$ satisfies
+$$\text{plim}\ \hat\beta = \beta\frac{\sigma^2_p}{\sigma^2_p + \sigma^2_\nu/T}.$$
+With $\sigma^2_\nu = 0.3$, calculate the predicted estimate for $T = 1$ and $T=5$. (**this question requires only math**)
+
+b. Simulate the model with i.i.d. $\nu_{it}$ ($\sigma^2_\nu = 0.3$) for $T = 16$ years of parent income. Estimate the IGE using (i) one year of parent income and (ii) a 5-year average. Compare your estimates to the formula in part (a). (**this question requires code**)
+
+c. Now suppose the transitory component is persistent: $\nu_{it} = \delta \nu_{it-1} + \sqrt{1-\delta^2}\,\sigma_\nu e_{it}$ with $e_{it}\sim N(0,1)$, $\delta = 0.5$, and $\nu_{i1}\sim N(0,\sigma^2_\nu)$ (so that $\text{var}(\nu_{it}) = \sigma^2_\nu$ in every year). Repeat part (b) and also estimate the IGE using all 16 years. Plot the estimated IGE against the number of years averaged ($T = 1,\dots,16$) for both the i.i.d. and the persistent case. Why is the bias larger when transitory shocks are persistent? (**this question requires code**)
+
+## Question 2: Life-Cycle Bias
+
+Now suppose that the child's log income at age $a$ follows a heterogeneous income profile (as in Lecture 3):
+
+$$ y_{ia} = Y_i + g_i (a - \bar{a}) + u_{ia}, \qquad g_i = \bar{g} + \kappa (Y_i - \mathbb{E}[Y_i]) + \xi_i$$
+
+where $\bar{a} = 40$, $\bar{g} = 0.02$, $\kappa = 0.025$, $\xi_i \sim N(0, 0.01^2)$ and $u_{ia}\sim N(0, 0.1)$ are i.i.d. and independent of everything else. Use the same $x_i$ and $Y_i$ as in Question 1.
+
+a. Interpret $\kappa$. Why might it be positive? Show that if we regress $y_{ia}$ on the parent's **permanent** income $x_i$, then $\text{plim}\ \hat\beta_a = \beta\left[1 + \kappa(a - \bar{a})\right]$. (**this question requires only math**)
+
+b. Simulate child income for ages $a = 25,\dots,55$. For each age, regress $y_{ia}$ on $x_i$ and plot the estimates against age, together with the formula from part (a) and the true $\beta$. At what age is the estimate unbiased? (**this question requires code**)
+
+c. Combine both problems using the persistent transitory shocks from Question 1(c). Compute the IGE under two designs:
+    - **Design A** (similar to @Chetty2014): child income is the average of ages 30 and 31; parent income is a 5-year average.
+    - **Design B** (similar to the long-panel studies in @mazumder2018): child income is the average of ages 38 to 41; parent income is a 16-year average.
+
+    Compare each estimate to the true $\beta = 0.6$ and to what you would predict by combining the formulas above. (**this question requires code**)
+
+## Question 3: Relative and Absolute Mobility Across Commuting Zones
+
+The data contain, for each CZ, absolute upward mobility (`am`, the expected income rank of children whose parents are at the 25th percentile of the national distribution), relative mobility (`rm`, the rank-rank slope), the probability of reaching the top quintile from the bottom quintile (`p_q5_q1`), the population in 2000 (`pop2000`), and a set of CZ characteristics.
+
+a. Load the data and drop CZs with missing mobility estimates. Plot `am` against `rm` and report the correlation between them, both unweighted and weighted by population (use `weights(:pop2000)`). (**this question requires code**)
+
+b. Because the rank-rank relationship is linear within each CZ, the expected rank of a child with parents at percentile $p$ is $\text{am} + (p - 25)\times\text{rm}$. For the 50 largest CZs, compute the expected rank at $p = 10$ and $p = 90$. List the 5 CZs with the highest expected rank at $p=10$ and the 5 with the highest at $p = 90$. Find a CZ that is in the top 10 for absolute upward mobility but has a rank-rank slope above the national average of 0.341. (**this question requires code**)
+
+c. Standardize all variables to have mean zero and standard deviation one. Regress `am` on each of the following one at a time, then all together: `frac_commute_lt15`, `gini_bottom99`, `top1_share`, `social_capital`, `frac_single_mothers`. Repeat the single-variable regression of `rm` on `gini_bottom99` and `top1_share` (a within-U.S. "Great Gatsby curve"). Summarize what you find. (**this question requires code**)
+
+## Question 4: Interpretation
+
+a. In a few sentences, use your results from Questions 1 and 2 to explain why @Chetty2014 estimate an IGE of 0.34 while @mazumder2005 estimates about 0.6. Which other differences between the two studies (discussed in class) are not captured by your simulation?
+
+b. A policymaker sees your Question 3(c) regression and concludes that a policy which reduces the fraction of single-mother households by one standard deviation will raise upward mobility by the coefficient you found. Give two reasons this conclusion may be wrong, and explain how the movers design of @Chetty2018a addresses one of them.
+
+## References
+
+::: {#refs}
+:::

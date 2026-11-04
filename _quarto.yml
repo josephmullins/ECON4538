@@ -1,6 +1,12 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "!CLAUDE.md"
+    - "!assignments/*-solutions.qmd"
+    - "!assignments/final_exam*.qmd"
+    - "!assignments/midterm*.qmd"
 
 website:
   title: "ECON4538"

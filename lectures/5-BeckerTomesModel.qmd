@@ -4,6 +4,7 @@ bibliography: ../reading_list.bib
 format:
   revealjs:
     theme: solarized
+    include-in-header: mathjax-fonts.html
     transition: slide
     chalkboard:
         theme: whiteboard
@@ -15,7 +16,7 @@ execute:
   freeze: auto
 ---
 
-## Overview
+## Overview {.smaller}
 
 :::{.incremental}
 - We have learned that income inequality tends to persist across generations 
@@ -26,6 +27,7 @@ execute:
   - Why do earnings regress to the mean?
   - How do parents affect children's outcomes?
   - What determines the speed of mobility?
+  - Do the model's predictions fit the data?
 - Building a **unified framework** for inequality and mobility
 :::
 
@@ -60,7 +62,7 @@ where $X_{t}$ has price $\psi$
 $$ C_{t} + \frac{A_{t+1}}{1+r} + \psi X_{t} \leq A_{t} + wH_{t} $$
 :::
 
-## A recursive formulation
+## A Recursive Formulation {.smaller}
 
 Let $\Omega_{t} = A_{t} + wH_{t}$ be total wealth in period $t$:
 
@@ -68,13 +70,13 @@ $$ V(\Omega_{t},z_{t}) = \max_{C_{t},X_{t},A_{t+1}}\left\{ u(C_{t}) + \beta \mat
 
 subject to:
 
-$$ 
-\begin{eqnarray}
-C_{t} + \psi X_{t} + \frac{A_{t+1}}{1+r} \leq \Omega_{t} \\
-\Omega_{t+1} = A_{t+1} + wH_{t+1} \\
-z_{t+1} = \rho z_{t} + \eta_{t+1} \\
-H_{t+1} = \exp(\mu+z_{t})X_{t}^{\delta}
-\end{eqnarray}
+$$
+\begin{aligned}
+C_{t} + \psi X_{t} + \frac{A_{t+1}}{1+r} &\leq \Omega_{t} \\
+\Omega_{t+1} &= A_{t+1} + wH_{t+1} \\
+z_{t+1} &= \rho z_{t} + \eta_{t+1} \\
+H_{t+1} &= \exp(\mu+z_{t})X_{t}^{\delta}
+\end{aligned}
 $$
 
 . . .
@@ -93,6 +95,8 @@ $$
 
 ## Result 1: Investment does not depend on Income
 
+**Exercise** (board): 
+
 Steps:
 
 1. Take FOC wrt $X_{t}$ and $A_{t+1}$
@@ -101,6 +105,8 @@ $$ X_{t} = \left(\frac{\delta w \exp(\mu+z_{t})}{(1+r)\psi}\right)^{1/(1-\delta)
 3. Analyze. Notice no direct effect of income.
 
 ## Result 2: The IGE {.smaller}
+
+**Exercise** (board): 
 
 Steps:
 
@@ -124,28 +130,35 @@ What is the long-run effect of an increase in $z$?
 
 ## Result 3: The Long-Run Effects of Good Fortune {.smaller}
 
+**Exercise** (board): 
+
 :::{.incremental}
 1. Show that in general:
 $$ u'(C_{t}) = \beta(1+r)\mathbb{E}u'(C_{t+1}) $$
 2. Under our assumptions at steady state: 
 $$C_{t}=C_{t+1}=\bar{C}$$
-3. Define $Z_{t}=\exp(\mu+z_{t})$ and iterate the budget constraint:
-$$ \sum_{t=0}^\infty \frac{1}{(1+r)^{t}} \bar{C} = \Omega_{0} + \sum_{t=0}\frac{1}{(1+r)^t}\max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] $$
-4. Show that
-$$ \max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] = \left(\frac{Z_{t}w}{(1+r)}\right)^{1/(1-\delta)}\psi^{-\delta/(1-\delta)}\left(\delta^{\delta/(1-\delta)} - \delta^{1/(1-\delta)}\right)$$
+3. Define $Z_{t}=\exp(\mu+z_{t})$ and iterate the budget constraint forward (ruling out Ponzi schemes):
+$$ \sum_{t=0}^\infty \frac{1}{(1+r)^{t}} \bar{C} = \Omega_{0} + \sum_{t=0}^{\infty}\frac{1}{(1+r)^t}\max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] $$
 :::
 
 ## Result 3: The Long-Run Effects of Good Fortune {.smaller}
 
 :::{.incremental}
-5. Hence:
-$$ \sum_{t=0}^{\infty}\frac{1}{(1+r)^{t}}\bar{C} = \Omega_{0} + B\sum_{t=0}^{\infty}\exp(z_{t})^{1/(1-\delta)} \left(= \Omega_{0}+B \text{ at long-run steady state}\right)$$ 
+4. Show that
+$$ \begin{aligned} &\max_{X_{t}}\left[wZ_{t}X^{\delta}_{t}/(1+r) - \psi X_{t}\right] \\ &\qquad = \left(\frac{Z_{t}w}{(1+r)}\right)^{1/(1-\delta)}\psi^{-\delta/(1-\delta)}\left(\delta^{\delta/(1-\delta)} - \delta^{1/(1-\delta)}\right) \end{aligned}$$
+5. Hence, since $\sum_{t}(1+r)^{-t} = (1+r)/r$:
+$$ \frac{1+r}{r}\bar{C} = \Omega_{0} + B\sum_{t=0}^{\infty}\frac{\exp(z_{t})^{1/(1-\delta)}}{(1+r)^{t}} \quad \left(= \Omega_{0}+B\frac{1+r}{r} \text{ when } z_{t}=0\ \forall t\right)$$ 
 where $B$ collects constants in previous expression.
+:::
+
+## Result 3: The Long-Run Effects of Good Fortune {.smaller}
+
+:::{.incremental}
 6. Consider a one-time, small increase in $z_{0}$, s.t. $z_{t} = \rho^{t}z_{0}$:
 $$ \frac{d\bar{C}}{dz_{0}}\Big\vert_{z_{0}=0} = \frac{r}{1+r} \frac{1}{1-\delta} B\sum_{t=0}^{\infty}\frac{\rho^{t}}{(1+r)^{t}} = \frac{1}{1-\delta}\times B\times \frac{r}{1+r-\rho}$$
-7. So
-$$ fix\frac{d\log(\bar{C})}{dz_{0}}\Big\vert_{z_{0}=0} = \text{Future earnings share of wealth} \times\frac{1}{1-\delta}\times \frac{1+r}{1+r-\rho}  $$
-8. Interpret!
+7. Dividing by $\bar{C} = \frac{r}{1+r}\left(\Omega_{0} + B\frac{1+r}{r}\right)$:
+$$ \frac{d\log(\bar{C})}{dz_{0}}\Big\vert_{z_{0}=0} = \underbrace{\frac{B(1+r)/r}{\Omega_{0}+B(1+r)/r}}_{\text{human capital share of wealth}} \times\frac{1}{1-\delta}\times \frac{r}{1+r-\rho}  $$
+8. Interpret! (Hint: what happens to $\frac{r}{1+r-\rho}$ when $\rho\rightarrow 1$? When $\rho = 0$?)
 :::
 
 
@@ -166,13 +179,13 @@ $$y_{\text{child}} = \alpha + \beta \cdot y_{\text{parent}} + \varepsilon$$
 
 **Think**: Is this consistent with geographic variation in mobility we saw?
 
-## Takeaways so far
+## Takeaways So Far {.smaller}
 
 :::{.incremental}
 - Investment does not depend on income (when borrowing is unconstrained)
 - Human capital differences fade away, but consumption effects last forever
 - Rich households use wealth bequests to maintain dynasties as human capital fades away
-- IGE determined by ability persistence ($\rho$) and human capital production ($\delta$)
+- IGE determined by ability persistence ($\rho$) alone; $\delta$ scales the *level* of inequality in $\log(H)$ (by $\frac{1}{1-\delta}$) but not its persistence
 - But is this realistic? What about credit constraints?
 :::
 
@@ -204,6 +217,7 @@ $$
 :::{.incremental}
 - $\Omega = wH + A$: total lifetime wealth
 - $A'$: bequests (can be negative = borrowing)
+- **Notation change**: from here on, $z$ denotes the *level* of the child's ability, i.e. $z$ here plays the role of $\exp(\mu+z_{t})$ in the infinite-horizon model
 :::
 
 ## Combining Budget Constraints
@@ -287,7 +301,7 @@ $$\int C_{i1} di + \frac{1}{1+r} \int C_{i2} di \leq \int \Omega_i di + \frac{w}
 
 The planner's FOCs are:
 
-$$\frac{u'(C_{i1})}{u'(C_{i2})} = \frac{\mu_{i2}}{\mu_{i1}}, \quad \frac{\delta w z_i X_i^{\delta-1}}{1+r} = \psi$$
+$$\frac{u'(C_{i1})}{u'(C_{i2})} = (1+r)\frac{\mu_{i2}}{\mu_{i1}}, \quad \frac{\delta w z_i X_i^{\delta-1}}{1+r} = \psi$$
 
 Compare to market FOCs:
 
@@ -296,6 +310,7 @@ $$\frac{u'(C_{i1})}{u'(C_{i2})} = \beta(1+r), \quad \frac{\delta w z_{i} X_{i}^{
 :::{.incremental}
 - Investment is **identical**: $X_i^* = X_i^{planner}$
 - Only difference: consumption allocation via weights $\mu_{i1}, \mu_{i2}$
+- Consumption FOCs coincide when $\mu_{i2}/\mu_{i1} = \beta$ (and $\mu_{i1}\propto 1/u'(C_{i1})$)
 - Market outcome is **efficient** for some choice of weights
 :::
 
@@ -325,7 +340,7 @@ What does this mean?
 - Also implied no role for income in shaping human capital
 :::
 
-## A more realistic setup
+## A More Realistic Setup
 
 $$\max_{C_1, C_2, X} u(C_1) + \beta u(C_2)$$
 
@@ -343,21 +358,21 @@ $$
 
 Positive bequests only!
 
-## Inefficient investment
+## Inefficient Investment {.smaller}
 
 :::{.incremental}
 - This now implies:
 $$ \frac{\delta w z X^{\delta - 1}}{1+r} \geq \psi $$
-with equality iff $A'\geq 0$ and strict inequality if $A=0$.
-- Equilibriums is **inefficient**. 
+with equality if $A'>0$, and weakly greater (strictly greater when the constraint binds) if $A'=0$.
+- Equilibrium is **inefficient** whenever some families are constrained. 
 - Introduces a role for policy to improve market outcomes
 - Make everyone better off (Pareto improvement)
 :::
 
-## When do constraints bind?
+## Investment When Constrained
 
 :::{.incremental}
-- Solve for $X^*$ when $A=0$:
+- Solve for $X^*$ when $A'=0$:
 $$ \max_{X} u(\Omega - \psi X) + \beta u(wzX^{\delta}) $$
 - With log utility:
 $$ X^* = \frac{1}{\psi}\frac{\beta\delta}{1+\beta\delta} \Omega $$
@@ -376,7 +391,7 @@ $$\frac{1}{\psi}\frac{\beta \delta }{1 + \beta \delta} \Omega \leq \left( \frac{
 - Creates a **region** where investment increases with income
 :::
 
-## Investment and Income: Two Regimes {.scrollable}
+## Investment and Income: Two Regimes {.smaller}
 
 ```{julia}
 #| echo: false
@@ -404,7 +419,7 @@ X_star_low = (δ * w * z_low / (ψ * (1 + r)))^(1 / (1 - δ))
 # Investment function with constraint
 function investment(Ω, z)
     X_star = (δ * w * z / (ψ * (1 + r)))^(1 / (1 - δ))
-    # When constrained (A=0): X = (β δ w z)/(ψ(1 + β δ w z)) * Ω
+    # When constrained (A'=0), log utility: X = (β δ)/(ψ(1 + β δ)) * Ω  (does not depend on z!)
     X_constrained = (β * δ ) / (ψ * (1 + β * δ )) * Ω
     return min(X_constrained, X_star)
 end
@@ -422,10 +437,11 @@ plot(Ω_range, X_vals_high,
      legend=:bottomright,
      grid=true,
      color=:blue,
-     size=(700, 450),
-     bottom_margin=8Plots.mm,
-     left_margin=8Plots.mm,
-     top_margin=5Plots.mm)
+     size=(900, 380),
+     tickfontsize=11, guidefontsize=12, legendfontsize=11, titlefontsize=13,
+     bottom_margin=6Plots.mm,
+     left_margin=6Plots.mm,
+     top_margin=3Plots.mm)
 
 plot!(Ω_range, X_vals_low,
       linewidth=3,
@@ -441,7 +457,194 @@ hline!([X_star_low], linestyle=:dash, linewidth=1.5,
 
 . . .
 
-Note: High-$z$ children benefit more from relaxing constraints (steeper slope when binding)
+Note: the constrained slope $\frac{\beta\delta}{\psi(1+\beta\delta)}$ does **not** depend on $z$. But high-$z$ children have a higher unconstrained target $X^{*}$, so they are constrained over a **wider range of wealth**: losses from borrowing constraints are concentrated on high-ability children in poor families.
+
+# Constraints and the IGE
+
+## Exercise: Simulating a Dynasty (Part 1) {.smaller}
+
+**Part 1** (infinite horizon, no constraint). Simulate $N$ dynasties for $T$ generations using Result 1:
+$$ \log(H_{t+1}) = \mu + z_{t} + \delta\log(X_{t}),\qquad X_{t} = \left(\frac{\delta w \exp(\mu+z_{t})}{(1+r)\psi}\right)^{\frac{1}{1-\delta}} $$
+
+:::{.incremental}
+- Regress $\log(wH_{t+1})$ on $\log(wH_{t})$ for $\delta\in\{0.2,0.5,0.8\}$. Verify that the IGE is $\rho$ every time.
+- What *does* change with $\delta$?
+:::
+
+## Exercise: Simulating a Dynasty (Part 2) {.smaller}
+
+**Part 2** (two-period model with $A'\geq 0$, log utility). Now let each parent have wealth $\Omega_{t} = wH_{t}$ (ignoring inherited assets, for simplicity), child ability $Z_{t}=\exp(\mu+z_{t})$, and invest
+$$ X_{t} = \min\left\{\frac{\beta\delta}{\psi(1+\beta\delta)}\Omega_{t},\ X^{*}(Z_{t})\right\} $$
+
+:::{.incremental}
+- Plot average $\log$ child earnings against $\log$ parent earnings. Is the relationship still linear?
+- Compare the IGE for parents below and above the median.
+- **What do you think** will happen to the IGE if $\beta$ falls (less patient / less altruistic parents)?
+:::
+
+## Part 1: The IGE does not depend on $\delta$ {.scrollable}
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: true
+using Random, Statistics
+
+# Infinite-horizon model without borrowing constraints
+function simulate_dynasty(δ; ρ=0.4, σ_η=0.5, μ=0.0, w=1.0, ψ=1.0, r=1.0, N=10_000, T=20)
+    Random.seed!(1234)
+    z = σ_η / sqrt(1 - ρ^2) * randn(N)          # stationary distribution of ability
+    logH = zeros(N, T)
+    for t in 1:T-1
+        X = @. (δ * w * exp(μ + z) / ((1 + r) * ψ))^(1 / (1 - δ))
+        logH[:, t+1] = @. μ + z + δ * log(X)
+        z = ρ * z + σ_η * randn(N)               # next generation's ability
+    end
+    return log(w) .+ logH                         # log earnings
+end
+
+ige(lp, lc) = cov(lp, lc) / var(lp)               # OLS slope
+
+for δ in (0.2, 0.5, 0.8)
+    logy = simulate_dynasty(δ)
+    println("δ = $δ:  IGE = ", round(ige(logy[:, end-1], logy[:, end]), digits=3),
+            ",  var(log earnings) = ", round(var(logy[:, end]), digits=2))
+end
+```
+
+. . .
+
+The IGE is $\approx\rho = 0.4$ for every $\delta$ (up to sampling error). $\delta$ only scales inequality, since $\mathbb{V}[\log(H)] = \mathbb{V}[z]/(1-\delta)^2$.
+
+## Part 2: Constraints Make the Relationship Concave {.smaller .scrollable}
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: true
+using Plots
+
+# Two-period model with A' ≥ 0 and log utility (z now in levels: Z = exp(μ+z))
+function investment_bt(Ω, Z; δ, β, r, w=1.0, ψ=1.0, constrained=true)
+    Xstar = (δ * w * Z / ((1 + r) * ψ))^(1 / (1 - δ))   # unconstrained optimum
+    Xc = β * δ / (ψ * (1 + β * δ)) * Ω                   # optimum if A' = 0
+    return constrained ? min(Xc, Xstar) : Xstar
+end
+
+function simulate_bt(; δ=0.5, β=0.9, r=1.0, ρ=0.4, σ_η=0.5, μ=0.0, w=1.0,
+                       constrained=true, N=20_000, T=30)
+    Random.seed!(1234)
+    z = σ_η / sqrt(1 - ρ^2) * randn(N)
+    logy = zeros(N, T)
+    for t in 1:T-1
+        z = ρ * z + σ_η * randn(N)                       # child's ability
+        Ω = w .* exp.(logy[:, t])                         # parent's wealth = earnings
+        X = investment_bt.(Ω, exp.(μ .+ z); δ, β, r, w, constrained)
+        logy[:, t+1] = @. log(w) + μ + z + δ * log(X)
+    end
+    return logy[:, end-1], logy[:, end]                   # (parent, child)
+end
+
+# average child outcome within 20 bins of parental earnings
+function binned(lp, lc; nbins=20)
+    edges = quantile(lp, range(0, 1, length=nbins + 1))
+    bin = [clamp(searchsortedlast(edges, x), 1, nbins) for x in lp]
+    return [mean(lp[bin .== b]) for b in 1:nbins], [mean(lc[bin .== b]) for b in 1:nbins]
+end
+
+pl = plot(xlabel="Log parent earnings", ylabel="Mean log child earnings",
+          legend=:topleft, size=(900, 330), tickfontsize=11, guidefontsize=12,
+          legendfontsize=11, left_margin=4Plots.mm, bottom_margin=4Plots.mm)
+for (c, lab) in ((false, "No constraint"), (true, "A' ≥ 0"))
+    lp, lc = simulate_bt(constrained=c)
+    lo = lp .< median(lp)
+    println(lab, ": IGE = ", round(ige(lp, lc), digits=2),
+            ", below median = ", round(ige(lp[lo], lc[lo]), digits=2),
+            ", above median = ", round(ige(lp[.!lo], lc[.!lo]), digits=2))
+    bx, by = binned(lp, lc)
+    scatter!(pl, bx, by .- mean(lc), label=lab, markersize=5)
+end
+pl
+```
+
+. . .
+
+Constrained families pass on wealth shocks through investment, so the IGE is higher at the bottom. (Means are de-meaned to compare shapes.)
+
+## Why Is the IGE Higher for Constrained Families? {.smaller}
+
+:::{.incremental}
+- For a constrained family, $\log(wH') = \log(w) + \log(z) + \delta\log\left(\frac{\beta\delta}{\psi(1+\beta\delta)}\right) + \delta\log(\Omega)$
+- So $\log$ child earnings depend on $\log$ parental wealth *directly* (coefficient $\delta$), on top of the inherited ability channel (coefficient $\approx\rho$)
+- For unconstrained families, only the ability channel operates
+- **Prediction** [@Becker1986]: the relationship between parent and child earnings is **concave**; earnings regress to the mean more slowly among poor families
+- Can we test this?
+:::
+
+# Does It Fit the Data?
+
+## Prediction 1: Concavity {.smaller}
+
+> "The direct relation between the earnings of parents and children ... is likely to be concave rather than linear because obstacles to the self-financing investments in children decline as parents' earnings increase." [@Becker1986]
+
+:::{.incremental}
+- Recall @Chetty2014 from Lecture 4:
+  - The **rank-rank** relationship is almost perfectly linear across the distribution
+  - The **log-log** relationship is nonlinear, but it is *flatter in the tails*: restricting to parents between the 10th and 90th percentiles raises the IGE from 0.344 to 0.452
+  - In **levels**, $\mathbb{E}[Y_{c}|Y_{p}]$ is concave, but that happens mechanically even with a log-linear model, since $\mathbb{E}[Y_{c}|Y_{p}] \propto Y_{p}^{\rho}$ for $\rho<1$
+- Little sign of a steeper relationship at the bottom of the distribution
+- **What do you think?** Does this rule out borrowing constraints?
+:::
+
+<!-- CHECK (instructor): numbers 0.344 / 0.452 and the "flatter in the tails" reading are from Chetty et al. (2014), Section IV.A / Figure I Panel B. -->
+
+## Prediction 2: Persistence by Constraint Status {.smaller}
+
+@Mulligan1999 derives nine predictions that distinguish Becker-Tomes from a purely "mechanical" (Galton) regression to the mean. A key test:
+
+:::{.incremental}
+- Split adult children (PSID, SCF) by whether they received, or expect, an inheritance of \$25,000 or more
+  - Group 1 (inheritance): parents very likely **unconstrained**; Group 2 (none): includes the **constrained**
+- Model predicts: earnings persistence **higher** in group 2; consumption should **not** regress to the mean in group 1 (coefficient of one)
+- Findings (of nine implications: four refuted, two verified, three mixed):
+  - Earnings/wage persistence is not systematically higher in group 2 (OLS similar; IV estimates go both ways)
+  - Consumption regresses to the mean even in group 1: a coefficient of one is rejected in most specifications
+:::
+
+## Mulligan's Conclusion
+
+:::{.incremental}
+- "the observed intergenerational dynamics of measures of economic status are not the result of borrowing constraints" [@Mulligan1999]
+- But: constraints can *exist* without changing mobility much, e.g. if parents are unwilling to substitute consumption across generations, or if returns to investment are not very diminishing in the relevant range
+- A prediction that *does* hold: consumption is more persistent than earnings
+:::
+
+## The Goldberger Critique {.smaller}
+
+:::{.incremental}
+- @Goldberger1989: Does the economic model tell us anything a **mechanical** model of transmission does not?
+  - Galton: $y_{c} = \alpha + \beta y_{p} + \varepsilon$, regression to the mean with no optimization at all
+  - Goldberger argued that the Becker-Tomes apparatus (altruism, investment, bequests) adds little *testable* content beyond such a reduced form
+- We have already seen a version of this: in the unconstrained model, the IGE is just $\rho$, the persistence of ability. The earnings dynamics are observationally equivalent to Galton's.
+- The economics only has bite through **auxiliary assumptions** (e.g. borrowing constraints), which is exactly what @Mulligan1999 sets out to test
+- **What do you think?** Why might a policymaker still prefer the economic model?
+:::
+
+<!-- CHECK (instructor): Goldberger (1989) PDF is not in papers/; this summary is based on how Mulligan (1999, pp. S184-S185) characterizes it. -->
+
+## Taking Stock {.smaller}
+
+:::{.incremental}
+- The simple Becker-Tomes model with constraints makes sharp predictions about the *shape* of mobility
+- Those predictions find limited support in income data
+- Possible reasons:
+  - Constraints may bind at **specific ages** (early childhood) that a two-period model cannot capture
+  - Public schooling may relax constraints for some investments but not others
+  - Investments are multidimensional (time, money, skills of different kinds)
+- This motivates the richer models in [Lecture 7](7-QuantitativeMobilityModels.qmd) [@Caucutt2020; @Lee2019]
+:::
+
+# Policy
 
 ## Policy Implications
 
@@ -466,4 +669,4 @@ In coming lectures we'll see:
 - Suggests scope for welfare-improving policy
 :::
 
-## Reading
+## Reading {.smaller .scrollable}

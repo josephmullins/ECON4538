@@ -4,6 +4,7 @@ bibliography: ../reading_list.bib
 format:
   revealjs:
     theme: solarized
+    include-in-header: mathjax-fonts.html
     transition: slide
     chalkboard:
         theme: whiteboard
@@ -28,7 +29,7 @@ execute:
 
 # Redistribution vs Insurance
 
-## Example 1: Static Economy
+## Example 1: Static Economy {.smaller}
 
 :::{.incremental}
 - One period economy
@@ -36,9 +37,8 @@ execute:
 - Uncertain income: $\{y_{L},y_{H}\}$, $y_{L}<y_{H}$
 - Distributions: $\{\pi,1-\pi\}$ for low type, $\{1-\pi,\pi\}$ for high type, $\pi>0.5$. 
 - Concave utility $u(\cdot)$
-- No insurance market:
+- No insurance market (and symmetrically for $V_{H}$):
 $$ V_{L} = \mathbb{E}[u(y)|L] = \pi u(y_{L}) + (1-\pi) u(y_{H})$$
-and symmetric for $V_{H}$.
 :::
 
 ## Example 1: Planner's Problem {.smaller}
@@ -50,45 +50,28 @@ $$ W = \mathbb{E}[u(c(\tau,y))] = 0.5\mathbb{E}[u(c(L,y))|L] + 0.5\mathbb{E}[u(c
 $$ W_{0} = 0.5u(y_{L}) + 0.5u(y_{H}) $$
 - Planner's problem:
 $$\max_{c(\tau,y)}\mathbb{E}[u(c(\tau,y))]\ s.t. \mathbb{E}[c(\tau,y)] = 0.5y_{L} + 0.5y_{H} $$
-- **Exercise**: show that $c^*(\tau,y) = 0.5y_{L} + 0.5y_{H}$
+- **Exercise**: show that $c^*(\tau,y) = 0.5y_{L} + 0.5y_{H} \equiv C^*$ (perfect smoothing), so $W_{1} = u(C^*)$
 :::
 
-## Example 1: Welfare Gains
-picture here of welfare gains
-
-## Example 1:
+## Example 1: Separating insurance and redistribution {.smaller}
 
 :::{.incremental}
-- Something to notice: planner cares only about average utility, doesn't care about changes in $V_{H}$ and $V_{L}$
+- Notice: the planner cares only about average utility, not about changes in $V_{H}$ and $V_{L}$
 - **Exercise**: study changes in $V_{\tau}$ for different values of $\pi$
 - Redistribution and insurance effects are **bundled together**
 - How to separate?
-- Define **certainty equivalent**:
-$$ u(\bar{c}_{\tau}) = \mathbb{E}[u(c)|\tau],\ \tau\in\{L,H\}$$
-:::
-
-## Example 1: Static Economy
-Exercises:
-
-:::{.incremental}
-- Show that $c^*(\tau,y) = 0.5y_{L} + 0.5y_{L}$ (perfect smoothing)
-- Define consumption equivalent:
-$$ \mathbb{E}u(c^*(\tau,y)) = \mathbb{E}u((1+\omega)y) $$
-as a measure of welfare gain
-- Define **certainty equivalent**:
-$$ u(\bar{c}_{\tau}) = \mathbb{E}_{\tau}u(y) $$ 
-for each type $\tau$.
-- Interpretation: guaranteed consumption that would deliver same value
+- Define the **certainty equivalent** $\bar{c}_{\tau}$ of each type:
+$$ u(\bar{c}_{\tau}) = \mathbb{E}[u(y)|\tau],\ \tau\in\{L,H\}$$
+- Interpretation: guaranteed consumption that would deliver the same expected utility as the risky income stream
 :::
 
 ## Example 1: Gains from redistribution {.smaller}
 
 :::{.incremental}
-- Let
-$$ \bar{C} = 0.5\bar{c}_{L} + 0.5\bar{c}_{H} $$
-be average certainty equivalent
-- $u(\bar{C})$ is utility if everyone could be given the average certainty equivalent from benchmark economy.
-- $$u(\bar{C}) - \mathbb{E}[u(y)] = u(0.5\bar{c}_{L}+0.5\bar{c}_{H}) - 0.5u(\bar{c}_{L}) - 0.5u(\bar{c}_{H})$$ 
+- Let $\bar{C} = 0.5\bar{c}_{L} + 0.5\bar{c}_{H}$ be the average certainty equivalent
+- $u(\bar{C})$ is utility if everyone could be given the average certainty equivalent from the benchmark economy.
+- The difference
+$$u(\bar{C}) - \mathbb{E}[u(y)] = u(0.5\bar{c}_{L}+0.5\bar{c}_{H}) - 0.5u(\bar{c}_{L}) - 0.5u(\bar{c}_{H})$$
 is a measure of the **gains from redistribution** when uncertainty is removed via certainty equivalence
 :::
 
@@ -118,15 +101,15 @@ using Plots
 # Parameters
 y_L = 0.5
 y_H = 3.0
-π = 0.75  # probability of low income for low type
+p_low = 0.75  # probability of low income for low type (π on the slides)
 
 # Calculate key values
 C_star = 0.5*y_H + 0.5*y_L
 W_0 = 0.5*log(y_L) + 0.5*log(y_H)  # E[log(y)] - laissez-faire
-U_L = π*log(y_L) + (1-π)*log(y_H)  # Utility of type L
-U_H = π*log(y_H) + (1-π)*log(y_L)  # Utility of type H
-E_L = π*y_L + (1-π)*y_H            # Expected income type L
-E_H = π*y_H + (1-π)*y_L            # Expected income type H
+U_L = p_low*log(y_L) + (1-p_low)*log(y_H)  # Utility of type L
+U_H = p_low*log(y_H) + (1-p_low)*log(y_L)  # Utility of type H
+E_L = p_low*y_L + (1-p_low)*y_H            # Expected income type L
+E_H = p_low*y_H + (1-p_low)*y_L            # Expected income type H
 c_L = exp(U_L)                      # Certainty equivalent type L
 c_H = exp(U_H)                      # Certainty equivalent type H
 U_star = log(C_star)                # Utility with perfect insurance
@@ -320,15 +303,15 @@ plot!(legend=false)
 #| fig-width: 10
 #| fig-height: 6.5
 
-π = 0.9  # probability of low income for low type
+p_low = 0.9  # probability of low income for low type (π on the slides)
 
 # Calculate key values
 C_star = 0.5*y_H + 0.5*y_L
 W_0 = 0.5*log(y_L) + 0.5*log(y_H)  # E[log(y)] - laissez-faire
-U_L = π*log(y_L) + (1-π)*log(y_H)  # Utility of type L
-U_H = π*log(y_H) + (1-π)*log(y_L)  # Utility of type H
-E_L = π*y_L + (1-π)*y_H            # Expected income type L
-E_H = π*y_H + (1-π)*y_L            # Expected income type H
+U_L = p_low*log(y_L) + (1-p_low)*log(y_H)  # Utility of type L
+U_H = p_low*log(y_H) + (1-p_low)*log(y_L)  # Utility of type H
+E_L = p_low*y_L + (1-p_low)*y_H            # Expected income type L
+E_H = p_low*y_H + (1-p_low)*y_L            # Expected income type H
 c_L = exp(U_L)                      # Certainty equivalent type L
 c_H = exp(U_H)                      # Certainty equivalent type H
 U_star = log(C_star)                # Utility with perfect insurance
@@ -401,18 +384,51 @@ annotate!( 0.15, (log(C_bar) + U_star)/2,
 plot!(legend=false)
 ```
 
+## The decomposition in general {.smaller}
+
+:::{.incremental}
+- The same idea works for comparing **any two regimes** $A$ and $B$ (e.g. no taxes vs. a progressive tax), neither of which needs to provide perfect insurance
+- Let $\mathcal{V}(c)$ be the value of receiving $c$ for sure ($\mathcal{V}(c)=u(c)$ in a static economy)
+- For each person $i$: value $V^{r}_{i}$ and certainty equivalent $\mathcal{V}(\bar{c}^{r}_{i}) = V^{r}_{i}$
+- Welfare $W^{r} = \int V^{r}_{i}di$, average certainty equivalent $\bar{C}^{r} = \int\bar{c}^{r}_{i}di$, average consumption $C^*$ (same in both regimes)
+- Decomposition:
+$$\begin{aligned}
+W^{B} - W^{A} = &\ \Big[\mathcal{V}(\bar{C}^{B}) - \mathcal{V}(\bar{C}^{A})\Big] && \text{(insurance)}\\
+&+ \Big[\big(W^{B} - \mathcal{V}(\bar{C}^{B})\big) - \big(W^{A} - \mathcal{V}(\bar{C}^{A})\big)\Big] && \text{(redistribution)}
+\end{aligned}$$
+- **Exercise**: check that with $A$ = laissez-faire and $B$ = perfect insurance ($\bar{C}^{B} = C^*$, $W^{B} = u(C^*)$) this is the decomposition from Example 1
+:::
+
+## Measuring gains in consumption units {.smaller}
+
+:::{.incremental}
+- Utils are hard to interpret. The **consumption equivalent** $\omega$ is the percentage increase in consumption, in every period and state, that makes regime $A$ as good as regime $B$:
+$$ \int\mathbb{E}\left[\sum_{t}\beta^{t}u((1+\omega)c^{A}_{it})\right]di = W^{B}$$
+- We can split it multiplicatively: $1+\omega = (1+\omega_{I})(1+\omega_{R})$, where
+$$ 1+\omega_{I} = \frac{\bar{C}^{B}}{\bar{C}^{A}}\qquad\text{(insurance)}$$
+:::
+
+## Consumption units with CRRA utility {.smaller}
+
+:::{.incremental}
+- With CRRA utility $u(c) = c^{1-\sigma}/(1-\sigma)$, scaling consumption by $(1+\omega)$ scales values by $(1+\omega)^{1-\sigma}$, so:
+$$ 1+\omega = \left[\frac{W^{B}}{W^{A}}\right]^{1/(1-\sigma)},\qquad 1+\omega_{R} = \left[\frac{W^{B}/\mathcal{V}(\bar{C}^{B})}{W^{A}/\mathcal{V}(\bar{C}^{A})}\right]^{1/(1-\sigma)}$$
+- With log utility: $\log(1+\omega) = (1-\beta)(W^{B}-W^{A})$ in an infinite horizon economy
+- We will compute these in recitation using a life-cycle model
+:::
+
 ## Example 2: a dynamic economy
 
 :::{.incremental}
 - Assume same type structure, $\tau(i)\in\{L,H\}$ for all agents $i$
 - But now infinite horizon, $t=0,1,2,...,\infty$
-- $\log(y_{it}) = \mu_{\tau(i)} + \varepsilon_{it}$,\ $\varepsilon_{it}\sim{N}(0,\sigma^2)$, $\mu_{L}<\mu_{H}$ 
+- $\log(y_{it}) = \mu_{\tau(i)} + \varepsilon_{it}$, $\ \varepsilon_{it}\sim{N}(0,\sigma^2)$ i.i.d., $\ \mu_{L}<\mu_{H}$
 - Benchmark: no private insurance markets, $c_{it} = y_{it}$.
-- $V_{i} = \mathbb{E}\left[\sum_{t=0}^\infty u(c_{it})\right]$
+- $V_{i} = \mathbb{E}\left[\sum_{t=0}^\infty \beta^{t}u(c_{it})\right]$, $\ 0<\beta<1$
 - Assume $u(\cdot) = \log(\cdot)$.
 :::
 
-## Example 2
+## Example 2: Welfare and $C^*$ {.smaller}
 
 :::{.incremental}
 - Since $\sum_{t=0}^{\infty}\beta^{t} = 1/(1-\beta)$, we know that:
@@ -424,7 +440,7 @@ $$\mathbb{E}[y_{i,t}] = 0.5\exp(\mu_{L}+0.5\sigma^2) + 0.5\exp(\mu_{H}+0.5\sigma
 - This is also what the planner would allocate to everyone. Call this $C^*$.
 :::
 
-## Example 2
+## Example 2: Certainty equivalents
 :::{.incremental}
 - For type $\tau$, $\bar{c}_{\tau}$ solves:
 $$ \sum_{t=0}^{\infty}\beta^{t} \log(\bar{c}_{\tau}) = \mu_{\tau}/(1-\beta) $$
@@ -432,7 +448,7 @@ and so $\bar{c}_{\tau} = \exp(\mu_{\tau})$
 - Thus $\bar{C} = 0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})$
 :::
 
-## Example 2 {.smaller}
+## Example 2: The decomposition {.smaller}
 
 :::{.incremental}
 - Now we decompose:
@@ -443,15 +459,26 @@ W_{1} - W_{0} &= \frac{\log(C^*) - (0.5\mu_{L} + 0.5\mu_{H})}{(1-\beta)} \\
 &= \text{insurance} + \text{redistribution}
 \end{aligned}
 $$
-- 
+- Plugging in $C^*$ and $\bar{C}$:
 $$
-\begin{multline}
-\text{insurance} \propto \log\left(0.5\exp(\mu_{L}+0.5\sigma^2) + 0.5\exp(\mu_{H}+0.5\sigma^2)\right) \\ - \log(0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H}))
-\end{multline}
+\begin{aligned}
+\text{insurance} &\propto \log\left(0.5\exp(\mu_{L}+0.5\sigma^2) + 0.5\exp(\mu_{H}+0.5\sigma^2)\right) \\
+&\qquad - \log(0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})) \\
+\text{redistribution} &\propto \log(0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})) - (0.5\mu_{L} + 0.5\mu_{H})
+\end{aligned}
 $$
--
-$$\text{redistribution} \propto \log(0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})) - (0.5\mu_{L} + 0.5\mu_{H})$$
 - Note what happens as $\mu_{L}\rightarrow\mu_{H}$ and as $\sigma^2\rightarrow 0$. Intuitive!
+:::
+
+## Example 2: Exercise {.smaller}
+
+:::{.incremental}
+- **Exercise** (board): show that the insurance term simplifies to
+$$ \text{insurance} = \frac{\sigma^2/2}{1-\beta}$$
+- Hint: factor $\exp(0.5\sigma^2)$ out of the first sum
+- Notice that this does **not** depend on $\mu_{L}$ or $\mu_{H}$: the value of insurance depends only on how much risk there is, not on inequality between types
+- In consumption units: $\log(1+\omega_{I}) = (1-\beta)\times\text{insurance}$, so $1+\omega_{I} = \exp(\sigma^2/2) = C^*/\bar{C}$
+- Similarly, the redistribution term depends only on $\mu_{L}$ and $\mu_{H}$, not on $\sigma^2$
 :::
 
 # Application: Storesletten, Telmer & Yaron (2004)
@@ -490,7 +517,7 @@ Three striking patterns in U.S. data:
 
 :::: {.columns}
 ::: {.column width="55%"}
-![](../papers/figures/sty_fig2.png){width=90%}
+![](../papers/figures/sty_fig2.png){height=540}
 :::
 ::: {.column width="45%"}
 :::{.incremental}
@@ -554,22 +581,20 @@ $$ \log(n_{ih}) = \kappa_h + \alpha_i + z_{ih} + \varepsilon_{ih} $$
 
 ## The Model: Household Problem {.smaller}
 
-**Recursive Formulation**:
+**Recursive formulation**: agent of age $h$ with assets $a$, fixed effect $\alpha$, persistent shock $z$ and transitory shock $\varepsilon$ solves:
+$$ V_h(a,\alpha,z,\varepsilon) = \max_{c, a'} \left\{ u(c) + \beta \psi_h \mathbb{E}[V_{h+1}(a',\alpha,z',\varepsilon')|z] \right\} $$
 
-Agent of age $h$ with asset holdings $a$ and persistent shock $z$ solves:
-$$ V_h(a,z) = \max_{c, a'} \left\{ u(c) + \beta \psi_h \mathbb{E}[V_{h+1}(a',z')|z] \right\} $$
-
-subject to:
 $$\begin{aligned}
-c + a' &= (1+r)a + n_h(z) - T(n_h(z)) \\
+\text{subject to}\quad c + a' &= (1+r)a + w\,e_h(\alpha,z,\varepsilon) - T\big(w\,e_h(\alpha,z,\varepsilon)\big) \\
 a' &\geq \underline{a} \quad \text{(borrowing limit)} \\
-z' &= \rho z + \eta', \quad \eta' \sim N(0,\sigma^2_\eta)
+z' &= \rho z + \eta', \quad \eta' \sim N(0,\sigma^2_\eta),\quad \varepsilon'\sim N(0,\sigma^2_{\varepsilon})
 \end{aligned}$$
 
 :::{.incremental}
 - $\psi_h$: survival probability to age $h+1$
-- $n_h(z) = \exp(\kappa_h + \alpha + z + \varepsilon)$: labor earnings
-- $T(\cdot)$: tax/transfer function (includes social security)
+- $e_h(\alpha,z,\varepsilon) = \exp(\kappa_h + \alpha + z + \varepsilon)$: labor **efficiency units** (zero after retirement at 65)
+- Labor earnings are $n_{h} = w\,e_h$, which is the process estimated from the PSID
+- $T(\cdot)$: tax/transfer function (includes social security contributions and benefits)
 :::
 
 ## The Model: Equilibrium {.smaller}
@@ -577,16 +602,12 @@ z' &= \rho z + \eta', \quad \eta' \sim N(0,\sigma^2_\eta)
 **Stationary Competitive Equilibrium** consists of:
 
 :::{.incremental}
-1. **Value and policy functions**: $\{V_h(a,z), c_h(a,z), a_{h+1}(a,z)\}_{h=22}^{100}$
-2. **Distribution**: Stationary distribution $\Phi(h,a,z,\alpha)$ over age, assets, persistent shock, and fixed effect
-3. **Prices**: Interest rate $r$ and wage $w$ satisfy:
-   $$\begin{aligned}
-   r &= f_K(K, L) - \delta \\
-   w &= f_L(K, L)
-   \end{aligned}$$
-   where $f(K,L) = K^\theta L^{1-\theta}$ is aggregate production function
+1. **Value and policy functions**: $\{V_h(x), c_h(x), a_{h+1}(x)\}_{h=22}^{100}$, where $x = (a,\alpha,z,\varepsilon)$
+2. **Distribution**: Stationary distribution $\Phi(h,x)$ over age, assets, fixed effect, persistent and transitory shocks
+3. **Prices**: $r = f_K(K, L) - \delta$ and $w = f_L(K, L)$, where $f(K,L) = K^\theta L^{1-\theta}$ is the aggregate production function
 4. **Market clearing**:
-   $$K = \int a \, d\Phi(h,a,z,\alpha),\ \ L = \int n_h(z) \, d\Phi(h,a,z,\alpha)$$
+   $$K = \int a \, d\Phi(h,x),\ \ L = \int e_h(\alpha,z,\varepsilon) \, d\Phi(h,x)$$
+   ($L$ is total efficiency units of labor, not total earnings)
 5. **Government budget balance**: Social security system is self-financing
 :::
 
@@ -634,6 +655,17 @@ z' &= \rho z + \eta', \quad \eta' \sim N(0,\sigma^2_\eta)
 | Life-cycle shocks | **27.4%** |
 | Fixed effects | **20.2%** |
 
+## Connecting back to the decomposition {.smaller}
+
+:::{.incremental}
+- Map to Example 2: fixed effects $\alpha_{i}$ play the role of types $\mu_{\tau}$; life-cycle shocks $z_{ih},\varepsilon_{ih}$ play the role of $\varepsilon_{it}$
+- **Fixed effects** are known at birth: there is no risk *after* birth to insure. Removing them is a gain from **redistribution** across people who are permanently different
+- **Life-cycle shocks** are risk faced by each person. Removing them is a gain from **insurance**
+- So the table says: in this economy, the potential gain from better insurance (27.4%) is at least as large as the potential gain from removing inequality determined at birth (20.2%)
+- Caveat: these numbers are welfare costs of each source of inequality *behind the veil of ignorance*, not the effect of a specific policy. Real policies (e.g. progressive taxes) typically deliver some of both
+- In recitation we will compute the insurance and redistribution components of a progressive tax in a model like this one
+:::
+
 
 ## Policy Implications {.smaller}
 
@@ -669,4 +701,7 @@ z' &= \rho z + \eta', \quad \eta' \sim N(0,\sigma^2_\eta)
    - General equilibrium + quantitative calibration crucial
 :::
 
-## Reading
+## References
+
+::: {#refs}
+:::

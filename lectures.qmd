@@ -13,4 +13,7 @@ Materials here will be uploaded as we continue through the course.
 | Intergenerational Mobility | [Slides](lectures/4-IntergenerationalMobility.qmd) |
 | The Becker-Tomes Model | [Slides](lectures/5-BeckerTomesModel.qmd) |
 | Measuring Skills and Skill Formation | [Slides](lectures/6-SkillsInequalityTechnology.qmd) |
+| Quantitative Mobility Models | [Slides](lectures/7-QuantitativeMobilityModels.qmd) |
 | Evidence from Safety Net Programs | [Slides](lectures/8-SafetyNetEvidence.qmd) |
+| Early Childhood Education and Parenting | [Slides](lectures/9-EarlyChildhoodAndParenting.qmd) |
+| Estimating the Technology of Skill Formation | [Slides](lectures/10-EstimatingSkillFormation.qmd) |

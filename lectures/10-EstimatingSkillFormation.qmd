@@ -1,0 +1,420 @@
+---
+title: "Connecting Theory with Evidence: Estimating the Technology of Skill Formation"
+bibliography: ../reading_list.bib
+format:
+  revealjs:
+    theme: solarized
+    include-in-header: mathjax-fonts.html
+    transition: slide
+    chalkboard:
+        theme: whiteboard
+        chalk-effect: 0.0
+        chalk-width: 6
+jupyter: julia-1.11
+execute:
+  cache: true
+  freeze: auto
+---
+
+## Overview {.smaller}
+
+:::{.incremental}
+- Last time: experiments show early programs **can** change skills and adult outcomes
+- But experiments alone do not tell us the **technology** $f$
+  - Is early investment more productive than late investment?
+  - How substitutable are investment and existing skills?
+- Today: how economists **estimate** the technology of skill formation
+  1. Why it is hard
+  2. Measurement systems and factor models
+  3. Estimates: @Cunha2008b, @Cunha2010, @ATTANASIO2020
+  4. Identification concerns: normalizations and scale
+- A simulation in Julia to see measurement error at work
+:::
+
+## The Object of Interest {.smaller}
+
+From lecture 6:
+$$ \theta_{t+1} = \left[\gamma_t I_{t}^{\phi_t} + (1-\gamma_t)\theta_{t}^{\phi_t}\right]^{1/\phi_t}e^{\eta_{t}} $$
+
+:::{.incremental}
+- $\gamma_t$: productivity of investment at stage $t$
+- $\phi_t$: governs substitutability between investment and current skills, $\sigma_t = 1/(1-\phi_t)$
+- As $\phi_t \to 0$, Cobb-Douglas: $\ln\theta_{t+1} = \gamma_t\ln I_t + (1-\gamma_t)\ln\theta_t + \eta_t$
+- We want $\gamma_t$ and $\phi_t$ **by age**: that is what tells us when to invest and whom to target
+:::
+
+# Why Is This Hard?
+
+## Problem 1: Skills Are Latent {.smaller}
+
+:::{.incremental}
+- We never observe $\theta_t$, only **test scores** and survey answers
+- Each measure is a noisy signal: $M_{t} = \theta_{t} + \varepsilon_{t}$
+- Same for investment: books in the home, trips to the museum, family income...
+- How noisy? In @Cunha2008b, the share of variance in each investment proxy that is due to the latent investment factor is between about **4% and 28%**, depending on the measure and age
+  - Most of the variation in "number of books" is **not** investment
+:::
+
+## Problem 2: Scales Are Arbitrary {.smaller}
+
+:::{.incremental}
+- A test score has **no natural units**
+- Any increasing transformation of a test score is an equally valid test score [@Cunha2008b]
+  - Raw score, percentile, IRT score, $\exp(\text{score})$...
+- Changes in test scores ("value added") are **not invariant** to these transformations
+- So is a gain from 40 to 50 "bigger" than a gain from 80 to 90? The data do not say
+:::
+
+. . .
+
+What do you think? Can you think of an outcome that **does** have natural units?
+
+## Problem 3: Investment Is Endogenous
+
+:::{.incremental}
+- Parents **choose** $I_t$, and they observe things we do not
+  - e.g., a child gets sick ($\eta_t$ low) and parents invest more to compensate
+  - or parents invest more in children who seem more able
+- Then $I_t$ is correlated with $\eta_t$ and OLS is biased
+- Plus there are **many** candidate input measures and few instruments
+:::
+
+. . .
+
+This is the same problem as in lecture 8: we cannot just regress outcomes on inputs.
+
+# Measurement Systems
+
+## A Measurement System {.smaller}
+
+For each latent variable $k\in\{C,N,I\}$ (cognitive, noncognitive, investment), several measures:
+$$ M^{k}_{j,t} = \mu^{k}_{j,t} + \alpha^{k}_{j,t}\ln\theta^{k}_{t} + \varepsilon^{k}_{j,t}, \quad j = 1,\ldots,m^k_t $$
+
+:::{.incremental}
+- $\alpha^{k}_{j,t}$: **factor loading** (how strongly measure $j$ reflects the skill)
+- $\varepsilon^{k}_{j,t}$: measurement error, independent of $\theta$ and of other errors
+- **Normalization**: set $\alpha^k_{1,t} = 1$ and $\mu^k_{1,t}=0$ (or $E[\ln\theta^k_t]=0$)
+  - The latent skill has no units, so we give it the units of measure 1
+:::
+
+## Identifying the Loadings {.smaller}
+
+With two measures per period and $\alpha_{1,t}=1$ [@Cunha2008b]:
+
+$$
+\begin{aligned}
+\text{Cov}(M_{1,t}, M_{1,t+1}) &= \text{Cov}(\theta_t,\theta_{t+1}) \\
+\text{Cov}(M_{2,t}, M_{1,t+1}) &= \alpha_{2,t}\,\text{Cov}(\theta_t,\theta_{t+1}) \\
+\text{Cov}(M_{1,t}, M_{2,t}) &= \alpha_{2,t}\,\text{Var}(\theta_t)
+\end{aligned}
+$$
+
+:::{.incremental}
+- Ratio of the second to the first gives $\alpha_{2,t}$
+- Then the third gives $\text{Var}(\theta_t)$, and the measurement error variances follow
+- With classical errors, the full distribution of $\theta$ is identified (Kotlarski's theorem)
+:::
+
+## Why One Measure Is Not Enough {.smaller}
+
+Suppose $\ln\theta_{t+1} = a\ln\theta_t + \eta_t$ and we only have $M_{1,t} = \ln\theta_t + \varepsilon_{1,t}$.
+
+:::{.incremental}
+- OLS of $M_{1,t+1}$ on $M_{1,t}$:
+$$ \text{plim}\ \hat a_{OLS} = a\cdot\frac{\text{Var}(\theta_t)}{\text{Var}(\theta_t)+\text{Var}(\varepsilon_{1,t})} < a $$
+- **Attenuation bias**: we understate self-productivity
+- Fix: use the second measure as an **instrument**
+$$ \hat a_{IV} = \frac{\text{Cov}(M_{1,t+1}, M_{2,t})}{\text{Cov}(M_{1,t}, M_{2,t})} \to \frac{a\,\alpha_{2,t}\text{Var}(\theta_t)}{\alpha_{2,t}\text{Var}(\theta_t)} = a $$
+- The loading $\alpha_{2,t}$ cancels: the second test can be on **any** scale
+:::
+
+## Exercise: Measurement Error
+
+Show the results on the previous slide.
+
+:::{.incremental}
+1. Derive $\text{plim}\,\hat a_{OLS}$ and $\text{plim}\,\hat a_{IV}$.
+2. Suppose the errors in the two tests are **correlated** (e.g., the child had a bad day and did badly on both). What happens to $\hat a_{IV}$?
+3. Suppose $\text{Var}(\theta_t) = 1$ and $\text{Var}(\varepsilon_{1,t}) = 0.5$. If the true $a = 0.9$, what does OLS give you?
+4. Why does measurement error in the **outcome** $M_{1,t+1}$ not cause bias?
+:::
+
+# Seeing It in a Simulation
+
+## Simulation Setup {.smaller}
+
+:::{.incremental}
+- Latent log skill $\ln\theta_1 \sim N(0,1)$
+- Parents invest more in higher-skill children: $\ln I = 0.5\ln\theta_1 + \nu$
+- Cobb-Douglas technology: $\ln\theta_2 = 0.8\ln\theta_1 + 0.3\ln I + \eta$
+- Two noisy tests for $\theta_1$, two noisy proxies for $I$, one noisy test for $\theta_2$
+- Compare:
+  1. OLS using the latent variables (infeasible)
+  2. OLS using the first noisy measures (naive)
+  3. IV using the second measures as instruments
+:::
+
+## Simulation Code {.scrollable}
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| code-line-numbers: "5-7|8-12|21-23"
+#| output: asis
+using Random, Statistics, LinearAlgebra, StatsPlots
+
+function simulate(N; a = 0.8, b = 0.3, σ_e = 1.0, λ = 0.8, seed = 1234)
+    rng = MersenneTwister(seed)
+    lθ1 = randn(rng, N)                                  # latent log skill
+    lI  = 0.5 .* lθ1 .+ randn(rng, N)                     # endogenous-looking investment
+    lθ2 = a .* lθ1 .+ b .* lI .+ 0.5 .* randn(rng, N)     # technology
+    M1 = lθ1 .+ σ_e .* randn(rng, N)                      # test 1 (loading = 1)
+    M2 = λ .* lθ1 .+ σ_e .* randn(rng, N)                 # test 2 (different scale)
+    J1 = lI .+ σ_e .* randn(rng, N)                       # investment proxy 1
+    J2 = 1.5 .* lI .+ σ_e .* randn(rng, N)                # investment proxy 2
+    Y  = lθ2 .+ σ_e .* randn(rng, N)                      # noisy outcome test
+    return (; lθ1, lI, lθ2, M1, M2, J1, J2, Y)
+end
+
+ols(y, X) = X \ y
+iv(y, X, Z) = (Z' * X) \ (Z' * y)                        # just-identified IV
+
+d = simulate(50_000)
+c = ones(length(d.Y))
+b_latent = ols(d.lθ2, [c d.lθ1 d.lI])
+b_ols    = ols(d.Y, [c d.M1 d.J1])
+b_iv     = iv(d.Y, [c d.M1 d.J1], [c d.M2 d.J2])
+est = round.([b_latent[2:3] b_ols[2:3] b_iv[2:3]], digits = 3)
+println("| | Latent | Naive OLS | IV |\n|---|---|---|---|")
+for (k, name) in enumerate(["Persistence \$a\$", "Investment \$b\$"])
+    println("| ", name, " | ", join(est[k, :], " | "), " |")
+end
+```
+
+. . .
+
+True values: persistence $a = 0.8$, investment $b = 0.3$. Columns: OLS on latent variables, naive OLS on noisy measures, IV.
+
+## Bias Grows with Noise
+
+```{julia}
+#| echo: true
+#| code-fold: true
+σs = 0.0:0.25:1.5
+res = map(σs) do s
+    d = simulate(50_000; σ_e = s, seed = 99)
+    c = ones(length(d.Y))
+    (ols(d.Y, [c d.M1 d.J1])[2], iv(d.Y, [c d.M1 d.J1], [c d.M2 d.J2])[2])
+end
+sig_share = 1 ./ (1 .+ collect(σs) .^ 2)   # Var(θ)/Var(M1)
+plot(sig_share, first.(res), marker = :circle, label = "OLS on noisy measures",
+     xlabel = "Signal share of test 1: Var(θ)/Var(M₁)", ylabel = "Estimated persistence",
+     legend = :bottomleft, xflip = true, size = (900, 450),
+     tickfontsize = 11, guidefontsize = 12, legendfontsize = 11,
+     left_margin = 6Plots.mm, bottom_margin = 6Plots.mm)
+plot!(sig_share, last.(res), marker = :square, label = "IV using second measure")
+hline!([0.8], linestyle = :dash, color = :black, label = "True value")
+```
+
+## What About Substitutability? {.smaller}
+
+Now generate data from a CES technology with $\phi = -0.5$ (complements, $\sigma \approx 0.67$) and fit the CES by nonlinear least squares.
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: asis
+function ces_sim(N; γ = 0.4, φ = -0.5, σ_e = 0.7, seed = 7)
+    rng = MersenneTwister(seed)
+    lθ1 = randn(rng, N); lI = 0.5 .* lθ1 .+ randn(rng, N)
+    lθ2 = (1/φ) .* log.(γ .* exp.(φ .* lI) .+ (1-γ) .* exp.(φ .* lθ1)) .+ 0.3 .* randn(rng, N)
+    M1 = lθ1 .+ σ_e .* randn(rng, N); J1 = lI .+ σ_e .* randn(rng, N)
+    return (; lθ1, lI, lθ2, M1, J1)
+end
+ces_pred(lθ, lI, γ, φ) = (1/φ) .* log.(γ .* exp.(φ .* lI) .+ (1-γ) .* exp.(φ .* lθ))
+function fit_ces(y, lθ, lI)    # grid search for nonlinear least squares
+    best = (Inf, 0.0, 0.0)
+    for γ in 0.05:0.01:0.95, φ in -2.0:0.02:0.98
+        abs(φ) < 1e-6 && continue
+        ssr = sum(abs2, y .- ces_pred(lθ, lI, γ, φ))
+        ssr < best[1] && (best = (ssr, γ, φ))
+    end
+    return (γ = best[2], φ = best[3], σ = round(1 / (1 - best[3]), digits = 2))
+end
+dc = ces_sim(5_000)
+fits = (latent = fit_ces(dc.lθ2, dc.lθ1, dc.lI), noisy = fit_ces(dc.lθ2, dc.M1, dc.J1))
+println("| Inputs | \$\\gamma\$ | \$\\phi\$ | \$\\sigma\$ |\n|---|---|---|---|")
+for (name, r) in pairs(fits)
+    println("| ", name, " | ", r.γ, " | ", r.φ, " | ", r.σ, " |")
+end
+```
+
+. . .
+
+With noisy inputs, the estimated $\phi$ moves toward zero: we **overstate** how substitutable investment and skills are. Fixing this in a nonlinear model is much harder than IV, which is the contribution of @Cunha2010.
+
+# Estimates
+
+## Cunha and Heckman (2008) {.smaller}
+
+@Cunha2008b estimate a **linear** (in logs) technology with two skills:
+$$ \ln\theta^{k}_{t+1} = \gamma^{k}_{1}\ln\theta^{N}_{t} + \gamma^{k}_{2}\ln\theta^{C}_{t} + \gamma^{k}_{3}\ln I_{t} + \eta^{k}_{t}, \quad k\in\{C,N\} $$
+
+:::{.incremental}
+- Data: Children of the NLSY79 (white males), ages 6--7 to 12--13
+- Measures: PIAT math and reading (cognitive), behavior problems subscores such as antisocial, anxious, hyperactive (noncognitive), HOME items such as books, museum trips, lessons, and family income (investment)
+- Instead of an ad hoc index of investment, they **estimate** the weights on each investment measure
+- To give skills meaningful units, they **anchor** them to adult outcomes: log earnings and high school graduation
+:::
+
+## Correcting for Measurement Error Matters {.smaller}
+
+Self-productivity estimates [@Cunha2008b, Tables 2 and 16]:
+
+| | Factor model | OLS on raw scores |
+|---|---|---|
+| Cognitive on lagged cognitive | 0.977 | 0.591 (PIAT math) |
+| Noncognitive on lagged noncognitive | 0.884 | 0.643 (antisocial score) |
+
+:::{.incremental}
+- OLS is strongly **attenuated**, just as in our simulation
+- OLS even gives a "perverse" negative effect of the HOME score on math
+:::
+
+## Cunha and Heckman (2008): Findings {.smaller}
+
+:::{.incremental}
+- Strong **self-productivity** of both skills
+- **Cross-productivity**: noncognitive skills help produce cognitive skills, but (in most specifications) not the other way around
+- **Sensitive periods** (stage-specific technology): the investment coefficient for
+  - **Cognitive** skills: about 0.11 from ages 6--7 to 8--9, then about 0.04 in later transitions
+  - **Noncognitive** skills: about 0.05, then 0.11, then 0.05
+- Sensitive periods for cognitive skills come **earlier** than for noncognitive skills
+- The relative effect of investment on the two skills depends on the **metric** (anchor) used
+:::
+
+## Cunha, Heckman, and Schennach (2010) {.smaller}
+
+@Cunha2010 estimate the **nonlinear CES** technology:
+
+:::{.incremental}
+- Two skills (cognitive, noncognitive), two stages of childhood, CNLSY data
+- Allow for measurement error in a **nonlinear** model (nonparametric identification of the factor distributions)
+- Allow investment to be endogenous
+- Anchor skills to adult outcomes
+- Key finding: substitutability between investment and current skills **decreases** in the later stage for **cognitive** skills, and is roughly constant (or slightly increasing) for **noncognitive** skills
+:::
+
+## Implications for Targeting {.smaller}
+
+:::{.incremental}
+- If $\phi$ for cognitive skills falls with age, late remediation of cognitive gaps is **expensive**
+- So for children from disadvantaged families, the efficient policy invests relatively **more early**
+- Later remediation is more promising for **noncognitive** skills
+  - e.g., mentoring and adolescent programs that work on motivation and behavior
+- This is the "no equity-efficiency trade-off" argument for early investment from lecture 6, now with estimates behind it
+:::
+
+. . .
+
+What do you think? How would your answer change if the estimated $\phi$ were biased toward zero, as in our simulation?
+
+## Attanasio, Meghir, and Nix (2020) {.smaller}
+
+@ATTANASIO2020: human capital development in **India**
+
+:::{.incremental}
+- Data: Young Lives survey, children aged 1--12
+- Estimate production functions for **cognition** and **health**
+- Measurement system for skills and investments, as above
+- Treat parental investment as **endogenous**: model investment choices as depending on skills, resources, and local prices, and use variables that shift investment but not skills directly
+- Findings:
+  - Parental investment affects cognitive development at **all ages**, but more for **younger** children
+  - Investment affects **health** only at early ages
+:::
+
+## Handling Endogenous Investment {.smaller}
+
+One common approach is a **control function** (a stylized version; $w_t$ = household resources):
+
+$$
+\begin{aligned}
+\ln I_t &= \pi_1\ln\theta_t + \pi_2 \ln w_t + \pi_3 Z_t + \nu_t \quad &\text{(investment choice)} \\
+\ln\theta_{t+1} &= f(\theta_t, I_t) + \rho\,\nu_t + \tilde\eta_t \quad &\text{(technology)}
+\end{aligned}
+$$
+
+:::{.incremental}
+- $Z_t$: things that shift investment but do not enter the technology (e.g., prices)
+- Estimate $\nu_t$ from the first equation, include it in the second
+- $\rho \neq 0$ means investment responds to unobserved shocks
+- An RCT can play the role of $Z_t$: in Colombia, @AttanasioColombia2020 use random assignment to the home-visiting program to shift investment
+:::
+
+# Identification Concerns
+
+## Normalizations Are Not Always Innocent {.smaller}
+
+:::{.incremental}
+- Factor models need normalizations: a loading of 1 and a location for each latent skill
+- Researchers often normalize **every period** (e.g., each skill has mean 0 and the first loading is 1 at every age)
+- @Agostinelli2025: in a dynamic model, re-normalizing every period is **not** innocuous
+  - It restricts how the scale of skills can change over time
+  - It can bias estimates of the technology toward particular functional forms
+- @Freyberger2021: a restriction that is a harmless normalization for one production function can be a **substantive** (and false) restriction for another
+  - Normalizing in the initial period, or through anchoring, can then lead to misspecification
+:::
+
+## Scale and Anchoring {.smaller}
+
+:::{.incremental}
+- Because test scores have no units, statements like "investment at age 6 is twice as productive as at age 10" depend on the units of $\theta$
+- **Anchoring** [@Cunha2008b; @Cunha2010]: measure skills in units of an adult outcome (e.g., log earnings)
+  - Then "productivity" means effect on adult earnings, which has meaning
+- But conclusions can still depend on **which** anchor is used
+- Lesson: read estimates of $\gamma_t$ and $\phi_t$ together with the normalization and anchor behind them
+:::
+
+## What Do We Learn from the Recent Work? {.smaller}
+
+:::{.incremental}
+- With more careful normalizations, @Agostinelli2025 find that investment around ages 5--6 is most productive for cognitive skills, especially for children with **lower** initial skills
+- Common themes across the literature:
+  - Measurement error is large; correcting it changes conclusions
+  - Investment matters more at **younger** ages, especially for cognitive skills
+  - Experiments are valuable inputs to estimating the technology, not just program evaluations
+:::
+
+## Exercise: Scale Matters {.smaller}
+
+Two children take a test at ages 6 and 8:
+
+| | Age 6 | Age 8 |
+|---|---|---|
+| Child A | 2 | 4 |
+| Child B | 6 | 9 |
+
+:::{.incremental}
+1. Which child gained more? Use the raw score.
+2. Now use $\ln(\text{score})$. Which child gained more?
+3. Now use $\text{score}^2$. Which child gained more?
+4. What does this tell you about "value-added" comparisons? How does anchoring to adult earnings help?
+:::
+
+# Synthesis
+
+## Key Takeaways {.smaller}
+
+:::{.incremental}
+1. Estimating the technology of skill formation requires solving three problems: **latent skills**, **arbitrary scales**, and **endogenous investment**
+2. **Multiple measures** solve measurement error: a second measure works as an instrument; factor models generalize this
+3. Ignoring measurement error **attenuates** persistence and can distort the estimated **substitutability**
+4. Estimates point to strong self-productivity and **earlier sensitive periods for cognitive** than for noncognitive skills
+5. Substitutability for cognitive skills **declines with age**: invest early, especially for disadvantaged children
+6. Results depend on **normalizations** and **anchors**: these choices deserve as much scrutiny as the data
+:::
+
+## References {.smaller .scrollable}
+
+::: {#refs}
+:::

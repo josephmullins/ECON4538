@@ -142,6 +142,11 @@
       margin-right: 0; 
     }
   </style>
+  <script>
+  // Make MathJax use its own TeX web fonts rather than locally installed STIX fonts,
+  // which lack glyphs for \mathcal and \underbrace (they render as empty boxes).
+  window.MathJax = { "HTML-CSS": { availableFonts: [], preferredFont: null, webFont: "TeX" } };
+  </script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -163,7 +168,7 @@
 <h2>Facts About Inequality</h2>
 <div>
 <ul>
-<li class="fragment">Some basic facts about labor market inequality <span class="citation" data-cites="Heathcote2023">Heathcote et al. (<a href="#/citations" role="doc-biblioref" onclick="">2023</a>)</span></li>
+<li class="fragment">Some basic facts about labor market inequality <span class="citation" data-cites="Heathcote2023">(<a href="#/citations" role="doc-biblioref" onclick="">Heathcote et al. 2023</a>)</span></li>
 <li class="fragment">Thinking through policy implications (<em>redistribution</em> vs <em>insurance</em>)</li>
 <li class="fragment">Estimating income processes
 <ul>

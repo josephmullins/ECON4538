@@ -10,9 +10,11 @@ where
 
 $$ \zeta_{it} = \rho \zeta_{it-1} + \eta_{it} $$
 
-and $\alpha_{i}$, $\epsilon_{it}$, and $\eta_{it}$ are iid, with $\epsilon_{it}\sim N(0,\sigma_{\epsilon}^2)$, $\eta_{it}\sim N(0,\sigma^2_{\eta})$. Let $\sigma^2_{\alpha} = \mathbb{V}[\alpha_{i}]$ and let $\mathbb{E}[\alpha_{i}]=0$ such that $\mathbb{E}[y_{it}] = \mu_{t}$.
+and $\alpha_{i}$, $\epsilon_{it}$, and $\eta_{it}$ are iid, with $\epsilon_{it}\sim N(0,\sigma_{\epsilon}^2)$, $\eta_{it}\sim N(0,\sigma^2_{\eta})$. Let $\sigma^2_{\alpha} = \mathbb{V}[\alpha_{i}]$ and let $\mathbb{E}[\alpha_{i}]=0$ such that $\mathbb{E}[y_{it}] = \mu_{t}$. Here $y_{it}$ is log income and $\mu_{t}$ is the (deterministic) age profile of mean log income.
 
-You are going to estimate the parameters of this income process using the [psid data](https://github.com/josephmullins/ECON4538/blob/main/data/abb_aea_data.csv) from [Recitation 4](../recitations/recitation-4.qmd) and repeat the welfare analysis from that session.
+**Stationarity assumption.** Assume that the persistent component starts from its stationary distribution: $\zeta_{i0}$ is drawn from $N(0, \sigma^2_{\eta}/(1-\rho^2))$. This implies that $\mathbb{V}[\zeta_{it}] = \sigma^2_{\eta}/(1-\rho^2)$ for every $t$, so variances and covariances do not depend on age. (This is a simplification: Recitation 4 showed that the variance of log income actually rises with age. We make the assumption so that we can pool all ages when computing moments.)
+
+You are going to estimate the parameters of this income process using the [psid data](https://github.com/josephmullins/ECON4538/blob/main/data/abb_aea_data.csv) from [Recitation 4](../recitations/recitation-4.qmd) and repeat the welfare analysis from that session. Use the same cleaning steps as Recitation 4: drop household-years with income below \$1,000 and measure income in thousands of dollars. The function `load_psid` in [`income_tools.jl`](https://github.com/josephmullins/ECON4538/blob/main/recitations/income_tools.jl) does both.
 
 
 1. Repeating the analysis from class, show that the following relationships hold under the assumptions above:
@@ -29,24 +31,34 @@ $$
 Then you can assume you know $\rho$, use this to get $\mathbb{V}[\zeta_{it}]$, then $\sigma^2_{\alpha}$, then finally $\sigma^2_{\epsilon}$.
 (**this question requires only math**)
 
-3. Following the steps in Recitation 4, use your answers to question 2 to construct estimates of the parameters of the income process, $(\mu,\rho,\sigma^2_{\epsilon},\sigma^2_{\eta},\sigma^2_{\alpha})$. **Note**: you will need to adjust the strategy above to account for the fact that the PSID only has data every two years. 
+3. Following the steps in Recitation 4, use your answers to question 2 to construct estimates of the parameters of the income process: the age profile $\{\mu_{t}\}$ (mean log income at each age from 25 to 64) and $(\rho,\sigma^2_{\epsilon},\sigma^2_{\eta},\sigma^2_{\alpha})$. **Note**: you will need to adjust the strategy above to account for the fact that the PSID only has data every two years. 
 (**this question requires code**)
+
+    **Check your answer**: $\rho$ should be between 0 and 1, and all three variance estimates should be positive. The model-implied covariances $\sigma^2_{\alpha}+\rho^{s}\mathbb{V}[\zeta_{it}]$ should exactly match the data at the lags you used for estimation (plot them, as in Recitation 4). If $\rho$ is negative or above one, check which lags you are differencing.
 
 4. How does the estimate of $\rho$ compare to the estimate from Recitation 4? Please provide some intuition for why.
 
-5. (**extra credit, 3%**) Repeat the analysis of [Recitation 4](../recitations/recitation-4.qmd) (where we introduced a progressive tax) with this new income process and comment on differences you find in overall welfare impacts and differences in the insurance vs redistribution decomposition. You should use the function below, which uses our previous function `tauchen.jl` to construct a transition matrix $\Pi$ to approximate the income process above, assuming that $\alpha_{i}$ can take one of three evenly spaced grid points with equal probability, and assuming that $\epsilon_{it}$ is *measurement error* (i.e. does not reflect real changes in income).
+5. (**extra credit, 3%**) Repeat the analysis of [Recitation 4](../recitations/recitation-4.qmd) (where we introduced a progressive tax) with this new income process and comment on differences you find in overall welfare impacts and differences in the insurance vs redistribution decomposition. You should use the function below, which uses the `tauchen` function from [`income_tools.jl`](https://github.com/josephmullins/ECON4538/blob/main/recitations/income_tools.jl) to construct a transition matrix $\Pi$ to approximate the income process above, assuming that $\alpha_{i}$ can take one of three evenly spaced grid points with equal probability, and assuming that $\epsilon_{it}$ is *measurement error* (i.e. does not reflect real changes in income). Note that $\sigma$ here is the standard deviation of the innovation $\eta$, not of $\zeta$.
+
+    Because $\alpha_{i}$ never changes, $\Pi$ is block-diagonal: a household never moves between $\alpha$ types. This means `solve_steady_state(Π)` does **not** give the right initial distribution (there is a separate stationary distribution for each type, and the eigenvalue one is repeated three times). Instead, the function also returns the correct initial distribution `pi_star`: each $\alpha$ type has probability $1/3$, and within each type $\zeta$ is drawn from the stationary distribution of the AR(1) chain. Use `pi_star` wherever Recitation 4 used the stationary distribution.
+
+    **Check your answer**: `pi_star` should sum to one, and each block of $N$ entries (one block per $\alpha$ type) should sum to $1/3$. Your $\lambda$ should satisfy the resource constraint: average net income should equal average gross income at age 25 under `pi_star`. And your decomposition should satisfy $1+\omega = (1+\omega_{I})(1+\omega_{R})$.
 ```{julia}
-using LinearAlgebra
+include("../recitations/income_tools.jl")   #<- loads tauchen, solve_steady_state, etc.
 
 function approx_income_process(N, ρ, σ, σ_α)
     # use tauchen method to approximate the AR(1) component
-    egrid, Π = tauchen(N, ρ, σ)
+    egrid, Π_AR = tauchen(N, ρ, σ)
     agrid = [-sqrt(3/2)*σ_α, 0., sqrt(3/2)*σ_α]
     # construct a larger grid of α .+ egrid for each α
+    # (ordering: all ζ states for the first α, then the second α, etc.)
     grid = [α + e for α in agrid for e in egrid]
     # create a larger transition matrix where the
     # probability of moving from α to any other α' is zero
-    Π = kron(I(3),Π)
-    return grid, Π
+    Π = kron(I(3), Π_AR)
+    # initial distribution: each α with probability 1/3, and ζ drawn
+    # from the stationary distribution of the AR(1) chain
+    pi_star = kron(fill(1/3, 3), solve_steady_state(Π_AR))
+    return grid, Π, pi_star
 end
 ```

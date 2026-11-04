@@ -9,3 +9,8 @@ All submissions should be made on Canvas in `pdf` or `html` format using a `quar
 | Assignment 1 | [link](assignments/assignment-1.qmd) | 
 | Assignment 2 | [link](assignments/assignment-2.qmd) | 
 | Assignment 3 | [link](assignments/assignment-3.qmd) | 
+| Assignment 4 | [link](assignments/assignment-4.qmd) | 
+| Assignment 5 | [link](assignments/assignment-5.qmd) | 
+| Assignment 6 | [link](assignments/assignment-6.qmd) | 
+
+Practice questions for the exams are on the [Exercises](exercises.qmd) page.

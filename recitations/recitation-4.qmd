@@ -5,6 +5,7 @@ bibliography: ../reading_list.bib
 
 ```{julia}
 using DataFrames, DataFramesMeta, CSV, StatsPlots, LinearAlgebra, Distributions, StatsBase
+include("income_tools.jl")   #<- shared code from recitations 2 and 3
 ```
 
 # Calibrating Income Processes from Data
@@ -13,23 +14,31 @@ In [recitation 3](../recitations/recitation-3.qmd) we studied the welfare implic
 
 ## Loading and Exploring the Data
 
-The data come from the PSID and contain information on income over the life cycle. Let's start by loading the data and examining some basic patterns.
+The data come from the PSID and contain information on household income $y$ (in dollars) over the life cycle. Let's start by loading the data and examining some basic patterns.
+
+Two cleaning steps matter a lot here:
+
+1. **Trimming.** A small number of household-years report income of \$1 (or close to it). In logs these observations are extreme outliers: $\log(1) = 0$ while median log income is about 11. Even a few dozen of them substantially inflate the variance of log income. We use a simple rule: **drop household-years with income below \$1,000**. This removes only a few dozen of the roughly 19,000 observations.
+2. **Units.** We measure income in **thousands of dollars**. This has no effect on variances or covariances of log income, but it matters for the model: the asset grid below is also in thousands of dollars, and the two must be in the same units.
 
 ```{julia}
-d = CSV.read("../data/abb_aea_data.csv", DataFrame)
-d[!,:logy] = log.(d.y);
-
+d = @chain CSV.read("../data/abb_aea_data.csv", DataFrame) begin
+    @subset :y .>= 1000          #<- trimming rule: drop incomes below $1,000
+    @transform :y = :y ./ 1000   #<- income in thousands of dollars
+    @transform :logy = log.(:y)
+end;
 ```
+
+The function `load_psid` in `income_tools.jl` performs exactly these steps. **Exercise**: re-run the analysis below without the trimming step and see how much the variance of log income and the estimated persistence change.
 
 First, let's look at how the variance of log income evolves with age:
 
 ```{julia}
 var_by_age = @chain d begin
-    @subset .!ismissing.(:y)
     groupby(:age)
     @combine begin
-        :var_logy = var(log.(:y))
-        :mean_logy = mean(log.(:y))
+        :var_logy = var(:logy)
+        :mean_logy = mean(:logy)
         :n = length(:y)
     end
     @subset :n .> 100
@@ -47,7 +56,7 @@ The variance of log income increases substantially over the life cycle. This is 
 
 ## Calculating Autocovariances
 
-To understand the persistence of income shocks, we need to calculate the covariance of income at different lags. The code below constructs forward lags and calculates covariances.
+To understand the persistence of income shocks, we need to calculate the covariance of income at different lags. The code below constructs forward lags and calculates covariances (`forward_lag` is also saved in `income_tools.jl`).
 
 ```{julia}
 # construct forward-lags
@@ -232,98 +241,7 @@ Now we'll use the calibrated income process to evaluate the welfare effects of p
 
 ## Model Setup
 
-```{julia}
-# utility
-utility(c, σ) = c^(1 - σ) / (1 - σ)
-
-# tauchen method
-function tauchen(N, ρ, σ)
-    # Unconditional standard deviation of the process
-    σ_y = σ / sqrt(1 - ρ^2)
-
-    # Create the grid
-    y_max = 3. * σ_y
-    y_min = - 3. * σ_y
-    grid = range(y_min, y_max, length=N)
-
-    # Step size
-    step = (y_max - y_min) / (N - 1)
-
-    # Initialize transition matrix
-    Π = zeros(N, N)
-
-    # Standard normal distribution
-    d = Normal(0, 1)
-
-    # Fill in the transition matrix
-    for i in 1:N
-        for j in 1:N
-            if j == 1
-                # Probability of transitioning to the lowest state
-                Π[j, i] = cdf(d, (grid[j] - ρ * grid[i] + step/2) / σ)
-            elseif j == N
-                # Probability of transitioning to the highest state
-                Π[j, i] = 1 - cdf(d, (grid[j] - ρ * grid[i] - step/2) / σ)
-            else
-                # Probability of transitioning to intermediate states
-                Π[j, i] = cdf(d, (grid[j] - ρ * grid[i] + step/2) / σ) -
-                         cdf(d, (grid[j] - ρ * grid[i] - step/2) / σ)
-            end
-        end
-    end
-    return collect(grid), Π
-end
-
-# solve the model
-function solve_model(p)
-    (;T, Π, asset_grid) = p
-    K_a = length(asset_grid)
-    K_y = size(Π, 1)
-    V = zeros(K_y, K_a, T+1)
-    A = zeros(K_y, K_a, T)
-    for t in reverse(1:T)
-        iterate_value_function!(p, V, A, t)
-    end
-    return (;V, A)
-end
-
-function iterate_value_function!(p, V, A, t)
-    for ai in axes(V, 2), yi in axes(V, 1)
-        v, a_next = solve_value(ai, yi, V, p, t)
-        V[yi, ai, t] = v
-        A[yi, ai, t] = a_next
-    end
-end
-
-function solve_value(ai, yi, V, p, t)
-    (;σ, β, Π, r, asset_grid, income_grid, net_income) = p
-    a = asset_grid[ai]
-    y = exp(income_grid[yi, t])
-    y_net = net_income(y)
-    vmax = -Inf
-    amax = 0
-    for ai_next in eachindex(asset_grid)
-        a_next = asset_grid[ai_next]
-        c = y_net + a - a_next/(1+r)
-        if c > 0
-            @views v = utility(c, σ) + β * dot(Π[:, yi], V[:, ai_next, t+1])
-            if v > vmax
-                vmax = v
-                amax = a_next
-            end
-        end
-    end
-    return vmax, amax
-end
-```
-
-## Tax Functions
-
-```{julia}
-no_tax(x) = x
-
-progressive_tax(x, λ, τ) = λ * x^(1-τ)
-```
+We use exactly the same model and code as in recitation 3: the functions `tauchen`, `solve_model`, the tax functions `no_tax` and `progressive_tax`, `solve_steady_state`, and `solve_lambda` were all loaded from `income_tools.jl` at the top of this page. Take a look at that file if you need a reminder of how they work.
 
 ## Setting Up the Calibrated Model
 
@@ -351,7 +269,7 @@ end
 plot(age_start:(age_start+T-1), exp.(income_grid[1, :]),
     label="Lowest state",
     xlabel="Age",
-    ylabel="Income (thousands)",
+    ylabel="Income (thousands of dollars)",
     title="Income Paths by Shock State",
     linewidth=2)
 plot!(age_start:(age_start+T-1), exp.(income_grid[4, :]),
@@ -364,10 +282,12 @@ plot!(age_start:(age_start+T-1), exp.(income_grid[N_states, :]),
 
 ## Model Parameters
 
+Since income is measured in thousands of dollars, so is the asset grid. Mean income is roughly \$50-85k per year over the life cycle, and households in the highest income states can accumulate a lot of wealth, so we let assets range from 0 to \$2.5 million. We place more grid points near zero, where the borrowing constraint matters most, by squaring an evenly spaced grid. (**Exercise**: check that the welfare results below barely change if you increase the upper bound or the number of grid points.)
+
 ```{julia}
 p = (;
     T,
-    asset_grid = LinRange(0, 200, 100),
+    asset_grid = 2500 .* LinRange(0, 1, 200).^2,
     income_grid,
     β = 0.96,
     r = 0.04,
@@ -379,31 +299,30 @@ p = (;
 
 ## Calibrating Progressive Taxation
 
-We need to choose $\lambda$ to ensure budget balance:
+We need to choose $\lambda$ to ensure budget balance: average net income must equal average gross income. Since initial shocks are drawn from the stationary distribution $\pi^*$, the distribution of $\varepsilon$ is $\pi^*$ at *every* age. But mean income $\mu_{t}$ changes with age, and with a progressive tax the same $\lambda$ cannot balance the budget at every age: a $\lambda$ chosen for 25-year-olds would take resources away from higher-earning 45-year-olds. So we choose a separate $\lambda_{t}$ for each age, and let net income depend on age:
+
+$$ \tilde{y}_{t} = \lambda_{t}y^{1-\tau},\qquad \lambda_{t} = \frac{\sum_{y}\pi^*(y)\,y}{\sum_{y}\pi^*(y)\,y^{1-\tau}}\ \text{evaluated at age-}t\text{ incomes}.$$
 
 ```{julia}
-function solve_steady_state(Π)
-    K = size(Π, 2)
-    vals, e = eigen(Π)
-    return e[:, K] ./ sum(e[:, K])
-end
-
-function solve_lambda(τ, ygrid, pi_star)
-    return dot(pi_star, ygrid) / dot(pi_star, ygrid.^(1-τ))
-end
-
 # Solve for stationary distribution
 pi_star = solve_steady_state(p.Π)
 
 # Choose progressivity
 τ = 0.2
 
-# Solve for λ using income in first period
-λ = solve_lambda(τ, exp.(income_grid[:, 1]), pi_star)
+# Solve for λ_t at each age
+λ_t = [solve_lambda(τ, exp.(income_grid[:, t]), pi_star) for t in 1:T]
+
+# Check budget balance at every age: average net income / average gross income
+budget = [dot(pi_star, progressive_tax.(exp.(income_grid[:, t]), λ_t[t], τ)) /
+          dot(pi_star, exp.(income_grid[:, t])) for t in 1:T]
 
 println("Tax progressivity parameter: τ = ", τ)
-println("Tax scale parameter: λ = ", round(λ, digits=3))
+println("Range of λ_t over the life cycle: ", round.(extrema(λ_t), digits=3))
+println("Net / gross income, min and max over ages: ", round.(extrema(budget), digits=6))
 ```
+
+**Exercise**: what happens to the welfare results below if you instead use a single $\lambda$ calibrated to age-25 incomes? Check the budget balance at each age in that case.
 
 ## Solving Both Models
 
@@ -411,7 +330,8 @@ println("Tax scale parameter: λ = ", round(λ, digits=3))
 println("Solving model without taxes...")
 model0 = solve_model(p)
 
-p_tax = (;p..., net_income = x -> progressive_tax(x, λ, τ))
+# net income now depends on age t as well as income
+p_tax = (;p..., net_income = (x, t) -> progressive_tax(x, λ_t[t], τ))
 
 println("Solving model with progressive taxes...")
 model1 = solve_model(p_tax)
@@ -440,50 +360,37 @@ plot!(model1.V[:, 1, 1],
 
 ## Welfare Decomposition
 
-Following recitation 3, we decompose the welfare gain into insurance and redistribution components:
+Following recitation 3 (and the notation from Lecture 2), we decompose the welfare gain $1+\omega$ into an insurance component $1+\omega_{I}$ and a redistribution component $1+\omega_{R}$, with $1+\omega = (1+\omega_{I})(1+\omega_{R})$:
 
 ```{julia}
 (;σ, β) = p
 
-# Calculate average income at period 1
-C = dot(pi_star, exp.(p.income_grid[:, 1]))
-
-# Certainty equivalents by state
-cbar0 = ((1-σ) * (1-β) / (1-β^T) * model0.V[:, 1, 1]).^(1/(1-σ))
-cbar1 = ((1-σ) * (1-β) / (1-β^T) * model1.V[:, 1, 1]).^(1/(1-σ))
+# Certainty equivalents by initial income state
+cbar0 = cert_equiv(model0.V[:, 1, 1], p)
+cbar1 = cert_equiv(model1.V[:, 1, 1], p)
 
 # Average certainty equivalents
 Cbar0 = dot(pi_star, cbar0)
 Cbar1 = dot(pi_star, cbar1)
 
-# Aggregate welfare
+# Utilitarian welfare
 W0 = dot(pi_star, model0.V[:, 1, 1])
 W1 = dot(pi_star, model1.V[:, 1, 1])
 
-# Value under perfect insurance
-V_cert(x) = (1-β^T) / (1-β) * utility(x, σ)
-
 # Decomposition
 ω = (W1/W0)^(1/(1-σ)) - 1
-γ = (V_cert(Cbar1) / V_cert(Cbar0))^(1/(1-σ)) - 1
-α = ((W1 / V_cert(Cbar1)) / (W0 / V_cert(Cbar0)))^(1/(1-σ)) - 1
+ω_I = Cbar1 / Cbar0 - 1
+ω_R = ((W1 / V_cert(Cbar1, p)) / (W0 / V_cert(Cbar0, p)))^(1/(1-σ)) - 1
 
 println("\nWelfare Decomposition:")
 println("=" ^ 50)
-println("Total welfare gain:        ", round((1+ω-1)*100, digits=2), "%")
-println("Insurance component:       ", round((1+γ-1)*100, digits=2), "%")
-println("Redistribution component:  ", round((1+α-1)*100, digits=2), "%")
-println("\nVerification: (1+γ)(1+α) = ", round((1+γ)*(1+α), digits=4), " ≈ ", round(1+ω, digits=4))
-
-# Display as table
-results = DataFrame(
-    Component = ["Total (1+ω)", "Insurance (1+γ)", "Redistribution (1+α)"],
-    Value = [1+ω, 1+γ, 1+α],
-    Percentage = [ω*100, γ*100, α*100]
-)
-display(results)
+println("Total welfare gain (ω):         ", round(ω*100, digits=2), "%")
+println("Insurance component (ω_I):      ", round(ω_I*100, digits=2), "%")
+println("Redistribution component (ω_R): ", round(ω_R*100, digits=2), "%")
+println("\nVerification: (1+ω_I)(1+ω_R) = ", round((1+ω_I)*(1+ω_R), digits=4), " ≈ ", round(1+ω, digits=4))
 ```
 
+Compare these magnitudes with recitation 3. Why are the gains from progressive taxation so much larger with the calibrated income process? (Hint: compare the estimated unconditional variance of log income here with the one we assumed in recitation 3.)
 
 ## Additional Exercise
 
@@ -500,19 +407,14 @@ for (i, τ_val) in enumerate(τ_values)
         continue
     end
 
-    λ_val = solve_lambda(τ_val, exp.(income_grid[:, 1]), pi_star)
-    p_temp = (;p..., net_income = x -> progressive_tax(x, λ_val, τ_val))
+    λ_val = [solve_lambda(τ_val, exp.(income_grid[:, t]), pi_star) for t in 1:T]
+    p_temp = (;p..., net_income = (x, t) -> progressive_tax(x, λ_val[t], τ_val))
     model_temp = solve_model(p_temp)
 
-    W_temp = dot(pi_star, model_temp.V[:, 1, 1])
-    cbar_temp = ((1-σ) * (1-β) / (1-β^T) * model_temp.V[:, 1, 1]).^(1/(1-σ))
-    Cbar_temp = dot(pi_star, cbar_temp)
+    # welfare_decomposition (from income_tools.jl) repeats the steps above
+    res = welfare_decomposition(model0.V[:, 1, 1], model_temp.V[:, 1, 1], pi_star, p)
 
-    ω_temp = (W_temp/W0)^(1/(1-σ)) - 1
-    γ_temp = (V_cert(Cbar_temp) / V_cert(Cbar0))^(1/(1-σ)) - 1
-    α_temp = ((W_temp / V_cert(Cbar_temp)) / (W0 / V_cert(Cbar0)))^(1/(1-σ)) - 1
-
-    welfare_results[i, :] = [ω_temp*100, γ_temp*100, α_temp*100]
+    welfare_results[i, :] = [res.ω*100, res.ω_I*100, res.ω_R*100]
 end
 
 plot(τ_values, welfare_results[:, 1],

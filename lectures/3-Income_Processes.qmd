@@ -4,6 +4,7 @@ bibliography: ../reading_list.bib
 format:
   revealjs:
     theme: solarized
+    include-in-header: mathjax-fonts.html
     transition: slide
     chalkboard:
         theme: whiteboard
@@ -18,12 +19,12 @@ execute:
 ## Overview
 
 :::{.incremental}
-- In previous lectures: documented inequality trends and welfare implications
-- Today: understand the **stochastic process** generating earnings
+- So far: documented inequality trends and their welfare implications
+- Today: the **stochastic process** generating earnings
 - Key questions:
   - How persistent are earnings shocks?
   - How can we separate earnings volatility from earnings risk?
-- As we now know, the answers crucially determine how much we value insurance.
+- The answers determine how much we value insurance
 :::
 
 # Primer: Time Series Processes
@@ -33,12 +34,21 @@ execute:
 A **stochastic process** describes how a variable evolves randomly over time.
 
 For earnings, we might write:
-$$y_{it} = f(y_{it-1}, y_{it-2}, \ldots, \varepsilon_{it})$$
+$$y_{it} = f(y_{it-1}, y_{it-2}, \ldots, \text{shock}_{it})$$
 
 :::{.incremental}
 - $y_{it}$: person $i$'s log earnings at time $t$
-- $\varepsilon_{it}$: random shock (the "new news" at time $t$)
+- $\text{shock}_{it}$: random shock (the "new news" at time $t$)
 - Different processes = different ways shocks affect future earnings
+:::
+
+## Notation
+
+We use the same notation for the whole lecture:
+
+:::{.incremental}
+- $\eta_{it}$: innovation to a **permanent or persistent** component, variance $\sigma^2_{\eta}$
+- $\varepsilon_{it}$: **transitory** shock, variance $\sigma^2_{\varepsilon}$
 :::
 
 ## White Noise (i.i.d. Process)
@@ -47,7 +57,7 @@ The simplest process: **white noise**
 
 $$y_{it} = \varepsilon_{it}$$
 
-where $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma^2)$
+where $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma^2_{\varepsilon})$
 
 :::{.incremental}
 - Each period is **independent** of the past
@@ -60,14 +70,14 @@ where $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma^2)$
 
 A **random walk** accumulates all past shocks:
 
-$$y_{it} = y_{it-1} + \varepsilon_{it}$$
+$$y_{it} = y_{it-1} + \eta_{it}$$
 
-Expanding backward: $y_{it} = y_{i0} + \sum_{s=1}^t \varepsilon_{is}$
+Expanding backward: $y_{it} = y_{i0} + \sum_{s=1}^t \eta_{is}$
 
 :::{.incremental}
 - Today's value = yesterday's value + new shock
 - Shocks are **permanent** (never fade)
-- Variance grows over time: $\text{var}(y_{it}) = t\sigma^2$
+- Variance grows over time: $\text{var}(y_{it}) = \text{var}(y_{i0}) + t\sigma^2_{\eta}$
 - Example: stock prices, permanent disability
 :::
 
@@ -93,7 +103,9 @@ for i in 1:N
 end
 
 plot(1:T, y, linewidth=2, xlabel="Time", ylabel="Log Earnings",
-     title="Random Walk: Paths Diverge", legend=false, alpha=0.7)
+     title="Random Walk: Paths Diverge", legend=false, alpha=0.7,
+     size=(900,400), tickfontsize=10, guidefontsize=11, titlefontsize=12,
+     left_margin=5Plots.mm, bottom_margin=4Plots.mm)
 ```
 
 Notice: paths **diverge** over time.
@@ -102,14 +114,14 @@ Notice: paths **diverge** over time.
 
 An **autoregressive** process with mean reversion:
 
-$$y_{it} = \rho y_{it-1} + \varepsilon_{it}$$
+$$y_{it} = \rho y_{it-1} + \eta_{it}$$
 
 where $|\rho| < 1$ (typically $0 < \rho < 1$ for earnings)
 
 :::{.incremental}
 - Shocks **fade over time** at rate $\rho$
 - After $k$ periods, effect is $\rho^k$ of original shock
-- Long-run variance: $\text{var}(y_{it}) = \frac{\sigma^2}{1-\rho^2}$ 
+- Long-run variance: $\text{var}(y_{it}) = \frac{\sigma^2_{\eta}}{1-\rho^2}$ 
 - Example: temporary illness, bonus, overtime
 :::
 
@@ -131,7 +143,9 @@ for i in 1:N
 end
 
 plot(1:T, y_ar, linewidth=2, xlabel="Time", ylabel="Log Earnings",
-     title="AR(1) with ρ=0.7: Paths Stabilize", legend=false, alpha=0.7)
+     title="AR(1) with ρ=0.7: Paths Stabilize", legend=false, alpha=0.7,
+     size=(900,400), tickfontsize=10, guidefontsize=11, titlefontsize=12,
+     left_margin=5Plots.mm, bottom_margin=4Plots.mm)
 ```
 
 Notice: paths **fluctuate** but don't diverge.
@@ -144,7 +158,7 @@ Notice: paths **fluctuate** but don't diverge.
 **Random Walk**
 
 - Shocks permanent
-- Variance grows: $t\sigma^2$
+- Variance grows: $t\sigma^2_{\eta}$
 - No mean reversion
 - Paths diverge
 :::
@@ -172,8 +186,8 @@ $$y_{it} = \varepsilon_{it} + \theta \varepsilon_{it-1}$$
 - Shock affects current period AND next period
 - After that, completely forgotten
 - Example: multi-period bonus, temporary layoff
-- $\theta > 0$: positive shock today → higher earnings next year too
-- $\theta < 0$: positive shock today → lower earnings next year (compensation/smoothing)
+- $\theta > 0$: a positive shock also raises next year's earnings
+- $\theta < 0$: a positive shock lowers next year's earnings (smoothing)
 :::
 
 ## MA(1) vs AR(1): Key Difference
@@ -188,7 +202,20 @@ $$y_{it} = \varepsilon_{it} + \theta \varepsilon_{it-1}$$
 - Shock today → affects next period
 - Then completely forgotten
 
-For earnings growth $g_{it} = \Delta y_{it}$, MA(1) creates correlation between $g_{it}$ and $g_{it-1}$, but $g_{it}$ and $g_{it-2}$ are uncorrelated!
+## MA(1) and Earnings Growth {.smaller}
+
+Suppose $y_{it} = \varepsilon_{it} + \theta\varepsilon_{it-1}$. Earnings growth $g_{it} = \Delta y_{it}$ is:
+$$ g_{it} = \varepsilon_{it} + (\theta - 1)\varepsilon_{it-1} - \theta\varepsilon_{it-2} $$
+
+:::{.incremental}
+- Differencing an MA(1) gives an **MA(2)** in growth rates
+- $\text{cov}(g_{it},g_{it-1}) = -(1-\theta)^2\sigma^2_{\varepsilon} < 0$
+- $\text{cov}(g_{it},g_{it-2}) = -\theta\sigma^2_{\varepsilon}$: **not zero** unless $\theta = 0$
+- $\text{cov}(g_{it},g_{it-j}) = 0$ for $j\geq 3$
+- Only if the transitory shock is i.i.d. ($\theta=0$) are $g_{it}$ and $g_{it-2}$ uncorrelated
+- Rule of thumb: an MA($q$) transitory component shows up as nonzero growth autocovariances up to lag $q+1$
+- Adding a random walk (Exercise 4) changes the variance of $g_{it}$, but not these autocovariances. Why?
+:::
 
 ## Why This Matters for Earnings
 
@@ -218,44 +245,40 @@ Different processes → different implications:
 
 Suppose individual $i$'s log earnings follow:
 
-$$y_{it} = y_{it-1} + \varepsilon_{it}$$
+$$y_{it} = y_{it-1} + \eta_{it}$$
 
-where $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma^2)$.
-
-**Questions**:
+where $\eta_{it} \sim$ i.i.d. $N(0, \sigma^2_{\eta})$. **Questions**:
 
 a) What is the variance of $y_{it}$ as a function of time?
 b) If everyone starts at $y_{i0} = 0$, how does inequality evolve?
-c) What is the covariance at different lags? What about in growth terms?
+c) What is the covariance at different lags? In growth rates?
 d) How could we estimate this process?
 
 ## Exercise 2: AR(1) Process
 
 Now suppose:
 
-$$y_{it} = \rho y_{it-1} + \varepsilon_{it}$$
+$$y_{it} = \rho y_{it-1} + \eta_{it}$$
 
-where $|\rho| < 1$ and $\varepsilon_{it} \sim$ i.i.d. $N(0, \sigma_{\varepsilon}^2)$.
-
-**Questions**:
+where $|\rho| < 1$ and $\eta_{it} \sim$ i.i.d. $N(0, \sigma_{\eta}^2)$. **Questions**:
 
 a) What is the long-run variance of $y_{it}$?
-b) How does inequality evolve compared to the random walk?
+b) How does inequality evolve compared to a random walk?
 c) What is the covariance at different lags?
 d) How could we estimate?
 
-## Exercise 2:
+## Exercise 2: Solution Steps {.smaller}
 
 Steps:
 
 :::{.incremental}
-1. Show that $\mathbb{C}(y_{it+1},y_{it}) = \mathbb{C}(\rho y_{it}+\varepsilon_{it+1},y_{it}) = \rho \mathbb{V}[y_{it}]$.
+1. Show that $\mathbb{C}(y_{it+1},y_{it}) = \mathbb{C}(\rho y_{it}+\eta_{it+1},y_{it}) = \rho \mathbb{V}[y_{it}]$.
 2. Similarly show that $\mathbb{C}(y_{it+2},y_{it}) = \rho^{2}\mathbb{V}[y_{it}]$
 3. Therefore
 $$ \rho = \frac{\mathbb{C}(y_{it+2},y_{it})}{\mathbb{C}(y_{it+1},y_{it})} $$
 4. Estimate by plugging in sample covariances.
-5. Similarly, since $\mathbb{V}[y_{it+1}] = \rho^2\mathbb{V}[y_{it}] + \sigma^2_{\varepsilon}$, we get: 
-$$ \sigma^2_{\varepsilon} = \mathbb{V}[y_{it+1}] - \rho^2\mathbb{V}[y_{it}]$$
+5. Similarly, since $\mathbb{V}[y_{it+1}] = \rho^2\mathbb{V}[y_{it}] + \sigma^2_{\eta}$, we get: 
+$$ \sigma^2_{\eta} = \mathbb{V}[y_{it+1}] - \rho^2\mathbb{V}[y_{it}]$$
 :::
 
 
@@ -263,11 +286,9 @@ $$ \sigma^2_{\varepsilon} = \mathbb{V}[y_{it+1}] - \rho^2\mathbb{V}[y_{it}]$$
 
 Now add individual-specific fixed effects:
 
-$$y_{it} = \alpha_i + \zeta_{it} + \varepsilon_{it} $$
+$$y_{it} = \alpha_i + \xi_{it} + \varepsilon_{it} $$
 
-where $\zeta_{it} = \rho \zeta_{it} + \epsilon_{it}$ and $\epsilon_{it}\sim\text{ i.i.d. }N(0,\sigma^2_{\epsilon})$
-
-**Questions**:
+where $\xi_{it} = \rho \xi_{i,t-1} + \eta_{it}$, $\eta_{it}\sim\text{ i.i.d. }N(0,\sigma^2_{\eta})$, and $\varepsilon_{it}\sim\text{ i.i.d. }N(0,\sigma^2_{\varepsilon})$. **Questions**:
 
 a) What determines long-run inequality in this model?
 b) What is the covariance at different lags?
@@ -280,6 +301,8 @@ To think about:
 
 $$y_{it} = p_{it} + \varepsilon_{it} + \theta \varepsilon_{i,t-1}$$
 
+where $p_{it} = p_{i,t-1} + \eta_{it}$, with $\eta_{it}$ and $\varepsilon_{it}$ i.i.d. and independent of each other.
+
 a) What is the covariance in growth rates?
 b) How can we estimate this model?
 
@@ -289,7 +312,7 @@ Consider a model with both components:
 
 $$y_{it} = p_{it} + e_{it}$$
 
-where $p_{it} = p_{it-1} + \zeta_{it}$ and $e_{it} = \theta e_{it-1} + \varepsilon_{it}$
+where $p_{it} = p_{it-1} + \eta_{it}$ and $e_{it} = \rho e_{it-1} + \varepsilon_{it}$ with $|\rho|<1$
 
 **Questions**:
 
@@ -300,33 +323,168 @@ b) How can we estimate this model?
 ## Key Insights from Exercises
 
 :::{.incremental}
-- **Random walk**: inequality grows without bound, shocks never fade
-- **AR(1)**: inequality stabilizes, shocks fade over time
-- **Fixed effects**: create permanent inequality, distinct from shocks
-- **Permanent vs transitory**: different implications for:
-  - Consumption smoothing
-  - Welfare costs of inequality
-  - Policy design
+- **Random walk**: inequality grows without bound; shocks never fade
+- **AR(1)**: inequality stabilizes; shocks fade over time
+- **Fixed effects**: permanent inequality, distinct from shocks
+- **Permanent vs transitory**: different implications for consumption smoothing, welfare costs of inequality, and policy design
 :::
 
-...
+. . .
 
 **Main lesson**: The nature of shocks fundamentally affects policy!
 
+# A First Look at Data: Inequality Over the Life Cycle
+
+## What Can Cross-Sections Tell Us? {.smaller}
+
+Suppose log earnings at age $a$ follow a random walk plus a transitory shock (RIP):
+$$ y_{ia} = \alpha_i + p_{ia} + \varepsilon_{ia},\qquad p_{ia} = p_{i,a-1} + \eta_{ia},\quad p_{i,a_0} = 0 $$
+
+:::{.incremental}
+- Then the cross-sectional variance at age $a$ is:
+$$ \text{var}(y_{ia}) = \sigma^2_{\alpha} + (a - a_0)\sigma^2_{\eta} + \sigma^2_{\varepsilon} $$
+- The variance is **linear in age**, and the **slope is $\sigma^2_{\eta}$**
+- We don't need a panel for this: repeated cross-sections (like the CPS) are enough
+- This is the idea behind @Storesletten2004 from Lecture 2
+- What could go wrong? Let's look first.
+:::
+
+## Loading the CPS
+
+Same data and cleaning as Lecture 1, but only the columns we need. We focus on men with positive earnings and use log real **annual earnings**.
+
+```{julia}
+#| echo: true
+#| output: false
+#| code-fold: true
+#| code-line-numbers: "4-5|6|7|8|9|11-12"
+using DataFrames, DataFramesMeta, CSV, StatsBase, StatsPlots
+pce = @select(CSV.read("../data/PCE_index.csv",DataFrame), :INCYEAR = :YEAR, :PCE)
+
+cps = @chain CSV.read("../data/cps_00049.csv",DataFrame,
+                      select=[:YEAR,:HFLAG,:ASECWT,:AGE,:SEX,:INCWAGE,:WKSWORK1]) begin
+  @subset coalesce.(:HFLAG,1) .== 1 #<- one 2014 sample (see Lecture 1)
+  @transform :INCYEAR = :YEAR .- 1 #<- income refers to the previous calendar year
+  @subset (:SEX .== 1) .& (:INCWAGE .> 0) .& (:WKSWORK1 .> 10) #<- men with earnings
+  innerjoin(pce,on=:INCYEAR)
+  @transform begin
+    :logy = log.(100 .* :INCWAGE ./ :PCE) #<- log real annual earnings (2017 dollars)
+    :cohort = :YEAR .- :AGE #<- approximate birth year
+  end
+end
+```
+
+## Variance of Log Earnings by Age
+
+::: {.panel-tabset}
+
+### Pooled
+
+```{julia}
+#| echo: true
+#| code-fold: true
+@chain cps begin
+  groupby(:AGE)
+  @combine :var_logy = var(:logy,weights(:ASECWT))
+  @df _ plot(:AGE,:var_logy,linewidth=3,legend=false,
+             xlabel="Age",ylabel="Var. of log earnings",
+             size=(900,380),tickfontsize=10,guidefontsize=11,
+             left_margin=5Plots.mm,bottom_margin=4Plots.mm)
+end
+```
+
+### By cohort
+
+```{julia}
+#| echo: true
+#| code-fold: true
+@chain cps begin
+  @transform :cohort10 = Int.(round.(:cohort ./ 10) .* 10) #<- 10-year birth cohorts
+  @subset :cohort10 .>= 1940
+  groupby([:cohort10,:AGE])
+  @combine :var_logy = var(:logy,weights(:ASECWT)) :N = length(:logy)
+  @subset :N .> 1000
+  @df _ plot(:AGE,:var_logy,group=:cohort10,linewidth=3,
+             xlabel="Age",ylabel="Var. of log earnings",
+             size=(900,380),tickfontsize=10,guidefontsize=11,legendfontsize=10,
+             left_margin=5Plots.mm,bottom_margin=4Plots.mm)
+end
+```
+
+:::
+
+## A Rough Estimate of $\sigma^2_{\eta}$ {.smaller}
+
+Compute the variance in each (year, age) cell, then regress it on age between 25 and 55, controlling for **either** year effects **or** cohort effects:
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: asis
+#| code-line-numbers: "1-6|8-13|15-18"
+cells = @chain cps begin
+  @subset 25 .<= :AGE .<= 55
+  groupby([:INCYEAR,:AGE])
+  @combine :var_logy = var(:logy,weights(:ASECWT))
+  @transform :cohort = :INCYEAR .- :AGE
+end
+
+# OLS slope on age, with a full set of dummies for the variable `fe`
+function age_slope(d, fe)
+  lev = sort(unique(d[!,fe]))[2:end]   #<- drop one category
+  D = Float64.(d[!,fe] .== permutedims(lev)) #<- matrix of dummies
+  X = [ones(nrow(d)) d.AGE D]
+  return (X \ d.var_logy)[2] #<- coefficient on age
+end
+
+println("| Controls | Slope on age |\n|:--|--:|")
+for (lab,fe) in [("Year effects",:INCYEAR),("Cohort effects",:cohort)]
+  println("| ", lab, " | ", round(age_slope(cells,fe),digits=4), " |")
+end
+```
+
+. . .
+
+- Read off the slope as $\hat{\sigma}^2_{\eta}$: roughly 0.004 to 0.006 per year, depending on the controls
+- Note the steep rise after age 55 in the plot: likely selection (partial retirement, part-year work), which is why we stop at 55
+- Compare: @Meghir2004 estimate about 0.03 from PSID **panel** data on growth rates
+
+## What Can (and Can't) This Identify? {.smaller}
+
+:::{.incremental}
+- **Time vs cohort effects**: we cannot control for both, since age = year − cohort (the rank condition from Lecture 1)
+  - With year effects, rising inequality over time is *not* attributed to age; with cohort effects, it is
+- **HIP also fans out**: under HIP, $\text{var}(y_{ia}) = \sigma^2_{\alpha} + 2\sigma_{\alpha\kappa}(a-a_0) + \sigma^2_{\kappa}(a-a_0)^2 + \text{var}(u_{ia})$, which rises with age with no risk at all
+- **Shape**: an AR(1) with $\rho<1$ makes the profile concave (it levels off); HIP makes it convex. Time effects and selection can blur both
+- **Selection and hours**: who works, and how much, changes with age (e.g. near retirement), so annual earnings mix wage shocks with hours and employment shocks
+- So the slope measures $\sigma^2_{\eta}$ only if we rule out HIP and selection and pick the right time/cohort restriction. To do better we need **panel data** on growth rates (next sections)
+:::
+
+## Exercise: What Do You Think?
+
+:::{.incremental}
+1. Why might the cross-sectional estimate of $\sigma^2_{\eta}$ be smaller than the panel estimate from @Meghir2004? (Think about the sample, measurement error, and the definition of earnings.)
+2. Repeat the analysis with log **hourly wages** (as in Lecture 1). Is the slope larger or smaller? What does that suggest about the role of hours and employment?
+3. If you only had this plot, could you tell the RIP and HIP models apart? What feature of the shape would help?
+:::
+
 # Heterogeneous Income Profiles (HIP)
 
-## What if People Have Different Growth Rates?
+## What if People Have Different Growth Rates? {.smaller}
 
 @Guvenen2009 proposes an alternative to random walk:
 
-$$y_{it} = \alpha_i + \beta_i \cdot t + u_{it}$$
+$$y_{it} = \alpha_i + \kappa_i \cdot t + u_{it}$$
 
 :::{.incremental}
 - $\alpha_i$: individual-specific level
-- $\beta_i$: individual-specific **growth rate**
-- $u_{it}$: transitory deviations (small)
-- Key idea: inequality grows because some people have steeper earnings profiles
+- $\kappa_i$: individual-specific **growth rate**, variance $\sigma^2_{\kappa}$
+- $u_{it} = \xi_{it} + \varepsilon_{it}$: stochastic part, with $\xi_{it} = \rho\xi_{it-1} + \eta_{it}$ (an AR(1)) plus a transitory shock
+- Key idea: inequality grows because some people have steeper earnings profiles, not only because shocks pile up
+- RIP ("restricted income profiles") is the special case $\sigma^2_{\kappa} = 0$, usually with $\rho\approx 1$
 :::
+
+*Note*: @Guvenen2009 writes the slope as $\beta^i$. We use $\kappa_i$ because $\beta$ is the discount factor elsewhere in the course.
 
 ## HIP vs RIP: Conceptual Differences
 
@@ -348,15 +506,15 @@ $$y_{it} = \alpha_i + \beta_i \cdot t + u_{it}$$
 
 :::
 
-## Exercise: Testing HIP vs RIP
+## Exercise: Testing HIP vs RIP {.smaller}
 
 Take first differences: $g_{it} = \Delta y_{it}$
 
 **Under HIP**:
-$$g_{it} = \beta_i + \Delta u_{it}$$
+$$g_{it} = \kappa_i + \Delta u_{it}$$
 
-**Under RIP** (with MA(1) transitory):
-$$g_{it} = \zeta_{it} + \varepsilon_{it} - \theta \varepsilon_{it-1}$$
+**Under RIP** (random walk + MA(1) transitory, as in Exercise 4):
+$$g_{it} = \eta_{it} + \varepsilon_{it} + (\theta - 1)\varepsilon_{it-1} - \theta \varepsilon_{it-2}$$
 
 **Questions**:
 
@@ -364,50 +522,54 @@ a) What is $\text{cov}(g_{it}, g_{it-j})$ for large $j$ under each model?
 b) How would you distinguish the models empirically?
 c) What do you think is more realistic?
 
-## Why Does HIP vs RIP Matter?
+## Why Does HIP vs RIP Matter? {.smaller}
 
-**For policy**:
+Recall from Lecture 2: **redistribution** smooths differences across types that are known in advance; **insurance** smooths risk that is realized later.
 
 :::{.incremental}
-- **HIP**: Inequality reflects heterogeneous returns to skill
-  - Policy focus: education, skill development
-  - Less scope for insurance (inequality is "chosen")
-- **RIP**: Inequality reflects cumulative bad luck
-  - Policy focus: social insurance
-  - Large welfare gains from redistribution
-- **Reality**: probably a mix of both!
+- **HIP**: much of life-cycle inequality comes from $(\alpha_i,\kappa_i)$
+  - If these are known (or predetermined) at labor-market entry, they are not *risk* from then on
+  - Smoothing them is a **redistribution** question across types, as with the fixed effects in @Storesletten2004
+  - Policy levers: redistribution, and pre-labor-market investments (education, skills) that shape $\alpha_i$ and $\kappa_i$
+- **RIP**: inequality comes from persistent shocks realized over the life cycle
+  - This is **risk**, so the question is **insurance**
+  - Persistent shocks are hard to self-insure, so the value of social insurance is large
+- **Reality**: probably a mix, which sets the insurance vs redistribution split
 :::
 
-## Evidence on HIP vs RIP
+## Evidence on HIP vs RIP {.smaller}
 
-@Guvenen2009 findings:
+@Guvenen2009 (PSID, 1968-1993) estimates both versions of $y_{it} = \alpha_i + \kappa_i t + \xi_{it} + \varepsilon_{it}$:
 
 :::{.incremental}
-- Earnings growth has positive long-run autocovariances
-- Suggests some HIP component
-- But also evidence of permanent shocks (RIP)
-- Different groups may face different processes
+- **RIP** ($\sigma^2_{\kappa}=0$ imposed): $\rho \approx 0.99$, and a unit root cannot be rejected
+- **HIP** ($\sigma^2_{\kappa}$ estimated): substantial profile heterogeneity; $\rho$ falls to about **0.82**
+  - Ignoring heterogeneous profiles biases persistence **upward**: steady fanning out looks like persistent shocks
+- Profile heterogeneity explains 56-75% of income inequality at age 55, and is much larger for college graduates
+- Higher-order autocovariances of growth are small and mostly negative. This was read as evidence against HIP, but the estimated HIP process reproduces it
+- Caveat: income data alone may not settle the question
 :::
 
 . . .
 
-**Implication**: Simple random walk probably too stark, but permanent shocks still important
+**Implication**: much of what looks like permanent risk could be predetermined heterogeneity, which changes the insurance vs redistribution answer
 
 # The Meghir-Pistaferri Framework
 
-## A More Flexible Model
+## A More Flexible Model {.smaller}
 
-@Meghir2004 nest several models and let data decide:
+@Meghir2004 nest several models and let the data decide:
 
-$$y_{it} = m_t^e + \beta^e Z_{it} + u_{it}$$
-$$u_{it} = p_{it} + e_{it} + r_{it}$$
+$$y_{it} = m_t^e + Z_{it}'\psi^e + u_{it},\qquad u_{it} = p_{it} + e_{it} + r_{it}$$
 
 :::{.incremental}
-- $p_{it} = p_{it-1} + \zeta_{it}$: permanent component (random walk)
+- $p_{it} = p_{it-1} + \eta_{it}$: permanent component (random walk)
 - $e_{it}$: transitory component (serially correlated)
 - $r_{it}$: measurement error (i.i.d.)
 - Allow variance to change over time and across people
 :::
+
+*Note*: notation differs from @Meghir2004. We use $\eta_{it}$ for the permanent shock and $\varepsilon_{it}$ for the transitory shock throughout. They also write the MA with a minus sign, $\varepsilon_{it} - \theta\varepsilon_{it-1}$; we use $+\theta$.
 
 ## Why Three Components?
 
@@ -424,7 +586,7 @@ $$u_{it} = p_{it} + e_{it} + r_{it}$$
 @Meghir2004 ask:
 
 :::{.incremental}
-1. Are permanent shocks important? (test $\text{var}(\zeta) = 0$)
+1. Are permanent shocks important? (test $\text{var}(\eta) = 0$)
 2. How persistent are transitory shocks?
 3. Does variance change over time?
 4. Do some people face more risk than others?
@@ -464,15 +626,17 @@ plot(orders, pooled_autocov,
      ylabel="Autocovariance",
      title="Autocovariances of Earnings Growth",
      legend=false,
-     grid=true)
+     grid=true,
+     size=(900,380), tickfontsize=10, guidefontsize=11, titlefontsize=12,
+     left_margin=5Plots.mm, bottom_margin=4Plots.mm)
 hline!([0], linestyle=:dash, color=:black, linewidth=1)
 ```
 
-Interpretation: transitory shocks follow **MA(1)** process (one period of persistence)
+Growth autocovariances are nonzero at lags 1-2 and roughly zero after: the signature of an **MA(1)** transitory component
 
 ## Finding 2: Permanent Shocks Are Important
 
-Test: Is $\text{var}(\zeta_{it}) = 0$?
+Test: Is $\text{var}(\eta_{it}) = 0$?
 
 | Education | Variance Estimate | p-value |
 |-----------|------------------|---------|
@@ -505,7 +669,9 @@ plot(years, var_perm,
      ylabel="Variance",
      title="Variance of Permanent Shock Over Time",
      legend=false,
-     grid=true)
+     grid=true,
+     size=(900,400), tickfontsize=10, guidefontsize=11, titlefontsize=12,
+     left_margin=5Plots.mm, bottom_margin=4Plots.mm)
 ```
 
 Pattern: rising through early 1980s (recessions), then declining
@@ -514,7 +680,7 @@ Pattern: rising through early 1980s (recessions), then declining
 
 **Big innovation**: variance depends on recent shocks
 
-$$E_{t-1}(\zeta_{it}^2) = \bar{\sigma}^2 + \varphi \zeta_{it-1}^2$$
+$$E_{t-1}(\eta_{it}^2) = \bar{\sigma}^2_{\eta} + \varphi \eta_{it-1}^2, \qquad E_{t-1}(\varepsilon_{it}^2) = \bar{\sigma}^2_{\varepsilon} + \gamma \varepsilon_{it-1}^2$$
 
 Estimates: $\varphi \approx 0.56$ (permanent), $\gamma \approx 0.40$ (transitory)
 
@@ -542,30 +708,83 @@ Possible mechanisms:
 
 **Policy question**: Should social insurance respond to individual risk histories?
 
-# Implications
+# Wage Risk vs Employment Risk
 
-## Implication 1: Consumption and Savings
-
-With permanent shocks:
+## Where Do Earnings Shocks Come From? {.smaller}
 
 :::{.incremental}
-- Cannot smooth via borrowing/saving
-- Consumption tracks permanent component
-- Need **precautionary savings** for transitory shocks
-- ARCH effects → time-varying savings motive
+- So far: a "shock" is whatever is left in a statistical model of earnings
+- But earnings changes mix different **sources** of risk, and people's **responses** to them (changing jobs, quitting, working less)
+- @Low2010 build a life-cycle model of consumption, labor supply, and job mobility with search frictions. Two kinds of risk:
+  - **Productivity (wage) risk**: permanent shocks to the worker's own productivity, which follow them across jobs
+  - **Employment risk**: job destruction, how often job offers arrive, and the quality of the worker-firm match
+- Wages: $\ln w_{it} = d_t + x_{it}'\psi + u_{it} + a_{ij} + e_{it}$, with $u_{it} = u_{it-1} + \eta_{it}$ (random walk), $a_{ij}$ a match effect fixed for the length of a job, and $e_{it}$ measurement error
+- Data: SIPP for wages and job mobility, PSID for employment and unemployment durations; separate estimates by education
 :::
 
-**Result**: Can explain high savings rates and "excess sensitivity"
+## Separating the Two Risks {.smaller}
+
+:::{.incremental}
+- Moving to a better match raises wages. A model that ignores job mobility reads these gains as permanent shocks
+- **Finding**: if mobility is ignored, the estimated variance of the permanent wage shock **doubles**. Allowing for job mobility gives a much lower estimate of productivity risk
+- The two risks are insured differently:
+  - Job loss is partly insured by **unemployment insurance** (UI)
+  - Productivity shocks are rarely insured formally (moral hazard, limited commitment), which drives precautionary behavior
+- The model includes UI, Disability Insurance, a means-tested transfer modeled on **Food Stamps**, and Social Security, so self-insurance and public insurance interact
+:::
+
+## Welfare: Which Risk Matters More? {.smaller}
+
+:::{.incremental}
+- **More productivity risk**: small output losses, **large welfare losses**
+  - High-educated: a 50% rise in the permanent shock variance lowers output by 3.7%, but people would pay 19.2% of consumption to avoid it
+- **More job destruction**: large output losses (more time without work), smaller welfare losses
+  - The income loss is mostly **transitory**, so savings smooth it, and time out of work has some value as leisure
+- Same 5% cut in the variance of income growth, achieved two ways: people value cutting **productivity risk** substantially more than cutting job destruction
+- Lesson: the *variance* of earnings changes is not a sufficient statistic for welfare. **Persistence** matters
+:::
+
+## Policy: UI vs Food Stamps {.smaller}
+
+Willingness to pay (% of consumption) for spending 1% more on each program, within an education group (insurance only, no redistribution across groups):
+
+| Program | High education | Low education |
+|---------|---------------:|--------------:|
+| Unemployment insurance | 0.19 | 0.24 |
+| Food Stamps (means-tested) | 0.25 | 0.30 |
+| Proportional tax cut | 0.08 | 0.15 |
+
+:::{.incremental}
+- The means-tested program is worth more than UI: it pays out after a large income loss **whatever the cause**, so it partly insures persistent productivity shocks
+- UI only pays after job loss, which is mostly transitory risk that people can partly self-insure
+- **What do you think?** Why might a program designed as "redistribution" (means-tested transfers) end up being valuable mainly as **insurance**? Connect to Lecture 2.
+:::
+
+# Implications
+
+## Implication 1: Consumption and Savings {.smaller}
+
+How should consumption respond to each type of shock?
+
+:::{.incremental}
+- **Transitory shocks**: smoothed by borrowing and saving, so consumption barely responds (if credit is available)
+- **Permanent shocks**: change lifetime resources, so they pass through to consumption (nearly one-for-one without other insurance)
+- **Precautionary saving** is driven mainly by *persistent* risk: future shocks will not wash out, so people build a buffer
+- ARCH effects → the precautionary motive varies over time and across people
+:::
+
+**Implication**: how consumption responds to income changes is informative about which shocks people face and how well they are insured
 
 ## Implication 2: Welfare Costs
 
 Recall certainty equivalent from Lecture 2:
 
 :::{.incremental}
-- **Permanent shocks**: very costly (cannot insure)
-- **Transitory shocks**: less costly (can smooth)
+- **Permanent shocks**: very costly (hard to self-insure)
+- **Transitory shocks**: less costly (can smooth by saving)
 - **ARCH effects**: magnify costs (risk breeds risk)
-- Welfare gains from insurance: 10-20% of consumption!
+- @Storesletten2004: an unborn agent would give up about 26% of lifetime consumption to insure life-cycle shocks (vs 19% for fixed effects)
+- Those numbers depend on the income process: more persistence, larger costs
 :::
 
 ## Implication 3: Income Mobility
@@ -583,17 +802,20 @@ With ARCH:
 
 **Implication**: Mobility patterns more complex than simple mean reversion
 
-## Implication 4: Policy Design
+## Implication 4: Policy Design {.smaller}
 
 Different shocks → different policies:
 
 :::{.incremental}
-- **Permanent shocks**: need redistribution (ex-post insurance)
-  - Progressive taxation, disability insurance
-- **Transitory shocks**: need liquidity (ex-ante insurance)
-  - Unemployment insurance, EITC, food stamps
+- **Predetermined differences** ($\alpha_i$, HIP slopes $\kappa_i$): a **redistribution** question
+  - Progressive taxes and transfers across types, pre-labor-market investment
+- **Permanent / persistent shocks** during working life: **insurance** is valuable because self-insurance is weak
+  - Transfers that respond to realized income (progressive taxes, means-tested programs), disability insurance
+- **Transitory shocks**: mostly self-insurable, so the main role for policy is **liquidity**
+  - Unemployment insurance, access to credit
 - **ARCH effects**: may need state-dependent transfers
   - Higher benefits after large shocks?
+- In practice, programs like progressive taxes do **both** insurance and redistribution
 :::
 
 # Open Questions and Extensions
@@ -604,14 +826,27 @@ Different shocks → different policies:
 - **Top-coding**: earnings censored at top
 - **Imputation**: some data imputed in surveys
 - **Selection**: who attrites from panel?
-- **Administrative data**: @Guvenen2021 use tax records
-  - Find larger role for transitory shocks
-  - Less evidence for RIP model
+- **Small samples**: survey panels are too small to study the tails of earnings changes
+- **Administrative data**: @Guvenen2021 use Social Security earnings records for millions of workers (next slide)
 :::
 
 . . .
 
 **Takeaway**: Measurement matters for conclusions!
+
+## Evidence from Administrative Data {.smaller}
+
+@Guvenen2021: 10% panel sample of US men from the SSA Master Earnings File (1978-2013)
+
+:::{.incremental}
+- Earnings changes are far from **Gaussian** (normal)
+  - **Very high kurtosis**: most changes are tiny, a few are huge. 31% of annual changes are below 5%, vs 8% under a normal with the same standard deviation
+  - **Negative skewness**: large falls are more likely than large rises
+- These features vary with **age and earnings level**: they are strongest around age 50 and between the 70th and 90th percentiles of earnings
+- Mean reversion is **asymmetric**: for high earners, gains are transitory and losses persistent; the reverse for low earners
+- Preferred process: persistent and transitory components with *mixture-of-normals* shocks, plus nonemployment shocks whose probability depends on age and earnings
+- **Lesson**: the variance alone (e.g. $\sigma^2_{\eta}$) misses much of the risk workers face
+:::
 
 ## Other Extensions
 
@@ -642,7 +877,7 @@ Important open questions:
 
 :::{.incremental}
 - Income has **permanent** and **transitory** components
-- Permanent shocks important empirically (variance ≈ 0.03)
+- Permanent shocks important empirically (variance ≈ 0.03 per year in @Meghir2004)
 - Transitory shocks show some persistence (MA(1))
 - **Time-varying risk**: variance depends on recent shocks (ARCH)
 - Some people face permanently higher risk
@@ -672,7 +907,7 @@ We'll study **intergenerational mobility**:
 
 **Reading**: @Chetty2014, @mazumder2005
 
-## References {.smaller}
+## References {.smaller .scrollable}
 
 ::: {#refs}
 :::

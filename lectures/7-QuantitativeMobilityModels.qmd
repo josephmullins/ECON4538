@@ -1,0 +1,491 @@
+---
+title: "Quantitative Models of Intergenerational Mobility"
+bibliography: ../reading_list.bib
+format:
+  revealjs:
+    theme: solarized
+    include-in-header: mathjax-fonts.html
+    transition: slide
+    chalkboard:
+        theme: whiteboard
+        chalk-effect: 0.0
+        chalk-width: 6
+jupyter: julia-1.11
+execute:
+  cache: true
+  freeze: auto
+---
+
+## Overview {.smaller}
+
+:::{.incremental}
+- The two-period Becker-Tomes model [@Becker1979; @Becker1986] gave us sharp intuition:
+  - Without borrowing constraints, investment does not depend on income and the IGE is $\rho$
+  - With constraints, poor families under-invest and the IGE rises
+- From Lecture 6 we know skills are produced over **many stages** of childhood [@Cunha2007]
+- Today: put these two ideas together in a model we can **solve and simulate**
+- Then describe two influential quantitative papers: @Caucutt2020 and @Lee2019
+:::
+
+## What the Simple Model Can't Do {.smaller}
+
+:::{.incremental}
+- One investment period: can't separate **early** vs **late** childhood investment
+- Parents' income is fixed: but young parents earn less than they will later
+  - Constraints are likely to bind **when children are young**
+- No sense of **magnitudes**: how much would a \$1,000 transfer change a child's earnings? Does it matter *when* it is paid?
+- **What do you think?** If you had a fixed budget to transfer to low-income families, would you give it when the child is 3 or when the child is 13?
+:::
+
+# A Model of Early and Late Investment
+
+## Timing {.smaller}
+
+A parent lives for two periods while the child grows up, then the child becomes an adult:
+
+:::{.incremental}
+- **Period 1** (child is young): parent earns $y_{1}$, invests $I_{1}$, saves $A_{2}$
+- **Period 2** (child is older): parent earns $y_{2} = (1+g)y_{1}$, invests $I_{2}$, leaves a bequest $A'\geq 0$
+- **Period 3** (child is an adult): child has resources $A' + wH'$
+- Life-cycle income growth $g>0$ means young parents would like to **borrow against their own future income**
+- Two borrowing constraints:
+  - $A_{2} \geq -\kappa y_{2}$: young parents can borrow at most a fraction $\kappa$ of future income
+  - $A' \geq 0$: parents cannot borrow against the child's future earnings (as in Lecture 5)
+:::
+
+## Technology {.smaller}
+
+Child's adult human capital:
+$$ H' = Z\theta^{\delta},\qquad \theta = \left[\gamma I_{1}^{\phi} + (1-\gamma)I_{2}^{\phi}\right]^{1/\phi} $$
+
+:::{.incremental}
+- $Z = \exp(\mu + z)$: child's ability, with $z' = \rho z + \eta'$ as in Lecture 5
+- $\theta$: skills at the end of childhood, produced by a CES technology
+- **Mapping to Lecture 6**: there, $\theta_{t+1} = [\gamma_{1}I_{t}^{\phi} + \gamma_{2}\theta_{t}^{\phi}]^{1/\phi}$. Set $\theta_{1} = I_{1}$ (early skills come from early investment), then
+$$\theta_{2} = \left[\gamma_{1}I_{2}^{\phi} + \gamma_{2}I_{1}^{\phi}\right]^{1/\phi}$$
+which is our $\theta$ with $\gamma = \gamma_{2}$ and $1-\gamma = \gamma_{1}$ (normalizing $\gamma_{1}+\gamma_{2}=1$)
+- **Mapping to Lecture 5**: $I_{1} = I_{2} = X$ gives $\theta = X$ and $H' = ZX^{\delta}$ (Becker-Tomes)
+- $\phi$ governs substitutability: elasticity of substitution $1/(1-\phi)$
+:::
+
+## Dynamic Complementarity {.smaller}
+
+**Exercise** (board): Show that
+$$ \frac{\partial^2 H'}{\partial I_{1}\partial I_{2}} > 0 \iff \phi < \delta $$
+
+:::{.incremental}
+- Hint: $\theta$ is homogeneous of degree one, so $\frac{\theta\,\theta_{12}}{\theta_{1}\theta_{2}} = 1-\phi$ (one over the elasticity of substitution)
+- Interpretation: early investment raises the return to late investment as long as early and late investments are **complementary enough** relative to the diminishing returns $\delta$
+- We'll use $\phi = -0.5$ (elasticity of substitution $= 2/3$) and $\delta = 0.6$
+:::
+
+## The Parent's Problem {.smaller}
+
+$$\max\ \log(C_{1}) + \beta\log(C_{2}) + \beta^{2}\log(A' + wH')$$
+
+subject to:
+
+$$
+\begin{aligned}
+C_{1} + \psi I_{1} + \frac{A_{2}}{1+r} &= y_{1} \\
+C_{2} + \psi I_{2} + \frac{A'}{1+r} &= y_{2} + A_{2} \\
+A_{2} \geq -\kappa y_{2}, &\quad A' \geq 0
+\end{aligned}
+$$
+
+. . .
+
+As in Lecture 5, the parent values the child's adult resources with log utility. A fully *dynastic* version would replace $\log(A'+wH')$ with the child's own value function.
+
+## Recursive Formulation {.smaller}
+
+Work backwards. In period 2, the state is $(A_{2}, I_{1})$ (plus $y_{2}$ and $Z$):
+
+$$ \begin{aligned} V_{2}(A_{2}, I_{1}) &= \max_{C_{2}, I_{2}, A'\geq 0}\Big\{\log(C_{2}) + \beta\log(A' + wZ\theta(I_{1},I_{2})^{\delta})\Big\} \\ &\text{s.t.}\quad C_{2} + \psi I_{2} + \frac{A'}{1+r} = y_{2} + A_{2} \end{aligned}$$
+
+. . .
+
+In period 1, the state is $(y_{1}, Z)$:
+
+$$ \begin{aligned} V_{1}(y_{1}, Z) &= \max_{C_{1}, I_{1}, A_{2}\geq -\kappa y_{2}}\Big\{\log(C_{1}) + \beta V_{2}(A_{2}, I_{1})\Big\} \\ &\text{s.t.}\quad C_{1} + \psi I_{1} + \frac{A_{2}}{1+r} = y_{1} \end{aligned}$$
+
+. . .
+
+- Early investment $I_{1}$ is a **state variable** in period 2: it changes the return to $I_{2}$
+- Dynasty: the child's earnings $wH'$ become next generation's $y_{1}$, and $z' = \rho z + \eta'$
+
+## The Unconstrained Benchmark {.smaller}
+
+:::{.incremental}
+- If both constraints are slack, the parent maximizes the present value of net returns:
+$$ \max_{I_{1},I_{2}} \frac{wZ\theta^{\delta}}{(1+r)^{2}} - \psi I_{1} - \frac{\psi I_{2}}{1+r} $$
+- Ratio of FOCs gives
+$$ \frac{I_{1}}{I_{2}} = \left(\frac{\gamma}{(1-\gamma)(1+r)}\right)^{\frac{1}{1-\phi}} $$
+- Both investments are proportional to $Z^{1/(1-\delta)}$, so $\log(H') = c + \frac{1}{1-\delta}\log(Z)$ and **the IGE is still $\rho$**
+- Neither parental income nor the timing of income matters
+- With constraints, both matter. Now we need the computer.
+:::
+
+## Solving the Model {.smaller}
+
+:::{.incremental}
+- Each family's problem is a small optimization problem over $(I_{1}, I_{2}, A_{2}, A')$
+- Trick: given $(I_{1}, I_{2})$, what's left is a consumption-savings problem with log utility, which we can solve **by hand**
+  - Four cases: neither constraint binds, only $A'\geq 0$ binds, only $A_{2}\geq -\kappa y_{2}$ binds, both bind
+  - Since the problem is concave, the case that satisfies the Kuhn-Tucker conditions is the solution
+- Then search over $I_{1}$ (outer) and $I_{2}$ (inner) with golden-section search
+  - The inner search over $I_{2}$ given $I_{1}$ is exactly the period-2 problem $V_{2}$
+- Simulate dynasties for several generations to get a stationary distribution of $(y_{1}, Z)$
+:::
+
+## Code: Model Primitives {.scrollable}
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: false
+using Random, Statistics, StatsPlots
+
+Base.@kwdef struct Params
+    β::Float64 = 0.9      # discount factor (one period ≈ 8-9 years)
+    r::Float64 = 0.3      # interest rate per period
+    w::Float64 = 1.0      # price of human capital
+    ψ::Float64 = 1.0      # price of investment goods
+    g::Float64 = 0.35     # parental income growth, period 1 to period 2
+    δ::Float64 = 0.6      # returns to skills in H'
+    γ::Float64 = 0.6      # weight on early investment
+    φ::Float64 = -0.5     # CES parameter: elasticity of substitution = 1/(1-φ)
+    κ::Float64 = 0.0      # young parents can borrow up to κ*y2
+    μ::Float64 = 1.2      # mean log ability (a scale normalization)
+    ρ::Float64 = 0.4      # persistence of log ability
+    σ_η::Float64 = 0.4    # sd of ability innovations
+end
+# copy a Params with some fields changed, e.g. Params(p; κ=0.5)
+Params(p::Params; kw...) = Params(; (f => getfield(p, f) for f in fieldnames(Params))..., kw...)
+
+skills(I1, I2, p) = (p.γ * I1^p.φ + (1 - p.γ) * I2^p.φ)^(1 / p.φ)
+humancap(I1, I2, Z, p) = Z * skills(I1, I2, p)^p.δ
+
+# Given investments, solve the savings problem in closed form.
+# R1, R2: resources net of investment; E: child's earnings; b: borrowing limit for young parent
+function savings(R1, R2, E, b, p)
+    (; β, r) = p
+    val(C1, C2, C3) = (C1 > 0 && C2 > 0 && C3 > 0) ? log(C1) + β * log(C2) + β^2 * log(C3) : -Inf
+    # Case 1: neither constraint binds
+    C1 = (R1 + R2 / (1 + r) + E / (1 + r)^2) / (1 + β + β^2)
+    C2, C3 = β * (1 + r) * C1, (β * (1 + r))^2 * C1
+    A2 = (1 + r) * (R1 - C1); Ap = (1 + r) * (R2 + A2 - C2)
+    (A2 >= -b && Ap >= 0) && return val(C1, C2, C3), A2, Ap
+    # Case 2: only A' ≥ 0 binds
+    C1 = (R1 + R2 / (1 + r)) / (1 + β); C2 = β * (1 + r) * C1
+    A2 = (1 + r) * (R1 - C1)
+    (A2 >= -b && E >= β * (1 + r) * C2) && return val(C1, C2, E), A2, 0.0
+    # Case 3: only A2 ≥ -b binds
+    C1 = R1 + b / (1 + r)
+    C2 = (R2 - b + E / (1 + r)) / (1 + β); C3 = β * (1 + r) * C2
+    Ap = (1 + r) * (R2 - b - C2)
+    (Ap >= 0 && C2 >= β * (1 + r) * C1) && return val(C1, C2, C3), -b, Ap
+    # Case 4: both bind
+    return val(R1 + b / (1 + r), R2 - b, E), -b, 0.0
+end
+
+# golden-section search for the maximum of a concave function on [lo, hi]
+function golden_max(f, lo, hi; tol=1e-7)
+    c = (sqrt(5) - 1) / 2
+    x1, x2 = hi - c * (hi - lo), lo + c * (hi - lo)
+    f1, f2 = f(x1), f(x2)
+    while hi - lo > tol * (1 + abs(lo) + abs(hi))
+        if f1 < f2
+            lo, x1, f1 = x1, x2, f2
+            x2 = lo + c * (hi - lo); f2 = f(x2)
+        else
+            hi, x2, f2 = x2, x1, f1
+            x1 = hi - c * (hi - lo); f1 = f(x1)
+        end
+    end
+    x = (lo + hi) / 2
+    return x, f(x)
+end
+```
+
+## Code: Solving and Simulating {.scrollable}
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: false
+# Solve one family's problem. T1, T2: government transfers in periods 1 and 2.
+function solve_family(y1, Z, p; T1=0.0, T2=0.0)
+    (; r, ψ, w, g, κ) = p
+    R1, R2 = y1 + T1, (1 + g) * y1 + T2
+    b = κ * (1 + g) * y1
+    ϵ = 1e-10
+    # period-2 problem: given I1, choose I2 (savings solved in closed form)
+    function period2(I1)
+        I2max = (R2 + (1 + r) * (R1 - ψ * I1)) / ψ
+        return golden_max(I2 -> savings(R1 - ψ * I1, R2 - ψ * I2, w * humancap(I1, I2, Z, p), b, p)[1],
+                          ϵ, I2max - ϵ)
+    end
+    I1, _ = golden_max(I1 -> period2(I1)[2], ϵ, (R1 + b / (1 + r)) / ψ - ϵ)
+    I2, _ = period2(I1)
+    H = humancap(I1, I2, Z, p)
+    _, A2, Ap = savings(R1 - ψ * I1, R2 - ψ * I2, w * H, b, p)
+    return (; I1, I2, H, A2, Ap,
+              young_constrained = A2 <= -b + 1e-6, child_constrained = Ap <= 1e-6)
+end
+
+# Unconstrained benchmark (closed form)
+function unconstrained(Z, p)
+    (; r, ψ, w, δ, γ, φ) = p
+    k = (γ / ((1 - γ) * (1 + r)))^(1 / (1 - φ))      # I1/I2
+    θk = skills(k, 1.0, p)                           # θ when I2 = 1
+    I2 = (w * Z * δ * θk^(δ - 1) * (1 - γ) * θk^(1 - φ) / ((1 + r) * ψ))^(1 / (1 - δ))
+    return (; I1 = k * I2, I2)
+end
+
+# Simulate N dynasties for T generations; return the last parent-child cross-section
+function simulate(p; N=3000, T=6, seed=1234)
+    Random.seed!(seed)
+    z = p.σ_η / sqrt(1 - p.ρ^2) * randn(N)
+    y1 = [p.w * humancap(unconstrained(exp(p.μ + zi), p)..., exp(p.μ + zi), p) for zi in z]
+    local out
+    for t in 1:T
+        zc = p.ρ * z + p.σ_η * randn(N)                       # child's ability
+        sols = [solve_family(y1[i], exp(p.μ + zc[i]), p) for i in 1:N]
+        out = (; y1 = copy(y1), Z = exp.(p.μ .+ zc), sols)
+        y1 = [p.w * s.H for s in sols]                        # child becomes next parent
+        z = zc
+    end
+    return out
+end
+
+ige(x, y) = cov(x, y) / var(x)
+quartile_of(x) = [min(4, 1 + floor(Int, 4 * (sum(x .< xi) / length(x)))) for xi in x]
+```
+
+```{julia}
+#| echo: false
+#| output: false
+p0 = Params()
+base = simulate(p0)
+```
+
+# Results
+
+## Investment Policies by Parental Income {.scrollable}
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: true
+Zmed = exp(p0.μ)                                   # median ability
+ygrid = exp.(range(log(0.05), log(5.0), length=60))
+sol = [solve_family(y, Zmed, p0) for y in ygrid]
+u = unconstrained(Zmed, p0)
+plot(ygrid, [s.I1 for s in sol], xscale=:log10, label="Early, I₁", linewidth=3,
+     xlabel="Parent's period-1 income y₁ (log scale)", ylabel="Investment",
+     legend=:bottomright, size=(900, 380), tickfontsize=11, guidefontsize=12,
+     legendfontsize=11, left_margin=4Plots.mm, bottom_margin=4Plots.mm)
+plot!(ygrid, [s.I2 for s in sol], label="Late, I₂", linewidth=3)
+hline!([u.I1], linestyle=:dash, color=1, label="Unconstrained I₁")
+hline!([u.I2], linestyle=:dash, color=2, label="Unconstrained I₂")
+```
+
+. . .
+
+Poor parents invest less in **both** periods, and tilt investment towards the later period when their income is higher.
+
+## Who Is Constrained? {.scrollable}
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: true
+q = quartile_of(base.y1)
+young = [mean(s.young_constrained for s in base.sols[q .== k]) for k in 1:4]
+child = [mean(s.child_constrained for s in base.sols[q .== k]) for k in 1:4]
+groupedbar([young child], bar_position=:dodge,
+           xticks=(1:4, ["Q1", "Q2", "Q3", "Q4"]), xlabel="Quartile of parental income",
+           ylabel="Share constrained", label=["Young parent: A₂ = -κy₂" "Bequest: A' = 0"],
+           size=(900, 420), tickfontsize=11, guidefontsize=12, legendfontsize=11,
+           left_margin=4Plots.mm, bottom_margin=4Plots.mm)
+```
+
+## The Implied IGE {.scrollable}
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: true
+lp = log.(base.y1)
+lc = log.([p0.w * s.H for s in base.sols])
+lo = lp .< median(lp)
+println("IGE (all families):        ", round(ige(lp, lc), digits=2))
+println("IGE (below median income): ", round(ige(lp[lo], lc[lo]), digits=2))
+println("IGE (above median income): ", round(ige(lp[.!lo], lc[.!lo]), digits=2))
+println("Unconstrained benchmark:   ρ = ", p0.ρ)
+```
+
+:::{.incremental}
+- Constraints raise the IGE above $\rho$, and more so at the bottom (the concavity from Lecture 5)
+- **What do you think?** Which constraint matters more for the IGE here: the one on young parents, or the one on borrowing against the child?
+:::
+
+# Policy Experiments
+
+## Early vs. Late Transfers {.smaller}
+
+:::{.incremental}
+- Give a transfer worth 10% of median income to one quartile of parents
+- **Early**: $T_{1}$ paid in period 1, or **Late**: $T_{2} = (1+r)T_{1}$ paid in period 2
+- Same present value, so an *unconstrained* family is indifferent and does not change investment at all
+- Compare the change in mean $\log(H')$ for the children of recipients
+:::
+
+## Early vs. Late Transfers {.scrollable}
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: true
+T = 0.1 * median(base.y1)
+lH(v) = mean(log(s.H) for s in v)
+gain = zeros(4, 2)
+for k in 1:4
+    idx = findall(q .== k)
+    b0 = base.sols[idx]
+    early = [solve_family(base.y1[i], base.Z[i], p0; T1=T) for i in idx]
+    late = [solve_family(base.y1[i], base.Z[i], p0; T2=(1 + p0.r) * T) for i in idx]
+    gain[k, :] = [lH(early) - lH(b0), lH(late) - lH(b0)]
+end
+groupedbar(gain, bar_position=:dodge, xticks=(1:4, ["Q1", "Q2", "Q3", "Q4"]),
+           xlabel="Quartile of parental income (recipients)", ylabel="Change in mean log H'",
+           label=["Early transfer" "Late transfer"], size=(900, 420), tickfontsize=11,
+           guidefontsize=12, legendfontsize=11, left_margin=4Plots.mm, bottom_margin=4Plots.mm)
+```
+
+## Why Do Early Transfers Win? {.smaller}
+
+:::{.incremental}
+- Constraints bind when parents are **young**: income is low *exactly* when early investment is needed
+- An early transfer relaxes the binding constraint directly, so $I_{1}$ rises
+- A late transfer arrives after $I_{1}$ is sunk. With **dynamic complementarity**, a low $I_{1}$ lowers the payoff to $I_{2}$, so late money cannot fully make up for it
+- A late transfer can even *lower* $I_{1}$: knowing more money is coming, the young parent wants to consume more today but cannot borrow
+- **What do you think?** What real-world programs look like "early transfers"? (Recall the EITC and cash transfer evidence coming in Lecture 8)
+:::
+
+## Loosening Credit Constraints {.smaller .scrollable}
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: false
+p1 = Params(p0; κ=0.5)                     # young parents can borrow up to half of y2
+loose = simulate(p1)
+```
+
+```{julia}
+#| echo: true
+#| code-fold: true
+#| output: true
+function summary_stats(out, p)
+    lp = log.(out.y1); lc = log.([p.w * s.H for s in out.sols])
+    return (IGE = round(ige(lp, lc), digits=2),
+            share_young_constrained = round(mean(s.young_constrained for s in out.sols), digits=2),
+            share_bequest_constrained = round(mean(s.child_constrained for s in out.sols), digits=2),
+            early_late_ratio = round(mean(s.I1 / s.I2 for s in out.sols), digits=2))
+end
+s0, s1 = summary_stats(base, p0), summary_stats(loose, p1)
+println(rpad("", 28), rpad("κ = 0", 10), "κ = 0.5")
+for k in keys(s0)
+    println(rpad(string(k), 28), rpad(s0[k], 10), s1[k])
+end
+println("\nUnconstrained I₁/I₂ = ", round((p0.γ / ((1 - p0.γ) * (1 + p0.r)))^(1 / (1 - p0.φ)), digits=2))
+```
+
+:::{.incremental}
+- Young parents are no longer constrained, and investment shifts towards early childhood
+- But many families are still constrained by $A'\geq 0$: they still can't borrow against the **child's** earnings
+- **What do you think?** Why might loosening credit for young parents do little to the IGE in this model?
+:::
+
+## Exercise {.smaller}
+
+Using the code above:
+
+1. Set $\phi = 0.5$ (early and late investment are substitutes). Repeat the early vs. late transfer experiment. Does the advantage of early transfers shrink? Why?
+2. Set $g = 0$ (flat life-cycle income). What happens to the share of young parents who are constrained, and to the early vs. late comparison?
+3. Instead of a transfer, give a **subsidy** to $\psi$ in period 1 only, targeted at the bottom quartile. Is it more or less effective per dollar spent than the early cash transfer? (Hint: you will need to give `solve_family` a period-specific price.)
+
+# The Literature
+
+## Caucutt and Lochner (2020): Model {.smaller}
+
+<!-- CHECK (instructor): The Caucutt & Lochner PDF is not in papers/. This slide describes the model and qualitative findings from memory; please verify against the paper before class. No numbers are reported on purpose. -->
+
+:::{.incremental}
+- Our model is a stripped-down version of @Caucutt2020
+- Their model:
+  - **Dynastic** altruism: parents value children's utility, not just their resources
+  - Parents invest in early and late childhood, with a CES technology allowing **dynamic complementarity**
+  - Parents' income rises over the life-cycle, and parents face **borrowing constraints** against both their own future income and their children's
+  - The technology is estimated from data on children's skills and investment, and the model is matched to data on family income and investment
+:::
+
+## Caucutt and Lochner (2020): Lessons
+
+:::{.incremental}
+- Qualitative lessons:
+  - Many young parents are constrained, and constrained families under-invest in **both** early and late periods
+  - Because of complementarity, policies that relax constraints *early* tend to be more effective than late ones, and late subsidies are less effective for children who received little early investment
+  - Effects persist across generations through the dynasty
+:::
+
+## Lee and Seshadri (2019): Model
+
+<!-- CHECK (instructor): The Lee & Seshadri PDF is not in papers/. This slide is a qualitative description written from memory; please verify the model features and the main decomposition/policy conclusions before class. -->
+
+:::{.incremental}
+- @Lee2019 build a **multigenerational** life-cycle model with human capital accumulation:
+  - Parents invest in children at several stages (early childhood, later childhood, college)
+  - Adults continue to accumulate human capital over their working lives
+  - Families can make financial transfers, and face borrowing constraints
+  - Ability is partly inherited
+:::
+
+## Lee and Seshadri (2019): Sources of Persistence {.smaller}
+
+:::{.incremental}
+- Calibrated to U.S. data on intergenerational persistence in earnings, education, and wealth
+- Use the model to ask: **what are the sources of persistence?**
+  - Inherited ability vs. parental investment in human capital vs. financial transfers
+  - Persistence across **more than two generations**: grandparents can matter through the human capital and wealth they pass on, not just through $\rho$
+- **What do you think?** In the AR(1) model from Lecture 5, the grandparent-grandchild IGE would be $\rho^{2}$. Why might a model with investment predict more persistence than that?
+:::
+
+## Why Build Quantitative Models? {.smaller}
+
+:::{.incremental}
+- Policy questions are about **magnitudes** and **timing**, not just signs
+- Reduced-form evidence (Lecture 8) tells us what a specific program did, in a specific place
+- A model lets us:
+  - Compare policies that have never been tried
+  - Account for general equilibrium and dynastic effects
+  - Interpret *why* a program worked
+- The cost: results depend on functional forms and parameters, which must be **disciplined by data** (e.g. the technology estimates from Lecture 6)
+:::
+
+## Summary {.smaller}
+
+:::{.incremental}
+- Extending Becker-Tomes to **early and late** investment with **life-cycle income** changes the policy conclusions
+- Without constraints: investment, timing, and the IGE do not depend on parental income (IGE $=\rho$)
+- With constraints that bind when parents are young:
+  - Poor families under-invest early, and complementarity makes this hard to undo later
+  - The IGE rises above $\rho$, especially at the bottom
+  - Early transfers raise children's human capital more than late transfers of the same present value
+- @Caucutt2020 and @Lee2019 take these models to the data to measure magnitudes
+- Next: what does the **evidence** from actual programs say?
+:::
+
+## References

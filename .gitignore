@@ -18,3 +18,9 @@ docs/assignments/assignment-3-solutions.html
 docs/assignments/final_exam_nosolutions.html
 docs/assignments/final_exam.html
 docs/assignments/final_exam.pdf
+assignments/midterm*.qmd
+docs/assignments/midterm*
+assignments/*-solutions.qmd
+assignments/final_exam*.qmd
+docs/assignments/*-solutions*
+docs/assignments/final_exam*

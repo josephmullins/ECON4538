@@ -4,6 +4,7 @@ bibliography: ../reading_list.bib
 format:
   revealjs:
     theme: solarized
+    include-in-header: mathjax-fonts.html
     transition: slide
     chalkboard:
         theme: whiteboard
@@ -17,7 +18,7 @@ format:
 
 
 :::{.incremental}
-- Some basic facts about labor market inequality @Heathcote2023
+- Some basic facts about labor market inequality [@Heathcote2023]
 - Thinking through policy implications (*redistribution* vs *insurance*) 
 - Estimating income processes 
     - How much income risk do workers face? How much is realized before labor market entry?

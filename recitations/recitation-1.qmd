@@ -5,7 +5,7 @@ bibliography: ../reading_list.bib
 
 # Creating Household Income Measures in the CPS-ASEC
 
-In this recitation we're going to work with extracts of the CPS-ASEC from the years (1970,1980,1990,2000,2010,2019). This is a slightly smaller dataset than the version I'm using in class, but will nonetheless capture the same trends.
+In this recitation we're going to work with extracts of the CPS-ASEC from the survey years (1970,1980,1990,2000,2010,2019), which record income for the calendar years (1969,1979,1989,1999,2009,2018). This is a slightly smaller dataset than the version I'm using in class, but will nonetheless capture the same trends.
 
 Our focus in this class will be earned income at the individual and household level, as well as government transfers at the individual and household level. The code below loads the data and creates some variables:
 
@@ -18,15 +18,18 @@ Some other things to note:
 - Wage and business income is subject to [**top coding**](https://cps.ipums.org/cps/topcodes_tables.shtml) and we are not doing anything to solve that issue here, but you should be aware of it. See @Heathcote2023 for one approach to this problem.
 - Many of the variables we are analyzing are assigned dummy values (e.g. 9999999) if they are missing or not asked for an individual in the survey ("Not in Universe"). One should normally check to make sure these dummy values don't appear in the final data.
 - Our measure of transfers does not include **in-kind** transfers such as Medicaid and Food Stamps (which comprise a very large share of overall transfers).
+- Income questions in the ASEC refer to the **previous calendar year**. For example, the 2019 survey records income earned in 2018. We create a variable `INCYEAR = YEAR - 1` and deflate using the price index of the income year. All plots below are labelled by income year.
+- The CPS is not a simple random sample, so we use **survey weights**. Since our analysis is at the household level, we use the household weight `ASECWTH`.
 
 With that being said, below is code to load the data and create these variables:
 
 ```{julia}
 using DataFrames, CSV, StatsPlots, DataFramesMeta, StatsBase
-pce = CSV.read("../data/PCE_index.csv",DataFrame)
+pce = @select(CSV.read("../data/PCE_index.csv",DataFrame), :INCYEAR = :YEAR, :PCE)
 
 data = @chain CSV.read("../data/asec_1970_2019.csv",DataFrame) begin
-  innerjoin(pce,on=:YEAR)
+  @transform :INCYEAR = :YEAR .- 1 #<- income questions refer to the previous calendar year
+  innerjoin(pce,on=:INCYEAR) #<- deflate with the price index of the income year
   @transform begin 
     # fill in some missing values and deflat
     :EITC = 100 * coalesce.(:EITCRED,0.) ./ :PCE
@@ -50,42 +53,44 @@ Each row of thse data corresponds to an individual in a particular year. For som
 # - Create a household-level dataset by summing CPSID (the household ID variable)
 house = @chain data begin
     @subset .!ismissing.(:CPSID) #<- drop all obs where this variable is missing (all of 1970)
-    @select :CPSID :CPSIDP :YEAR :EARN :GOV :SS :SSI :WELF :CTC :EITC
-    stack(Not([:CPSID,:CPSIDP,:YEAR]))
-    groupby([:YEAR,:CPSID,:variable])
+    @select :CPSID :CPSIDP :INCYEAR :ASECWTH :EARN :GOV :SS :SSI :WELF :CTC :EITC
+    stack(Not([:CPSID,:CPSIDP,:INCYEAR]))
+    groupby([:INCYEAR,:CPSID,:variable])
     @combine :value = mean(:value)
-    unstack([:YEAR,:CPSID],:variable,:value)
+    unstack([:INCYEAR,:CPSID],:variable,:value)
+    disallowmissing #<- unstack allows missing values; we have none
 end
 ```
 
 Some notes:
 
 - Try commenting out the code that follows the `stack()` command to see how the `stack` and `unstack` functions work here.
+- `ASECWTH` is the same for everyone in a household, so taking its mean just returns the household weight.
 - Notice that we are calculating the mean only over individuals 25-64 in the sample (since we dropped everyone else before even pulling the data from IPUMS). Ideally one would want to include other household members as well for this equivalized measure.
 
 ## Plotting and decomposing transfers over time
 
 How prominently do government transfers feature in the household budget constraint? And how has this evolved over time? Although our measures of income and transfers are not exhaustive, we can use them to get a partial answer to this question.
 
-The code below calculates average transfers relative to average net income for the poorest 20% of households (as measured by our variable `EARN`) and produces a plot.
+The code below calculates average transfers relative to average net income for the poorest 20% of households (as measured by per-person household earnings, our variable `EARN`) and produces a plot. Quantiles and means are weighted by the household weight.
 ```{julia}
 @chain house begin
-    groupby(:YEAR)
-    @transform :q20 = quantile(:EARN,0.2) #<- keep bottom 20% in each year
+    groupby(:INCYEAR)
+    @transform :q20 = quantile(:EARN,weights(:ASECWTH),0.2) #<- keep bottom 20% in each year
     @subset :EARN .< :q20
-    groupby(:YEAR)
+    groupby(:INCYEAR)
     @combine begin 
-        :gov_share = mean(:GOV)  / (mean(:GOV) .+ mean(:EARN))
+        :gov_share = mean(:GOV,weights(:ASECWTH))  / (mean(:GOV,weights(:ASECWTH)) + mean(:EARN,weights(:ASECWTH)))
     end
     @df _ begin 
-        plot(:YEAR,:gov_share,linewidth=3)
-        scatter!(:YEAR,:gov_share,legend=false)
+        plot(:INCYEAR,:gov_share,linewidth=3,xlabel="Income year")
+        scatter!(:INCYEAR,:gov_share,legend=false)
     end
 end
 
 ```
 
-Note that these fluctuations can be caused by fluctuations in the numerator or the denominator. **An exercise for you** to complete is to verify that these fluctuations are driven by fluctuations in earned income. What event in 2010 could explain the large drop in earned income?
+Note that these fluctuations can be caused by fluctuations in the numerator or the denominator. **An exercise for you** to complete is to verify that these fluctuations are driven by fluctuations in earned income. What event around income year 2009 could explain the large drop in earned income?
 
 
 ### Sources of government income
@@ -94,16 +99,16 @@ Over this time, what sources of government transfers are most prevalent? The cod
 
 ```{julia}
 @chain house begin
-    groupby(:YEAR)
+    groupby(:INCYEAR)
     @combine  begin 
-        :eitc = mean(:EITC)  / mean(:GOV)
-        :ssi = mean(:SSI)  / mean(:GOV)
-        :welf = mean(:WELF)  / mean(:GOV)
-        :ctc = mean(:CTC)  / mean(:GOV)
-        :ss = mean(:SS)  / mean(:GOV)
+        :eitc = mean(:EITC,weights(:ASECWTH))  / mean(:GOV,weights(:ASECWTH))
+        :ssi = mean(:SSI,weights(:ASECWTH))  / mean(:GOV,weights(:ASECWTH))
+        :welf = mean(:WELF,weights(:ASECWTH))  / mean(:GOV,weights(:ASECWTH))
+        :ctc = mean(:CTC,weights(:ASECWTH))  / mean(:GOV,weights(:ASECWTH))
+        :ss = mean(:SS,weights(:ASECWTH))  / mean(:GOV,weights(:ASECWTH))
     end
-    stack(Not(:YEAR))
-    @df _ plot(:YEAR,:value,group = :variable,linewidth = 3.)
+    stack(Not(:INCYEAR))
+    @df _ plot(:INCYEAR,:value,group = :variable,linewidth = 3.,xlabel="Income year")
 end
 
 ```

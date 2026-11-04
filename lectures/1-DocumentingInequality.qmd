@@ -4,6 +4,7 @@ bibliography: ../reading_list.bib
 format:
   revealjs:
     theme: solarized
+    include-in-header: mathjax-fonts.html
     transition: slide
     chalkboard:
         theme: whiteboard
@@ -25,15 +26,17 @@ execute:
 - Later in the section will dig deeper into *policy implications*
 :::
 
-## Let's start with some data
+## Let's start with some data {.smaller}
 
 :::{.incremental}
 - Data: the *Current Population Survey* (CPS) 
 - Will use the Annual Social and Economic Supplement (ASEC)
-- Years: 1990 - 2024, Ages: 25-64
+- Survey years: 1990 - 2025, Ages: 25-64
 - Cleaned and harmonized by [IPUMS](https://cps.ipums.org/cps/index.shtml)
 - Using annual wage income, hours, demographics
-- Deflate using the Personal Consumption Expenditure Price Index
+- **Timing**: the ASEC is fielded in March and asks about income, weeks, and hours in the *previous* calendar year
+  - So the 2025 survey tells us about earnings in 2024: our data cover **income years 1989 - 2024**
+- Deflate using the Personal Consumption Expenditure Price Index (of the income year)
 - Consult the [data dictionary](../data/cps_00049.cbk)
 :::
 
@@ -41,23 +44,42 @@ execute:
 ## Some Cleaning Steps
 
 ```{julia}
-#| code-line-numbers: "4|5|6|7|8-9|10"
+#| code-line-numbers: "2-3|6|7|8-9|10|11-12|13"
 #| echo: true
 #| output: false
 using DataFrames, CSV, StatsPlots, DataFramesMeta, StatsBase
-pce = CSV.read("../data/PCE_index.csv",DataFrame)
+pce = @select(CSV.read("../data/PCE_index.csv",DataFrame),
+              :INCYEAR = :YEAR, :PCE)
 
 data = @chain CSV.read("../data/cps_00049.csv",DataFrame) begin
+  @subset coalesce.(:HFLAG,1) .== 1 #<- 2014: keep redesigned sample
+  @transform :INCYEAR = :YEAR .- 1 #<- income refers to the previous year
   @subset :INCWAGE .>0 #<- keep only if positive earnings
   @subset :WKSWORK1 .>10 #<- keep only if worked more than 10 weeks
   @transform :HOURS = :UHRSWORKLY .* :WKSWORK1 #<- calculate annual hours
-  innerjoin(pce,on=:YEAR)
-  @transform :INCWAGE = 100 * :INCWAGE ./ :PCE #<- deflate earnings (2017 base)
+  innerjoin(pce,on=:INCYEAR) #<- deflate with income-year PCE
+  @transform :INCWAGE = 100 * :INCWAGE ./ :PCE #<- deflate (2017 base)
   @transform :WAGE = :INCWAGE ./ :HOURS #<- annual earnings / annual hours
 end
 
 ```
 
+```{julia}
+#| echo: false
+#| output: false
+mm = StatsPlots.Plots.PlotMeasures.mm
+default(size=(900,420), tickfontsize=11, guidefontsize=13, legendfontsize=11, bottom_margin=5mm, left_margin=5mm) #<- legible plot defaults for slides
+```
+
+## A Note on the 2014 Survey {.smaller}
+
+:::{.incremental}
+- In 2014 the Census Bureau tested a redesigned set of income questions
+- The 2014 ASEC was split: about 5/8 of households got the old questions, 3/8 got the new ones (IPUMS variable `HFLAG`)
+- Each piece is weighted to represent the whole population, so using both would **double count** 2014 (income year 2013)
+- We keep the redesigned 3/8 sample (`HFLAG == 1`), since all later surveys use the new questions
+- Expect a small break in some series around income year 2013 because of the redesign
+:::
 
 ## A Quick Look at Sample Sizes
 
@@ -65,8 +87,10 @@ end
 #| echo: true
 
 @chain data begin
-  groupby(:YEAR)
+  groupby(:INCYEAR)
   @combine :N = length(:INCWAGE)
+  @df _ bar(:INCYEAR,:N,xlabel="Income year",ylabel="Observations",
+            legend=false,size=(900,400))
 end
 
 ```
@@ -77,13 +101,13 @@ e.g. gender wage gaps:
 #| code-fold: true
 #| echo: true
 @chain data begin
-  groupby([:YEAR,:SEX])
+  groupby([:INCYEAR,:SEX])
   @combine begin 
     :m_wage = mean(log.(:WAGE),weights(:ASECWT))
     :v_est = var(log.(:WAGE),weights(:ASECWT)) / length(:WAGE)
     end
   @transform :ci_width = 1.96 * sqrt.(:v_est)
-  @df _ scatter(:YEAR,:m_wage,yerror=:ci_width,group=:SEX)
+  @df _ scatter(:INCYEAR,:m_wage,yerror=:ci_width,group=ifelse.(:SEX .== 1,"Men","Women"),xlabel="Income year",size=(900,400))
 end
 
 ```
@@ -97,9 +121,10 @@ end
 ```{julia}
 #| echo: true
 @chain data begin
-    groupby(:YEAR)
+    groupby(:INCYEAR)
     @combine :wage = mean(:WAGE)
-    @df _ plot(:YEAR,:wage)
+    @df _ plot(:INCYEAR,:wage,xlabel="Income year",legend=false,
+                size=(900,300))
 end
 
 ```
@@ -110,9 +135,10 @@ end
 #| echo: true
 
 @chain data begin
-    groupby(:YEAR)
+    groupby(:INCYEAR)
     @combine :wage = mean(:WAGE,weights(:ASECWT))
-    @df _ plot(:YEAR,:wage)
+    @df _ plot(:INCYEAR,:wage,xlabel="Income year",legend=false,
+                size=(900,300))
 end
 
 ```
@@ -123,9 +149,10 @@ end
 #| echo: true
 
 @chain data begin
-    groupby(:YEAR)
+    groupby(:INCYEAR)
     @combine :earn = mean(:INCWAGE,weights(:ASECWT))
-    @df _ plot(:YEAR,:earn)
+    @df _ plot(:INCYEAR,:earn,xlabel="Income year",legend=false,
+                size=(900,300))
 end
 
 ```
@@ -136,16 +163,27 @@ end
 #| echo: true
 
 @chain data begin
-    groupby(:YEAR)
+    groupby(:INCYEAR)
     @combine :hours = mean(:HOURS,weights(:ASECWT))
-    @df _ plot(:YEAR,:hours)
+    @df _ plot(:INCYEAR,:hours,xlabel="Income year",legend=false,
+                size=(900,300))
 end
 
 ```
 
 :::
 
-# Some Basic Facts About
+## Reviewing Population Weights: Questions
+
+Exercises:
+
+:::{.incremental}
+- What does the weight `ASECWT` represent? (Hint: what is the sum of the weights in a given year?)
+- Why do the weighted and unweighted mean wages differ? Which kinds of households do you think the CPS over-samples, and in which direction does that move the unweighted mean?
+- The mean wage and mean earnings tabs tell slightly different stories. How do the trends in hours help reconcile them?
+:::
+
+# Some Basic Facts About Wage Inequality
 
 ## Trends in Inequality
 
@@ -164,9 +202,10 @@ end
 #| echo: true
 
 @chain data begin
-    groupby(:YEAR)
+    groupby(:INCYEAR)
     @combine :var_lw = var(log.(:WAGE),weights(:ASECWT))
-    @df _ plot(:YEAR,:var_lw,linewidth=3)
+    @df _ plot(:INCYEAR,:var_lw,linewidth=3,xlabel="Income year",
+                legend=false,size=(900,330))
 end
 
 
@@ -179,13 +218,13 @@ end
 #| code-fold: true
 #| echo: true
 pctiles = @chain data begin
-    groupby(:YEAR)
+    groupby(:INCYEAR)
     @combine begin 
     :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)
     :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)
     end
-    stack(Not(:YEAR))
-    @df _ plot(:YEAR,:value,group=:variable,linewidth=3)
+    stack(Not(:INCYEAR))
+    @df _ plot(:INCYEAR,:value,group=:variable,linewidth=3,xlabel="Income year")
 end
 
 ```
@@ -196,39 +235,39 @@ end
 #| code-fold: true
 #| echo: true
 pctiles = @chain data begin
-    groupby(:YEAR)
+    groupby(:INCYEAR)
     @combine begin 
     :p_90_10 = quantile(log.(:WAGE),weights(:ASECWT),0.9) - quantile(log.(:WAGE),weights(:ASECWT),0.1)
     :p_75_25 = quantile(log.(:WAGE),weights(:ASECWT),0.75) - quantile(log.(:WAGE),weights(:ASECWT),0.25)
     end
-    stack(Not(:YEAR))
+    stack(Not(:INCYEAR))
     groupby(:variable)
     @transform :value = :value .- :value[1]
-    @df _ plot(:YEAR,:value,group=:variable,linewidth=3)
+    @df _ plot(:INCYEAR,:value,group=:variable,linewidth=3,xlabel="Income year")
 end
-plot!([1990,2024],[0.,0.],linestyle=:dash,color="grey",label=false)
+hline!([0.],linestyle=:dash,color="grey",label=false)
 
 ```
 
-## Percentiles of log wages (normalized)
+## Individual percentiles (normalized)
 
 ```{julia}
 #| code-fold: true
 #| echo: true
 pctiles = @chain data begin
-    groupby(:YEAR)
+    groupby(:INCYEAR)
     @combine begin 
     :p_90 = quantile(log.(:WAGE),weights(:ASECWT),0.9)
     :p_10 = quantile(log.(:WAGE),weights(:ASECWT),0.1)
     :p_75 = quantile(log.(:WAGE),weights(:ASECWT),0.75)
     :p_25 = quantile(log.(:WAGE),weights(:ASECWT),0.25)
     end
-    stack(Not(:YEAR))
+    stack(Not(:INCYEAR))
     groupby(:variable)
     @transform :value = :value .- :value[1]
-    @df _ plot(:YEAR,:value,group=:variable,linewidth=3)
+    @df _ plot(:INCYEAR,:value,group=:variable,linewidth=3,xlabel="Income year")
 end
-plot!([1990,2024],[0.,0.],linestyle=:dash,color="grey",label=false)
+hline!([0.],linestyle=:dash,color="grey",label=false)
 
 ```
 
@@ -236,7 +275,7 @@ plot!([1990,2024],[0.,0.],linestyle=:dash,color="grey",label=false)
 
 ## Wage Gaps
 
-:::.{incremental}
+:::{.incremental}
 
 - While overall wage inequality is a main topic of interest, other metrics may matter for policy questions
 - E.g. gaps by education, gender/sex, race
@@ -252,11 +291,11 @@ plot!([1990,2024],[0.,0.],linestyle=:dash,color="grey",label=false)
 #| code-line-numbers: 2-3|4|5|6
 
 @chain data begin
-  groupby([:YEAR,:SEX])
+  groupby([:INCYEAR,:SEX])
   @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))
-  unstack(:YEAR,:SEX,:m_wage,renamecols=x->Symbol(:wage_, x))
+  unstack(:INCYEAR,:SEX,:m_wage,renamecols=x->Symbol(:wage_, x))
   @transform :gender_gap = :wage_1 .- :wage_2
-  @df _ plot(:YEAR,:gender_gap,label = "gender wage gap",linewidth=3.)
+  @df _ plot(:INCYEAR,:gender_gap,label = "gender wage gap",linewidth=3.,xlabel="Income year")
 end
 
 ```
@@ -268,17 +307,17 @@ end
 #| echo: true
 
 @chain data begin
-  groupby([:YEAR,:RACE])
+  groupby([:INCYEAR,:RACE])
   @combine :m_wage = mean(log.(:WAGE),weights(:ASECWT))
-  unstack(:YEAR,:RACE,:m_wage,renamecols=x->Symbol(:wage_, x))
+  unstack(:INCYEAR,:RACE,:m_wage,renamecols=x->Symbol(:wage_, x))
   @transform :black_white_gap = :wage_100 .- :wage_200
-  @df _ plot(:YEAR,:black_white_gap,label = "race gap: black-white",linewidth=3.)
+  @df _ plot(:INCYEAR,:black_white_gap,label = "race gap: black-white",linewidth=3.,xlabel="Income year",size=(900,400))
 end
 
 ```
 How much of this is sampling error?...
 
-## Race Wage Gap
+## Race Wage Gap: Sampling Error
 
 ```{julia}
 #| code-fold: true
@@ -287,19 +326,19 @@ How much of this is sampling error?...
 
 @chain data begin
   @subset :RACE .<= 200
-  groupby([:YEAR,:RACE])
+  groupby([:INCYEAR,:RACE])
   @combine begin 
     :m_wage = mean(log.(:WAGE),weights(:ASECWT))
     :v_est = var(log.(:WAGE),weights(:ASECWT)) / length(:WAGE)
   end
   stack()
   @transform :variable = string.(:variable,"_",:RACE)
-  unstack(:YEAR,:variable,:value)
+  unstack(:INCYEAR,:variable,:value)
   @transform begin
     :black_white_gap = :m_wage_100 .- :m_wage_200
     :std_err = 1.96*sqrt.(:v_est_100 .+ :v_est_200)
   end
-  @df _ scatter(:YEAR,:black_white_gap,yerror = :std_err,label = "race gap: black-white")
+  @df _ scatter(:INCYEAR,:black_white_gap,yerror = :std_err,label = "race gap: black-white",xlabel="Income year")
 end
 
 ```
@@ -307,7 +346,13 @@ end
 ## Education Premia {.smaller}
 
 - Define the "college premium" or "returns to college" as:
-$$ \mathbb{E}[\log(\text{wage})\ |\ \geq \text{degree}] - \mathbb{E}[\log(\text{wage})\ |\ \geq \text{High School or Equiv}] $$
+$$\begin{aligned}
+&\mathbb{E}[\log(\text{wage})\ |\ \text{bachelor's degree or more}] \\
+&\quad - \mathbb{E}[\log(\text{wage})\ |\ \text{high school diploma, no college}]
+\end{aligned}$$
+- Similarly, a "two-year premium" compares an associate's degree (or 2-3 years of college) to a high school diploma
+- In IPUMS `EDUC`: high school diploma is 73 (72 in the 1990-91 surveys), 71 is grade 12 *without* a diploma, associate's degrees are 91-92, a bachelor's is 111
+- Caveat: before the 1992 survey the CPS recorded *years* of schooling rather than degrees, so there is a coding break at income year 1991
 - Note: there are other definitions @Heathcote2023
 
 ## 4-Yr and 2-Yr College Premia
@@ -315,25 +360,30 @@ $$ \mathbb{E}[\log(\text{wage})\ |\ \geq \text{degree}] - \mathbb{E}[\log(\text{
 ```{julia}
 #| code-fold: true
 #| echo: true
-#| code-line-numbers:  2|8
+#| code-line-numbers:  2-5|6-9|11
 
 @chain data begin
-  @transform :educ = (:EDUC.>=70) .+ (:EDUC.>=90) .+ (:EDUC.>=110)
-  groupby([:YEAR,:educ])
+  @transform :educ = ifelse.(in.(:EDUC,Ref([72,73])), "hs",       #<- HS diploma, no college
+                     ifelse.(90 .<= :EDUC .< 110, "two_yr",          #<- associate's / 2-3 yrs college
+                     ifelse.(:EDUC .>= 110, "ba_plus", "other")))    #<- bachelor's or more
+  @subset :educ .!= "other" #<- drop dropouts and some college, no degree
+  groupby([:INCYEAR,:educ])
   @combine begin 
     :m_wage = mean(log.(:WAGE),weights(:ASECWT))
   end
-  unstack(:YEAR,:educ,:m_wage,renamecols=x->Symbol(:wage_, x))
-  @transform :two_yr = :wage_2 .- :wage_1 :four_yr = :wage_3 .- :wage_1
+  unstack(:INCYEAR,:educ,:m_wage)
+  @transform :two_yr_prem = :two_yr .- :hs :four_yr_prem = :ba_plus .- :hs
   @df _ begin
-    plot(:YEAR,:two_yr,label="two-year prem",linewidth=3)
-    plot!(:YEAR,:four_yr,label="four-year prem",linewidth=3)
+    plot(:INCYEAR,:two_yr_prem,label="two-year prem",linewidth=3,xlabel="Income year")
+    plot!(:INCYEAR,:four_yr_prem,label="four-year prem",linewidth=3)
   end
 end
 
 ```
 
-## Trends in Single Parenthood
+## Trends in Single Parenthood {.smaller}
+
+Share of parents (`NCHILD > 0`) who are divorced, never married, or "single" (separated, divorced, widowed, or never married). **Note**: this uses our wage sample, i.e. only parents *with positive earnings who worked more than 10 weeks*, so it is not representative of all parents. Marital status is measured at the survey date.
 
 ```{julia}
 #| code-fold: true
@@ -344,12 +394,12 @@ test = @chain data begin
   @subset :NCHILD.>0
   groupby(:YEAR)
   @combine begin
-    :divorce = mean(:MARST.==4)
-    :never_married = mean(:MARST.==6)
-    :single = mean(:MARST.>2)
+    :divorce = mean(:MARST.==4,weights(:ASECWT))
+    :never_married = mean(:MARST.==6,weights(:ASECWT))
+    :single = mean(:MARST.>2,weights(:ASECWT))
   end
   stack(Not(:YEAR))
-  @df _ plot(:YEAR,:value,group=:variable,linewidth=3)
+  @df _ plot(:YEAR,:value,group=:variable,linewidth=3,xlabel="Survey year",legend=:topleft,size=(900,330))
 end
 
 ```
@@ -361,28 +411,43 @@ end
 :::{.incremental}
 - So far we have seen changes in wage distributions and wage gaps over time
 - But perhaps these statistics vary with age, too.
-- We have 34 years of data to study cohorts over time
+- We have 36 years of data (income years 1989-2024) to follow cohorts as they age
 - Beware the rank condition!
 :::
 
-## Calculating life-cycle profiles {.scrollable}
+## The Rank Condition: Age, Period, Cohort {.smaller}
+
+:::{.incremental}
+- We might like to write the variance of log wages as the sum of three effects:
+$$ \text{var}(\log w)_{a,t} = f(\text{age}) + g(\text{year}) + h(\text{cohort}) $$
+- But age, year, and cohort (birth year) are tied together by an identity: $\text{age} = \text{year} - \text{cohort}$
+- So the three regressors are **perfectly collinear**: the design matrix does not have full rank
+- E.g. a linear age trend can always be relabeled as a linear year trend minus a linear cohort trend
+- To separate them we need a restriction from outside the data, e.g. "no time effects", "no cohort effects", or "cohort effects are zero within 10-year bins"
+- Keep this in mind for the next plot: how much of the rise with age might really be a time or cohort effect?
+:::
+
+
+## Calculating life-cycle profiles
 
 ```{julia}
 #| echo: true
-#| code-line-numbers:  2|3-4
+#| code-line-numbers:  2-3|4-5
 
 v_w = @chain data begin
+  #<- approx. birth year, in 10-year bins:
   @transform :cohort = Int.(round.((:YEAR .- :AGE) ./ 10) .* 10)
   groupby([:cohort,:AGE])
   @combine :var_logw = var(log.(:WAGE),weights(:ASECWT))
 end
+show(first(v_w, 5), eltypes=false, summary=false)
 
 ```
 
 ## Variance in log-wages increases with age
 
 ```{julia}
-@df v_w plot(:AGE,:var_logw,group=:cohort,linewidth=4)
+@df v_w plot(:AGE,:var_logw,group=:cohort,linewidth=4,xlabel="Age",ylabel="Var. of log wages",size=(900,400))
 
 ```
 
@@ -408,7 +473,7 @@ $$ c + s = \sum_{i=1}^{N}w_{i}h_{i} + d + b^{p} + b^{g} - \tau $$
 :::: {.columns}
 ::: {.column width="55%"}
 <!-- Extract Figure 7 from papers/more_unequal_we_stand.pdf (page 10) -->
-![](../papers/figures/heathcote_fig7.png)
+![](../papers/figures/heathcote_fig7.png){height=540}
 :::
 
 ::: {.column width="45%"}
@@ -471,15 +536,15 @@ $$ HP_{t} = \left(var(y_{it}) - var(\bar{y}_{it})\right) / var(y_{it}) $$
 
 ## Key Finding 5: Income vs. Consumption Inequality
 
-![Income and consumption inequality [@Heathcote2023]](../papers/figures/heathcote_fig21.png)
+![Income and consumption inequality [@Heathcote2023]](../papers/figures/heathcote_fig21.png){height=330}
 
-::: {.incremental style="font-size: 0.5em;"}
+::: {.incremental style="font-size: 0.65em;"}
 - **Market income**: Large increase in inequality (especially at bottom during recessions)
 - **Disposable income**: Much smaller increase (government smooths fluctuations)
 - **Consumption**: Remarkably stable over entire period
 :::
 
-## Main Takeaways from @Heathcote2023
+## Main Takeaways from @Heathcote2023 {.smaller}
 
 :::{.incremental}
 1. **Inequality at top**: Driven by wage differentials, continues to grow (but more slowly)
@@ -487,6 +552,16 @@ $$ HP_{t} = \left(var(y_{it}) - var(\bar{y}_{it})\right) / var(y_{it}) $$
 3. **The household**: Declining importance as inequality-reducing mechanism
 4. **The government**: Increasing role in redistribution and stabilization
 5. **Consumption**: Remains remarkably stable despite income inequality trends
+:::
+
+## Summary: What We Found in the CPS {.smaller}
+
+:::{.incremental}
+- In the CPS-ASEC (income years 1989-2024), the p90-p10 gap in log wages widened, driven by fast growth at the 90th percentile; the p75-p25 gap changed much less
+- The gender gap in mean log wages roughly halved; the Black-white gap shows no clear trend
+- The four-year college premium rose, the two-year premium did not
+- Wage inequality *within* a cohort grows with age, but age, period, and cohort effects cannot all be separated
+- Data details matter: weights, the timing of income questions, survey redesigns, and coding breaks
 :::
 
 ## What's next? {.smaller}
@@ -500,4 +575,7 @@ $$ HP_{t} = \left(var(y_{it}) - var(\bar{y}_{it})\right) / var(y_{it}) $$
   3. What are the origins of this inequality and should we counteract with policy?
 - These are the topics we will work on for the rest of this course
 
-## 
+## References {.smaller}
+
+::: {#refs}
+:::

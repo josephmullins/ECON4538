@@ -258,7 +258,7 @@ Solution
 <div class="callout-body-container callout-body">
 <p><strong>Variance of income:</strong></p>
 <p><span class="math display">\[\mathbb{V}[y_{it}] = \sigma_\alpha^2 + \mathbb{V}(\xi_{it}) + \sigma_{\varepsilon,t}^2\]</span></p>
-<p><span class="math display">\[\mathbb{V}[y_{it+1}] = \sigma_\alpha^2 + \rho^2 \mathbb{V}(\xi_{it}) + \sigma_\eta^2 + \sigma_{\varepsilon,t}^2\]</span></p>
+<p><span class="math display">\[\mathbb{V}[y_{it+1}] = \sigma_\alpha^2 + \underbrace{\rho^2 \mathbb{V}(\xi_{it}) + \sigma_\eta^2}_{\mathbb{V}(\xi_{it+1})} + \sigma_{\varepsilon,t+1}^2\]</span></p>
 <p><strong>Covariances:</strong></p>
 <p><span class="math display">\[\mathcal{C}(y_{it}, y_{it+1}) = \sigma_\alpha^2 + \rho \mathbb{V}(\xi_{it})\]</span></p>
 <p><span class="math display">\[\mathcal{C}(y_{it}, y_{it+2}) = \sigma_\alpha^2 + \rho^2 \mathbb{V}(\xi_{it})\]</span></p>
@@ -268,7 +268,8 @@ Solution
 <p><span class="math display">\[\mathbb{V}(\xi_{it}) = \frac{\mathcal{C}(y_{it}, y_{it+2}) - \mathcal{C}(y_{it}, y_{it+1})}{\rho^2 - \rho}\]</span></p>
 <p><span class="math display">\[\sigma_\alpha^2 = \mathcal{C}(y_{it}, y_{it+1}) - \rho \mathbb{V}(\xi_{it})\]</span></p>
 <p><span class="math display">\[\sigma_{\varepsilon,t}^2 = \mathbb{V}[y_{it}] - \sigma_\alpha^2 - \mathbb{V}(\xi_{it}) \quad \text{for each } t\]</span></p>
-<p><span class="math display">\[\sigma_\eta^2 = \mathbb{V}[y_{it+1}] - \sigma_\alpha^2 - \rho^2 \mathbb{V}(\xi_{it}) - \sigma_{\varepsilon,t}^2\]</span></p>
+<p>Repeating the steps above starting from age <span class="math inline">\(t+1\)</span> (using <span class="math inline">\(\mathcal{C}(y_{it+1},y_{it+2})\)</span>, <span class="math inline">\(\mathcal{C}(y_{it+1},y_{it+3})\)</span>) identifies <span class="math inline">\(\mathbb{V}(\xi_{it+1})\)</span>, and hence <span class="math inline">\(\sigma^2_{\varepsilon,t+1}\)</span>. Since <span class="math inline">\(\mathbb{V}(\xi_{it+1}) = \rho^2\mathbb{V}(\xi_{it}) + \sigma^2_{\eta}\)</span>:</p>
+<p><span class="math display">\[\sigma_\eta^2 = \mathbb{V}(\xi_{it+1}) - \rho^2 \mathbb{V}(\xi_{it}) = \mathbb{V}[y_{it+1}] - \sigma_\alpha^2 - \rho^2 \mathbb{V}(\xi_{it}) - \sigma_{\varepsilon,t+1}^2\]</span></p>
 <p>Done.</p>
 </div>
 </div>
@@ -294,7 +295,10 @@ Solution
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">groupby</span>(AGE).</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>var_ests <span class="op">=</span> <span class="pp">@chain</span> data <span class="cf">begin</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">groupby</span>(<span class="op">:</span>AGE)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@combine</span> <span class="op">:</span>vary_t <span class="op">=</span> <span class="fu">var</span>(<span class="op">:</span>log_income)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -329,6 +333,7 @@ Solution
 <p><span class="math display">\[\frac{(1+\theta^2)}{\theta} = \frac{\mathbb{V}(y_{it}) - \sigma_\alpha^2 - \mathbb{V}(\xi_{it})}{C_1 - \sigma_\alpha^2 - \rho \mathbb{V}(\xi_{it})}\]</span></p>
 <p><span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\theta\)</span> is solution to quadratic.</p>
 <p><span class="math display">\[\Rightarrow \sigma_{\varepsilon}^2 = \frac{\mathbb{V}(y_{it}) - \sigma_\alpha^2 - \mathbb{V}(\xi_{it})}{(1+\theta^2)}\]</span></p>
+<p>Finally, repeating the steps from age <span class="math inline">\(t+1\)</span> identifies <span class="math inline">\(\mathbb{V}(\xi_{it+1})\)</span>, so <span class="math inline">\(\sigma_\eta^2 = \mathbb{V}(\xi_{it+1}) - \rho^2\mathbb{V}(\xi_{it})\)</span> (or, if <span class="math inline">\(\xi\)</span> is stationary, <span class="math inline">\(\sigma^2_\eta = (1-\rho^2)\mathbb{V}(\xi_{it})\)</span>).</p>
 <p>Done.</p>
 </div>
 </div>
@@ -419,7 +424,7 @@ Solution
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -526,10 +531,10 @@ Solution
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>If <span class="math inline">\(A &gt; 0\)</span> at the optimum, can combine to get:</p>
-<p><span class="math display">\[C_1 + C_2/(1+r) \leq \Omega + wz X^\delta/(1+r) \quad (*)\]</span></p>
-<p>s.t. household solves:</p>
-<p><span class="math display">\[\max_{C_1, C_2} U(C_1) + \beta U(C_2) \quad \text{s.t.} \quad (*)\]</span></p>
-<p>Hence <span class="math inline">\(T\)</span> does not feature.</p>
+<p><span class="math display">\[C_1 + C_2/(1+r) \leq \Omega + wz X^\delta/(1+r) - \psi X \quad (*)\]</span></p>
+<p>since the <span class="math inline">\(T/(1+r)\)</span> received in period 1 exactly offsets the present value of the <span class="math inline">\(T\)</span> paid in period 2. So the household solves:</p>
+<p><span class="math display">\[\max_{C_1, C_2, X} U(C_1) + \beta U(C_2) \quad \text{s.t.} \quad (*)\]</span></p>
+<p>Hence <span class="math inline">\(T\)</span> does not feature (as long as <span class="math inline">\(A\)</span> remains positive at the new optimum).</p>
 </div>
 </div>
 </div>
@@ -537,7 +542,7 @@ Solution
 <section id="part-b-1" class="level3">
 <h3 class="anchored" data-anchor-id="part-b-1">Part (b)</h3>
 <p>Show that for constrained households:</p>
-<p><span class="math display">\[U'(C_1) = \frac{\delta wz X^{\delta-1}}{(1+r)} U'(C_2) \quad \text{and} \quad (1+r) \leq \frac{\delta wz X^{\delta-1}}{\psi}\]</span></p>
+<p><span class="math display">\[U'(C_1) = \beta\frac{\delta wz X^{\delta-1}}{\psi} U'(C_2) \quad \text{and} \quad (1+r) \leq \frac{\delta wz X^{\delta-1}}{\psi}\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -553,11 +558,11 @@ Solution
 <p>When <span class="math inline">\(A = 0\)</span>, solve:</p>
 <p><span class="math display">\[\max_{C_1, C_2} U(\Omega + T/(1+r) - \psi X) + \beta U(wz X^\delta - T)\]</span></p>
 <p>get</p>
-<p><span class="math display">\[U'(\Omega + T/(1+r) - \psi X) = \beta \delta wz X^{\delta-1} U'(wz X^\delta - T)\]</span></p>
-<p><span class="math display">\[\Leftrightarrow U'(C_1) \psi = \beta \delta wz^{\delta-1} U'(wz X^\delta - T)\]</span></p>
+<p><span class="math display">\[\psi U'(\Omega + T/(1+r) - \psi X) = \beta \delta wz X^{\delta-1} U'(wz X^\delta - T)\]</span></p>
+<p><span class="math display">\[\Leftrightarrow U'(C_1) = \beta \frac{\delta wz X^{\delta-1}}{\psi} U'(C_2)\]</span></p>
 <p>Note that the marginal return (in assets) is</p>
 <p><span class="math display">\[-\frac{1}{1+r} U'(C_1) + \beta U'(C_2) \leq 0 \quad \Leftrightarrow (1+r) \leq \frac{\delta wz X^{\delta-1}}{\psi}\]</span></p>
-<p>(if <span class="math inline">\(&gt; 0\)</span>, then household should optimally increase <span class="math inline">\(A\)</span> above 0).</p>
+<p>where the equivalence substitutes the FOC for <span class="math inline">\(U'(C_1)\)</span> (if the marginal value were <span class="math inline">\(&gt; 0\)</span>, the household would optimally increase <span class="math inline">\(A\)</span> above 0).</p>
 </div>
 </div>
 </div>
@@ -578,9 +583,9 @@ Solution
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>If <span class="math inline">\(T \nearrow\)</span> marginally, change in welfare is</p>
-<p><span class="math display">\[u'(C_1) \frac{1}{(1+r)} - \beta u'(C_2) &gt; 0\]</span></p>
-<p>for constrained households, where inequality follows from (b).</p>
-<p>Since allocations of constrained households are unaffected by <span class="math inline">\(T\)</span> <span class="math inline">\(\Rightarrow\)</span> no welfare effect.</p>
+<p><span class="math display">\[u'(C_1) \frac{1}{(1+r)} - \beta u'(C_2) \geq 0\]</span></p>
+<p>for constrained households (by the envelope theorem), where the inequality follows from (b) and is strict when the constraint binds strictly.</p>
+<p>Since allocations of unconstrained households are unaffected by <span class="math inline">\(T\)</span> (part (a)) <span class="math inline">\(\Rightarrow\)</span> no welfare effect.</p>
 <p>Note: not clear if welfare of children <span class="math inline">\(\nearrow\)</span> in this intervention.</p>
 </div>
 </div>
@@ -610,7 +615,7 @@ Solution
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For unconstrained:</p>
-<p><span class="math display">\[(1+r) = \frac{\lambda_2 (1-\tau) \delta(w z)^{1-\tau} X^{\delta(1-\tau)-1}}{\psi}\]</span></p>
+<p><span class="math display">\[U'(C_1) = \beta(1+r)U'(C_2), \qquad (1+r) = \frac{\lambda_2 (1-\tau) \delta(w z)^{1-\tau} X^{\delta(1-\tau)-1}}{\psi}\]</span></p>
 </div>
 </div>
 </div>
@@ -631,7 +636,7 @@ Solution
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Comparing to the condition <span class="math inline">\((1+r) = \frac{\delta wz X^{\delta-1}}{\psi}\)</span>,</p>
-<p>taxation distorts the optimal allocation of financials <span class="math inline">\(\Rightarrow\)</span> human capital <span class="math inline">\(\Rightarrow\)</span> not efficient.</p>
+<p>the private return to <span class="math inline">\(X\)</span> is now <span class="math inline">\(\lambda_2(1-\tau)(wzX^{\delta})^{-\tau}\)</span> times the social return. Except by coincidence this factor is not equal to one, so taxation distorts the choice between financial assets and human capital <span class="math inline">\(\Rightarrow\)</span> not efficient.</p>
 </div>
 </div>
 </div>
@@ -671,11 +676,11 @@ Solution
 </div>
 <div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><span class="math display">\[\max_X \log(\lambda_1 \Omega^{1-\tau} - \psi X) + \beta \log(\lambda_2 wz X^\delta)^{1-\tau}\]</span></p>
-<p><span class="math display">\[\Rightarrow \frac{\psi}{\lambda_1 \Omega^{1-\tau} - \psi X} = \frac{\beta (1-\tau) \delta}{\chi}\]</span></p>
+<p><span class="math display">\[\max_X \log(\lambda_1 \Omega^{1-\tau} - \psi X) + \beta \log\left(\lambda_2 (wz X^\delta)^{1-\tau}\right)\]</span></p>
+<p><span class="math display">\[\Rightarrow \frac{\psi}{\lambda_1 \Omega^{1-\tau} - \psi X} = \frac{\beta (1-\tau) \delta}{X}\]</span></p>
 <p><span class="math display">\[\Leftrightarrow X = \frac{1}{\psi} \times \frac{\beta (1-\tau) \delta}{1 + \beta(1-\tau) \delta} \lambda_1 \Omega^{1-\tau}\]</span></p>
 <p><span class="math display">\[\Rightarrow \text{compared to } X = \frac{1}{\psi} \frac{\beta \delta}{1+\beta \delta} \Omega\]</span></p>
-<p>So taxation also distorts investment in unconstrained. This could offset distortion from incomplete markets, but depends on parameters <span class="math inline">\((\lambda_1, \lambda_2, \tau)\)</span>.</p>
+<p>So taxation also distorts investment of constrained households: it lowers the share of period-1 resources invested, <span class="math inline">\(\frac{\beta(1-\tau)\delta}{1+\beta(1-\tau)\delta} &lt; \frac{\beta\delta}{1+\beta\delta}\)</span>, but for poor households it also raises those resources (<span class="math inline">\(\lambda_1\Omega^{1-\tau} &gt; \Omega\)</span> when <span class="math inline">\(\Omega\)</span> is low). The second effect could offset the distortion from incomplete markets, but this depends on parameters <span class="math inline">\((\lambda_1, \lambda_2, \tau)\)</span>.</p>
 </div>
 </div>
 </div>

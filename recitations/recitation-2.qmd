@@ -172,48 +172,88 @@ plot(p.asset_grid,A[1,:,1],label = "Low shock, period 1")
 plot!(p.asset_grid,A[5,:,1],label = "High shock, period 1")
 plot!(p.asset_grid,A[5,:,30],label = "High shock, period 30")
 plot!(p.asset_grid,A[1,:,30],label = "Low shock, period 30")
-plot!(p.asset_grid,A[1,:,55],label = "Low shock, period 50")
-plot!(p.asset_grid,A[5,:,55],label = "High shock, period 50")
+plot!(p.asset_grid,A[1,:,55],label = "Low shock, period 55")
+plot!(p.asset_grid,A[5,:,55],label = "High shock, period 55")
 ```
 
 Can you interpret what is going on here?
+
+## The stationary distribution
+
+To compare welfare across economies we need to know where people start. We will assume that the initial draw of $\varepsilon$ comes from the *stationary distribution* of $\Pi$: the distribution $\pi^*$ that satisfies $\Pi\pi^* = \pi^*$. In words, if the population is distributed according to $\pi^*$ today, it will still be distributed according to $\pi^*$ tomorrow. Linear algebra tells us that $\pi^*$ is the eigenvector of $\Pi$ associated with the eigenvalue equal to one (rescaled so that it sums to one):
+
+```{julia}
+function solve_steady_state(Π)
+    vals, e = eigen(Π)
+    k = argmin(abs.(vals .- 1))   # eigenvalue closest to one
+    v = real.(e[:, k])
+    return v ./ sum(v)
+end
+
+pi_star = solve_steady_state(Π)
+```
 
 ## Calculating welfare effects
 
 Let's assume that everyone starts off with no assets, and then consider the welfare effects of differences in $\rho$. In particular let's let the persistence of $\rho$ decline and see what happens.
 
+We need to be careful here. If we lower $\rho$ but keep $\sigma_{\zeta}$ the same, the unconditional variance of $\varepsilon$, $\sigma^2_{\zeta}/(1-\rho^2)$, also falls. We would then be changing two things at once: how *persistent* shocks are and how much *total risk* there is. To isolate the role of persistence, we hold the unconditional variance fixed at its value when $\rho=0.9$ and adjust $\sigma_{\zeta}$:
+
+$$ \sigma_{\zeta}(\rho) = \sigma_{\varepsilon}\sqrt{1-\rho^2},\qquad \sigma_{\varepsilon} = \frac{0.1}{\sqrt{1-0.9^2}}.$$
+
 ```{julia}
-egrid,Π = tauchen(5,0.45,0.1) #<- move ρ from 0.9 to 0.45
-income_grid = [μ+egrid[i] for i in 1:5, t in 1:T]
-p2 = (;p...,income_grid,Π)
+σ_ε = 0.1 / sqrt(1 - 0.9^2)    #<- unconditional SD of ε, held fixed
+ρ2 = 0.45                        #<- move ρ from 0.9 to 0.45
+egrid2,Π2 = tauchen(5,ρ2,σ_ε*sqrt(1-ρ2^2))
+income_grid2 = [μ+egrid2[i] for i in 1:5, t in 1:T]
+p2 = (;p...,income_grid = income_grid2,Π = Π2)
 model2 = solve_model(p2)
-plot(model.V[:,1,1],label = "ρ = 0.9")
-plot!(model2.V[:,1,1], label = "ρ = 0.45")
-
+pi_star2 = solve_steady_state(Π2)
 ```
-
-Spend some time interpreting this! Why does decreasing $\rho$ have this effect on welfare?
 
 ## Consumption equivalents
 
-The welfare comparisons above are in arbitrary units. How can we convert them to something interpretable? One option is to think about a *consumption equivalent*: the percentage increase in consumption that someone would be willing to take to move from one regime to another. For example, given an initial income level, $y$, the consumption equivalent here would solve:
+Values are in arbitrary units ("utils"). How can we convert them to something interpretable? One option is to think about a *consumption equivalent*: the percentage increase in consumption, in every period and every state, that would make someone in one economy as well off as in another.
 
-$$ \mathbb{E}[\sum_{t=0}^{T}\beta^{t}u((1+\omega(y))c_{t}) | y, \rho = 0.9] = \mathbb{E}[\sum_{t=0}^{T}\beta^{t}u(c_{t}) | y, \rho = 0.45] $$
+Let $W = \sum_{y}\pi^*(y)V_{0}(0,y)$ be expected lifetime utility for someone who starts with zero assets and draws initial income from the stationary distribution. Since each economy has its own $\pi^*$ (and, in general, its own income grid), this average is the right object to compare. The consumption equivalent $\omega$ solves:
 
-which solves out to:
+$$ \mathbb{E}\left[\sum_{t=0}^{T-1}\beta^{t}u((1+\omega)c_{t}) \Big| \rho = 0.9\right] = \mathbb{E}\left[\sum_{t=0}^{T-1}\beta^{t}u(c_{t}) \Big| \rho = 0.45\right] $$
 
-$$ \omega(y) = \left[\frac{V_{0}(0,y ; \rho = 0.45)}{V_{0}(0,y ; \rho = 0.9)}\right]^{1/(1-\sigma)} - 1 $$
+where expectations are taken over the initial draw from $\pi^*$ as well as over future shocks. Since $u((1+\omega)c) = (1+\omega)^{1-\sigma}u(c)$ with CRRA utility, this solves out to:
 
-Let's calculate and plot this for each income level:
+$$ 1+\omega = \left[\frac{W(\rho = 0.45)}{W(\rho = 0.9)}\right]^{1/(1-\sigma)}.$$
 
 ```{julia}
 (;σ,β) = p
-cev = (model2.V[:,1,1] ./ model.V[:,1,1]) .^ (1/(1 - σ)) .- 1
-plot(cev)
+W1 = dot(pi_star, model.V[:,1,1])
+W2 = dot(pi_star2, model2.V[:,1,1])
+ω = (W2 / W1)^(1/(1-σ)) - 1
+println("Consumption equivalent of moving from ρ = 0.9 to ρ = 0.45: ", round(100ω, digits=2), "%")
 ```
 
-Which tells us that when we move from $\rho=0.9$ to $\rho=0.45$, individuals who begin at the lowest level of $\varepsilon$ would enjoy a welfare gain that is equivalent to a 33\% increase in consumption in every period. That's a lot!
+Spend some time interpreting this! Why does decreasing $\rho$ (holding total variance fixed) have this effect on welfare?
+
+### Who gains the most?
+
+Because we held the unconditional variance fixed, both economies use exactly the same income grid (check `egrid` and `egrid2`). This means we can also compare people who start at the *same* initial income $y$. The consumption equivalent conditional on initial income solves the same equation without averaging over $y$:
+
+$$ \omega(y) = \left[\frac{V_{0}(0,y ; \rho = 0.45)}{V_{0}(0,y ; \rho = 0.9)}\right]^{1/(1-\sigma)} - 1 $$
+
+```{julia}
+cev = (model2.V[:,1,1] ./ model.V[:,1,1]) .^ (1/(1 - σ)) .- 1
+plot(exp.(μ .+ egrid), 100cev, marker = :circle, legend = false,
+    xlabel = "Initial income", ylabel = "Consumption equivalent (%)")
+```
+
+```{julia}
+println("Lowest initial income:  ", round(100cev[1], digits=1), "%")
+println("Highest initial income: ", round(100cev[end], digits=1), "%")
+```
+
+Individuals who begin at the lowest level of $\varepsilon$ gain a lot from lower persistence: their bad luck is less likely to last. Those who begin at the top lose, since their good luck is also less likely to last. Note that this state-by-state comparison is only meaningful because the two grids coincide; if we had changed $\rho$ without adjusting $\sigma_{\zeta}$, state $i$ would correspond to a different income level in each economy.
+
+All of the functions we wrote today (along with some extensions that we will add in Recitation 3) are saved in the file [`income_tools.jl`](https://github.com/josephmullins/ECON4538/blob/main/recitations/income_tools.jl). In future recitations and assignments you can load them with `include("income_tools.jl")` instead of copying the code.
 
 ## Additional Exercise
 
-Assume that the initial draw of $\varepsilon$ is from the stationary distribution of $\Pi$. Suppose that we want to calculate the average consumption equivalent (i.e. not conditioning on $y$). How could we calculate this? 
+Repeat the comparison for $\rho = 0.99$, again holding the unconditional variance fixed. Then hold $\rho=0.9$ fixed and instead double $\sigma_{\zeta}$. Which change matters more for welfare?

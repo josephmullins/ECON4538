@@ -20,7 +20,7 @@ Use population moments to argue that the parameters $\sigma_\alpha^2, \rho, \sig
 
 $$\mathbb{V}[y_{it}] = \sigma_\alpha^2 + \mathbb{V}(\xi_{it}) + \sigma_{\varepsilon,t}^2$$
 
-$$\mathbb{V}[y_{it+1}] = \sigma_\alpha^2 + \rho^2 \mathbb{V}(\xi_{it}) + \sigma_\eta^2 + \sigma_{\varepsilon,t}^2$$
+$$\mathbb{V}[y_{it+1}] = \sigma_\alpha^2 + \underbrace{\rho^2 \mathbb{V}(\xi_{it}) + \sigma_\eta^2}_{\mathbb{V}(\xi_{it+1})} + \sigma_{\varepsilon,t+1}^2$$
 
 **Covariances:**
 
@@ -40,7 +40,9 @@ $$\sigma_\alpha^2 = \mathcal{C}(y_{it}, y_{it+1}) - \rho \mathbb{V}(\xi_{it})$$
 
 $$\sigma_{\varepsilon,t}^2 = \mathbb{V}[y_{it}] - \sigma_\alpha^2 - \mathbb{V}(\xi_{it}) \quad \text{for each } t$$
 
-$$\sigma_\eta^2 = \mathbb{V}[y_{it+1}] - \sigma_\alpha^2 - \rho^2 \mathbb{V}(\xi_{it}) - \sigma_{\varepsilon,t}^2$$
+Repeating the steps above starting from age $t+1$ (using $\mathcal{C}(y_{it+1},y_{it+2})$, $\mathcal{C}(y_{it+1},y_{it+3})$) identifies $\mathbb{V}(\xi_{it+1})$, and hence $\sigma^2_{\varepsilon,t+1}$. Since $\mathbb{V}(\xi_{it+1}) = \rho^2\mathbb{V}(\xi_{it}) + \sigma^2_{\eta}$:
+
+$$\sigma_\eta^2 = \mathbb{V}(\xi_{it+1}) - \rho^2 \mathbb{V}(\xi_{it}) = \mathbb{V}[y_{it+1}] - \sigma_\alpha^2 - \rho^2 \mathbb{V}(\xi_{it}) - \sigma_{\varepsilon,t+1}^2$$
 
 Done.
 :::
@@ -62,7 +64,10 @@ end
 ## Solution
 
 ```julia
-groupby(AGE).
+var_ests = @chain data begin
+    groupby(:AGE)
+    @combine :vary_t = var(:log_income)
+end
 ```
 :::
 
@@ -102,6 +107,8 @@ $$\frac{(1+\theta^2)}{\theta} = \frac{\mathbb{V}(y_{it}) - \sigma_\alpha^2 - \ma
 $\Rightarrow$ $\theta$ is solution to quadratic.
 
 $$\Rightarrow \sigma_{\varepsilon}^2 = \frac{\mathbb{V}(y_{it}) - \sigma_\alpha^2 - \mathbb{V}(\xi_{it})}{(1+\theta^2)}$$
+
+Finally, repeating the steps from age $t+1$ identifies $\mathbb{V}(\xi_{it+1})$, so $\sigma_\eta^2 = \mathbb{V}(\xi_{it+1}) - \rho^2\mathbb{V}(\xi_{it})$ (or, if $\xi$ is stationary, $\sigma^2_\eta = (1-\rho^2)\mathbb{V}(\xi_{it})$).
 
 Done.
 :::
@@ -168,6 +175,8 @@ $$\Rightarrow \overline{C}(\alpha_i) = \exp(\alpha_i)$$
 Show that $\overline{C} = \int \overline{C}(\alpha_{i})di = \exp(\mu + \frac{1}{2}\sigma^2_{\alpha})$
 
 ::: {.callout-note collapse="true"}
+## Solution
+
 Since $\alpha_i \sim \mathcal{N}(\mu, \sigma_\alpha^2)$,
 
 $$\overline{C} = \int \overline{C}(\alpha_i) di = \exp(\mu + \frac{1}{2}\sigma_\alpha^2)$$
@@ -235,19 +244,19 @@ Show that if a household is not constrained, the value of $T$ does not affect an
 
 If $A > 0$ at the optimum, can combine to get:
 
-$$C_1 + C_2/(1+r) \leq \Omega + wz X^\delta/(1+r) \quad (*)$$
+$$C_1 + C_2/(1+r) \leq \Omega + wz X^\delta/(1+r) - \psi X \quad (*)$$
 
-s.t. household solves:
+since the $T/(1+r)$ received in period 1 exactly offsets the present value of the $T$ paid in period 2. So the household solves:
 
-$$\max_{C_1, C_2} U(C_1) + \beta U(C_2) \quad \text{s.t.} \quad (*)$$
+$$\max_{C_1, C_2, X} U(C_1) + \beta U(C_2) \quad \text{s.t.} \quad (*)$$
 
-Hence $T$ does not feature.
+Hence $T$ does not feature (as long as $A$ remains positive at the new optimum).
 :::
 
 ### Part (b)
 Show that for constrained households:
 
-$$U'(C_1) = \frac{\delta wz X^{\delta-1}}{(1+r)} U'(C_2) \quad \text{and} \quad (1+r) \leq \frac{\delta wz X^{\delta-1}}{\psi}$$
+$$U'(C_1) = \beta\frac{\delta wz X^{\delta-1}}{\psi} U'(C_2) \quad \text{and} \quad (1+r) \leq \frac{\delta wz X^{\delta-1}}{\psi}$$
 
 ::: {.callout-note collapse="true"}
 ## Solution
@@ -258,15 +267,15 @@ $$\max_{C_1, C_2} U(\Omega + T/(1+r) - \psi X) + \beta U(wz X^\delta - T)$$
 
 get
 
-$$U'(\Omega + T/(1+r) - \psi X) = \beta \delta wz X^{\delta-1} U'(wz X^\delta - T)$$
+$$\psi U'(\Omega + T/(1+r) - \psi X) = \beta \delta wz X^{\delta-1} U'(wz X^\delta - T)$$
 
-$$\Leftrightarrow U'(C_1) \psi = \beta \delta wz^{\delta-1} U'(wz X^\delta - T)$$
+$$\Leftrightarrow U'(C_1) = \beta \frac{\delta wz X^{\delta-1}}{\psi} U'(C_2)$$
 
 Note that the marginal return (in assets) is
 
 $$-\frac{1}{1+r} U'(C_1) + \beta U'(C_2) \leq 0 \quad \Leftrightarrow (1+r) \leq \frac{\delta wz X^{\delta-1}}{\psi}$$
 
-(if $> 0$, then household should optimally increase $A$ above 0).
+where the equivalence substitutes the FOC for $U'(C_1)$ (if the marginal value were $> 0$, the household would optimally increase $A$ above 0).
 :::
 
 ### Part (c)
@@ -277,11 +286,11 @@ Consider a marginal increase in $T$. What happens to the welfare of constrained 
 
 If $T \nearrow$ marginally, change in welfare is
 
-$$u'(C_1) \frac{1}{(1+r)} - \beta u'(C_2) > 0$$
+$$u'(C_1) \frac{1}{(1+r)} - \beta u'(C_2) \geq 0$$
 
-for constrained households, where inequality follows from (b).
+for constrained households (by the envelope theorem), where the inequality follows from (b) and is strict when the constraint binds strictly.
 
-Since allocations of constrained households are unaffected by $T$ $\Rightarrow$ no welfare effect.
+Since allocations of unconstrained households are unaffected by $T$ (part (a)) $\Rightarrow$ no welfare effect.
 
 Note: not clear if welfare of children $\nearrow$ in this intervention.
 :::
@@ -306,7 +315,7 @@ Write the FOC for unconstrained households.
 
 For unconstrained:
 
-$$(1+r) = \frac{\lambda_2 (1-\tau) \delta(w z)^{1-\tau} X^{\delta(1-\tau)-1}}{\psi}$$
+$$U'(C_1) = \beta(1+r)U'(C_2), \qquad (1+r) = \frac{\lambda_2 (1-\tau) \delta(w z)^{1-\tau} X^{\delta(1-\tau)-1}}{\psi}$$
 :::
 
 ### Part (b)
@@ -317,7 +326,7 @@ Recall that the planner would set, if possible, $(1+r) = \frac{\delta wz X^{\del
 
 Comparing to the condition $(1+r) = \frac{\delta wz X^{\delta-1}}{\psi}$,
 
-taxation distorts the optimal allocation of financials $\Rightarrow$ human capital $\Rightarrow$ not efficient.
+the private return to $X$ is now $\lambda_2(1-\tau)(wzX^{\delta})^{-\tau}$ times the social return. Except by coincidence this factor is not equal to one, so taxation distorts the choice between financial assets and human capital $\Rightarrow$ not efficient.
 :::
 
 ### Part (c)
@@ -335,13 +344,13 @@ Assuming log utility, solve for $X$ when households are constrained. Comment on 
 ::: {.callout-note collapse="true"}
 ## Solution
 
-$$\max_X \log(\lambda_1 \Omega^{1-\tau} - \psi X) + \beta \log(\lambda_2 wz X^\delta)^{1-\tau}$$
+$$\max_X \log(\lambda_1 \Omega^{1-\tau} - \psi X) + \beta \log\left(\lambda_2 (wz X^\delta)^{1-\tau}\right)$$
 
-$$\Rightarrow \frac{\psi}{\lambda_1 \Omega^{1-\tau} - \psi X} = \frac{\beta (1-\tau) \delta}{\chi}$$
+$$\Rightarrow \frac{\psi}{\lambda_1 \Omega^{1-\tau} - \psi X} = \frac{\beta (1-\tau) \delta}{X}$$
 
 $$\Leftrightarrow X = \frac{1}{\psi} \times \frac{\beta (1-\tau) \delta}{1 + \beta(1-\tau) \delta} \lambda_1 \Omega^{1-\tau}$$
 
 $$\Rightarrow \text{compared to } X = \frac{1}{\psi} \frac{\beta \delta}{1+\beta \delta} \Omega$$
 
-So taxation also distorts investment in unconstrained. This could offset distortion from incomplete markets, but depends on parameters $(\lambda_1, \lambda_2, \tau)$.
+So taxation also distorts investment of constrained households: it lowers the share of period-1 resources invested, $\frac{\beta(1-\tau)\delta}{1+\beta(1-\tau)\delta} < \frac{\beta\delta}{1+\beta\delta}$, but for poor households it also raises those resources ($\lambda_1\Omega^{1-\tau} > \Omega$ when $\Omega$ is low). The second effect could offset the distortion from incomplete markets, but this depends on parameters $(\lambda_1, \lambda_2, \tau)$.
 :::

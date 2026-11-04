@@ -1,0 +1,41 @@
+---
+title: "Assignment 6"
+bibliography: ../reading_list.bib
+---
+
+This assignment works with the technology of skill formation from [Lecture 6](../lectures/6-SkillsInequalityTechnology.qmd) [@Cunha2007; @Cunha2010]. A child is born with initial skill $\theta_1$. A parent invests $I_1$ in early childhood and $I_2$ in late childhood. Skills evolve according to
+
+$$
+\theta_{2} = \left[\gamma_1\theta_1^{\phi_1} + (1-\gamma_1)I_1^{\phi_1}\right]^{1/\phi_1}, \qquad
+\theta_{3} = \left[\gamma_2\theta_2^{\phi_2} + (1-\gamma_2)I_2^{\phi_2}\right]^{1/\phi_2}
+$$
+
+where $\gamma_1,\gamma_2\in(0,1)$ and $\phi_1,\phi_2 < 1$. When $\phi_t \to 0$ the corresponding stage is Cobb-Douglas: $\theta_{t+1} = \theta_t^{\gamma_t}I_t^{1-\gamma_t}$. The parent has a fixed budget $B$ (in period-1 units) and can borrow and save at gross interest rate $R$, so that
+
+$$ I_1 + \frac{I_2}{R} = B. $$
+
+The parent chooses $(I_1, I_2)$ to maximize the child's adult skill $\theta_3$. Unless stated otherwise, use $\gamma_1 = 0.3$, $\gamma_2 = 0.7$ and $R = 1.1$.
+
+1. **Optimal timing (analytical).** Suppose $\phi_1 = \phi_2 = \phi$.
+    a. Substitute $\theta_2$ into the second-stage technology to write $\theta_3$ as a function of $\theta_1$, $I_1$ and $I_2$.
+    b. Show that the optimal ratio of early to late investment is
+    $$ \frac{I_1}{I_2} = \left(\frac{\gamma_2(1-\gamma_1)}{(1-\gamma_2)R}\right)^{\frac{1}{1-\phi}}. $$
+    c. Explain in words what $\gamma_2(1-\gamma_1)$ and $(1-\gamma_2)R$ represent. How does the ratio change as $\phi \to -\infty$? As $\phi \to 1$?
+    d. Does the optimal *ratio* depend on the child's initial skill $\theta_1$? Does the child's final skill $\theta_3$?
+
+2. **Optimal timing (numerical).** Write a function that, given $\theta_1$, $B$ and the parameters, finds the share of the budget $s = I_1/B$ that maximizes $\theta_3$.
+    a. Check your code against the formula from question 1 for $\phi \in \{-1, 0, 0.5\}$.
+    b. With $B = 1$, plot the optimal early share $s$ and the resulting $\theta_3$ against $\phi \in [-2, 0.8]$, for $\theta_1 \in \{0.25, 0.5, 1, 2\}$. Describe what you find.
+    c. @Cunha2010 find that, for cognitive skills, the elasticity of substitution is higher early in childhood than later. Set $\phi_1 = 0.5$ and $\phi_2 = -0.5$ and plot the optimal early share against $\theta_1 \in [0.1, 2]$. Does the answer to 1(d) still hold? Give some intuition.
+
+3. **The cost of delaying remediation.** Consider an advantaged child with $\theta_1 = 1$ who receives $I_1 = I_2 = 1$, and let $\bar{\theta}$ be the adult skill this child reaches. A disadvantaged child starts with $\theta_1 = 0.5$. Assume $\phi_1 = \phi_2 = \phi$.
+    a. *Early remediation*: find the smallest budget $B$ such that, investing optimally, the disadvantaged child reaches $\bar{\theta}$.
+    b. *Delayed remediation*: suppose the disadvantaged child only receives $I_1 = 0.5$ in early childhood, and help arrives only in late childhood. Find the $I_2$ needed to reach $\bar{\theta}$, and the total cost $0.5 + I_2/R$.
+    c. Report both costs and their ratio for $\phi \in \{-0.5, -0.25, 0, 0.25, 0.5\}$. What happens as $\phi$ falls?
+    d. Show that when $\phi < 0$, there is an upper bound on $\theta_3$ that no amount of late investment can exceed. What is it? Connect your answer to the idea of a critical period.
+
+4. **Measurement error (optional, extra credit).** In the data we never observe skills directly, only test scores (Lecture 6). Set $\phi_1 = 0$, so that $\log\theta_2 = \gamma_1\log\theta_1 + (1-\gamma_1)\log I_1$.
+    a. Simulate $N = 5{,}000$ children with $\log\theta_1 \sim N(0, 0.5^2)$ and $\log I_1 = 0.3\log\theta_1 + \nu$, $\nu\sim N(0,0.5^2)$ (better-endowed children receive more investment). Compute $\theta_2$.
+    b. Generate two test scores $Z_j = \log\theta_1 + \varepsilon_j$, $j=1,2$, and an outcome measure $Y = \log\theta_2 + u$, with independent normal errors ($\text{sd}(\varepsilon_j) = 0.5$, $\text{sd}(u) = 0.3$).
+    c. Regress $Y$ on a constant, $Z_1$ and $\log I_1$. Compare the estimates of $\gamma_1$ and $1-\gamma_1$ to the truth. Why is the coefficient on investment also biased?
+    d. Re-estimate by two-stage least squares, using $Z_2$ as an instrument for $Z_1$. Explain why this works.
