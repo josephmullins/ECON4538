@@ -354,3 +354,233 @@ $$\Rightarrow \text{compared to } X = \frac{1}{\psi} \frac{\beta \delta}{1+\beta
 
 So taxation also distorts investment of constrained households: it lowers the share of period-1 resources invested, $\frac{\beta(1-\tau)\delta}{1+\beta(1-\tau)\delta} < \frac{\beta\delta}{1+\beta\delta}$, but for poor households it also raises those resources ($\lambda_1\Omega^{1-\tau} > \Omega$ when $\Omega$ is low). The second effect could offset the distortion from incomplete markets, but this depends on parameters $(\lambda_1, \lambda_2, \tau)$.
 :::
+
+---
+
+## Problem 7: Insurance and Redistribution in a Two-Period Model
+
+Consider a two-period model in which income can take two values, $y_{it}\in\{y_{L},y_{H}\}$ with $y_{L}<y_{H}$. Let $\pi$ be the probability that an individual keeps the same income from $t=1$ to $t=2$:
+
+$$\mathbb{P}[y_{i2}=y_{H}|y_{i1}=y_{H}] = \pi,\quad \mathbb{P}[y_{i2}=y_{L}|y_{i1}=y_{H}] = 1-\pi$$
+$$\mathbb{P}[y_{i2}=y_{L}|y_{i1}=y_{L}] = \pi,\quad \mathbb{P}[y_{i2}=y_{H}|y_{i1}=y_{L}] = 1-\pi$$
+
+Assume that $c_{it} = y_{it}$, that utility is logarithmic, and that initial income is $y_{L}$ or $y_{H}$ with probability $1/2$ each. Define the value of each type $\tau\in\{L,H\}$ as
+
+$$V_{\tau} = \mathbb{E}\left[\log(c_{1}) + \beta\log(c_{2})\,|\,y_{1}=y_{\tau}\right]$$
+
+and the planner's objective as $W = \frac{1}{2}V_{L} + \frac{1}{2}V_{H}$. Let $\Delta = y_{H}/y_{L}$.
+
+### Part (a)
+Show that
+
+$$V_{L} = (1+\beta)\log(y_{L}) + \beta(1-\pi)\log(\Delta),\qquad V_{H} = (1+\beta)\log(y_{H}) - \beta(1-\pi)\log(\Delta)$$
+
+::: {.callout-note collapse="true"}
+## Solution
+
+$$\begin{aligned}
+V_{L} &= \log(y_{L}) + \beta\,\mathbb{E}[\log(y_{2})|y_{1}=y_{L}] \\
+&= \log(y_{L}) + \beta\left[\pi\log(y_{L}) + (1-\pi)\log(y_{H})\right] \\
+&= (1+\beta)\log(y_{L}) + \beta(1-\pi)\log(y_{H}/y_{L})
+\end{aligned}$$
+
+The derivation for $V_{H}$ is symmetric.
+:::
+
+### Part (b)
+Suppose the planner reallocates consumption in both periods so that everyone gets the same $c_{1}$ and $c_{2}$. Show that
+
+$$c_{1} = c_{2} = \tfrac{1}{2}y_{L} + \tfrac{1}{2}y_{H}$$
+
+and that welfare at the planner's allocation is $W^* = V^*_{L} = V^*_{H} = (1+\beta)\log\left(\frac{y_{L}+y_{H}}{2}\right)$.
+
+::: {.callout-note collapse="true"}
+## Solution
+
+In period 1, $\mathbb{E}[y_{i1}] = \frac{1}{2}y_{L} + \frac{1}{2}y_{H}$, so the planner's resource constraint gives $c_{1} = (y_{L}+y_{H})/2$.
+
+In period 2,
+
+$$\mathbb{P}[y_{i2}=y_{L}] = \underbrace{\tfrac{1}{2}\pi}_{y_{L}\rightarrow y_{L}} + \underbrace{\tfrac{1}{2}(1-\pi)}_{y_{H}\rightarrow y_{L}} = \tfrac{1}{2}$$
+
+so average income is the same and $c_{2} = (y_{L}+y_{H})/2$. Plugging in gives $V^* = (1+\beta)\log\left(\frac{y_{L}+y_{H}}{2}\right)$ for everyone.
+:::
+
+### Part (c)
+Show that the certainty equivalents $(\bar{c}_{L},\bar{c}_{H})$, which deliver the same values as $(V_{L},V_{H})$ if received in both periods, are
+
+$$\bar{c}_{L} = y_{L}\Delta^{\frac{\beta(1-\pi)}{1+\beta}},\qquad \bar{c}_{H} = y_{H}\Delta^{-\frac{\beta(1-\pi)}{1+\beta}}$$
+
+::: {.callout-note collapse="true"}
+## Solution
+
+$\bar{c}_{L}$ solves
+
+$$(1+\beta)\log(\bar{c}_{L}) = V_{L} = (1+\beta)\log(y_{L}) + \beta(1-\pi)\log(\Delta)$$
+
+so $\log(\bar{c}_{L}) = \log(y_{L}) + \frac{\beta(1-\pi)}{1+\beta}\log(\Delta)$, which gives the result. The derivation for $\bar{c}_{H}$ is symmetric.
+:::
+
+### Part (d)
+Define $\bar{C} = \frac{1}{2}\bar{c}_{L} + \frac{1}{2}\bar{c}_{H}$. Recall that
+
+$$\mathcal{I} = W^* - (1+\beta)\log(\bar{C})$$
+
+is the insurance component of the welfare gain. Show that
+
+$$\mathcal{I} = (1+\beta)\log\left(\frac{1+\Delta}{\Delta^{\frac{\beta(1-\pi)}{1+\beta}} + \Delta^{\frac{1+\beta\pi}{1+\beta}}}\right)$$
+
+::: {.callout-note collapse="true"}
+## Solution
+
+Write $\bar{c}_{H}$ in terms of $y_{L}$: $\bar{c}_{H} = y_{L}\Delta\cdot\Delta^{-\frac{\beta(1-\pi)}{1+\beta}} = y_{L}\Delta^{\frac{1+\beta\pi}{1+\beta}}$. Then
+
+$$\begin{aligned}
+\mathcal{I} &= (1+\beta)\log\left(\tfrac{1}{2}y_{L}(1+\Delta)\right) - (1+\beta)\log\left(\tfrac{1}{2}y_{L}\Delta^{\frac{\beta(1-\pi)}{1+\beta}} + \tfrac{1}{2}y_{L}\Delta^{\frac{1+\beta\pi}{1+\beta}}\right) \\
+&= (1+\beta)\log\left(\frac{1+\Delta}{\Delta^{\frac{\beta(1-\pi)}{1+\beta}} + \Delta^{\frac{1+\beta\pi}{1+\beta}}}\right)
+\end{aligned}$$
+:::
+
+### Part (e)
+What happens to this component as $\pi\rightarrow 1$? As $\beta\rightarrow 0$? Why?
+
+::: {.callout-note collapse="true"}
+## Solution
+
+In both cases the exponents converge to $0$ and $1$, so the denominator converges to $1+\Delta$ and $\mathcal{I}\rightarrow 0$.
+
+- As $\pi\rightarrow 1$, income in period 2 is the same as in period 1, which is known. There is no risk left to insure, so all of the welfare gain is redistribution.
+- As $\beta\rightarrow 0$, only period 1 matters, and period 1 income is known when $V_{\tau}$ is evaluated. Again there is no risk, so the gain is all redistribution.
+:::
+
+---
+
+## Problem 8: Identifying a Permanent-Transitory Process with Persistent Transitory Shocks
+
+Consider the income process:
+
+$$y_{it} = p_{it} + \zeta_{it}$$
+
+where
+
+$$p_{it} = p_{it-1} + \eta_{it},\qquad \zeta_{it} = \rho\zeta_{it-1} + \varepsilon_{it}$$
+
+and $\eta_{it}$, $\varepsilon_{it}$ are iid, independent of each other and of past values of $p$ and $\zeta$, with $\mathbb{V}[\eta_{it}] = \sigma^2_{\eta}$ and $\mathbb{V}[\varepsilon_{it}] = \sigma^2_{\varepsilon}$.
+
+Use population moments from panel data on income to show that this income process is identified. Hint: in addition to the usual covariances, calculate $\mathbb{V}(y_{it+1})$ and $\mathbb{V}(y_{it+2})$ in terms of $\mathbb{V}(p_{it})$, $\mathbb{V}(\zeta_{it})$, and the shocks at $t+1$ and $t+2$.
+
+::: {.callout-note collapse="true"}
+## Solution
+
+**Variances:**
+
+$$\begin{aligned}
+\mathbb{V}(y_{it}) &= \mathbb{V}(p_{it}) + \mathbb{V}(\zeta_{it}) \\
+\mathbb{V}(y_{it+1}) &= \mathbb{V}(p_{it}) + \sigma^2_{\eta} + \rho^2\mathbb{V}(\zeta_{it}) + \sigma^2_{\varepsilon} \\
+\mathbb{V}(y_{it+2}) &= \mathbb{V}(p_{it}) + 2\sigma^2_{\eta} + \rho^4\mathbb{V}(\zeta_{it}) + (1+\rho^2)\sigma^2_{\varepsilon}
+\end{aligned}$$
+
+**Covariances:**
+
+$$\begin{aligned}
+C_{1} &= \mathcal{C}(y_{it},y_{it+1}) = \mathbb{V}(p_{it}) + \rho\mathbb{V}(\zeta_{it}) \\
+C_{2} &= \mathcal{C}(y_{it},y_{it+2}) = \mathbb{V}(p_{it}) + \rho^2\mathbb{V}(\zeta_{it}) \\
+C_{3} &= \mathcal{C}(y_{it},y_{it+3}) = \mathbb{V}(p_{it}) + \rho^3\mathbb{V}(\zeta_{it})
+\end{aligned}$$
+
+**Identification:** (assuming $\rho\notin\{0,1\}$ and $\mathbb{V}(\zeta_{it})>0$)
+
+$$\rho = \frac{C_{3}-C_{2}}{C_{2}-C_{1}} \left(= \frac{\rho^3-\rho^2}{\rho^2-\rho}\right),\qquad \mathbb{V}(\zeta_{it}) = \frac{C_{2}-C_{1}}{\rho^2-\rho},\qquad \mathbb{V}(p_{it}) = \mathbb{V}(y_{it}) - \mathbb{V}(\zeta_{it})$$
+
+Now define
+
+$$\begin{aligned}
+B_{1} &= \mathbb{V}(y_{it+2}) - \mathbb{V}(y_{it+1}) - (\rho^4-\rho^2)\mathbb{V}(\zeta_{it}) = \sigma^2_{\eta} + \rho^2\sigma^2_{\varepsilon} \\
+B_{2} &= \mathbb{V}(y_{it+1}) - \mathbb{V}(p_{it}) - \rho^2\mathbb{V}(\zeta_{it}) = \sigma^2_{\eta} + \sigma^2_{\varepsilon}
+\end{aligned}$$
+
+so
+
+$$\sigma^2_{\varepsilon} = \frac{B_{2}-B_{1}}{1-\rho^2},\qquad \sigma^2_{\eta} = B_{2} - \sigma^2_{\varepsilon}$$
+
+Done.
+:::
+
+---
+
+## Problem 9: Becker-Tomes with Earnings and Wealth Taxes
+
+Consider the 2-period Becker-Tomes model:
+
+$$\max_{C_1, C_2, X, A} U(C_1) + \beta U(C_2)$$
+
+$$\text{s.t.} \quad C_1 + \psi X + A/(1+r) \leq \Omega$$
+
+$$C_2 = A + b + (1-\tau)wzX^{\delta}, \quad A \geq 0$$
+
+where $\tau$ is a constant marginal tax rate on earnings in period 2 and $b$ is a lump-sum transfer.
+
+### Part (a)
+Characterize the first order conditions for constrained and unconstrained households.
+
+::: {.callout-note collapse="true"}
+## Solution
+
+Unconstrained ($A>0$):
+
+$$U'(C_1) = \beta(1+r)U'(C_2),\qquad \frac{(1-\tau)\delta wzX^{\delta-1}}{\psi} = 1+r$$
+
+Constrained ($A=0$):
+
+$$U'(C_1) = \beta\frac{(1-\tau)\delta wzX^{\delta-1}}{\psi}U'(C_2),\qquad (1+r) \leq \frac{(1-\tau)\delta wzX^{\delta-1}}{\psi}$$
+:::
+
+### Part (b)
+Are the investment choices of unconstrained households still efficient? Why or why not?
+
+::: {.callout-note collapse="true"}
+## Solution
+
+No. Efficiency requires
+
+$$\frac{\delta wzX^{\delta-1}}{\psi} = 1+r$$
+
+The tax reduces the private return to $X$ by the factor $(1-\tau)$, so unconstrained households invest less than is efficient.
+:::
+
+### Part (c)
+Suppose instead that the tax $\tau$ is levied on total wealth instead of just earnings, so that
+
+$$C_2 = b + (1-\tau)\left[A + wzX^{\delta}\right]$$
+
+Characterize the FOCs for households. How do they compare with the previous case?
+
+::: {.callout-note collapse="true"}
+## Solution
+
+For unconstrained households, combine the budget constraints:
+
+$$C_1 + \frac{C_2}{(1+r)(1-\tau)} + \psi X \leq \Omega + \frac{b}{(1+r)(1-\tau)} + \frac{wzX^{\delta}}{1+r}$$
+
+so
+
+$$U'(C_1) = \beta(1+r)(1-\tau)U'(C_2),\qquad \frac{\delta wzX^{\delta-1}}{\psi} = 1+r$$
+
+For constrained households ($A=0$):
+
+$$U'(C_1) = \beta\frac{(1-\tau)\delta wzX^{\delta-1}}{\psi}U'(C_2)$$
+
+Comparison:
+
+- Unconstrained households' investment is no longer distorted, since the tax hits financial assets and human capital equally. But they do transfer less to period 2 (to the child) relative to their own consumption.
+- The distortion for constrained households is identical to the previous case.
+:::
+
+### Part (d)
+Does the planner still face an equity-efficiency trade-off?
+
+::: {.callout-note collapse="true"}
+## Solution
+
+Yes. The planner can increase the equality of consumption in period 2, but there is still an efficiency cost from the distortion in constrained households' investment problem. Taxation may also reduce aggregate consumption in period 2 by distorting all households' intertemporal Euler equation.
+:::

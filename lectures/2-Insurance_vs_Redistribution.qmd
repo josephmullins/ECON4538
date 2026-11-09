@@ -29,374 +29,255 @@ execute:
 
 # Redistribution vs Insurance
 
-## Example 1: Static Economy {.smaller}
+## Example 1: Static Economy
 
 :::{.incremental}
 - One period economy
-- Two types of agent: $\tau\in\{L,H\}$ (equal proportions)
-- Uncertain income: $\{y_{L},y_{H}\}$, $y_{L}<y_{H}$
-- Distributions: $\{\pi,1-\pi\}$ for low type, $\{1-\pi,\pi\}$ for high type, $\pi>0.5$. 
+- Two types of agent, $\tau\in\{L,H\}$, in equal proportions
+- Uncertain income: $y\in\{y_{L},y_{H}\}$, with $y_{L}<y_{H}$
+- Type $L$ gets $y_{L}$ with probability $\pi$; type $H$ gets $y_{H}$ with probability $\pi$; $\pi>0.5$
 - Concave utility $u(\cdot)$
-- No insurance market (and symmetrically for $V_{H}$):
-$$ V_{L} = \mathbb{E}[u(y)|L] = \pi u(y_{L}) + (1-\pi) u(y_{H})$$
+- No insurance market: everyone consumes their income, $c = y$
 :::
 
-## Example 1: Planner's Problem {.smaller}
+## The plan for each example
+
+Both examples follow the same four steps:
+
 :::{.incremental}
-- Let $c(\tau,y)$ be consumption of type $\tau$ when income $y$ is realized.
-- Planner's objective:
-$$ W = \mathbb{E}[u(c(\tau,y))] = 0.5\mathbb{E}[u(c(L,y))|L] + 0.5\mathbb{E}[u(c(H,y))|H] $$
-- In the laissez-faire economy:
-$$ W_{0} = 0.5u(y_{L}) + 0.5u(y_{H}) $$
-- Planner's problem:
-$$\max_{c(\tau,y)}\mathbb{E}[u(c(\tau,y))]\ s.t. \mathbb{E}[c(\tau,y)] = 0.5y_{L} + 0.5y_{H} $$
-- **Exercise**: show that $c^*(\tau,y) = 0.5y_{L} + 0.5y_{H} \equiv C^*$ (perfect smoothing), so $W_{1} = u(C^*)$
+1. **Laissez-faire**: compute welfare $W_{0}$ when $c = y$
+2. **Planner**: find the planner's allocation and its welfare $W_{1}$. The gain $W_{1}-W_{0}$ mixes insurance and redistribution
+3. **Certainty equivalents**: for each type, find the sure consumption $\bar{c}_{\tau}$ worth the same as their risky income, and average them to get $\bar{C}$
+4. **Decompose**: use $\bar{C}$ to split $W_{1}-W_{0}$ into an **insurance** part and a **redistribution** part
 :::
 
-## Example 1: Separating insurance and redistribution {.smaller}
+## Example 1, Step 1: Laissez-faire
 
 :::{.incremental}
-- Notice: the planner cares only about average utility, not about changes in $V_{H}$ and $V_{L}$
-- **Exercise**: study changes in $V_{\tau}$ for different values of $\pi$
-- Redistribution and insurance effects are **bundled together**
-- How to separate?
-- Define the **certainty equivalent** $\bar{c}_{\tau}$ of each type:
-$$ u(\bar{c}_{\tau}) = \mathbb{E}[u(y)|\tau],\ \tau\in\{L,H\}$$
-- Interpretation: guaranteed consumption that would deliver the same expected utility as the risky income stream
-:::
-
-## Example 1: Gains from redistribution {.smaller}
-
-:::{.incremental}
-- Let $\bar{C} = 0.5\bar{c}_{L} + 0.5\bar{c}_{H}$ be the average certainty equivalent
-- $u(\bar{C})$ is utility if everyone could be given the average certainty equivalent from the benchmark economy.
-- The difference
-$$u(\bar{C}) - \mathbb{E}[u(y)] = u(0.5\bar{c}_{L}+0.5\bar{c}_{H}) - 0.5u(\bar{c}_{L}) - 0.5u(\bar{c}_{H})$$
-is a measure of the **gains from redistribution** when uncertainty is removed via certainty equivalence
-:::
-
-## Example 1: A decomposition {.smaller}
-
-:::{.incremental}
-- $u(C^*) - u(\bar{C})$ is likewise a measure of the **gains from insurance** derived from valuing gains in certainty equivalents.
-- This gives a decomposition:
+- Expected utility of each type:
 $$\begin{aligned}
-W_{1} - W_{0} &= \Big[u(C^*) - u(\bar{C})\Big] + \Big[u(\bar{C}) - \mathbb{E}[u(y)]\Big]\\[0.3em]
-&= \text{insurance} + \text{redistribution}
+V_{L} &= \pi u(y_{L}) + (1-\pi) u(y_{H})\\
+V_{H} &= (1-\pi) u(y_{L}) + \pi u(y_{H})
 \end{aligned}$$
-- **Exercises**:
-    - Calculate the decomposition with log utility
-    - Look at how it changes with $\pi$
+- A utilitarian planner values the average:
+$$ W_{0} = 0.5V_{L} + 0.5V_{H} = 0.5u(y_{L}) + 0.5u(y_{H}) $$
+- Half the population ends up with $y_{L}$ and half with $y_{H}$
 :::
 
-## Example 1: Step 1 - Total welfare gain
+## Example 1, Step 2: The planner {.smaller}
+
+:::{.incremental}
+- Let $c(\tau,y)$ be consumption of type $\tau$ when income $y$ is realized
+- The planner can reallocate, but must spend no more than average income:
+$$\max_{c(\tau,y)}\ \mathbb{E}[u(c(\tau,y))]\quad \text{s.t.}\quad \mathbb{E}[c(\tau,y)] = 0.5y_{L} + 0.5y_{H} $$
+- **Exercise**: show that $c^*(\tau,y) = 0.5y_{L} + 0.5y_{H} \equiv C^*$ for everyone (perfect smoothing), so $W_{1} = u(C^*)$
+- The planner cares only about the average: type $H$ can be worse off than under laissez-faire (**exercise**: for which values of $\pi$?)
+- The gain $W_{1}-W_{0}$ bundles two things: removing **risk** within each type, and removing **differences** between types
+:::
+
+## Example 1: The total gain $W_{1}-W_{0}$
+
+Log utility, $y_{L}=0.5$, $y_{H}=3$, $\pi=0.75$
 
 ```{julia}
 #| echo: false
-#| fig-width: 10
-#| fig-height: 6.5
 
 using Plots
 
-# Parameters
-y_L = 0.5
-y_H = 3.0
-p_low = 0.75  # probability of low income for low type (π on the slides)
-
-# Calculate key values
-C_star = 0.5*y_H + 0.5*y_L
-W_0 = 0.5*log(y_L) + 0.5*log(y_H)  # E[log(y)] - laissez-faire
-U_L = p_low*log(y_L) + (1-p_low)*log(y_H)  # Utility of type L
-U_H = p_low*log(y_H) + (1-p_low)*log(y_L)  # Utility of type H
-E_L = p_low*y_L + (1-p_low)*y_H            # Expected income type L
-E_H = p_low*y_H + (1-p_low)*y_L            # Expected income type H
-c_L = exp(U_L)                      # Certainty equivalent type L
-c_H = exp(U_H)                      # Certainty equivalent type H
-U_star = log(C_star)                # Utility with perfect insurance
-C_bar = 0.5*c_L + 0.5*c_H          # Average certainty equivalent
-
-# Create the plot
+y_L, y_H = 0.5, 3.0
 y_range = range(0.5, 3.5, length=200)
-y_left = 0.
-y_width = C_star
 y_min = log(y_L)
+green = RGB(0, 0.6, 0)
 
-p = plot(y_range, log.(y_range),
-     label="u(c) = log(c)",
-     linewidth=4,
-     color=:blue,
-     xlabel="Consumption",
-     ylabel="Utility",
-     legend=:bottomright,
-     size=(1000, 600),
-     grid=false,
-     thickness_scaling=1.5,
-     legendfontsize=10,
-     guidefontsize=13,
-     tickfontsize=11,
-     xlims=(0., 3.5),
-     ylims=(-1., 1.2))
+# Key quantities in Example 1 with log utility; p_low is π on the slides
+function ex1(p_low)
+    C_star = 0.5*y_H + 0.5*y_L                    # planner's consumption
+    W_0 = 0.5*log(y_L) + 0.5*log(y_H)             # laissez-faire welfare
+    U_L = p_low*log(y_L) + (1-p_low)*log(y_H)     # V_L
+    U_H = p_low*log(y_H) + (1-p_low)*log(y_L)     # V_H
+    E_L = p_low*y_L + (1-p_low)*y_H               # expected income, type L
+    E_H = p_low*y_H + (1-p_low)*y_L               # expected income, type H
+    c_L, c_H = exp(U_L), exp(U_H)                 # certainty equivalents
+    (; C_star, W_0, U_L, U_H, E_L, E_H, c_L, c_H,
+       U_star = log(C_star), C_bar = 0.5*c_L + 0.5*c_H)
+end
 
-# Income realizations
-scatter!([y_L, y_H], [log(y_L), log(y_H)],
-         markersize=8, color=:red, markerstrokewidth=2, label="Income realizations")
-plot!([y_L, y_H], [log(y_L), log(y_H)], color=:red, linewidth=2, alpha=0.5, label="")
-plot!([y_H,y_H],[y_min,log(y_H)],linestyle=:dash, color=:red)
+# Utility curve, income realizations and the chord between them
+function base_plot()
+    plot(y_range, log.(y_range), linewidth=4, color=:blue,
+         xlabel="Consumption", ylabel="Utility", legend=false,
+         size=(1000, 500), grid=false, thickness_scaling=1.5,
+         guidefontsize=13, tickfontsize=11, xlims=(0., 3.5), ylims=(-1., 1.2))
+    scatter!([y_L, y_H], [log(y_L), log(y_H)], markersize=8, color=:red, markerstrokewidth=2)
+    plot!([y_L, y_H], [log(y_L), log(y_H)], color=:red, linewidth=2, alpha=0.5)
+    annotate!(y_L, -0.92, text("yₗ", :red, :center, 11))
+    annotate!(y_H, -0.92, text("yₕ", :red, :center, 11))
+end
 
-# Welfare levels
-# plot!([0, C_star], [W_0, W_0], linestyle=:dash, color=:red, linewidth=2.5,
-#       label="E[log(y)] - Laissez-faire")
-# plot!([0, C_star], [U_star, U_star], linestyle=:dash, color=RGB(0, 0.6, 0),
-#       linewidth=2.5, label="log(C*) - Perfect insurance")
-scatter!([E_L, E_H], [U_L, U_H], markersize=8, color=:purple,
-         markerstrokewidth=2)
-scatter!([C_star,C_star],[W_0,U_star], color=RGB(0, 0.6, 0))
-plot!([C_star,C_star],[y_min,U_star],linestyle=:dash,color=RGB(0, 0.6, 0))
+# Shaded band between utility levels lo and hi, with a label
+function band!(v, lo, hi, color, label, label_y)
+    plot!([0, v.C_star, v.C_star, 0, 0], [lo, lo, hi, hi, lo], fillrange=lo,
+          fillalpha=0.25, fillcolor=color, linecolor=color, linewidth=2)
+    annotate!(2.0, label_y, text("■ " * label, color, :left, 10, :bold))
+end
 
-# Annotations
-annotate!(y_L, -0.8, text("yₗ", :red, :center, 11))
-annotate!(y_H, -0.8, text("yₕ", :red, :center, 11))
-annotate!(C_star, -0.8, text("C*", RGB(0, 0.6, 0), :center, 11, :bold))
+# Final picture: the decomposition into insurance and redistribution
+function decomposition_plot(v)
+    base_plot()
+    plot!([0, v.C_star], [v.W_0, v.W_0], linestyle=:dash, color=:red, linewidth=2.5)
+    plot!([0, v.C_bar], [log(v.C_bar), log(v.C_bar)], linestyle=:dash, color=:orange, linewidth=2.5)
+    plot!([0, v.C_star], [v.U_star, v.U_star], linestyle=:dash, color=green, linewidth=2.5)
+    plot!([v.C_star, v.C_star], [y_min, v.U_star], linestyle=:dash, color=green)
+    scatter!([v.E_L, v.E_H], [v.U_L, v.U_H], markersize=8, color=:purple, markerstrokewidth=2)
+    plot!([v.C_bar, v.C_bar], [y_min, log(v.C_bar)], color=:orange, linewidth=2, alpha=0.5, linestyle=:dot)
+    annotate!(v.c_L, -0.8, text("c̄ₗ", :purple, :center, 11))
+    annotate!(v.c_H, -0.8, text("c̄ₕ", :purple, :center, 11))
+    annotate!(v.C_bar, -0.8, text("C̄", :orange, :center, 11, :bold))
+    annotate!(v.C_star, -0.8, text("C*", green, :center, 11, :bold))
+    band!(v, v.W_0, log(v.C_bar), :orange, "Redistribution gain", -0.45)
+    band!(v, log(v.C_bar), v.U_star, green, "Insurance gain", -0.25)
+end
 
-# Total gain shading
-plot!([y_left, y_left+y_width, y_left+y_width, y_left, y_left],
-      [W_0, W_0, U_star, U_star, W_0], fillrange=W_0,
-      fillalpha=0.25, fillcolor=RGB(0, 0.6, 0), linecolor=:gray, linewidth=2, label="")
-annotate!(0.15, (W_0 + U_star)/2,
-          text("Total welfare gain", :gray, :left, 10, :bold))
-
-plot!(legend=false)
+v = ex1(0.75)
+base_plot()
+plot!([y_H, y_H], [y_min, log(y_H)], linestyle=:dash, color=:red)
+scatter!([v.E_L, v.E_H], [v.U_L, v.U_H], markersize=8, color=:purple, markerstrokewidth=2)
+scatter!([v.C_star, v.C_star], [v.W_0, v.U_star], color=green)
+plot!([v.C_star, v.C_star], [y_min, v.U_star], linestyle=:dash, color=green)
+annotate!(v.C_star, -0.8, text("C*", green, :center, 11, :bold))
+band!(v, v.W_0, v.U_star, :gray, "Total welfare gain", -0.35)
 ```
 
-## Example 1: Step 2 - Certainty equivalents
+## Example 1, Step 3: Certainty equivalents {.smaller}
+
+:::{.incremental}
+- The **certainty equivalent** $\bar{c}_{\tau}$ is the sure consumption that gives type $\tau$ the same expected utility as their risky income:
+$$ u(\bar{c}_{\tau}) = V_{\tau},\qquad \tau\in\{L,H\}$$
+- With log utility: $\bar{c}_{L} = y_{L}^{\pi}y_{H}^{1-\pi}$ and $\bar{c}_{H} = y_{L}^{1-\pi}y_{H}^{\pi}$
+- Average certainty equivalent: $\bar{C} = 0.5\bar{c}_{L} + 0.5\bar{c}_{H}$
+- Because $u$ is concave, $\bar{c}_{\tau} < \mathbb{E}[y|\tau]$, so $\bar{C} < C^*$. The gap $C^*-\bar{C}$ is the cost of risk
+:::
+
+## Example 1: Certainty equivalents in the figure
+
+Purple dots: each type's expected income and utility, $(\mathbb{E}[y|\tau], V_{\tau})$
 
 ```{julia}
 #| echo: false
-#| fig-width: 10
-#| fig-height: 6.5
-
-p = plot(y_range, log.(y_range),
-     label="u(c) = log(c)",
-     linewidth=4,
-     color=:blue,
-     xlabel="Consumption",
-     ylabel="Utility",
-     legend=:bottomright,
-     size=(1000, 600),
-     grid=false,
-     thickness_scaling=1.5,
-     legendfontsize=10,
-     guidefontsize=13,
-     tickfontsize=11,
-     xlims=(0., 3.5),
-     ylims=(-1., 1.2))
-
-# Income realizations
-scatter!([y_L, y_H], [log(y_L), log(y_H)],
-         markersize=8, color=:red, markerstrokewidth=2, label="Income realizations")
-scatter!([C_star,C_star],[W_0,U_star], color=RGB(0, 0.6, 0))
-plot!([y_L, y_H], [log(y_L), log(y_H)], color=:red, linewidth=2, alpha=0.5, label="")
-
-# Welfare levels
-
-# Add certainty equivalents
-scatter!([E_L, E_H], [U_L, U_H], markersize=8, color=:purple,
-         markerstrokewidth=2, label="Type certainty equivalents")
-plot!([c_L, E_L], [U_L, U_L], color=:purple, linewidth=1.5, alpha=0.6, linestyle=:dot, label="")
-plot!([c_H, E_H], [U_H, U_H], color=:purple, linewidth=1.5, alpha=0.6, linestyle=:dot, label="")
-plot!([c_L, c_L], [y_min, U_L], color=:purple, linewidth=1.5, alpha=0.4, linestyle=:dot, label="")
-plot!([c_H, c_H], [y_min, U_H], color=:purple, linewidth=1.5, alpha=0.4, linestyle=:dot, label="")
-plot!([C_star,C_star],[y_min,U_star],linestyle=:dash,color=RGB(0, 0.6, 0))
-plot!([c_L,c_H],[y_min,y_min],color=:purple, linestyle=:dash)
-scatter!([C_bar],[y_min],color=:orange)
-
-# # Average certainty equivalent
-# plot!([0, C_bar], [log(C_bar), log(C_bar)], linestyle=:dash, color=:orange,
-#       linewidth=2.5, label="log(C̄) - Avg certainty equiv")
-# plot!([C_bar, C_bar], [-0.5, log(C_bar)], color=:orange, linewidth=2,
-#       alpha=0.5, linestyle=:dot, label="")
-
-# Annotations
-annotate!(c_L, -0.8, text("c̄ₗ", :purple, :center, 11))
-annotate!(c_H, -0.8, text("c̄ₕ", :purple, :center, 11))
-annotate!(C_bar, -0.8, text("C̄", :orange, :center, 11, :bold))
-annotate!(C_star, -0.8, text("C*", RGB(0, 0.6, 0), :center, 11, :bold))
-annotate!(y_L, -0.8, text("yₗ", :red, :center, 11))
-annotate!(y_H, -0.8, text("yₕ", :red, :center, 11))
-
-plot!(legend=false)
+base_plot()
+scatter!([v.C_star, v.C_star], [v.W_0, v.U_star], color=green)
+scatter!([v.E_L, v.E_H], [v.U_L, v.U_H], markersize=8, color=:purple, markerstrokewidth=2)
+for (c, E, U) in ((v.c_L, v.E_L, v.U_L), (v.c_H, v.E_H, v.U_H))
+    plot!([c, E], [U, U], color=:purple, linewidth=1.5, alpha=0.6, linestyle=:dot)
+    plot!([c, c], [y_min, U], color=:purple, linewidth=1.5, alpha=0.4, linestyle=:dot)
+end
+plot!([v.C_star, v.C_star], [y_min, v.U_star], linestyle=:dash, color=green)
+plot!([v.c_L, v.c_H], [y_min, y_min], color=:purple, linestyle=:dash)
+scatter!([v.C_bar], [y_min], color=:orange)
+annotate!(v.c_L, -0.8, text("c̄ₗ", :purple, :center, 11))
+annotate!(v.c_H, -0.8, text("c̄ₕ", :purple, :center, 11))
+annotate!(v.C_bar, -0.8, text("C̄", :orange, :center, 11, :bold))
+annotate!(v.C_star, -0.8, text("C*", green, :center, 11, :bold))
+plot!(size=(1000, 460))
 ```
 
-## Example 1: Step 3 - The decomposition
+## Example 1, Step 4: The decomposition {.smaller}
+
+:::{.incremental}
+- Add and subtract $u(\bar{C})$:
+$$ W_{1} - W_{0} = \underbrace{u(C^*) - u(\bar{C})}_{\text{insurance}} + \underbrace{u(\bar{C}) - W_{0}}_{\text{redistribution}} $$
+- **Redistribution**: since $W_{0} = 0.5u(\bar{c}_{L}) + 0.5u(\bar{c}_{H})$, this is the gain from giving everyone the *average* certainty equivalent $\bar{C}$ instead of unequal ones. No risk is involved
+- **Insurance**: the gain from raising everyone's sure consumption from $\bar{C}$ to $C^*$, i.e. from removing risk
+:::
+
+## Example 1: The decomposition in the figure
+
+Log utility, $y_{L}=0.5$, $y_{H}=3$, $\pi=0.75$
 
 ```{julia}
 #| echo: false
-#| fig-width: 10
-#| fig-height: 6.5
-
-p = plot(y_range, log.(y_range),
-     label="u(c) = log(c)",
-     linewidth=4,
-     color=:blue,
-     xlabel="Consumption",
-     ylabel="Utility",
-     legend=:bottomright,
-     size=(1000, 600),
-     grid=false,
-     thickness_scaling=1.5,
-     legendfontsize=10,
-     guidefontsize=13,
-     tickfontsize=11,
-     xlims=(0., 3.5),
-     ylims=(-1., 1.2))
-
-# Income realizations
-scatter!([y_L, y_H], [log(y_L), log(y_H)],
-         markersize=8, color=:red, markerstrokewidth=2, label="Income realizations")
-plot!([y_L, y_H], [log(y_L), log(y_H)], color=:red, linewidth=2, alpha=0.5, label="")
-
-# Welfare levels
-plot!([0, C_star], [W_0, W_0], linestyle=:dash, color=:red, linewidth=2.5,
-      label="E[log(y)] - Laissez-faire")
-plot!([0, C_bar], [log(C_bar), log(C_bar)], linestyle=:dash, color=:orange,
-      linewidth=2.5, label="log(C̄) - Redistribution")
-plot!([0, C_star], [U_star, U_star], linestyle=:dash, color=RGB(0, 0.6, 0),
-      linewidth=2.5, label="log(C*) - Perfect insurance")
-plot!([C_star,C_star],[y_min,U_star],linestyle=:dash,color=RGB(0, 0.6, 0))
-
-# Certainty equivalents
-scatter!([E_L, E_H], [U_L, U_H], markersize=8, color=:purple,
-         markerstrokewidth=2, label="Type certainty equivalents")
-plot!([C_bar, C_bar], [y_min, log(C_bar)], color=:orange, linewidth=2,
-      alpha=0.5, linestyle=:dot, label="")
-
-# Annotations
-annotate!(c_L, -0.8, text("c̄ₗ", :purple, :center, 11))
-annotate!(c_H, -0.8, text("c̄ₕ", :purple, :center, 11))
-annotate!(C_bar, -0.8, text("C̄", :orange, :center, 11, :bold))
-annotate!(C_star, -0.8, text("C*", RGB(0, 0.6, 0), :center, 11, :bold))
-annotate!(y_L, -0.8, text("yₗ", :red, :center, 11))
-annotate!(y_H, -0.8, text("yₕ", :red, :center, 11))
-
-# Decomposition shading
-plot!([y_left, y_left+y_width, y_left+y_width, y_left, y_left],
-      [W_0, W_0, log(C_bar), log(C_bar), W_0], fillrange=W_0,
-      fillalpha=0.25, fillcolor=:orange, linecolor=:orange, linewidth=2, label="")
-plot!([y_left, y_left+y_width, y_left+y_width, y_left, y_left],
-      [log(C_bar), log(C_bar), U_star, U_star, log(C_bar)], fillrange=log(C_bar),
-      fillalpha=0.25, fillcolor=RGB(0, 0.6, 0), linecolor=RGB(0, 0.6, 0),
-      linewidth=2, label="")
-
-annotate!( 0.15, (W_0 + log(C_bar))/2,
-          text("Redistribution gain", :orange, :left, 10, :bold))
-annotate!( 0.15, (log(C_bar) + U_star)/2,
-          text("Insurance gain", RGB(0, 0.6, 0), :left, 10, :bold))
-
-plot!(legend=false)
+decomposition_plot(v)
 ```
 
+## Example 1: Exercises
 
-## Example 1: Step 3 - Letting $\pi$ increase...
+:::{.incremental}
+- **Exercise**: with log utility, $y_{L}=0.5$, $y_{H}=3$ and $\pi=0.75$, compute the two terms. Check: insurance $\approx 0.26$, redistribution $\approx 0.10$
+- **Exercise**: how does the decomposition change with $\pi$?
+    - What happens when $\pi = 0.5$?
+    - What happens as $\pi \rightarrow 1$?
+:::
+
+## Example 1: Raising $\pi$ to 0.9
+
+Less risk within each type, more inequality between types
 
 ```{julia}
 #| echo: false
-#| fig-width: 10
-#| fig-height: 6.5
-
-p_low = 0.9  # probability of low income for low type (π on the slides)
-
-# Calculate key values
-C_star = 0.5*y_H + 0.5*y_L
-W_0 = 0.5*log(y_L) + 0.5*log(y_H)  # E[log(y)] - laissez-faire
-U_L = p_low*log(y_L) + (1-p_low)*log(y_H)  # Utility of type L
-U_H = p_low*log(y_H) + (1-p_low)*log(y_L)  # Utility of type H
-E_L = p_low*y_L + (1-p_low)*y_H            # Expected income type L
-E_H = p_low*y_H + (1-p_low)*y_L            # Expected income type H
-c_L = exp(U_L)                      # Certainty equivalent type L
-c_H = exp(U_H)                      # Certainty equivalent type H
-U_star = log(C_star)                # Utility with perfect insurance
-C_bar = 0.5*c_L + 0.5*c_H          # Average certainty equivalent
-
-# Create the plot
-y_range = range(0.5, 3.5, length=200)
-y_left = 0.
-y_width = C_star
-
-
-p = plot(y_range, log.(y_range),
-     label="u(c) = log(c)",
-     linewidth=4,
-     color=:blue,
-     xlabel="Consumption",
-     ylabel="Utility",
-     legend=:bottomright,
-     size=(1000, 600),
-     grid=false,
-     thickness_scaling=1.5,
-     legendfontsize=10,
-     guidefontsize=13,
-     tickfontsize=11,
-     xlims=(0., 3.5),
-     ylims=(-1., 1.2))
-
-# Income realizations
-scatter!([y_L, y_H], [log(y_L), log(y_H)],
-         markersize=8, color=:red, markerstrokewidth=2, label="Income realizations")
-plot!([y_L, y_H], [log(y_L), log(y_H)], color=:red, linewidth=2, alpha=0.5, label="")
-
-# Welfare levels
-plot!([0, C_star], [W_0, W_0], linestyle=:dash, color=:red, linewidth=2.5,
-      label="E[log(y)] - Laissez-faire")
-plot!([0, C_bar], [log(C_bar), log(C_bar)], linestyle=:dash, color=:orange,
-      linewidth=2.5, label="log(C̄) - Redistribution")
-plot!([0, C_star], [U_star, U_star], linestyle=:dash, color=RGB(0, 0.6, 0),
-      linewidth=2.5, label="log(C*) - Perfect insurance")
-plot!([C_star,C_star],[y_min,U_star],linestyle=:dash,color=RGB(0, 0.6, 0))
-
-# Certainty equivalents
-scatter!([E_L, E_H], [U_L, U_H], markersize=8, color=:purple,
-         markerstrokewidth=2, label="Type certainty equivalents")
-plot!([C_bar, C_bar], [y_min, log(C_bar)], color=:orange, linewidth=2,
-      alpha=0.5, linestyle=:dot, label="")
-
-# Annotations
-annotate!(c_L, -0.8, text("c̄ₗ", :purple, :center, 11))
-annotate!(c_H, -0.8, text("c̄ₕ", :purple, :center, 11))
-annotate!(C_bar, -0.8, text("C̄", :orange, :center, 11, :bold))
-annotate!(C_star, -0.8, text("C*", RGB(0, 0.6, 0), :center, 11, :bold))
-annotate!(y_L, -0.8, text("yₗ", :red, :center, 11))
-annotate!(y_H, -0.8, text("yₕ", :red, :center, 11))
-
-# Decomposition shading
-plot!([y_left, y_left+y_width, y_left+y_width, y_left, y_left],
-      [W_0, W_0, log(C_bar), log(C_bar), W_0], fillrange=W_0,
-      fillalpha=0.25, fillcolor=:orange, linecolor=:orange, linewidth=2, label="")
-plot!([y_left, y_left+y_width, y_left+y_width, y_left, y_left],
-      [log(C_bar), log(C_bar), U_star, U_star, log(C_bar)], fillrange=log(C_bar),
-      fillalpha=0.25, fillcolor=RGB(0, 0.6, 0), linecolor=RGB(0, 0.6, 0),
-      linewidth=2, label="")
-
-annotate!( 0.15, (W_0 + log(C_bar))/2,
-          text("Redistribution gain", :orange, :left, 10, :bold))
-annotate!( 0.15, (log(C_bar) + U_star)/2,
-          text("Insurance gain", RGB(0, 0.6, 0), :left, 10, :bold))
-
-plot!(legend=false)
+decomposition_plot(ex1(0.9))
 ```
+
+## Example 2: A Dynamic Economy
+
+:::{.incremental}
+- Same two types, $\tau(i)\in\{L,H\}$, in equal proportions
+- But now infinite horizon, $t=0,1,2,...,\infty$
+- $\log(y_{it}) = \mu_{\tau(i)} + \varepsilon_{it}$, $\ \varepsilon_{it}\sim{N}(0,\sigma^2)$ i.i.d., $\ \mu_{L}<\mu_{H}$
+- Benchmark: no private insurance markets, $c_{it} = y_{it}$
+- $V_{i} = \mathbb{E}\left[\sum_{t=0}^\infty \beta^{t}u(c_{it})\right]$, $\ 0<\beta<1$, with $u(\cdot) = \log(\cdot)$
+- Same four steps as Example 1
+:::
+
+## Example 2, Step 1: Laissez-faire
+
+:::{.incremental}
+- $\mathbb{E}[\log y_{it}] = \mu_{\tau}$ and $\sum_{t=0}^{\infty}\beta^{t} = 1/(1-\beta)$, so
+$$ V_{\tau} = \frac{\mu_{\tau}}{1-\beta},\qquad W_{0} = \frac{0.5\mu_{L} + 0.5\mu_{H}}{1-\beta}$$
+:::
+
+## Example 2, Step 2: The planner
+
+:::{.incremental}
+- As in Example 1, the planner gives everyone average income in every period
+- If $\log(X)$ is normal with mean $\mu$ and variance $\sigma^2$, then $\mathbb{E}[X] = \exp(\mu + 0.5\sigma^2)$. So:
+$$\begin{aligned}
+C^* &= 0.5\exp(\mu_{L}+0.5\sigma^2) + 0.5\exp(\mu_{H}+0.5\sigma^2)\\
+W_{1} &= \frac{\log(C^*)}{1-\beta}
+\end{aligned}$$
+:::
+
+## Example 2, Step 3: Certainty equivalents
+
+:::{.incremental}
+- For type $\tau$, $\bar{c}_{\tau}$ solves:
+$$ \sum_{t=0}^{\infty}\beta^{t} \log(\bar{c}_{\tau}) = \frac{\mu_{\tau}}{1-\beta} \quad\Rightarrow\quad \bar{c}_{\tau} = \exp(\mu_{\tau})$$
+- So $\bar{C} = 0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})$
+:::
+
+## Example 2, Step 4: The decomposition {.smaller}
+
+:::{.incremental}
+- As in Example 1, add and subtract the value of $\bar{C}$ for sure, $\log(\bar{C})/(1-\beta)$:
+$$ W_{1} - W_{0} = \underbrace{\frac{\log(C^*) - \log(\bar{C})}{1-\beta}}_{\text{insurance}} + \underbrace{\frac{\log(\bar{C}) - (0.5\mu_{L} + 0.5\mu_{H})}{1-\beta}}_{\text{redistribution}}$$
+- **Exercise** (board): show that $\text{insurance} = \dfrac{\sigma^2/2}{1-\beta}$. Hint: factor $\exp(0.5\sigma^2)$ out of $C^*$
+- Insurance depends only on risk ($\sigma^2$), not on the gap between types. Redistribution depends only on $\mu_{L}$ and $\mu_{H}$, not on $\sigma^2$
+- What happens as $\mu_{L}\rightarrow\mu_{H}$? As $\sigma^2\rightarrow 0$? Intuitive!
+:::
+
+# Beyond the Examples
 
 ## The decomposition in general {.smaller}
 
 :::{.incremental}
 - The same idea works for comparing **any two regimes** $A$ and $B$ (e.g. no taxes vs. a progressive tax), neither of which needs to provide perfect insurance
-- Let $\mathcal{V}(c)$ be the value of receiving $c$ for sure ($\mathcal{V}(c)=u(c)$ in a static economy)
-- For each person $i$: value $V^{r}_{i}$ and certainty equivalent $\mathcal{V}(\bar{c}^{r}_{i}) = V^{r}_{i}$
-- Welfare $W^{r} = \int V^{r}_{i}di$, average certainty equivalent $\bar{C}^{r} = \int\bar{c}^{r}_{i}di$, average consumption $C^*$ (same in both regimes)
+- Let $\mathcal{V}(c)$ be the value of receiving $c$ for sure: $\mathcal{V}(c)=u(c)$ in Example 1 and $\mathcal{V}(c)=\log(c)/(1-\beta)$ in Example 2
+- Person $i$ in regime $r$ has value $V^{r}_{i}$ and certainty equivalent $\bar{c}^{r}_{i}$, where $\mathcal{V}(\bar{c}^{r}_{i}) = V^{r}_{i}$. Welfare is $W^{r} = \int V^{r}_{i}di$ and the average certainty equivalent is $\bar{C}^{r} = \int\bar{c}^{r}_{i}di$
 - Decomposition:
 $$\begin{aligned}
 W^{B} - W^{A} = &\ \Big[\mathcal{V}(\bar{C}^{B}) - \mathcal{V}(\bar{C}^{A})\Big] && \text{(insurance)}\\
 &+ \Big[\big(W^{B} - \mathcal{V}(\bar{C}^{B})\big) - \big(W^{A} - \mathcal{V}(\bar{C}^{A})\big)\Big] && \text{(redistribution)}
 \end{aligned}$$
-- **Exercise**: check that with $A$ = laissez-faire and $B$ = perfect insurance ($\bar{C}^{B} = C^*$, $W^{B} = u(C^*)$) this is the decomposition from Example 1
+- **Exercise**: check that with $A$ = laissez-faire and $B$ = the planner ($\bar{C}^{B} = C^*$, $W^{B} = \mathcal{V}(C^*)$), this is the decomposition from the examples
 :::
 
 ## Measuring gains in consumption units {.smaller}
@@ -414,71 +295,8 @@ $$ 1+\omega_{I} = \frac{\bar{C}^{B}}{\bar{C}^{A}}\qquad\text{(insurance)}$$
 - With CRRA utility $u(c) = c^{1-\sigma}/(1-\sigma)$, scaling consumption by $(1+\omega)$ scales values by $(1+\omega)^{1-\sigma}$, so:
 $$ 1+\omega = \left[\frac{W^{B}}{W^{A}}\right]^{1/(1-\sigma)},\qquad 1+\omega_{R} = \left[\frac{W^{B}/\mathcal{V}(\bar{C}^{B})}{W^{A}/\mathcal{V}(\bar{C}^{A})}\right]^{1/(1-\sigma)}$$
 - With log utility: $\log(1+\omega) = (1-\beta)(W^{B}-W^{A})$ in an infinite horizon economy
+- In Example 2: $1+\omega_{I} = C^*/\bar{C} = \exp(\sigma^2/2)$. With $\sigma^2 = 0.1$, insurance is worth about 5% of consumption in every period
 - We will compute these in recitation using a life-cycle model
-:::
-
-## Example 2: a dynamic economy
-
-:::{.incremental}
-- Assume same type structure, $\tau(i)\in\{L,H\}$ for all agents $i$
-- But now infinite horizon, $t=0,1,2,...,\infty$
-- $\log(y_{it}) = \mu_{\tau(i)} + \varepsilon_{it}$, $\ \varepsilon_{it}\sim{N}(0,\sigma^2)$ i.i.d., $\ \mu_{L}<\mu_{H}$
-- Benchmark: no private insurance markets, $c_{it} = y_{it}$.
-- $V_{i} = \mathbb{E}\left[\sum_{t=0}^\infty \beta^{t}u(c_{it})\right]$, $\ 0<\beta<1$
-- Assume $u(\cdot) = \log(\cdot)$.
-:::
-
-## Example 2: Welfare and $C^*$ {.smaller}
-
-:::{.incremental}
-- Since $\sum_{t=0}^{\infty}\beta^{t} = 1/(1-\beta)$, we know that:
-$$ V_{\tau} = \mu_{\tau} / (1-\beta) $$
-- If $\log(X)$ is normal with mean $\mu$ and variance $\sigma^2$, we know that
-$$\mathbb{E}[X] = \exp(\mu + 0.5\sigma^2)$$
-hence
-$$\mathbb{E}[y_{i,t}] = 0.5\exp(\mu_{L}+0.5\sigma^2) + 0.5\exp(\mu_{H}+0.5\sigma^2)$$
-- This is also what the planner would allocate to everyone. Call this $C^*$.
-:::
-
-## Example 2: Certainty equivalents
-:::{.incremental}
-- For type $\tau$, $\bar{c}_{\tau}$ solves:
-$$ \sum_{t=0}^{\infty}\beta^{t} \log(\bar{c}_{\tau}) = \mu_{\tau}/(1-\beta) $$
-and so $\bar{c}_{\tau} = \exp(\mu_{\tau})$
-- Thus $\bar{C} = 0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})$
-:::
-
-## Example 2: The decomposition {.smaller}
-
-:::{.incremental}
-- Now we decompose:
-$$
-\begin{aligned}
-W_{1} - W_{0} &= \frac{\log(C^*) - (0.5\mu_{L} + 0.5\mu_{H})}{(1-\beta)} \\
-&= \frac{\log(C^*) - \log(\bar{C})}{1-\beta} + \frac{\log(\bar{C}) - (0.5\mu_{L} + 0.5\mu_{H})}{1-\beta} \\
-&= \text{insurance} + \text{redistribution}
-\end{aligned}
-$$
-- Plugging in $C^*$ and $\bar{C}$:
-$$
-\begin{aligned}
-\text{insurance} &\propto \log\left(0.5\exp(\mu_{L}+0.5\sigma^2) + 0.5\exp(\mu_{H}+0.5\sigma^2)\right) \\
-&\qquad - \log(0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})) \\
-\text{redistribution} &\propto \log(0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})) - (0.5\mu_{L} + 0.5\mu_{H})
-\end{aligned}
-$$
-- Note what happens as $\mu_{L}\rightarrow\mu_{H}$ and as $\sigma^2\rightarrow 0$. Intuitive!
-:::
-
-## Example 2: Exercise {.smaller}
-
-:::{.incremental}
-- **Exercise** (board): show that the insurance term simplifies to
-$$ \text{insurance} = \frac{\sigma^2/2}{1-\beta}$$
-- Hint: factor $\exp(0.5\sigma^2)$ out of the first sum
-- Notice that this does **not** depend on $\mu_{L}$ or $\mu_{H}$: the value of insurance depends only on how much risk there is, not on inequality between types
-- In consumption units: $\log(1+\omega_{I}) = (1-\beta)\times\text{insurance}$, so $1+\omega_{I} = \exp(\sigma^2/2) = C^*/\bar{C}$
-- Similarly, the redistribution term depends only on $\mu_{L}$ and $\mu_{H}$, not on $\sigma^2$
 :::
 
 # Application: Storesletten, Telmer & Yaron (2004)

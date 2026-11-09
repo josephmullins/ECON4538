@@ -213,6 +213,22 @@ window.Quarto = {
   <li><a href="#part-c-2" id="toc-part-c-2" class="nav-link" data-scroll-target="#part-c-2">Part (c)</a></li>
   <li><a href="#part-d-1" id="toc-part-d-1" class="nav-link" data-scroll-target="#part-d-1">Part (d)</a></li>
   </ul></li>
+  <li><a href="#problem-7-insurance-and-redistribution-in-a-two-period-model" id="toc-problem-7-insurance-and-redistribution-in-a-two-period-model" class="nav-link" data-scroll-target="#problem-7-insurance-and-redistribution-in-a-two-period-model">Problem 7: Insurance and Redistribution in a Two-Period Model</a>
+  <ul class="collapse">
+  <li><a href="#part-a-3" id="toc-part-a-3" class="nav-link" data-scroll-target="#part-a-3">Part (a)</a></li>
+  <li><a href="#part-b-3" id="toc-part-b-3" class="nav-link" data-scroll-target="#part-b-3">Part (b)</a></li>
+  <li><a href="#part-c-3" id="toc-part-c-3" class="nav-link" data-scroll-target="#part-c-3">Part (c)</a></li>
+  <li><a href="#part-d-2" id="toc-part-d-2" class="nav-link" data-scroll-target="#part-d-2">Part (d)</a></li>
+  <li><a href="#part-e-1" id="toc-part-e-1" class="nav-link" data-scroll-target="#part-e-1">Part (e)</a></li>
+  </ul></li>
+  <li><a href="#problem-8-identifying-a-permanent-transitory-process-with-persistent-transitory-shocks" id="toc-problem-8-identifying-a-permanent-transitory-process-with-persistent-transitory-shocks" class="nav-link" data-scroll-target="#problem-8-identifying-a-permanent-transitory-process-with-persistent-transitory-shocks">Problem 8: Identifying a Permanent-Transitory Process with Persistent Transitory Shocks</a></li>
+  <li><a href="#problem-9-becker-tomes-with-earnings-and-wealth-taxes" id="toc-problem-9-becker-tomes-with-earnings-and-wealth-taxes" class="nav-link" data-scroll-target="#problem-9-becker-tomes-with-earnings-and-wealth-taxes">Problem 9: Becker-Tomes with Earnings and Wealth Taxes</a>
+  <ul class="collapse">
+  <li><a href="#part-a-4" id="toc-part-a-4" class="nav-link" data-scroll-target="#part-a-4">Part (a)</a></li>
+  <li><a href="#part-b-4" id="toc-part-b-4" class="nav-link" data-scroll-target="#part-b-4">Part (b)</a></li>
+  <li><a href="#part-c-4" id="toc-part-c-4" class="nav-link" data-scroll-target="#part-c-4">Part (c)</a></li>
+  <li><a href="#part-d-3" id="toc-part-d-3" class="nav-link" data-scroll-target="#part-d-3">Part (d)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -681,6 +697,293 @@ Solution
 <p><span class="math display">\[\Leftrightarrow X = \frac{1}{\psi} \times \frac{\beta (1-\tau) \delta}{1 + \beta(1-\tau) \delta} \lambda_1 \Omega^{1-\tau}\]</span></p>
 <p><span class="math display">\[\Rightarrow \text{compared to } X = \frac{1}{\psi} \frac{\beta \delta}{1+\beta \delta} \Omega\]</span></p>
 <p>So taxation also distorts investment of constrained households: it lowers the share of period-1 resources invested, <span class="math inline">\(\frac{\beta(1-\tau)\delta}{1+\beta(1-\tau)\delta} &lt; \frac{\beta\delta}{1+\beta\delta}\)</span>, but for poor households it also raises those resources (<span class="math inline">\(\lambda_1\Omega^{1-\tau} &gt; \Omega\)</span> when <span class="math inline">\(\Omega\)</span> is low). The second effect could offset the distortion from incomplete markets, but this depends on parameters <span class="math inline">\((\lambda_1, \lambda_2, \tau)\)</span>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="problem-7-insurance-and-redistribution-in-a-two-period-model" class="level2">
+<h2 class="anchored" data-anchor-id="problem-7-insurance-and-redistribution-in-a-two-period-model">Problem 7: Insurance and Redistribution in a Two-Period Model</h2>
+<p>Consider a two-period model in which income can take two values, <span class="math inline">\(y_{it}\in\{y_{L},y_{H}\}\)</span> with <span class="math inline">\(y_{L}&lt;y_{H}\)</span>. Let <span class="math inline">\(\pi\)</span> be the probability that an individual keeps the same income from <span class="math inline">\(t=1\)</span> to <span class="math inline">\(t=2\)</span>:</p>
+<p><span class="math display">\[\mathbb{P}[y_{i2}=y_{H}|y_{i1}=y_{H}] = \pi,\quad \mathbb{P}[y_{i2}=y_{L}|y_{i1}=y_{H}] = 1-\pi\]</span> <span class="math display">\[\mathbb{P}[y_{i2}=y_{L}|y_{i1}=y_{L}] = \pi,\quad \mathbb{P}[y_{i2}=y_{H}|y_{i1}=y_{L}] = 1-\pi\]</span></p>
+<p>Assume that <span class="math inline">\(c_{it} = y_{it}\)</span>, that utility is logarithmic, and that initial income is <span class="math inline">\(y_{L}\)</span> or <span class="math inline">\(y_{H}\)</span> with probability <span class="math inline">\(1/2\)</span> each. Define the value of each type <span class="math inline">\(\tau\in\{L,H\}\)</span> as</p>
+<p><span class="math display">\[V_{\tau} = \mathbb{E}\left[\log(c_{1}) + \beta\log(c_{2})\,|\,y_{1}=y_{\tau}\right]\]</span></p>
+<p>and the planner’s objective as <span class="math inline">\(W = \frac{1}{2}V_{L} + \frac{1}{2}V_{H}\)</span>. Let <span class="math inline">\(\Delta = y_{H}/y_{L}\)</span>.</p>
+<section id="part-a-3" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-3">Part (a)</h3>
+<p>Show that</p>
+<p><span class="math display">\[V_{L} = (1+\beta)\log(y_{L}) + \beta(1-\pi)\log(\Delta),\qquad V_{H} = (1+\beta)\log(y_{H}) - \beta(1-\pi)\log(\Delta)\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\begin{aligned}
+V_{L} &amp;= \log(y_{L}) + \beta\,\mathbb{E}[\log(y_{2})|y_{1}=y_{L}] \\
+&amp;= \log(y_{L}) + \beta\left[\pi\log(y_{L}) + (1-\pi)\log(y_{H})\right] \\
+&amp;= (1+\beta)\log(y_{L}) + \beta(1-\pi)\log(y_{H}/y_{L})
+\end{aligned}\]</span></p>
+<p>The derivation for <span class="math inline">\(V_{H}\)</span> is symmetric.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-b-3" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-3">Part (b)</h3>
+<p>Suppose the planner reallocates consumption in both periods so that everyone gets the same <span class="math inline">\(c_{1}\)</span> and <span class="math inline">\(c_{2}\)</span>. Show that</p>
+<p><span class="math display">\[c_{1} = c_{2} = \tfrac{1}{2}y_{L} + \tfrac{1}{2}y_{H}\]</span></p>
+<p>and that welfare at the planner’s allocation is <span class="math inline">\(W^* = V^*_{L} = V^*_{H} = (1+\beta)\log\left(\frac{y_{L}+y_{H}}{2}\right)\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In period 1, <span class="math inline">\(\mathbb{E}[y_{i1}] = \frac{1}{2}y_{L} + \frac{1}{2}y_{H}\)</span>, so the planner’s resource constraint gives <span class="math inline">\(c_{1} = (y_{L}+y_{H})/2\)</span>.</p>
+<p>In period 2,</p>
+<p><span class="math display">\[\mathbb{P}[y_{i2}=y_{L}] = \underbrace{\tfrac{1}{2}\pi}_{y_{L}\rightarrow y_{L}} + \underbrace{\tfrac{1}{2}(1-\pi)}_{y_{H}\rightarrow y_{L}} = \tfrac{1}{2}\]</span></p>
+<p>so average income is the same and <span class="math inline">\(c_{2} = (y_{L}+y_{H})/2\)</span>. Plugging in gives <span class="math inline">\(V^* = (1+\beta)\log\left(\frac{y_{L}+y_{H}}{2}\right)\)</span> for everyone.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-c-3" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-3">Part (c)</h3>
+<p>Show that the certainty equivalents <span class="math inline">\((\bar{c}_{L},\bar{c}_{H})\)</span>, which deliver the same values as <span class="math inline">\((V_{L},V_{H})\)</span> if received in both periods, are</p>
+<p><span class="math display">\[\bar{c}_{L} = y_{L}\Delta^{\frac{\beta(1-\pi)}{1+\beta}},\qquad \bar{c}_{H} = y_{H}\Delta^{-\frac{\beta(1-\pi)}{1+\beta}}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\bar{c}_{L}\)</span> solves</p>
+<p><span class="math display">\[(1+\beta)\log(\bar{c}_{L}) = V_{L} = (1+\beta)\log(y_{L}) + \beta(1-\pi)\log(\Delta)\]</span></p>
+<p>so <span class="math inline">\(\log(\bar{c}_{L}) = \log(y_{L}) + \frac{\beta(1-\pi)}{1+\beta}\log(\Delta)\)</span>, which gives the result. The derivation for <span class="math inline">\(\bar{c}_{H}\)</span> is symmetric.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-d-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-d-2">Part (d)</h3>
+<p>Define <span class="math inline">\(\bar{C} = \frac{1}{2}\bar{c}_{L} + \frac{1}{2}\bar{c}_{H}\)</span>. Recall that</p>
+<p><span class="math display">\[\mathcal{I} = W^* - (1+\beta)\log(\bar{C})\]</span></p>
+<p>is the insurance component of the welfare gain. Show that</p>
+<p><span class="math display">\[\mathcal{I} = (1+\beta)\log\left(\frac{1+\Delta}{\Delta^{\frac{\beta(1-\pi)}{1+\beta}} + \Delta^{\frac{1+\beta\pi}{1+\beta}}}\right)\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Write <span class="math inline">\(\bar{c}_{H}\)</span> in terms of <span class="math inline">\(y_{L}\)</span>: <span class="math inline">\(\bar{c}_{H} = y_{L}\Delta\cdot\Delta^{-\frac{\beta(1-\pi)}{1+\beta}} = y_{L}\Delta^{\frac{1+\beta\pi}{1+\beta}}\)</span>. Then</p>
+<p><span class="math display">\[\begin{aligned}
+\mathcal{I} &amp;= (1+\beta)\log\left(\tfrac{1}{2}y_{L}(1+\Delta)\right) - (1+\beta)\log\left(\tfrac{1}{2}y_{L}\Delta^{\frac{\beta(1-\pi)}{1+\beta}} + \tfrac{1}{2}y_{L}\Delta^{\frac{1+\beta\pi}{1+\beta}}\right) \\
+&amp;= (1+\beta)\log\left(\frac{1+\Delta}{\Delta^{\frac{\beta(1-\pi)}{1+\beta}} + \Delta^{\frac{1+\beta\pi}{1+\beta}}}\right)
+\end{aligned}\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-e-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-e-1">Part (e)</h3>
+<p>What happens to this component as <span class="math inline">\(\pi\rightarrow 1\)</span>? As <span class="math inline">\(\beta\rightarrow 0\)</span>? Why?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In both cases the exponents converge to <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, so the denominator converges to <span class="math inline">\(1+\Delta\)</span> and <span class="math inline">\(\mathcal{I}\rightarrow 0\)</span>.</p>
+<ul>
+<li>As <span class="math inline">\(\pi\rightarrow 1\)</span>, income in period 2 is the same as in period 1, which is known. There is no risk left to insure, so all of the welfare gain is redistribution.</li>
+<li>As <span class="math inline">\(\beta\rightarrow 0\)</span>, only period 1 matters, and period 1 income is known when <span class="math inline">\(V_{\tau}\)</span> is evaluated. Again there is no risk, so the gain is all redistribution.</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="problem-8-identifying-a-permanent-transitory-process-with-persistent-transitory-shocks" class="level2">
+<h2 class="anchored" data-anchor-id="problem-8-identifying-a-permanent-transitory-process-with-persistent-transitory-shocks">Problem 8: Identifying a Permanent-Transitory Process with Persistent Transitory Shocks</h2>
+<p>Consider the income process:</p>
+<p><span class="math display">\[y_{it} = p_{it} + \zeta_{it}\]</span></p>
+<p>where</p>
+<p><span class="math display">\[p_{it} = p_{it-1} + \eta_{it},\qquad \zeta_{it} = \rho\zeta_{it-1} + \varepsilon_{it}\]</span></p>
+<p>and <span class="math inline">\(\eta_{it}\)</span>, <span class="math inline">\(\varepsilon_{it}\)</span> are iid, independent of each other and of past values of <span class="math inline">\(p\)</span> and <span class="math inline">\(\zeta\)</span>, with <span class="math inline">\(\mathbb{V}[\eta_{it}] = \sigma^2_{\eta}\)</span> and <span class="math inline">\(\mathbb{V}[\varepsilon_{it}] = \sigma^2_{\varepsilon}\)</span>.</p>
+<p>Use population moments from panel data on income to show that this income process is identified. Hint: in addition to the usual covariances, calculate <span class="math inline">\(\mathbb{V}(y_{it+1})\)</span> and <span class="math inline">\(\mathbb{V}(y_{it+2})\)</span> in terms of <span class="math inline">\(\mathbb{V}(p_{it})\)</span>, <span class="math inline">\(\mathbb{V}(\zeta_{it})\)</span>, and the shocks at <span class="math inline">\(t+1\)</span> and <span class="math inline">\(t+2\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Variances:</strong></p>
+<p><span class="math display">\[\begin{aligned}
+\mathbb{V}(y_{it}) &amp;= \mathbb{V}(p_{it}) + \mathbb{V}(\zeta_{it}) \\
+\mathbb{V}(y_{it+1}) &amp;= \mathbb{V}(p_{it}) + \sigma^2_{\eta} + \rho^2\mathbb{V}(\zeta_{it}) + \sigma^2_{\varepsilon} \\
+\mathbb{V}(y_{it+2}) &amp;= \mathbb{V}(p_{it}) + 2\sigma^2_{\eta} + \rho^4\mathbb{V}(\zeta_{it}) + (1+\rho^2)\sigma^2_{\varepsilon}
+\end{aligned}\]</span></p>
+<p><strong>Covariances:</strong></p>
+<p><span class="math display">\[\begin{aligned}
+C_{1} &amp;= \mathcal{C}(y_{it},y_{it+1}) = \mathbb{V}(p_{it}) + \rho\mathbb{V}(\zeta_{it}) \\
+C_{2} &amp;= \mathcal{C}(y_{it},y_{it+2}) = \mathbb{V}(p_{it}) + \rho^2\mathbb{V}(\zeta_{it}) \\
+C_{3} &amp;= \mathcal{C}(y_{it},y_{it+3}) = \mathbb{V}(p_{it}) + \rho^3\mathbb{V}(\zeta_{it})
+\end{aligned}\]</span></p>
+<p><strong>Identification:</strong> (assuming <span class="math inline">\(\rho\notin\{0,1\}\)</span> and <span class="math inline">\(\mathbb{V}(\zeta_{it})&gt;0\)</span>)</p>
+<p><span class="math display">\[\rho = \frac{C_{3}-C_{2}}{C_{2}-C_{1}} \left(= \frac{\rho^3-\rho^2}{\rho^2-\rho}\right),\qquad \mathbb{V}(\zeta_{it}) = \frac{C_{2}-C_{1}}{\rho^2-\rho},\qquad \mathbb{V}(p_{it}) = \mathbb{V}(y_{it}) - \mathbb{V}(\zeta_{it})\]</span></p>
+<p>Now define</p>
+<p><span class="math display">\[\begin{aligned}
+B_{1} &amp;= \mathbb{V}(y_{it+2}) - \mathbb{V}(y_{it+1}) - (\rho^4-\rho^2)\mathbb{V}(\zeta_{it}) = \sigma^2_{\eta} + \rho^2\sigma^2_{\varepsilon} \\
+B_{2} &amp;= \mathbb{V}(y_{it+1}) - \mathbb{V}(p_{it}) - \rho^2\mathbb{V}(\zeta_{it}) = \sigma^2_{\eta} + \sigma^2_{\varepsilon}
+\end{aligned}\]</span></p>
+<p>so</p>
+<p><span class="math display">\[\sigma^2_{\varepsilon} = \frac{B_{2}-B_{1}}{1-\rho^2},\qquad \sigma^2_{\eta} = B_{2} - \sigma^2_{\varepsilon}\]</span></p>
+<p>Done.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-9-becker-tomes-with-earnings-and-wealth-taxes" class="level2">
+<h2 class="anchored" data-anchor-id="problem-9-becker-tomes-with-earnings-and-wealth-taxes">Problem 9: Becker-Tomes with Earnings and Wealth Taxes</h2>
+<p>Consider the 2-period Becker-Tomes model:</p>
+<p><span class="math display">\[\max_{C_1, C_2, X, A} U(C_1) + \beta U(C_2)\]</span></p>
+<p><span class="math display">\[\text{s.t.} \quad C_1 + \psi X + A/(1+r) \leq \Omega\]</span></p>
+<p><span class="math display">\[C_2 = A + b + (1-\tau)wzX^{\delta}, \quad A \geq 0\]</span></p>
+<p>where <span class="math inline">\(\tau\)</span> is a constant marginal tax rate on earnings in period 2 and <span class="math inline">\(b\)</span> is a lump-sum transfer.</p>
+<section id="part-a-4" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-4">Part (a)</h3>
+<p>Characterize the first order conditions for constrained and unconstrained households.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Unconstrained (<span class="math inline">\(A&gt;0\)</span>):</p>
+<p><span class="math display">\[U'(C_1) = \beta(1+r)U'(C_2),\qquad \frac{(1-\tau)\delta wzX^{\delta-1}}{\psi} = 1+r\]</span></p>
+<p>Constrained (<span class="math inline">\(A=0\)</span>):</p>
+<p><span class="math display">\[U'(C_1) = \beta\frac{(1-\tau)\delta wzX^{\delta-1}}{\psi}U'(C_2),\qquad (1+r) \leq \frac{(1-\tau)\delta wzX^{\delta-1}}{\psi}\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-b-4" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-4">Part (b)</h3>
+<p>Are the investment choices of unconstrained households still efficient? Why or why not?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No.&nbsp;Efficiency requires</p>
+<p><span class="math display">\[\frac{\delta wzX^{\delta-1}}{\psi} = 1+r\]</span></p>
+<p>The tax reduces the private return to <span class="math inline">\(X\)</span> by the factor <span class="math inline">\((1-\tau)\)</span>, so unconstrained households invest less than is efficient.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="part-c-4" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-4">Part (c)</h3>
+<p>Suppose instead that the tax <span class="math inline">\(\tau\)</span> is levied on total wealth instead of just earnings, so that</p>
+<p><span class="math display">\[C_2 = b + (1-\tau)\left[A + wzX^{\delta}\right]\]</span></p>
+<p>Characterize the FOCs for households. How do they compare with the previous case?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For unconstrained households, combine the budget constraints:</p>
+<p><span class="math display">\[C_1 + \frac{C_2}{(1+r)(1-\tau)} + \psi X \leq \Omega + \frac{b}{(1+r)(1-\tau)} + \frac{wzX^{\delta}}{1+r}\]</span></p>
+<p>so</p>
+<p><span class="math display">\[U'(C_1) = \beta(1+r)(1-\tau)U'(C_2),\qquad \frac{\delta wzX^{\delta-1}}{\psi} = 1+r\]</span></p>
+<p>For constrained households (<span class="math inline">\(A=0\)</span>):</p>
+<p><span class="math display">\[U'(C_1) = \beta\frac{(1-\tau)\delta wzX^{\delta-1}}{\psi}U'(C_2)\]</span></p>
+<p>Comparison:</p>
+<ul>
+<li>Unconstrained households’ investment is no longer distorted, since the tax hits financial assets and human capital equally. But they do transfer less to period 2 (to the child) relative to their own consumption.</li>
+<li>The distortion for constrained households is identical to the previous case.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="part-d-3" class="level3">
+<h3 class="anchored" data-anchor-id="part-d-3">Part (d)</h3>
+<p>Does the planner still face an equity-efficiency trade-off?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Yes. The planner can increase the equality of consumption in period 2, but there is still an efficiency cost from the distortion in constrained households’ investment problem. Taxation may also reduce aggregate consumption in period 2 by distorting all households’ intertemporal Euler equation.</p>
 </div>
 </div>
 </div>
