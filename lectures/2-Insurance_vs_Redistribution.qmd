@@ -280,23 +280,92 @@ W^{B} - W^{A} = &\ \Big[\mathcal{V}(\bar{C}^{B}) - \mathcal{V}(\bar{C}^{A})\Big]
 - **Exercise**: check that with $A$ = laissez-faire and $B$ = the planner ($\bar{C}^{B} = C^*$, $W^{B} = \mathcal{V}(C^*)$), this is the decomposition from the examples
 :::
 
-## Measuring gains in consumption units {.smaller}
+## Measuring gains in consumption units
 
 :::{.incremental}
-- Utils are hard to interpret. The **consumption equivalent** $\omega$ is the percentage increase in consumption, in every period and state, that makes regime $A$ as good as regime $B$:
+- Utils are hard to interpret: is a gain of 0.36 big or small?
+- The **consumption equivalent** $\omega$ is the percentage increase in consumption, in every period and state, that makes regime $A$ as good as regime $B$:
 $$ \int\mathbb{E}\left[\sum_{t}\beta^{t}u((1+\omega)c^{A}_{it})\right]di = W^{B}$$
-- We can split it multiplicatively: $1+\omega = (1+\omega_{I})(1+\omega_{R})$, where
-$$ 1+\omega_{I} = \frac{\bar{C}^{B}}{\bar{C}^{A}}\qquad\text{(insurance)}$$
+- Let's compute it for Example 1, then split it into insurance and redistribution
 :::
 
-## Consumption units with CRRA utility {.smaller}
+## Example 1 in consumption units: the total gain {.smaller}
 
 :::{.incremental}
-- With CRRA utility $u(c) = c^{1-\sigma}/(1-\sigma)$, scaling consumption by $(1+\omega)$ scales values by $(1+\omega)^{1-\sigma}$, so:
-$$ 1+\omega = \left[\frac{W^{B}}{W^{A}}\right]^{1/(1-\sigma)},\qquad 1+\omega_{R} = \left[\frac{W^{B}/\mathcal{V}(\bar{C}^{B})}{W^{A}/\mathcal{V}(\bar{C}^{A})}\right]^{1/(1-\sigma)}$$
-- With log utility: $\log(1+\omega) = (1-\beta)(W^{B}-W^{A})$ in an infinite horizon economy
-- In Example 2: $1+\omega_{I} = C^*/\bar{C} = \exp(\sigma^2/2)$. With $\sigma^2 = 0.1$, insurance is worth about 5% of consumption in every period
-- We will compute these in recitation using a life-cycle model
+- Regime $A$ is laissez-faire ($c = y$) and regime $B$ is the planner. With log utility, scaling consumption by $(1+\omega)$ *adds* $\log(1+\omega)$ to utility:
+$$ \mathbb{E}[\log((1+\omega)y)] = W_{0} + \log(1+\omega)$$
+- Setting this equal to $W_{1} = \log(C^*)$:
+$$ \log(1+\omega) = W_{1} - W_{0} \qquad\Rightarrow\qquad 1+\omega = \frac{C^*}{\exp(W_{0})}$$
+- $\hat{C} \equiv \exp(W_{0})$ is the consumption that, given to everyone for sure, delivers laissez-faire welfare $W_{0}$
+- With $y_{L}=0.5$, $y_{H}=3$, $\pi=0.75$: $\hat{C} = \sqrt{y_{L}y_{H}} \approx 1.22$ and $C^* = 1.75$, so $1+\omega \approx 1.43$
+- The planner's allocation is worth a 43% increase in laissez-faire consumption
+:::
+
+## Example 1: Splitting the total gain {.smaller}
+
+:::{.incremental}
+- The utils decomposition is a sum of log differences:
+$$ W_{1} - W_{0} = \underbrace{\log(C^*) - \log(\bar{C})}_{\text{insurance}} + \underbrace{\log(\bar{C}) - \log(\hat{C})}_{\text{redistribution}}$$
+- Taking exponents turns the sum into a product:
+$$ 1+\omega = \frac{C^*}{\hat{C}} = \underbrace{\frac{C^*}{\bar{C}}}_{1+\omega_{I}}\times\underbrace{\frac{\bar{C}}{\hat{C}}}_{1+\omega_{R}}$$
+- **Insurance**: $1+\omega_{I} = 1.75/1.35 \approx 1.30$. Raising the average certainty equivalent to $C^*$ is worth 30% more consumption
+- **Redistribution**: $1+\omega_{R} = 1.35/1.22 \approx 1.10$. Equalizing certainty equivalents is worth 10% more consumption. Check: $1.30\times 1.10 \approx 1.43$
+:::
+
+## Example 1: The split in the figure
+
+Each step from $\hat{C}$ to $\bar{C}$ to $C^*$ is a ratio
+
+```{julia}
+#| echo: false
+using Printf
+C_hat = exp(v.W_0)
+base_plot()
+for (c, col) in ((C_hat, :red), (v.C_bar, :orange), (v.C_star, green))
+    plot!([0, c], [log(c), log(c)], linestyle=:dash, color=col, linewidth=2.5)
+    plot!([c, c], [-1, log(c)], linestyle=:dot, color=col, linewidth=2)
+    scatter!([c], [log(c)], color=col, markersize=6)
+end
+plot!([C_hat, v.C_bar], [-0.6, -0.6], color=:orange, linewidth=6)
+plot!([v.C_bar, v.C_star], [-0.6, -0.6], color=green, linewidth=6)
+annotate!(C_hat - 0.04, -0.8, text("Ĉ", :red, :right, 11, :bold))
+annotate!(v.C_bar, -0.8, text("C̄", :orange, :center, 11, :bold))
+annotate!(v.C_star, -0.8, text("C*", green, :center, 11, :bold))
+annotate!(2.0, -0.15, text("■ Redistribution: C̄/Ĉ ≈ $(@sprintf("%.2f", v.C_bar/C_hat))", :orange, :left, 10, :bold))
+annotate!(2.0, -0.35, text("■ Insurance: C*/C̄ ≈ $(@sprintf("%.2f", v.C_star/v.C_bar))", green, :left, 10, :bold))
+plot!(size=(1000, 480))
+annotate!(2.0, -0.55, text("Total: C*/Ĉ ≈ $(@sprintf("%.2f", v.C_star/C_hat))", :black, :left, 10, :bold))
+```
+
+## The split in general {.smaller}
+
+:::{.incremental}
+- As in Example 1, define $\hat{C}^{r}$ by $\mathcal{V}(\hat{C}^{r}) = W^{r}$ for any regime $r$. Then $\hat{C}^{r} \leq \bar{C}^{r}$, with equality only if certainty equivalents are equal
+- **If** scaling all of $A$'s consumption by $(1+\omega)$ also scales $\hat{C}^{A}$ by $(1+\omega)$, then $1+\omega = \hat{C}^{B}/\hat{C}^{A}$ and:
+$$ 1+\omega = \frac{\hat{C}^{B}}{\hat{C}^{A}} = \underbrace{\frac{\bar{C}^{B}}{\bar{C}^{A}}}_{1+\omega_{I}}\times\underbrace{\frac{\hat{C}^{B}/\bar{C}^{B}}{\hat{C}^{A}/\bar{C}^{A}}}_{1+\omega_{R}}$$
+- $\hat{C}^{r}/\bar{C}^{r}\in(0,1]$ is an **equality index**, and redistribution is the change in this index. Example 1 is the case $\hat{C}^{B} = \bar{C}^{B} = C^*$
+:::
+
+## When does the "if" hold? {.smaller}
+
+:::{.incremental}
+- We need preferences to be **homothetic**: scaling consumption in every period and state by $k$ scales every certainty equivalent by $k$
+- With time-separable expected utility, this means **CRRA**, $u(c) = c^{1-\sigma}/(1-\sigma)$, with log utility as the case $\sigma=1$
+- Scaling by $k$ multiplies values by $k^{1-\sigma}$, so $\mathcal{V}(\hat{C}^{B})/\mathcal{V}(\hat{C}^{A}) = (\hat{C}^{B}/\hat{C}^{A})^{1-\sigma}$ and we can write everything in terms of welfare:
+$$ 1+\omega = \left[\frac{W^{B}}{W^{A}}\right]^{\frac{1}{1-\sigma}},\qquad 1+\omega_{I} = \frac{\bar{C}^{B}}{\bar{C}^{A}},\qquad 1+\omega_{R} = \left[\frac{W^{B}/\mathcal{V}(\bar{C}^{B})}{W^{A}/\mathcal{V}(\bar{C}^{A})}\right]^{\frac{1}{1-\sigma}}$$
+- These are the formulas we will use in recitation
+- Without homotheticity, $\omega_{R}$ can still be defined as the residual $(1+\omega)/(1+\omega_{I})$, but it then depends on the level of consumption, not just on how unequal certainty equivalents are
+:::
+
+## Example 2 in consumption units {.smaller}
+
+:::{.incremental}
+- With $\mathcal{V}(c) = \log(c)/(1-\beta)$: $\hat{C} = \exp(0.5\mu_{L} + 0.5\mu_{H})$, $\bar{C} = 0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})$, and $C^* = \exp(\sigma^2/2)\bar{C}$
+- **Insurance**: $1+\omega_{I} = C^*/\bar{C} = \exp(\sigma^2/2)$. With $\sigma^2 = 0.1$, insurance is worth about 5% of consumption in every period
+- **Redistribution**:
+$$1+\omega_{R} = \frac{\bar{C}}{\hat{C}} = \frac{0.5\exp(\mu_{L}) + 0.5\exp(\mu_{H})}{\exp(0.5\mu_{L} + 0.5\mu_{H})} = \frac{\text{arithmetic mean of } \bar{c}_{\tau}}{\text{geometric mean of } \bar{c}_{\tau}}$$
+- This is $\geq 1$, with equality only when $\mu_{L} = \mu_{H}$. The same holds in Example 1: $\hat{C} = \sqrt{\bar{c}_{L}\bar{c}_{H}}$
+- With log utility, redistribution is worth the ratio of the arithmetic to the geometric mean of certainty equivalents
 :::
 
 # Application: Storesletten, Telmer & Yaron (2004)
